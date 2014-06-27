@@ -1,2 +1,1 @@
-#transform flop src=$png_name dest=${s}/right_ptr.png
-transform rotate=90 src=$png_name dest=${s}/right_ptr.png
+transform rotate=90 src=$png_name dest=${s}/right_ptr_left.png
