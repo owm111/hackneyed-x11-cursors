@@ -10,7 +10,7 @@ config_file=${target}.in
 rm -f $config_file
 
 for s in $sizes; do
-	size_half=$((s / 2))
+	size_half=$(((s / 2) - 1))
 	j=1
 	source_svg="svg/${target}-${j}.svg"
 	while [ -e "$source_svg" ]; do
