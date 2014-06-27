@@ -1,0 +1,3 @@
+transform flip src=$png_name dest=${s}/down-arrow.png
+transform rotate=90 src=$png_name dest=${s}/right-arrow.png
+transform rotate=270 src=$png_name dest=${s}/left-arrow.png

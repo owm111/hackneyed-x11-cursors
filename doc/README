@@ -1,0 +1,62 @@
+WHAT
+====
+An X11 cursor theme loosely inspired on Windows 3.x cursors.
+
+
+WHY
+===
+The lack of spinning hourglasses in today's design trends
+for mouse cursors is absolutely revolting.
+
+
+WHAT DO YOU NEED
+================
+ImageMagick and xcursorgen (part of the x11-apps package);
+just cd to source and 'make'. If everything goes well, you
+will be given a tar.bz2 file with the full theme, which will
+also remain unpacked in a newly-created 'Hackneyed' folder.
+
+
+LICENSE
+=======
+Licensed under the WTFPL. Just do whatever the f... well,
+read the full text in LICENSE.
+
+
+CREDITS
+=======
+- do-symlinks.sh, rewrite of addmissing.sh, which was taken from
+  dummy-x11-cursors by ultr (on kde-look.org)
+
+- some SVGs taken from openclipart.org
+
+
+BUGS
+====
+If for whatever reason you like this and want to report a bug,
+please do so. I'm a nice guy.
+
+
+USEFUL LINKS
+============
+- http://www.freedesktop.org/wiki/Specifications/cursor-spec/
+  Freedesktop.org's cursor specification
+
+- http://dev.w3.org/csswg/css-ui/#cursor
+  CSS cursors
+
+- https://developer.mozilla.org/en-US/docs/Web/CSS/cursor
+  Test page for CSS cursors (only Firefox allows fully themable cursors)
+
+- http://dxr.mozilla.org/mozilla-central/source/widget/gtk/nsGtkCursors.h
+  Mozilla's cursor hashes
+
+- http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users
+  Qt requirements for X11 cursors
+
+- http://tronche.com/gui/x/xlib/appendix/b/
+  Core X11 cursors. I'm still wondering what most of these cursors are used
+  for.
+
+
+Ludvig Hummel <enthymeme@zoho.com> - 2014

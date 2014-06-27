@@ -1,0 +1,4 @@
+svg=svg/default.svg
+overlay=svg/not-allowed.svg
+overlay_size=72
+overlay_position=+40+44

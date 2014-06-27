@@ -1,0 +1,5 @@
+svg=svg/default.svg
+overlay=svg/overlay-plus-sign.svg
+overlay_size=100
+overlay_position=+12+60
+flip_svg=1
