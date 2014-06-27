@@ -1,0 +1,1 @@
+transform raw -background none -distort SRT +45 $png_name ${s}/hand1.png

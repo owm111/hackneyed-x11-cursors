@@ -1,0 +1,5 @@
+svg=svg/default.svg
+overlay=svg/wait-static.svg
+overlay_size=76
+overlay_position=-7+7
+flip_svg=1

@@ -1,0 +1,4 @@
+svg=svg/default.svg
+overlay=svg/overlay-curved-arrow.svg
+overlay_size=50
+overlay_position=+60+60
