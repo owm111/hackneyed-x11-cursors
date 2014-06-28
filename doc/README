@@ -57,6 +57,11 @@ USEFUL LINKS
   application launcher. The code is in xlib.c, in a function called
   XcursorLogDiscover.
 
+  You should not take into account the hashes for masks, i.e., the filled
+  "images" displayed. If for some reason you can't tell a mask from a cursor,
+  only consider hashes that "return" some random hex number (something in the
+  lines of "Cursor hash XXXXX returns 0xdeadbeef").
+
 - http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users
   Qt requirements for X11 cursors
 
