@@ -75,33 +75,40 @@ find_file()
 	return 1
 }
 
-if [ "$1" ]; then
-	cd $1 || exit 1
-fi
+do_linkage()
+{
+	for c in $CURSORS; do
+		eval alt_names="\$$c"
+		case $c in
+		up_arrow|right_ptr|size_all|X_cursor|center_ptr)
+			input=$c ;;
+		*)
+			input=${c/_/-} ;;
+		esac
 
-for c in $CURSORS; do
-	eval alt_names="\$$c"
-	case $c in
-	up_arrow|right_ptr|size_all|X_cursor|center_ptr)
-		input=$c ;;
-	*)
-		input=${c/_/-} ;;
-	esac
+		[ "$alt_names" ] || echo "no alt_names for $input"
+		if [ -e "$input" ]; then
+			c_source=$input
+		else
+			c_source=$(find_file $alt_names)
+			alt_names="$alt_names $input"
+		fi
+		if [ -z "$c_source" ]; then
+			echo "missing: $input"
+			continue
+		fi
 
-	[ "$alt_names" ] || echo "no alt_names for $input"
-	if [ -e "$input" ]; then
-		c_source=$input
-	else
-		c_source=$(find_file $alt_names)
-		alt_names="$alt_names $input"
-	fi
-	if [ -z "$c_source" ]; then
-		echo "missing: $input"
-		continue
-	fi
-
-	for a in $alt_names; do
-		link $c_source $a
+		for a in $alt_names; do
+			link $c_source $a
+		done
+		unset c_source
 	done
-	unset c_source
+}
+
+while [ "$1" ]; do
+	oldwd=$PWD
+	cd $1 || exit 1
+	do_linkage
+	cd $oldwd || exit 1
+	shift
 done
