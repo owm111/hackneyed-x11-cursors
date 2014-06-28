@@ -1,4 +1,4 @@
-include deps.mk overlay-deps.mk
+include deps.mk config/overlay.mk config/transform.mk
 
 CURSORS = default text pointer help progress wait copy alias no-drop \
 not-allowed split_v split_h e-resize ne-resize nw-resize n-resize se-resize \
@@ -66,7 +66,7 @@ wait: svg/wait*.svg conjure-frames.sh
 
 preview: $(CURSORS) $(LCURSORS)
 	montage -background none -geometry +4+4 -mode concatenate -tile 9x10 \
-		$(PREVIEW_SIZE)/{default,help,progress,alias,copy,context-menu,no-drop,dnd-move,right_ptr}.png \
+		$(PREVIEW_SIZE)/{default,help,progress,alias,copy,context-menu,no-drop,dnd-move}.png \
 		$(PREVIEW_SIZE)/{help,progress,alias,copy,context-menu,no-drop,dnd-move}_left.png \
 		$(PREVIEW_SIZE)/{default_left,center_ptr,right_ptr_left}.png \
 		$(PREVIEW_SIZE)/{pencil_left,color-picker_left,openhand}.png \
@@ -125,6 +125,8 @@ down-arrow left-arrow right-arrow: up_arrow
 Makefile.in Makefile: ;
 %.svg: ;
 %.mk: ;
+config/overlay/%: ;
+config/transform/%: ;
 
 clean:
 	rm -rf $(SIZES)

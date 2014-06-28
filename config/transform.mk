@@ -1,0 +1,11 @@
+pointer: config/transform/pointer
+center_ptr: config/transform/center_ptr
+default: config/transform/default
+e-resize: config/transform/e-resize
+ew-resize: config/transform/ew-resize
+ne-resize: config/transform/ne-resize
+n-resize: config/transform/n-resize
+nwse-resize: config/transform/nwse-resize
+split_v: config/transform/split_v
+text: config/transform/text
+up_arrow: config/transform/up_arrow
