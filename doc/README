@@ -49,7 +49,13 @@ USEFUL LINKS
   Test page for CSS cursors (only Firefox allows fully themable cursors)
 
 - http://dxr.mozilla.org/mozilla-central/source/widget/gtk/nsGtkCursors.h
-  Mozilla's cursor hashes
+  Mozilla's cursor hashes. If you're wondering about a way to discover them
+  without looking in the source code, libXcursor has an undocumented
+  "hash logger", which is triggered when one exports a variable called
+  XCURSOR_DISCOVER, no matter the value. The hashes are printed on the
+  terminal, so it's important that you don't do this from a graphical
+  application launcher. The code is in xlib.c, in a function called
+  XcursorLogDiscover.
 
 - http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users
   Qt requirements for X11 cursors
@@ -57,6 +63,10 @@ USEFUL LINKS
 - http://tronche.com/gui/x/xlib/appendix/b/
   Core X11 cursors. I'm still wondering what most of these cursors are used
   for.
+
+- http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html
+  ComixCursors README, which I found after finding out what I wrote above
+  about hashes.
 
 
 Ludvig Hummel <enthymeme@zoho.com> - 2014
