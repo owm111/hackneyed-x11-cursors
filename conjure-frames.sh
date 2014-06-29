@@ -18,7 +18,7 @@ for s in $sizes; do
 		png_name="${s}/$(basename $source_svg .svg).png"
 		echo "$png_name"
 		export_png src=$source_svg dest=$png_name size=${s}
-		[ $j = 9 ] && duration=270
+		[ $j = 9 ] && duration=360
 		echo "$s $size_half $size_half $png_name $duration" >> $config_file
 		((j++))
 		source_svg="svg/${target}-${j}.svg"
@@ -27,7 +27,7 @@ for s in $sizes; do
 	for ((i=6; i<180; i+=6, j++)); do
 		png_name="${s}/${target}-${j}.png"
 		echo "$starts_spinning: $png_name"
-		convert -resize ${s} -background none -distort SRT +${i} $starts_spinning $png_name || exit 1
+		convert -resize ${s}x${s} -distort SRT +${i} $starts_spinning $png_name || exit 1
 		echo "$s $size_half $size_half $png_name 30" >> $config_file
 	done
 done
