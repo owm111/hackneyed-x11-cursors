@@ -11,7 +11,7 @@ LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left
 THEME_NAME = Hackneyed
-VERSION = 0.3.17
+VERSION = 0.3.18
 SIZES ?= 32 40 48 56 64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
@@ -46,7 +46,7 @@ lall: $(CURSORS) $(LCURSORS)
 		cp $$l L$(THEME_NAME)/cursors/$${l/.left/}; \
 	done
 
-wait: svg/wait*.svg conjure-frames.sh
+wait: svg/wait-[1-9].svg conjure-frames.sh
 	./conjure-frames.sh sizes="$(SIZES)" use_inkscape=$(USE_INKSCAPE) target=$@
 	$(XCURSORGEN) wait.in $@
 
@@ -127,6 +127,7 @@ Makefile.in Makefile: ;
 %.mk: ;
 config/overlay/%: ;
 config/transform/%: ;
+%.sh: ;
 
 clean:
 	rm -rf $(SIZES)
