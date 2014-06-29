@@ -26,8 +26,11 @@ for s in $sizes; do
 	starts_spinning=$png_name
 	for ((i=6; i<180; i+=6, j++)); do
 		png_name="${s}/${target}-${j}.png"
+		tmp_crop="png/${target}-${j}.png"
 		echo "$starts_spinning: $png_name"
-		convert -resize ${s}x${s} -distort SRT +${i} $starts_spinning $png_name || exit 1
+#		convert -resize ${s}x${s} -distort SRT +${i} $starts_spinning $png_name || exit 1
+		convert -background none -resize ${s}x${s} -rotate ${i} $starts_spinning $tmp_crop || exit 1
+		convert -gravity northwest -crop ${s}x${s}+0+0 $tmp_crop $png_name || exit 1
 		echo "$s $size_half $size_half $png_name 30" >> $config_file
 	done
 done
