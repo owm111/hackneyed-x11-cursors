@@ -105,8 +105,8 @@ do_linkage()
 	done
 }
 
+oldwd=$PWD
 while [ "$1" ]; do
-	oldwd=$PWD
 	cd $1 || exit 1
 	do_linkage
 	cd $oldwd || exit 1
