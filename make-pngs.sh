@@ -50,9 +50,11 @@ export_png opt=$flop src=$svg dest=$source_png
 
 if [ "$overlay" ]; then
 	source_ovl="png/${target}.png"
+	tmp_ovl="$(basename $overlay .svg).png"
 	echo "generating $source_ovl"
-	composite -background none -geometry $overlay_position \( $overlay -resize ${overlay_size}% \) \
-		$source_png $source_ovl || exit 1
+	export_png opt='-trim +repage' src=$overlay dest=$tmp_ovl
+	composite -background none -geometry $overlay_position \( $tmp_ovl -resize ${overlay_size}% \) \
+		$source_png $source_ovl || exit 1 && rm $tmp_ovl
 	source_png=$source_ovl
 fi
 
