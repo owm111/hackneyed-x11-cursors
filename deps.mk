@@ -13,6 +13,7 @@ not-allowed: svg/not-allowed.svg
 nwse-resize: svg/nwse-resize.svg
 openhand: svg/openhand.svg
 pencil: svg/pencil.svg
+pencil.left: svg/pencil.svg
 pirate: svg/pirate.svg
 plus: svg/plus.svg
 pointer: svg/pointer.svg
@@ -25,3 +26,4 @@ wayland-cursor-srsbsnss: svg/wayland-cursor-srsbsnss.svg
 wayland-cursor: svg/wayland-cursor.svg
 X_cursor: svg/X_cursor.svg
 zoom: svg/zoom.svg
+zoom.left: svg/zoom.svg
