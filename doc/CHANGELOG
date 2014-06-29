@@ -1,3 +1,13 @@
+0.3.18
+- give some life to draft by coloring it, make pencil look like it;
+- make shadows more consistent across pointers, specially the hands;
+- change colors of dnd-move's fleur and the question mark in help,
+  so they are more noticeable;
+- rework the hourglass to make it look better in small sizes;
+- wayland-cursor is now a sign of the horns (that was on the previous
+  version, but I forgot to write it and I don't quite like historical
+  revisionism)
+
 0.3.17
 - turn right_ptr into a horizontal arrow pointing right, so
   that it looks distinct in the left-handed theme;
