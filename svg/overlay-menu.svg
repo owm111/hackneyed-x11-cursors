@@ -10,8 +10,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="128"
-   height="128"
+   width="119.66174"
+   height="137.04161"
    id="svg3869"
    version="1.1"
    inkscape:version="0.48.4 r9939"
@@ -23,23 +23,16 @@
      id="defs3871">
     <filter
        inkscape:collect="always"
-       id="filter4397"
-       x="-0.18976682"
-       width="1.3795336"
-       y="-0.14352933"
-       height="1.2870587">
+       id="filter3768"
+       x="-0.14654326"
+       width="1.2930865"
+       y="-0.11989909"
+       height="1.2397982"
+       color-interpolation-filters="sRGB">
       <feGaussianBlur
          inkscape:collect="always"
-         stdDeviation="3.2468411"
-         id="feGaussianBlur4399" />
-    </filter>
-    <filter
-       inkscape:collect="always"
-       id="filter3781">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="1.5907031"
-         id="feGaussianBlur3783" />
+         stdDeviation="5.4438535"
+         id="feGaussianBlur3770" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -50,8 +43,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="144.88878"
-     inkscape:cy="65.606352"
+     inkscape:cx="95.833068"
+     inkscape:cy="62.483587"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -61,7 +54,11 @@
      inkscape:window-y="-2"
      inkscape:window-maximized="1"
      showguides="true"
-     inkscape:guide-bbox="true" />
+     inkscape:guide-bbox="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
   <metadata
      id="metadata3874">
     <rdf:RDF>
@@ -78,17 +75,17 @@
      inkscape:label="Camada 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-924.36218)">
+     transform="translate(-9.234283,-925.15577)">
     <path
        sodipodi:type="inkscape:offset"
-       inkscape:radius="4.6428571"
+       inkscape:radius="6.8371463"
        inkscape:original="M 35.03125 939.34375 C 29.193161 939.34375 24.5 944.03691 24.5 949.875 L 24.5 1028.4688 C 24.5 1034.3068 29.193161 1039 35.03125 1039 L 93.8125 1039 C 99.650589 1039 104.34375 1034.3068 104.34375 1028.4688 L 104.34375 949.875 C 104.34375 944.03691 99.650589 939.34375 93.8125 939.34375 L 35.03125 939.34375 z "
        xlink:href="#rect2995"
-       style="opacity:0.55;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3781)"
+       style="opacity:0.55;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3768)"
        id="path3779"
        inkscape:href="#rect2995"
-       d="m 36.03125,934.6875 c -8.326309,0 -15.1875,6.86119 -15.1875,15.1875 l 0,78.5938 c 0,8.3262 6.86117,15.1874 15.1875,15.1874 l 58.78125,0 c 8.32633,0 15.1875,-6.8612 15.1875,-15.1874 l 0,-78.5938 c 0,-8.32631 -6.86119,-15.1875 -15.1875,-15.1875 l -58.78125,0 z"
-       transform="matrix(1,0,0,0.98255813,3.6432811,19.757681)" />
+       d="m 35.03125,932.5 c -9.502281,0 -17.375,7.87272 -17.375,17.375 l 0,78.5938 c 0,9.5022 7.872687,17.375 17.375,17.375 l 58.78125,0 c 9.50231,0 17.375,-7.8728 17.375,-17.375 l 0,-78.5938 c 0,-9.50228 -7.87272,-17.375 -17.375,-17.375 l -58.78125,0 z"
+       transform="matrix(1,0,0,0.98255813,4.6432811,21.757681)" />
     <rect
        style="fill:#ffffff;fill-opacity:1;stroke:none"
        id="rect2995"

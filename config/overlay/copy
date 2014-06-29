@@ -1,4 +1,4 @@
 svg=svg/default.svg
-overlay=svg/overlay-plus-sign.svg
+overlay=svg/overlay-plus-sign-shadowed.svg
 overlay_size=100
-overlay_position=+66+60
+overlay_position=+65+60
