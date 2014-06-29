@@ -15,43 +15,35 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="all-scroll.svg"
+   sodipodi:docname="move.svg"
    inkscape:export-filename="/home/ludvig/tmp/hackneyed/source/all-scroll.png"
    inkscape:export-xdpi="22.5"
    inkscape:export-ydpi="22.5">
   <defs
      id="defs4">
     <filter
-       inkscape:collect="always"
-       id="filter3855">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="3.9450674"
-         id="feGaussianBlur3857" />
-    </filter>
-    <filter
        height="1.3216586"
        y="-0.16082932"
        width="1.2273439"
        x="-0.11367197"
-       id="filter3813"
+       id="filter3813-6"
        inkscape:collect="always">
       <feGaussianBlur
-         id="feGaussianBlur3815"
+         id="feGaussianBlur3815-7"
          stdDeviation="4.6071003"
          inkscape:collect="always" />
     </filter>
     <filter
        inkscape:collect="always"
-       id="filter3831"
-       x="-0.10800095"
-       width="1.2160019"
-       y="-0.10799905"
-       height="1.2159981">
+       id="filter3797"
+       x="-0.13200117"
+       width="1.2640023"
+       y="-0.13199883"
+       height="1.2639977">
       <feGaussianBlur
          inkscape:collect="always"
-         stdDeviation="4.2692698"
-         id="feGaussianBlur3833" />
+         stdDeviation="5.2179964"
+         id="feGaussianBlur3799" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -61,9 +53,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284272"
-     inkscape:cx="37.82424"
-     inkscape:cy="76.132764"
+     inkscape:zoom="4.0000001"
+     inkscape:cx="72.597091"
+     inkscape:cy="64.540783"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -94,10 +86,11 @@
        inkscape:radius="5.0621142"
        inkscape:original="M 64 946 L 42.875 967.96875 L 21.625 988.375 L 43.21875 1009.1562 L 64 1030.75 L 84.40625 1009.5 L 106.375 988.375 L 84.75 967.625 L 64 946 z M 45 969.375 L 56.78125 969.375 L 56.78125 981.1875 L 45 981.1875 L 45 969.375 z M 71.1875 969.375 L 83 969.375 L 83 981.1875 L 71.1875 981.1875 L 71.1875 969.375 z M 45 995.59375 L 56.78125 995.59375 L 56.78125 1007.375 L 45 1007.375 L 45 995.59375 z M 71.1875 995.59375 L 83 995.59375 L 83 1007.375 L 71.1875 1007.375 L 71.1875 995.59375 z "
        xlink:href="#path3019"
-       style="fill:#000000;fill-opacity:1;stroke:none;opacity:0.55000000000000004;filter:url(#filter3831)"
+       style="opacity:0.55;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3797)"
        id="path3025"
        inkscape:href="#path3019"
-       d="m 64.03125,940.9375 a 5.0626205,5.0626205 0 0 0 -3.6875,1.5625 l -20.96875,21.8125 -0.15625,0.15625 -21.09375,20.25 a 5.0626205,5.0626205 0 0 0 0,7.3125 l 21.4375,20.62495 0.15625,0.1563 20.625,21.4375 a 5.0626205,5.0626205 0 0 0 7.3125,0 l 20.25,-21.0938 L 88,1013.0938 88.0625,1013 109.875,992.03125 a 5.0626205,5.0626205 0 0 0 0,-7.3125 L 88.40625,964.125 88.34375,964.03125 88.25,963.96875 67.65625,942.5 a 5.0626205,5.0626205 0 0 0 -3.625,-1.5625 z m -13.96875,33.5 1.65625,0 0,1.6875 -1.65625,0 0,-1.6875 z m 26.1875,0 1.6875,0 0,1.6875 -1.6875,0 0,-1.6875 z m -26.1875,26.2187 1.65625,0 0,1.6563 -1.65625,0 0,-1.6563 z m 26.1875,0 1.6875,0 0,1.6563 -1.6875,0 0,-1.6563 z" />
+       d="m 64.03125,940.9375 a 5.0626205,5.0626205 0 0 0 -3.6875,1.5625 l -20.96875,21.8125 -0.15625,0.15625 -21.09375,20.25 a 5.0626205,5.0626205 0 0 0 0,7.3125 l 21.4375,20.62495 0.15625,0.1563 20.625,21.4375 a 5.0626205,5.0626205 0 0 0 7.3125,0 l 20.25,-21.0938 L 88,1013.0938 88.0625,1013 109.875,992.03125 a 5.0626205,5.0626205 0 0 0 0,-7.3125 L 88.40625,964.125 88.34375,964.03125 88.25,963.96875 67.65625,942.5 a 5.0626205,5.0626205 0 0 0 -3.625,-1.5625 z m -13.96875,33.5 1.65625,0 0,1.6875 -1.65625,0 0,-1.6875 z m 26.1875,0 1.6875,0 0,1.6875 -1.6875,0 0,-1.6875 z m -26.1875,26.2187 1.65625,0 0,1.6563 -1.65625,0 0,-1.6563 z m 26.1875,0 1.6875,0 0,1.6563 -1.6875,0 0,-1.6563 z"
+       transform="translate(0,3)" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5.30000019;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        d="M 64,945.98718 42.875,967.95593 21.625,988.36218 43.21875,1009.1435 64,1030.7372 84.40625,1009.4872 106.375,988.36218 84.75,967.61218 64,945.98718 z m -19,23.375 11.78125,0 0,11.8125 -11.78125,0 0,-11.8125 z m 26.1875,0 11.8125,0 0,11.8125 -11.8125,0 0,-11.8125 z M 45,995.58093 l 11.78125,0 0,11.78127 -11.78125,0 0,-11.78127 z m 26.1875,0 11.8125,0 0,11.78127 -11.8125,0 0,-11.78127 z"
