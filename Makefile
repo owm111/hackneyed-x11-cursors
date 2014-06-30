@@ -6,7 +6,7 @@ sw-resize s-resize w-resize vertical-text crosshair tcross up_arrow \
 context-menu ew-resize ns-resize nesw-resize nwse-resize pencil right_ptr \
 zoom zoom-in zoom-out pirate X_cursor closedhand openhand color-picker plus \
 center_ptr move all-scroll dnd-move wayland-cursor down-arrow draft \
-left-arrow right-arrow ibeam-with-crosshair
+left-arrow right-arrow
 LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left
