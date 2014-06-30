@@ -6,7 +6,7 @@ dnd_ask ne_resize nesw_resize no_drop not_allowed n_resize ns_resize nw_resize
 nwse_resize openhand pencil pirate pointer progress right_ptr se_resize s_resize
 sw_resize text up_arrow vertical_text wait w_resize X_cursor zoom zoom_in
 zoom_out plus center_ptr vertical_text hand1 col_resize row_resize wayland_cursor
-down_arrow left_arrow right_arrow draft ibeam_with_crosshair"
+down_arrow left_arrow right_arrow draft"
 
 up_arrow="up-arrow sb_up_arrow"
 down_arrow="sb_down_arrow"
@@ -39,7 +39,7 @@ dnd_move="4498f0e0c1937ffe01fd06f973665830 9081237383d90e509aa00f00170e968f 9153
 move="fleur dragging size_all all-scroll 9d800788f1b08800ae810202380a0822 fcf21c00b30f7e3f83fe0dfd12e71cff 0e133a0778f8f0a2f5b3088dc174c952"
 closedhand="grabbing 208530c400c041818281048008011002"
 openhand="5aca4d189052212118709018842178c0"
-text="ibeam xterm 00601b0000c030000018060000308d00"
+text="ibeam xterm 060c183030e17efd0408102040c08602 00601b0000c030000018060000308d00"
 copy="dnd-copy 08ffe1cb5fe6fc01f906f1c063814ccf 1081e37283d90000800003c07f3ef6bf 6407b0e94181790501fd1e167b474872 b66166c04f8c3109214a4fbd64a50fc8 9d7388ef4fcbc1d0ebcf4583ea7555fd"
 pointer="pointer2 pointing_hand hand hand2 e29285e634086352946a0e7090d73106"
 tcross="cross target cross_reverse diamond_cross"
@@ -52,7 +52,6 @@ zoom_in="zoom_in f41c0e382c94c0958e07017e42b00462"
 vertical_text="048008013003cff3c00c801001200000"
 hand1="$pointer"
 pencil="00ea0400004c4100001f8e0000628d00"
-ibeam_with_crosshair="060c183030e17efd0408102040c08602"
 
 die()
 {
@@ -90,9 +89,6 @@ do_linkage()
 		case $c in
 		up_arrow|right_ptr|size_all|X_cursor|center_ptr)
 			input=$c ;;
-		ibeam_with_crosshair)
-			input=ibeam-with-crosshair
-			;;
 		*)
 			input=${c/_/-} ;;
 		esac
