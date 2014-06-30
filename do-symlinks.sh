@@ -6,7 +6,7 @@ dnd_ask ne_resize nesw_resize no_drop not_allowed n_resize ns_resize nw_resize
 nwse_resize openhand pencil pirate pointer progress right_ptr se_resize s_resize
 sw_resize text up_arrow vertical_text wait w_resize X_cursor zoom zoom_in
 zoom_out plus center_ptr vertical_text hand1 col_resize row_resize wayland_cursor
-down_arrow left_arrow right_arrow draft"
+down_arrow left_arrow right_arrow draft exchange"
 
 up_arrow="up-arrow sb_up_arrow"
 down_arrow="sb_down_arrow"
