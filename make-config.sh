@@ -23,14 +23,18 @@ for s in $sizes; do
 		exit 1
 	fi
 	source_file=config/${s}/${dest}
-	if ! [ -e $source_file -a -e config/overlay/${overlay_name} ]; then
-		replace_with=${overlay_name}.png
-		echo "$source_file was not found, using basic target from overlay"
-		source config/overlay/${overlay_name} || exit 1
-		: ${svg:?undefined}
-		source_file="config/${s}/$(basename $svg .svg).${orientation}"
-		png_name=$(basename $(cut -d' ' -f4 $source_file))
-		: ${png_name:?undefined}
+	if ! [ -e $source_file ]; then
+		if [ -e config/overlay/${overlay_name} ]; then
+			replace_with=${overlay_name}.png
+			echo "$source_file was not found, using basic target from overlay"
+			source config/overlay/${overlay_name} || exit 1
+			: ${svg:?undefined}
+			source_file="config/${s}/$(basename $svg .svg).${orientation}"
+			png_name=$(basename $(cut -d' ' -f4 $source_file))
+			: ${png_name:?undefined}
+		else
+			die "No source file was found"
+		fi
 	fi
 	if [ "$replace_with" ]; then
 		sed "s/$png_name/$replace_with/g" $source_file >> $dest
