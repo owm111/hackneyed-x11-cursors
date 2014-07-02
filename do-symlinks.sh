@@ -9,9 +9,9 @@ zoom_out plus center_ptr vertical_text hand1 col_resize row_resize wayland_curso
 down_arrow left_arrow right_arrow draft exchange"
 
 up_arrow="up-arrow sb_up_arrow"
-down_arrow="sb_down_arrow"
+down_arrow="sb_down_arrow e03881300220000010406080c0018102"
 left_arrow="sb_left_arrow"
-right_arrow="sb_right_arrow"
+right_arrow="sb_right_arrow 4081077e9ffc7ff97e70604000000000"
 plus="cell"
 default="left_ptr top_left_arrow left-arrow"
 right_ptr="arrow top_right_arrow right-arrow draft_large draft_small"
