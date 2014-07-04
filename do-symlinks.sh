@@ -6,7 +6,8 @@ dnd_ask ne_resize nesw_resize no_drop not_allowed n_resize ns_resize nw_resize
 nwse_resize openhand pencil pirate pointer progress right_ptr se_resize s_resize
 sw_resize text up_arrow vertical_text wait w_resize X_cursor zoom zoom_in
 zoom_out plus center_ptr vertical_text hand1 col_resize row_resize wayland_cursor
-down_arrow left_arrow right_arrow draft exchange ul_angle ur_angle ll_angle lr_angle"
+down_arrow left_arrow right_arrow draft exchange ul_angle ur_angle ll_angle lr_angle
+based_arrow_down based_arrow_up"
 
 up_arrow="up-arrow sb_up_arrow"
 down_arrow="sb_down_arrow e03881300220000010406080c0018102"
@@ -52,6 +53,8 @@ zoom_in="zoom_in f41c0e382c94c0958e07017e42b00462"
 vertical_text="048008013003cff3c00c801001200000"
 hand1="$pointer"
 pencil="00ea0400004c4100001f8e0000628d00"
+based_arrow_down="base_arrow_down"
+based_arrow_up="base_arrow_up"
 
 die()
 {
@@ -87,7 +90,7 @@ do_linkage()
 	for c in $CURSORS; do
 		eval alt_names="\$$c"
 		case $c in
-		up_arrow|right_ptr|size_all|X_cursor|center_ptr|*_angle)
+		up_arrow|right_ptr|size_all|X_cursor|center_ptr|*_angle|based_arrow_*)
 			input=$c ;;
 		*)
 			input=${c/_/-} ;;

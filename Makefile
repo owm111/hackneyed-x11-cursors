@@ -6,7 +6,8 @@ sw-resize s-resize w-resize vertical-text crosshair tcross up_arrow \
 context-menu ew-resize ns-resize nesw-resize nwse-resize pencil right_ptr \
 zoom zoom-in zoom-out pirate X_cursor closedhand openhand color-picker plus \
 center_ptr move all-scroll dnd-move wayland-cursor down-arrow draft \
-left-arrow right-arrow exchange ul_angle ur_angle ll_angle lr_angle
+left-arrow right-arrow exchange ul_angle ur_angle ll_angle lr_angle \
+based_arrow_down based_arrow_up
 LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left
@@ -103,6 +104,9 @@ right-arrow: right-arrow.in
 ns-resize: ns-resize.in
 nw-resize: nw-resize.in
 nesw-resize: nesw-resize.in
+
+based_arrow_down: based_arrow_down.in based_arrow_up
+	$(XCURSORGEN) $@.in $@
 
 ur_angle: ur_angle.in ul_angle
 	$(XCURSORGEN) $@.in $@
