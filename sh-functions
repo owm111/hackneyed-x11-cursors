@@ -1,0 +1,150 @@
+parse_cmdline()
+{
+	while [ "$1" ]; do
+		case "$1" in
+		sizes=*)
+			sizes=${1#*=}
+			shift
+			;;
+		with_svg=*)
+			with_svg=${1#*=}
+			shift
+			;;
+		target=*)
+			target=${1#*=}
+			target=${target%.*}
+			orientation=${1#*.}
+			[ "$orientation" = "$target" -o "$orientation" = "$1" ] && unset orientation
+			shift
+			;;
+		*)
+			remaining_args="$remaining_args $1"
+			shift
+			;;
+		esac
+	done
+	: ${sizes:?no size specified}
+	: ${target:?no target specified}
+}
+
+export_png()
+{
+	local opt size src dest
+	while [ "$1" ]; do
+		case "$1" in
+		size=*)
+			size=${1#*=}
+			shift
+			;;
+		src=*)
+			src=${1#*=}
+			shift
+			;;
+		dest=*)
+			dest=${1#*=}
+			shift
+			;;
+		opt=*)
+			opt=${1#*=}
+			shift
+			;;
+		*)
+			shift
+			;;
+		esac
+	done
+	: ${src:?undefined}
+	: ${dest:?undefined}
+	[ "$size" ] && convert_export_args="-resize $size"
+	echo "$src => $dest"
+	convert -background none $convert_export_args $rotate $opt $src $dest || exit 1
+}
+
+transform()
+{
+	local src opt dest rotate raw_opts
+	while [ "$1" ]; do
+		case "$1" in
+		raw)
+			shift
+			raw_opts="$@"
+			break
+			;;
+		flip|flop)
+			opt="$opt -$1"
+			shift
+			;;
+		src=*)
+			src=${1#*=}
+			shift
+			;;
+		opt=*)
+			opt=${1#*=}
+			shift
+			;;
+		dest=*)
+			dest=${1#*=}
+			shift
+			;;
+		size=*)
+			size="-resize ${1#*=}"
+			shift
+			;;
+		opt=*)
+			opt="$opt ${1#*=}"
+			shift
+			;;
+		rotate=*)
+			rotate="-rotate ${1#*=}"
+			shift
+			;;
+		*)
+			shift
+			;;
+		esac
+	done
+	if [ "$raw_opts" ]; then
+		echo "convert $raw_opts"
+		convert $raw_opts || exit 1
+		return 0
+	fi
+	echo "$dest"
+	: ${src:?no source file specified}
+	: ${dest:?no dest file specified}
+	convert -background none $rotate $size $opt $src $dest || exit 1
+}
+
+xmkdir()
+{
+	while [ "$1" ]; do
+		[ -e $1 ] || mkdir $1
+		shift
+	done
+}
+
+dynaspot()
+{
+	: ${1?:dynaspot: argument required}
+	image_size=$(identify $1|cut -d' ' -f3)
+	: ${image_size:?undefined}
+	size_x=${image_size%x*}
+	size_y=${image_size#*x}
+	: ${size_x:?undefined}
+	: ${size_y:?undefined}
+	hotspot_x=$(calc "($size_x/2)-1")
+	hotspot_y=$(calc "($size_y/2)-1")
+	: ${hotspot_x:?undefined}
+	: ${hotspot_y:?undefined}
+}
+
+calc()
+{
+	LC_NUMERIC=C
+	printf "%.0f" $(bc <<< "scale=2; $@")
+}
+
+die()
+{
+	echo "$(basename $0): $@"
+	exit 1
+}
