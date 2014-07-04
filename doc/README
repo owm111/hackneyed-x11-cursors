@@ -18,7 +18,7 @@ left--handed version, which will also remain unpacked in newly-created
 'Hackneyed' and 'LHackneyed' folders.
 
 If you don't want it to be packed automatically, use the targets
-'theme' and/or 'theme.left'. If you want either the left- or the right-handed
+'theme' and/or 'theme.left'. If you want either the right- or the left-handed
 version packed, use the targets 'dist' and 'ldist', respectively.
 
 
