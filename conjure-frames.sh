@@ -16,7 +16,6 @@ for s in $sizes; do
 	while [ -e "$source_svg" ]; do
 		duration=60
 		png_name="${s}/$(basename $source_svg .svg).png"
-		echo "$png_name"
 		export_png src=$source_svg dest=$png_name size=${s}
 		[ $j = 9 ] && duration=360
 		echo "$s $size_half $size_half $png_name $duration" >> $config_file

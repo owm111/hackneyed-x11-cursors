@@ -45,7 +45,6 @@ if ! [ -e $svg ]; then
 	echo "${target}.svg does not exist"
 	exit 1
 fi
-echo "generating $source_png"
 export_png opt=$flop src=$svg dest=$source_png
 
 if [ "$overlay" ]; then
