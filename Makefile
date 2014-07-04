@@ -16,7 +16,6 @@ VERSION = 0.3.18
 SIZES ?= 32 40 48 56 64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
-USE_INKSCAPE ?= 0
 .DEFAULT_GOAL = pack
 
 pack: theme theme.left
@@ -48,7 +47,7 @@ lall: $(CURSORS) $(LCURSORS)
 	done
 
 wait: svg/wait-[1-9].svg conjure-frames.sh
-	./conjure-frames.sh sizes="$(SIZES)" use_inkscape=$(USE_INKSCAPE) target=$@
+	./conjure-frames.sh sizes="$(SIZES)" target=$@
 	$(XCURSORGEN) wait.in $@
 
 %.in:
@@ -58,11 +57,11 @@ wait: svg/wait-[1-9].svg conjure-frames.sh
 	./make-config.sh sizes="$(SIZES)" target=$@
 
 %: %.in
-	./make-pngs.sh target=$@ use_inkscape=$(USE_INKSCAPE) sizes="$(SIZES)"
+	./make-pngs.sh target=$@ sizes="$(SIZES)"
 	$(XCURSORGEN) $@.in $@
 
 %.left: %.in_left
-	./make-pngs.sh target=$@ use_inkscape=$(USE_INKSCAPE) sizes="$(SIZES)"
+	./make-pngs.sh target=$@ sizes="$(SIZES)"
 	$(XCURSORGEN) $< $@
 
 preview: $(CURSORS) $(LCURSORS)
