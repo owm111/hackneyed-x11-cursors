@@ -9,3 +9,4 @@ nwse-resize: config/transform/nwse-resize
 split_v: config/transform/split_v
 text: config/transform/text
 up_arrow: config/transform/up_arrow
+ul_angle: config/transform/ul_angle
