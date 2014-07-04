@@ -7,7 +7,7 @@ nwse_resize openhand pencil pirate pointer progress right_ptr se_resize s_resize
 sw_resize text up_arrow vertical_text wait w_resize X_cursor zoom zoom_in
 zoom_out plus center_ptr vertical_text hand1 col_resize row_resize wayland_cursor
 down_arrow left_arrow right_arrow draft exchange ul_angle ur_angle ll_angle lr_angle
-based_arrow_down based_arrow_up"
+based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee"
 
 up_arrow="up-arrow sb_up_arrow"
 down_arrow="sb_down_arrow e03881300220000010406080c0018102"
@@ -90,7 +90,7 @@ do_linkage()
 	for c in $CURSORS; do
 		eval alt_names="\$$c"
 		case $c in
-		up_arrow|right_ptr|size_all|X_cursor|center_ptr|*_angle|based_arrow_*)
+		up_arrow|right_ptr|size_all|X_cursor|center_ptr|*_angle|based_arrow_*|*_tee)
 			input=$c ;;
 		*)
 			input=${c/_/-} ;;

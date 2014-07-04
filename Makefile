@@ -7,7 +7,7 @@ context-menu ew-resize ns-resize nesw-resize nwse-resize pencil right_ptr \
 zoom zoom-in zoom-out pirate X_cursor closedhand openhand color-picker plus \
 center_ptr move all-scroll dnd-move wayland-cursor down-arrow draft \
 left-arrow right-arrow exchange ul_angle ur_angle ll_angle lr_angle \
-based_arrow_down based_arrow_up
+based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee
 LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left
@@ -104,6 +104,15 @@ right-arrow: right-arrow.in
 ns-resize: ns-resize.in
 nw-resize: nw-resize.in
 nesw-resize: nesw-resize.in
+
+bottom_tee: bottom_tee.in top_tee
+	$(XCURSORGEN) $@.in $@
+
+left_tee: left_tee.in top_tee
+	$(XCURSORGEN) $@.in $@
+
+right_tee: right_tee.in top_tee
+	$(XCURSORGEN) $@.in $@
 
 based_arrow_down: based_arrow_down.in based_arrow_up
 	$(XCURSORGEN) $@.in $@
