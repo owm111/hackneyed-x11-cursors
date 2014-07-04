@@ -6,7 +6,7 @@ dnd_ask ne_resize nesw_resize no_drop not_allowed n_resize ns_resize nw_resize
 nwse_resize openhand pencil pirate pointer progress right_ptr se_resize s_resize
 sw_resize text up_arrow vertical_text wait w_resize X_cursor zoom zoom_in
 zoom_out plus center_ptr vertical_text hand1 col_resize row_resize wayland_cursor
-down_arrow left_arrow right_arrow draft exchange"
+down_arrow left_arrow right_arrow draft exchange ul_angle ur_angle ll_angle lr_angle"
 
 up_arrow="up-arrow sb_up_arrow"
 down_arrow="sb_down_arrow e03881300220000010406080c0018102"
@@ -31,10 +31,10 @@ e_resize="right_side"
 w_resize="left_side"
 nw_resize="top_left_corner"
 se_resize="bottom_right_corner"
-nwse_resize="size_fdiag bd_double_arrow 38c5dff7c7b8962045400281044508d2 c7088f0f3e6c8088236ef8e1e3e70000 ul_angle lr_angle"
+nwse_resize="size_fdiag bd_double_arrow 38c5dff7c7b8962045400281044508d2 c7088f0f3e6c8088236ef8e1e3e70000"
 ne_resize="top_right_corner"
 sw_resize="bottom_left_corner"
-nesw_resize="size_bdiag fd_double_arrow 50585d75b494802d0151028115016902 fcf1c3c7cd4491d801f1e1c78f100000 ll_angle ur_angle"
+nesw_resize="size_bdiag fd_double_arrow 50585d75b494802d0151028115016902 fcf1c3c7cd4491d801f1e1c78f100000"
 dnd_move="4498f0e0c1937ffe01fd06f973665830 9081237383d90e509aa00f00170e968f 91532847acc1981c302e17af617818a7 4cb8584a4793df7081ff86f1716e5a10"
 move="fleur dragging size_all all-scroll 9d800788f1b08800ae810202380a0822 fcf21c00b30f7e3f83fe0dfd12e71cff 0e133a0778f8f0a2f5b3088dc174c952"
 closedhand="grabbing 208530c400c041818281048008011002"
@@ -87,7 +87,7 @@ do_linkage()
 	for c in $CURSORS; do
 		eval alt_names="\$$c"
 		case $c in
-		up_arrow|right_ptr|size_all|X_cursor|center_ptr)
+		up_arrow|right_ptr|size_all|X_cursor|center_ptr|*_angle)
 			input=$c ;;
 		*)
 			input=${c/_/-} ;;
