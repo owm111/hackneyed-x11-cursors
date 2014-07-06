@@ -157,5 +157,5 @@ clean:
 	rm -f $(CURSORS) $(LCURSORS)
 	rm -rf png
 
-.PHONY: preview clean theme theme.left all all.left dist dist.left pack
+.PHONY: preview clean theme theme.left all lall dist ldist pack
 .PRECIOUS: %.in %.in_left
