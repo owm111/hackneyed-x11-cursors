@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURSORS="alias all_scroll dnd_copy dnd_move dnd_link move tcross closedhand
+CURSORS="alias all_scroll dnd_copy dnd_move dnd_link move fleur tcross closedhand
 color_picker context_menu copy crosshair default e_resize ew_resize help
 dnd_ask ne_resize nesw_resize no_drop not_allowed n_resize ns_resize nw_resize
 nwse_resize openhand pencil pirate pointer progress right_ptr se_resize s_resize
@@ -37,7 +37,8 @@ ne_resize="top_right_corner"
 sw_resize="bottom_left_corner"
 nesw_resize="size_bdiag fd_double_arrow 50585d75b494802d0151028115016902 fcf1c3c7cd4491d801f1e1c78f100000"
 dnd_move="4498f0e0c1937ffe01fd06f973665830 9081237383d90e509aa00f00170e968f 91532847acc1981c302e17af617818a7 4cb8584a4793df7081ff86f1716e5a10"
-move="fleur dragging size_all all-scroll 9d800788f1b08800ae810202380a0822 fcf21c00b30f7e3f83fe0dfd12e71cff 0e133a0778f8f0a2f5b3088dc174c952"
+move="dragging 9d800788f1b08800ae810202380a0822 fcf21c00b30f7e3f83fe0dfd12e71cff 0e133a0778f8f0a2f5b3088dc174c952"
+fleur="size_all $move all-scroll"
 closedhand="grabbing 208530c400c041818281048008011002"
 openhand="5aca4d189052212118709018842178c0"
 text="ibeam xterm 00601b0000c030000018060000308d00"
