@@ -21,6 +21,10 @@ XCURSORGEN = xcursorgen
 pack: theme theme.left
 	tar -jcof $(THEME_NAME)-$(VERSION)-pack.tar.bz2 $(THEME_NAME) L$(THEME_NAME)
 
+source-dist:
+	git archive --format=tar.gz --prefix=hackneyed-x11-cursors-$(VERSION)/ HEAD > \
+		hackneyed-x11-cursors-$(VERSION).tar.gz
+
 dist: theme
 	tar -jcof $(THEME_NAME)-$(VERSION).tar.bz2 $(THEME_NAME)
 
