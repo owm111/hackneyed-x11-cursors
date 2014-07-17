@@ -1,3 +1,6 @@
+0.3.19
+- added some legacy cursors (based_arrow_*, *_tee, *_angle)
+
 0.3.18
 - give some life to draft by coloring it, make pencil look like it;
 - make shadows more consistent across pointers, specially the hands;
