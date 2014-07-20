@@ -12,7 +12,7 @@ LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left
 THEME_NAME = Hackneyed
-VERSION = 0.3.18
+VERSION = 0.3.19
 SIZES ?= 32 40 48 56 64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
