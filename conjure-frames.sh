@@ -17,7 +17,14 @@ for s in $sizes; do
 		duration=60
 		png_name="${s}/$(basename $source_svg .svg).png"
 		export_png src=$source_svg dest=$png_name size=${s}
-		[ $j = 9 ] && duration=360
+		case $j in
+		13)
+			duration=612
+			;;
+		*)
+			duration=60
+			;;
+		esac
 		echo "$s $size_half $size_half $png_name $duration" >> $config_file
 		((j++))
 		source_svg="svg/${target}-${j}.svg"

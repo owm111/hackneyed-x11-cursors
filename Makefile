@@ -50,7 +50,7 @@ lall: $(CURSORS) $(LCURSORS)
 		cp $$l L$(THEME_NAME)/cursors/$${l/.left/}; \
 	done
 
-wait: svg/wait-[1-9].svg conjure-frames.sh
+wait: svg/wait-[1-9]*.svg conjure-frames.sh
 	./conjure-frames.sh sizes="$(SIZES)" target=$@
 	$(XCURSORGEN) wait.in $@
 
