@@ -1,5 +1,5 @@
 svg=svg/default.svg
 overlay=svg/overlay-hourglass.svg
-overlay_size=74
-overlay_position=+6+2
+overlay_size=75
+overlay_position=+6+1
 flip_svg=1
