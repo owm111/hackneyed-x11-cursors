@@ -14,7 +14,7 @@
    height="128"
    id="svg4344"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r13322 custom"
    sodipodi:docname="ew-resize.svg"
    inkscape:export-filename="/home/ludvig/tmp/hackneyed/source/ns-resize.png"
    inkscape:export-xdpi="22.5"
@@ -23,27 +23,16 @@
      id="defs4346">
     <filter
        inkscape:collect="always"
-       id="filter3758"
-       x="-0.11367197"
-       width="1.2273439"
-       y="-0.16082932"
-       height="1.3216586">
+       style="color-interpolation-filters:sRGB"
+       id="filter4105"
+       x="-0.10871393"
+       width="1.2174279"
+       y="-0.16798077"
+       height="1.3359615">
       <feGaussianBlur
          inkscape:collect="always"
-         stdDeviation="4.6071003"
-         id="feGaussianBlur3760" />
-    </filter>
-    <filter
-       inkscape:collect="always"
-       id="filter3769"
-       x="-0.11251321"
-       width="1.2250264"
-       y="-0.15965081"
-       height="1.3193016">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="4.532491"
-         id="feGaussianBlur3771" />
+         stdDeviation="4.3652571"
+         id="feGaussianBlur4107" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -54,8 +43,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="68.543427"
-     inkscape:cy="57.500422"
+     inkscape:cx="77.577569"
+     inkscape:cy="62.273484"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -67,7 +56,7 @@
      inkscape:object-nodes="true"
      showguides="true"
      inkscape:guide-bbox="true"
-     inkscape:snap-global="false" />
+     inkscape:snap-global="true" />
   <metadata
      id="metadata4349">
     <rdf:RDF>
@@ -87,18 +76,18 @@
      transform="translate(0,-924.36217)">
     <path
        sodipodi:type="inkscape:offset"
-       inkscape:radius="5.9819899"
-       inkscape:original="M 45 960.25 L 21.625 988.375 L 45 1016.4688 L 45 998.75 L 83 998.75 L 83 1016.4688 L 106.375 988.375 L 83 960.25 L 83 977.96875 L 45 977.96875 L 45 960.25 z "
+       inkscape:radius="3.0722589"
+       inkscape:original="M 47 960.25 L 18.886719 988.36133 L 47 1016.4746 L 47 997.23633 L 81.001953 997.23633 L 81.001953 1016.4746 L 109.11328 988.36133 L 81.001953 960.25 L 81.001953 979.48828 L 47 979.48828 L 47 960.25 z "
        xlink:href="#path3762-7"
-       style="opacity:0.55;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3769)"
-       id="path2999"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter4105);opacity:0.35"
+       id="path4103"
        inkscape:href="#path3762-7"
-       d="m 44.8125,954.28125 a 5.9825881,5.9825881 0 0 0 -4.40625,2.15625 l -23.375,28.125 a 5.9825881,5.9825881 0 0 0 0,7.625 l 23.375,28.0937 a 5.9825881,5.9825881 0 0 0 10.5625,-3.8124 l 0,-11.75 26.0625,0 0,11.75 a 5.9825881,5.9825881 0 0 0 10.5625,3.8124 l 23.375,-28.0937 a 5.9825881,5.9825881 0 0 0 0,-7.625 l -23.375,-28.125 a 5.9825881,5.9825881 0 0 0 -10.5625,3.8125 l 0,11.75 -26.0625,0 0,-11.75 a 5.9825881,5.9825881 0 0 0 -6.15625,-5.96875 z" />
+       d="M 80.957031,957.17773 A 3.0725662,3.0725662 0 0 0 77.929688,960.25 l 0,16.16602 -27.857422,0 0,-16.16602 a 3.0725662,3.0725662 0 0 0 -5.244141,-2.17188 l -28.113281,28.11133 a 3.0725662,3.0725662 0 0 0 0,4.34375 l 28.113281,28.1133 a 3.0725662,3.0725662 0 0 0 5.244141,-2.1719 l 0,-16.166 27.857422,0 0,16.166 a 3.0725662,3.0725662 0 0 0 5.24414,2.1719 l 28.111332,-28.1133 a 3.0725662,3.0725662 0 0 0 0,-4.34375 L 83.173828,958.07812 a 3.0725662,3.0725662 0 0 0 -2.216797,-0.90039 z" />
     <path
        sodipodi:nodetypes="ccccccccccc"
        inkscape:connector-curvature="0"
        id="path3762-7"
-       d="m 106.37344,988.3622 -23.372401,-28.11158 0,17.7233 -38.002031,-10e-5 0,-17.7233 -23.372448,28.11168 23.372448,28.1116 0,-17.7232 38.002031,0 0,17.7232 z"
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5.30000019;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+       d="m 109.11266,988.36221 -28.111605,-28.11158 0,19.23851 -34.002031,-8e-5 0,-19.23853 -28.11168,28.11168 28.11168,28.11159 0,-19.23842 34.002031,0 0,19.23842 z"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
   </g>
 </svg>

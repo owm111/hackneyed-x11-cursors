@@ -14,7 +14,7 @@
    height="128"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r13322 custom"
    sodipodi:docname="plus.svg">
   <defs
      id="defs4">
@@ -39,7 +39,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="84.472219"
+     inkscape:cx="94.826283"
      inkscape:cy="60.824793"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -69,15 +69,15 @@
     <path
        sodipodi:type="inkscape:offset"
        inkscape:radius="5.3571429"
-       inkscape:original="M 51.28125 958.34375 L 51.28125 975.65625 L 33.96875 975.65625 L 33.96875 1001.0938 L 51.28125 1001.0938 L 51.28125 1018.4062 L 76.71875 1018.4062 L 76.71875 1001.0938 L 94.03125 1001.0938 L 94.03125 975.65625 L 76.71875 975.65625 L 76.71875 958.34375 L 51.28125 958.34375 z "
+       inkscape:original="M 51.292969 958.33398 L 51.292969 975.66797 L 33.984375 975.66797 L 33.984375 1001.082 L 51.292969 1001.082 L 51.292969 1018.3906 L 76.707031 1018.3906 L 76.707031 1001.082 L 94.015625 1001.082 L 94.015625 975.66797 L 76.707031 975.66797 L 76.707031 958.33398 L 51.292969 958.33398 z "
        xlink:href="#rect3756"
-       style="opacity:0.55;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3758)"
+       style="opacity:0.35;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3758)"
        id="path3762"
        inkscape:href="#rect3756"
        d="m 50.75,953 a 5.3576786,5.3576786 0 0 0 -4.8125,5.34375 l 0,11.96875 -11.96875,0 a 5.3576786,5.3576786 0 0 0 -5.34375,5.34375 l 0,25.43755 a 5.3576786,5.3576786 0 0 0 5.34375,5.3437 l 11.96875,0 0,11.9687 a 5.3576786,5.3576786 0 0 0 5.34375,5.3438 l 25.4375,0 a 5.3576786,5.3576786 0 0 0 5.34375,-5.3438 l 0,-11.9687 11.96875,0 a 5.3576786,5.3576786 0 0 0 5.34375,-5.3437 l 0,-25.43755 a 5.3576786,5.3576786 0 0 0 -5.34375,-5.34375 l -11.96875,0 0,-11.96875 A 5.3576786,5.3576786 0 0 0 76.71875,953 l -25.4375,0 A 5.3576786,5.3576786 0 0 0 50.75,953 z"
        transform="translate(3,2.9904493)" />
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5.3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
        d="m 51.292368,958.33306 0,17.33451 -17.308446,0 0,25.41523 17.308446,0 0,17.3085 25.415264,0 0,-17.3085 17.308446,0 0,-25.41523 -17.308446,0 0,-17.33451 z"
        id="rect3756"
        inkscape:connector-curvature="0"
