@@ -19,7 +19,21 @@
    inkscape:export-xdpi="22.5"
    inkscape:export-ydpi="22.5">
   <defs
-     id="defs4001" />
+     id="defs4001">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4105"
+       x="-0.19304078"
+       width="1.3860816"
+       y="-0.16860965"
+       height="1.3372193">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="5.6974366"
+         id="feGaussianBlur4107" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,7 +42,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284271"
-     inkscape:cx="66.253748"
+     inkscape:cx="92.770253"
      inkscape:cy="53.190722"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -55,6 +69,11 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-924.36218)">
+    <path
+       id="path4103"
+       transform="translate(0,924.36218)"
+       d="M 88.296875 23.451172 C 86.272652 23.451172 84.644531 25.079296 84.644531 27.103516 L 84.644531 57.78125 L 62.751953 35.888672 L 62.751953 55.126953 L 28.748047 55.126953 L 28.748047 72.873047 L 62.751953 72.873047 L 62.751953 92.111328 L 84.644531 70.21875 L 84.644531 100.89648 C 84.644531 102.92068 86.272652 104.54883 88.296875 104.54883 L 95.929688 104.54883 C 97.953907 104.54883 99.582031 102.92068 99.582031 100.89648 L 99.582031 27.103516 C 99.582031 25.079296 97.953908 23.451172 95.929688 23.451172 L 88.296875 23.451172 z "
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter4105);opacity:0.3" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        d="M 88.296875 23.451172 C 86.272652 23.451172 84.644531 25.079296 84.644531 27.103516 L 84.644531 57.78125 L 62.751953 35.888672 L 62.751953 55.126953 L 28.748047 55.126953 L 28.748047 72.873047 L 62.751953 72.873047 L 62.751953 92.111328 L 84.644531 70.21875 L 84.644531 100.89648 C 84.644531 102.92068 86.272652 104.54883 88.296875 104.54883 L 95.929688 104.54883 C 97.953907 104.54883 99.582031 102.92068 99.582031 100.89648 L 99.582031 27.103516 C 99.582031 25.079296 97.953908 23.451172 95.929688 23.451172 L 88.296875 23.451172 z "

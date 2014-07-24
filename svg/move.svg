@@ -19,7 +19,21 @@
    inkscape:export-xdpi="22.5"
    inkscape:export-ydpi="22.5">
   <defs
-     id="defs4" />
+     id="defs4">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4142"
+       x="-0.18000004"
+       width="1.3600001"
+       y="-0.17999996"
+       height="1.3599999">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="6.436614"
+         id="feGaussianBlur4144" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,8 +42,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8284272"
-     inkscape:cx="78.784342"
-     inkscape:cy="53.328186"
+     inkscape:cx="62.921681"
+     inkscape:cy="40.278061"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -55,6 +69,11 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-924.36217)">
+    <path
+       inkscape:connector-curvature="0"
+       id="path4100"
+       d="m 64.347394,951.06956 -20.58206,20.58064 14.084569,0 0,15.83335 -15.833343,0 0,-14.08458 -20.58063,20.58063 20.58063,20.5807 0,-14.0846 15.833343,0 0,15.8348 -14.084569,0 20.58206,20.5806 20.58063,-20.5806 -14.084569,0 0,-15.8348 15.833343,0 0,14.0846 20.580632,-20.5807 -20.580632,-20.58063 0,14.08458 -15.833343,0 0,-15.83335 14.084569,0 -20.58063,-20.58064 z"
+       style="opacity:0.3;fill:#000000;fill-opacity:1;stroke:none;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter4142)" />
     <path
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        d="m -86,945.98718 -21.125,21.96875 -21.25,20.40625 21.59375,20.78132 20.78125,21.5937 20.40625,-21.25 21.96875,-21.12502 -21.625,-20.75 -20.75,-21.625 z m -19,23.375 11.78125,0 0,11.8125 -11.78125,0 0,-11.8125 z m 26.1875,0 11.8125,0 0,11.8125 -11.8125,0 0,-11.8125 z M -105,995.58093 l 11.78125,0 0,11.78127 -11.78125,0 0,-11.78127 z m 26.1875,0 11.8125,0 0,11.78127 -11.8125,0 0,-11.78127 z"
