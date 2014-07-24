@@ -1,5 +1,5 @@
 svg=svg/default.svg
 overlay=svg/overlay-fleur.svg
 overlay_size=70
-overlay_position=+0+51
+overlay_position=+4+51
 flip_svg=1
