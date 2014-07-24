@@ -25,19 +25,6 @@
        height="1"
        requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/"
        id="foreignObject5" />
-    <filter
-       inkscape:collect="always"
-       style="color-interpolation-filters:sRGB"
-       id="filter4118"
-       x="-0.13200127"
-       width="1.2640025"
-       y="-0.13199873"
-       height="1.2639975">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="5.6880429"
-         id="feGaussianBlur4120" />
-    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -47,7 +34,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="4"
-     inkscape:cx="65.579736"
+     inkscape:cx="60.829736"
      inkscape:cy="55.279168"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -74,16 +61,6 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-924.36217)">
-    <path
-       sodipodi:type="inkscape:offset"
-       inkscape:radius="4.6057873"
-       inkscape:original="M 64 941.25781 A 47.104282 47.104282 0 0 0 16.896484 988.36133 A 47.104282 47.104282 0 0 0 64 1035.4668 A 47.104282 47.104282 0 0 0 111.10352 988.36133 A 47.104282 47.104282 0 0 0 64 941.25781 z "
-       xlink:href="#path3006"
-       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:2.89691472;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;filter:url(#filter4118);opacity:0.35"
-       id="path4112"
-       inkscape:href="#path3006"
-       d="m 64,936.65234 c -13.537385,2.2e-4 -26.992077,5.57216 -36.564453,15.14454 -9.572376,9.57237 -15.144312,23.02706 -15.144531,36.56445 -3.42e-4,13.53777 5.5721,26.99167 15.144531,36.56447 9.57243,9.5728 23.026711,15.1462 36.564453,15.1465 13.537742,-3e-4 26.992022,-5.5737 36.56445,-15.1465 9.57243,-9.5728 15.14488,-23.0267 15.14453,-36.56447 -2.1e-4,-13.53739 -5.57215,-26.99208 -15.14453,-36.56445 C 90.992076,942.2245 77.537386,936.65256 64,936.65234 Z"
-       transform="translate(0,3)" />
     <circle
        style="fill:#ffbc00;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path3006"

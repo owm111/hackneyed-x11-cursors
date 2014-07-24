@@ -7,7 +7,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="128"
@@ -20,21 +19,7 @@
    inkscape:export-xdpi="22.5"
    inkscape:export-ydpi="22.5">
   <defs
-     id="defs4346">
-    <filter
-       inkscape:collect="always"
-       style="color-interpolation-filters:sRGB"
-       id="filter4105"
-       x="-0.10871393"
-       width="1.2174279"
-       y="-0.16798077"
-       height="1.3359615">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="4.3652571"
-         id="feGaussianBlur4107" />
-    </filter>
-  </defs>
+     id="defs4346" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -43,7 +28,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="77.577569"
+     inkscape:cx="42.220426"
      inkscape:cy="62.273484"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -74,15 +59,6 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-924.36217)">
-    <path
-       sodipodi:type="inkscape:offset"
-       inkscape:radius="3.0722589"
-       inkscape:original="M 47 960.25 L 18.886719 988.36133 L 47 1016.4746 L 47 997.23633 L 81.001953 997.23633 L 81.001953 1016.4746 L 109.11328 988.36133 L 81.001953 960.25 L 81.001953 979.48828 L 47 979.48828 L 47 960.25 z "
-       xlink:href="#path3762-7"
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter4105);opacity:0.35"
-       id="path4103"
-       inkscape:href="#path3762-7"
-       d="M 80.957031,957.17773 A 3.0725662,3.0725662 0 0 0 77.929688,960.25 l 0,16.16602 -27.857422,0 0,-16.16602 a 3.0725662,3.0725662 0 0 0 -5.244141,-2.17188 l -28.113281,28.11133 a 3.0725662,3.0725662 0 0 0 0,4.34375 l 28.113281,28.1133 a 3.0725662,3.0725662 0 0 0 5.244141,-2.1719 l 0,-16.166 27.857422,0 0,16.166 a 3.0725662,3.0725662 0 0 0 5.24414,2.1719 l 28.111332,-28.1133 a 3.0725662,3.0725662 0 0 0 0,-4.34375 L 83.173828,958.07812 a 3.0725662,3.0725662 0 0 0 -2.216797,-0.90039 z" />
     <path
        sodipodi:nodetypes="ccccccccccc"
        inkscape:connector-curvature="0"

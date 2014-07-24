@@ -1,5 +1,5 @@
 svg=svg/default.svg
 overlay=svg/not-allowed.svg
 overlay_size=72
-overlay_position=+2+44
+overlay_position=+11+50
 flip_svg=1

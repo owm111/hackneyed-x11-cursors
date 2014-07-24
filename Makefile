@@ -139,8 +139,14 @@ nesw-resize: nwse-resize
 nw-resize se-resize sw-resize: ne-resize
 	$(XCURSORGEN) $@.in $@
 
+vertical-text: vertical-text.in text
+	$(XCURSORGEN) $@.in $@
+
 down-arrow left-arrow right-arrow: up_arrow
 	$(XCURSORGEN) $@.in $@
+
+right_ptr.left: right_ptr.in_left center_ptr
+	$(XCURSORGEN) right_ptr.in_left $@
 
 Makefile.in Makefile: ;
 %.svg: ;

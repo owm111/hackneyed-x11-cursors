@@ -7,7 +7,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="128"
@@ -29,7 +28,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="109.22167"
+     inkscape:cx="104.42345"
      inkscape:cy="62.639994"
      inkscape:document-units="px"
      inkscape:current-layer="g2988"
@@ -68,16 +67,6 @@
     <g
        id="g2988"
        transform="matrix(0.99997773,0.00667204,-0.00667204,0.99997773,9.4287164,-0.68375016)">
-      <path
-         sodipodi:type="inkscape:offset"
-         inkscape:radius="3.1754491"
-         inkscape:original="M 60.498047 941.72852 L 33.666016 1006.5684 L 53.503906 993.63477 L 53.576172 1024.7969 C 53.558413 1030.0354 69.460486 1029.7543 69.287109 1024.5195 L 68.255859 993.37305 L 89.611328 1005.5781 L 60.498047 941.72852 z "
-         xlink:href="#path3877"
-         style="opacity:0.35;fill:#000000;stroke:none"
-         id="path2988"
-         inkscape:href="#path3877"
-         d="m 60.634766,938.55664 a 3.1757667,3.1757667 0 0 0 -3.070313,1.95703 l -26.832031,64.83983 a 3.1757667,3.1757667 0 0 0 4.667969,3.875 l 14.941406,-9.74022 0.05859,25.29882 c -0.0049,1.458 0.627971,2.8752 1.486328,3.834 0.858357,0.9588 1.877372,1.5612 2.923828,2.0039 2.092911,0.8854 4.409915,1.1759 6.736328,1.1348 2.326413,-0.041 4.631603,-0.414 6.693359,-1.3711 1.030879,-0.4786 2.0275,-1.1132 2.853516,-2.0977 0.826016,-0.9845 1.415455,-2.4196 1.367188,-3.8769 l -0.84375,-25.46098 16.417968,9.38278 A 3.1757667,3.1757667 0 0 0 92.5,1004.2598 L 63.386719,940.41016 a 3.1757667,3.1757667 0 0 0 -2.751953,-1.85352 z"
-         transform="matrix(0.98664549,9.6351424e-5,9.6346831e-5,1.0010839,0.77334263,5.6842804)" />
       <path
          inkscape:transform-center-x="-0.11281397"
          sodipodi:nodetypes="ccsscccc"
