@@ -10,8 +10,8 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="59.762409"
-   height="106.87585"
+   width="81.718025"
+   height="122.99005"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13322 custom"
@@ -20,7 +20,21 @@
    inkscape:export-xdpi="22.5"
    inkscape:export-ydpi="22.5">
   <defs
-     id="defs4" />
+     id="defs4">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4704"
+       x="-0.24800055"
+       width="1.4960011"
+       y="-0.14126565"
+       height="1.2825313">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="5.6445243"
+         id="feGaussianBlur4706" />
+    </filter>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -28,9 +42,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="52.951372"
-     inkscape:cy="48.211638"
+     inkscape:zoom="2"
+     inkscape:cx="106.64501"
+     inkscape:cy="92.882129"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -52,7 +66,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,7 +74,13 @@
      inkscape:label="Camada 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-38.747503,-941.82147)">
+     transform="translate(-32.769707,-941.6854)">
+    <path
+       sodipodi:nodetypes="ccccccccccccccccc"
+       inkscape:connector-curvature="0"
+       id="path4698"
+       d="m 47.715996,952.23226 53.340994,0 0.13715,9.42276 -4.008037,1.54574 c -0.102119,12.92303 0.793888,26.11385 -18.070462,34.00314 l 0.496763,5.1563 c 15.601989,9.2627 18.185729,21.5991 16.93678,34.8404 l 5.278386,0.316 0.1133,10.4657 -54.624305,0.1463 0.219927,-10.6964 4.494588,0.08 c -2.514121,-17.1198 4.979435,-28.0647 18.103382,-35.5355 L 69.703434,997.684 C 47.456867,985.25286 54.19052,974.15911 51.885927,962.64821 l -4.241044,-1.38446 z"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.25;fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;filter:url(#filter4704);enable-background:accumulate" />
     <path
        style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-rule:evenodd;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
        d="m 41.715996,944.23226 53.340994,0 0.137146,9.42276 -4.008033,1.54574 c -0.102119,12.92303 0.793888,26.11385 -18.070462,34.00311 l 0.496763,5.15633 c 15.601989,9.2627 18.185729,21.5991 16.93678,34.8404 l 5.278385,0.316 0.113305,10.4657 -54.624309,0.1463 0.219927,-10.6964 4.494588,0.08 c -2.514121,-17.1198 4.979435,-28.0647 18.103382,-35.53547 l -0.431028,-4.29277 C 41.456867,977.25286 48.19052,966.15911 45.885927,954.64821 l -4.241044,-1.38446 z"
