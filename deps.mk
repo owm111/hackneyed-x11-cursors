@@ -33,5 +33,4 @@ top_tee: svg/top_tee.svg
 exchange: svg/exchange.svg
 draped_box: svg/draped_box.svg
 ul_angle: svg/ul_angle.svg
-right_ptr.left: svg/right_ptr_left.svg
 vertical-text: svg/vertical-text.svg

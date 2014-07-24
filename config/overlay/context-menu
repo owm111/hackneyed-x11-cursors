@@ -1,4 +1,4 @@
 svg=svg/default.svg
 overlay=svg/overlay-menu.svg
-overlay_size=50
+overlay_size=60
 overlay_position=+67+25

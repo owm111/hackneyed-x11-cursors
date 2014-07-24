@@ -1,7 +1,5 @@
 0.4
-- soften shadows again, along with thinner borders, to remove the "dirty" look;
-- change shadows of overlays (alias, copy, etc.) to better match that of
-  the left arrow;
+- get rid of the shadows altogether;
 - fix the length of the finger in pointer;
 - add draped_box;
 - widen the stem of text by 1 pixel to avoid blurriness
