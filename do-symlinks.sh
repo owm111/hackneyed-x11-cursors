@@ -1,14 +1,15 @@
 #!/bin/bash
 
-CURSORS="alias all_scroll dnd_copy dnd_move dnd_link move fleur tcross closedhand
+CURSORS="alias all_scroll dnd_copy dnd_move dnd_link move fleur closedhand
 color_picker context_menu copy crosshair default e_resize ew_resize help
 dnd_ask ne_resize nesw_resize no_drop not_allowed n_resize ns_resize nw_resize
 nwse_resize openhand pencil pirate pointer progress right_ptr se_resize s_resize
 sw_resize text up_arrow vertical_text wait w_resize X_cursor zoom zoom_in
 zoom_out plus center_ptr vertical_text hand1 col_resize row_resize wayland_cursor
 down_arrow left_arrow right_arrow draft exchange ul_angle ur_angle ll_angle lr_angle
-based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee"
+based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee draped_box"
 
+draped_box="dotbox dot_box_mask icon target"
 up_arrow="up-arrow sb_up_arrow"
 down_arrow="sb_down_arrow e03881300220000010406080c0018102"
 left_arrow="sb_left_arrow"
@@ -44,7 +45,7 @@ openhand="5aca4d189052212118709018842178c0"
 text="ibeam xterm 00601b0000c030000018060000308d00"
 copy="dnd-copy 08ffe1cb5fe6fc01f906f1c063814ccf 1081e37283d90000800003c07f3ef6bf 6407b0e94181790501fd1e167b474872 b66166c04f8c3109214a4fbd64a50fc8 9d7388ef4fcbc1d0ebcf4583ea7555fd"
 pointer="pointer2 pointing_hand hand hand2 e29285e634086352946a0e7090d73106"
-tcross="cross target cross_reverse diamond_cross"
+crosshair="cross tcross cross_reverse diamond_cross"
 col_resize="split_v 2870a09082c103050810ffdffffe0204 c07385c7190e701020ff7ffffd08103c"
 row_resize="split_h 14fef782d02440884392942c11205230 043a9f68147c53184671403ffa811cc5"
 X_cursor="X-cursor"
@@ -91,7 +92,7 @@ do_linkage()
 	for c in $CURSORS; do
 		eval alt_names="\$$c"
 		case $c in
-		up_arrow|right_ptr|size_all|X_cursor|center_ptr|*_angle|based_arrow_*|*_tee)
+		up_arrow|right_ptr|size_all|X_cursor|center_ptr|*_angle|based_arrow_*|*_tee|draped_box)
 			input=$c ;;
 		*)
 			input=${c/_/-} ;;

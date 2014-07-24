@@ -2,17 +2,18 @@ include deps.mk config/overlay.mk config/transform.mk
 
 CURSORS = default text pointer help progress wait copy alias no-drop \
 not-allowed split_v split_h e-resize ne-resize nw-resize n-resize se-resize \
-sw-resize s-resize w-resize vertical-text crosshair tcross up_arrow \
+sw-resize s-resize w-resize vertical-text crosshair up_arrow \
 context-menu ew-resize ns-resize nesw-resize nwse-resize pencil right_ptr \
 zoom zoom-in zoom-out pirate X_cursor closedhand openhand color-picker plus \
 center_ptr move all-scroll dnd-move wayland-cursor down-arrow draft \
 left-arrow right-arrow exchange ul_angle ur_angle ll_angle lr_angle \
-based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee
+based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee \
+draped_box
 LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left
 THEME_NAME = Hackneyed
-VERSION = 0.3.19
+VERSION = 0.4
 SIZES ?= 32 40 48 56 64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
@@ -76,12 +77,12 @@ preview: $(CURSORS) $(LCURSORS)
 		$(PREVIEW_SIZE)/{pencil_left,color-picker_left,openhand}.png \
 		$(PREVIEW_SIZE)/{nw-resize,n-resize,ne-resize,split_v,split_h}.png \
 		$(PREVIEW_SIZE)/{zoom,zoom-in,zoom-out,pointer}.png \
-		$(PREVIEW_SIZE)/{w-resize,wait-6,e-resize,text,ew-resize}.png \
+		$(PREVIEW_SIZE)/{w-resize,wait-4,e-resize,text,ew-resize}.png \
 		$(PREVIEW_SIZE)/{ns-resize,nesw-resize,nwse-resize}.png \
 		$(PREVIEW_SIZE)/{closedhand,sw-resize}.png \
 		$(PREVIEW_SIZE)/{s-resize,se-resize,vertical-text}.png \
 		$(PREVIEW_SIZE)/{zoom,zoom-in,zoom-out}_left.png \
-		$(PREVIEW_SIZE)/{move,crosshair,tcross,plus}.png \
+		$(PREVIEW_SIZE)/{move,crosshair,plus}.png \
 		$(PREVIEW_SIZE)/{not-allowed,pencil}.png \
 		$(PREVIEW_SIZE)/{pirate,color-picker,X_cursor,draft}.png \
 		$(PREVIEW_SIZE)/{up_arrow,right-arrow,down-arrow,left-arrow,all-scroll,wayland-cursor}.png \
@@ -89,9 +90,6 @@ preview: $(CURSORS) $(LCURSORS)
 
 right_ptr: right_ptr.in default
 	$(XCURSORGEN) $@.in $@
-
-right_ptr.left: right_ptr.in_left center_ptr
-	$(XCURSORGEN) right_ptr.in_left $@
 
 split_h: split_h.in split_v
 	$(XCURSORGEN) $@.in $@
@@ -139,9 +137,6 @@ nesw-resize: nwse-resize
 	$(XCURSORGEN) $@.in $@
 
 nw-resize se-resize sw-resize: ne-resize
-	$(XCURSORGEN) $@.in $@
-
-vertical-text: vertical-text.in text
 	$(XCURSORGEN) $@.in $@
 
 down-arrow left-arrow right-arrow: up_arrow

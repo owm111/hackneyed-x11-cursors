@@ -1,3 +1,11 @@
+0.4
+- soften shadows again, along with thinner borders, to remove the "dirty" look;
+- change shadows of overlays (alias, copy, etc.) to better match that of
+  the left arrow;
+- fix the length of the finger in pointer;
+- add draped_box;
+- widen the stem of text by 1 pixel to avoid blurriness
+
 0.3.19
 - added some legacy cursors (based_arrow_*, *_tee, *_angle)
 
@@ -27,7 +35,7 @@
   really point to. Updates will become less frequent from now on,
   unless a bug is found or someone makes a request
 
-0.3.15: 
+0.3.15:
 - fix col- and row-resize mess (I blame my sources)
 
 0.3.14:
@@ -40,15 +48,15 @@
 0.3.12:
 - left-handed version
 
-0.3.9: 
+0.3.9:
 - add cursors that were still missing
 - rework it some more because it's never good enough;
 - replace the ugly fountain pen with a more distinct pencil
 
-0.3.6: 
+0.3.6:
 - small changes to make it more consistent
 
-0.3.4: 
+0.3.4:
 - new cursors added
 
 0.3.2:

@@ -14,7 +14,7 @@
    height="128"
    id="svg3999"
    version="1.1"
-   inkscape:version="0.48.4 r9939"
+   inkscape:version="0.91 r13322 custom"
    sodipodi:docname="top_tee.svg"
    inkscape:export-filename="/home/ludvig/tmp/hackneyed/source/e-resize.png"
    inkscape:export-xdpi="22.5"
@@ -23,27 +23,16 @@
      id="defs4001">
     <filter
        inkscape:collect="always"
-       id="filter3759"
-       x="-0.13978923"
-       width="1.2795785"
-       y="-0.125033"
-       height="1.250066">
+       style="color-interpolation-filters:sRGB"
+       id="filter4107"
+       x="-0.12833081"
+       width="1.2566616"
+       y="-0.13588518"
+       height="1.2717704">
       <feGaussianBlur
          inkscape:collect="always"
-         stdDeviation="4.8889832"
-         id="feGaussianBlur3761" />
-    </filter>
-    <filter
-       inkscape:collect="always"
-       id="filter3762"
-       x="-0.12824895"
-       width="1.2564979"
-       y="-0.13597708"
-       height="1.2719542">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="4.7892969"
-         id="feGaussianBlur3764" />
+         stdDeviation="4.8992961"
+         id="feGaussianBlur4109" />
     </filter>
   </defs>
   <sodipodi:namedview
@@ -53,9 +42,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="72.862183"
-     inkscape:cy="55.068519"
+     inkscape:zoom="4"
+     inkscape:cx="52.409475"
+     inkscape:cy="50.760697"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -84,14 +73,14 @@
     <path
        sodipodi:type="inkscape:offset"
        inkscape:radius="5.25"
-       inkscape:original="M 27.09375 952.78125 C 25.06953 952.78125 23.4375 954.41328 23.4375 956.4375 L 23.4375 964.0625 C 23.4375 966.08673 25.06953 967.71875 27.09375 967.71875 L 56.53125 967.71875 L 56.53125 1025.1562 C 56.53125 1027.1805 58.16327 1028.8125 60.1875 1028.8125 L 67.8125 1028.8125 C 69.83672 1028.8125 71.46875 1027.1805 71.46875 1025.1562 L 71.46875 967.71875 L 100.90625 967.71875 C 102.93045 967.71875 104.5625 966.08673 104.5625 964.0625 L 104.5625 956.4375 C 104.5625 954.41328 102.93045 952.78125 100.90625 952.78125 L 27.09375 952.78125 z "
+       inkscape:original="M 27.09375 952.76758 C 25.06953 952.76758 23.4375 954.39961 23.4375 956.42383 L 23.4375 964.04883 C 23.4375 966.07306 25.06953 967.70508 27.09375 967.70508 L 56.53125 967.70508 L 56.53125 1025.1426 C 56.53125 1027.1668 58.16327 1028.7988 60.1875 1028.7988 L 67.8125 1028.7988 C 69.83672 1028.7988 71.46875 1027.1668 71.46875 1025.1426 L 71.46875 967.70508 L 100.90625 967.70508 C 102.93045 967.70508 104.5625 966.07306 104.5625 964.04883 L 104.5625 956.42383 C 104.5625 954.39961 102.93045 952.76758 100.90625 952.76758 L 27.09375 952.76758 z "
        xlink:href="#path3762"
-       style="opacity:0.55;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3762)"
+       style="opacity:0.35;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter4107)"
        id="path2992"
        inkscape:href="#path3762"
        d="m 27.09375,947.53125 c -4.8461,0 -8.90625,4.06015 -8.90625,8.90625 l 0,7.625 c 0,4.8461 4.060168,8.90625 8.90625,8.90625 l 24.1875,0 0,52.18745 c 0,4.8461 4.060206,8.9063 8.90625,8.9063 l 7.625,0 c 4.846048,0 8.90625,-4.0602 8.90625,-8.9063 l 0,-52.18745 24.1875,0 c 4.84609,0 8.90625,-4.06012 8.90625,-8.90625 l 0,-7.625 c 0,-4.84613 -4.06014,-8.90625 -8.90625,-8.90625 l -73.8125,0 z" />
     <path
-       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5.30000019;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:4;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
        d="m 27.09375,952.76843 c -2.02422,0 -3.65625,1.63203 -3.65625,3.65625 l 0,7.625 c 0,2.02423 1.63203,3.65625 3.65625,3.65625 l 29.4375,0 0,57.43747 c 0,2.0242 1.63202,3.6563 3.65625,3.6563 l 7.625,0 c 2.02422,0 3.65625,-1.6321 3.65625,-3.6563 l 0,-57.43747 29.4375,0 c 2.0242,0 3.65625,-1.63202 3.65625,-3.65625 l 0,-7.625 c 0,-2.02422 -1.63205,-3.65625 -3.65625,-3.65625 z"
        id="path3762"
        inkscape:connector-curvature="0"

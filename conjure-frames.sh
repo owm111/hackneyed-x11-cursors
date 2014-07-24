@@ -18,8 +18,8 @@ for s in $sizes; do
 		png_name="${s}/$(basename $source_svg .svg).png"
 		export_png src=$source_svg dest=$png_name size=${s}
 		case $j in
-		13)
-			duration=612
+		6)
+			duration=666
 			;;
 		*)
 			duration=60

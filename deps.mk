@@ -27,3 +27,11 @@ wayland-cursor: svg/wayland-cursor.svg
 X_cursor: svg/X_cursor.svg
 zoom: svg/zoom.svg
 zoom.left: svg/zoom.svg
+based_arrow_down: svg/based_arrow_down.svg
+based_arrow_up: svg/based_arrow_up.svg
+top_tee: svg/top_tee.svg
+exchange: svg/exchange.svg
+draped_box: svg/draped_box.svg
+ul_angle: svg/ul_angle.svg
+right_ptr.left: svg/right_ptr_left.svg
+vertical-text: svg/vertical-text.svg
