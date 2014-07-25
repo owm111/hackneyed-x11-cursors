@@ -1,5 +1,5 @@
-0.4
-- get rid of the shadows altogether;
+0.3.20
+- soften shadows once again;
 - fix the length of the finger in pointer;
 - add draped_box;
 - widen the stem of text by 1 pixel to avoid blurriness
