@@ -8,7 +8,7 @@ zoom zoom-in zoom-out pirate X_cursor closedhand openhand color-picker plus \
 center_ptr move all-scroll dnd-move wayland-cursor down-arrow draft \
 left-arrow right-arrow exchange ul_angle ur_angle ll_angle lr_angle \
 based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee \
-draped_box
+draped_box coffee_mug
 LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left
