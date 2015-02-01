@@ -1,12 +1,15 @@
 WHAT
 ====
-An X11 cursor theme loosely inspired on Windows 3.x cursors.
+An X11 cursor theme loosely inspired on Windows 3.x cursors. The primary
+goal was to have the original cursors converted to work with X11, but I
+realized this wouldn't scale well with modern displays.
 
 
 WHY
 ===
-The lack of spinning hourglasses in today's design trends
-for mouse cursors is absolutely revolting.
+The lack of spinning hourglasses in today's design trends for mouse cursors
+is absolutely revolting. Hourglasses -- and plain white, trve oldskool pointers
+-- are always fashionable.
 
 
 WHAT DO YOU NEED
@@ -14,7 +17,7 @@ WHAT DO YOU NEED
 ImageMagick (>= 6.8.6), Inkscape (>= 0.48.4), GNU make and xcursorgen
 (part of the x11-apps package); just cd to source and 'make'. If everything
 goes well, you will be given a tar.bz2 file with the full theme, including the
-left--handed version, which will also remain unpacked in newly-created
+left-handed version, which will also remain unpacked in newly-created
 'Hackneyed' and 'LHackneyed' folders.
 
 If you don't want it to be packed automatically, use the targets
@@ -24,8 +27,7 @@ version packed, use the targets 'dist' and 'ldist', respectively.
 
 LICENSE
 =======
-Licensed under the WTFPL. Just do whatever the f... well,
-read the full text in LICENSE.
+Licensed under the MIT/X11 license.
 
 
 CREDITS
@@ -79,4 +81,4 @@ USEFUL LINKS
   about hashes.
 
 
-Ludvig Hummel <enthymeme@zoho.com> - 2014
+Ludvig Hummel <enthymeme@zoho.com> - 2014-2015
