@@ -4,7 +4,7 @@ Overview
 --------
 
 Hackneyed is a reactionary X11 cursor theme created for personal use (like all artwork I do -- or most people, for that matter).
-Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to your wobbly-windowed, docked and blocky desktop of today.
+Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to your wobbly-windowed, docky and blocky desktop of today.
 
 Installation
 ------------
