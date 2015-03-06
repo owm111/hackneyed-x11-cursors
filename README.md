@@ -12,12 +12,12 @@ Make sure you have ImageMagick (>=6.8.6), Inkscape (>=0.48.4), GNU make and xcur
 Inkscape is _not_ optional; ImageMagick would revert to its own SVG renderer if it wasn't found,
 and results would be suboptimal.
 
-'make pack' will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
-or the right-handed theme, use the targets 'ldist' or 'dist', respectively. Until the very moment in which these words
+`make pack` will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
+or the right-handed theme, use the targets `ldist` or `dist`, respectively. Until the very moment in which these words
 are being poured to this world of dread, I had absolutely no feedback on the left-handed theme, so I happily assume I have done
 god's work.
 
-Other useful targets: all, theme and theme.left. These only generate the cursor files without packing them.
+Other useful targets: `all`, `theme` and `theme.left`. These only generate the cursor files without packing them.
 
 License
 -------
