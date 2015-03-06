@@ -12,12 +12,12 @@ Make sure you have ImageMagick (>=6.8.6), Inkscape (>=0.48.4), GNU make and xcur
 Inkscape is _not_ optional; ImageMagick would revert to its own SVG renderer if it wasn't found,
 and results would be suboptimal.
 
-'make dist' will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
+'make pack' will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
 or the right-handed theme, use the targets 'ldist' or 'dist', respectively. Until the very moment in which these words
 are being poured to this world of dread, I had absolutely no feedback on the left-handed theme, so I happily assume I have done
 god's work.
 
-Other useful targets: theme and theme.left. These only generate the cursor files without packing them.
+Other useful targets: all, theme and theme.left. These only generate the cursor files without packing them.
 
 License
 -------
@@ -43,9 +43,9 @@ that you don't do this from a graphical application launcher. The code is in xli
 XcursorLogDiscover.
 
 You should not take into account the hashes for masks, i.e., the filled
-"images" displayed. If for some reason you can't tell a mask from a cursor,
-only consider hashes that "return" some random hex number (something in the
-lines of "Cursor hash XXXXX returns 0xdeadbeef").
+"images" displayed. If you can't tell a mask from a cursor, only consider hashes
+that "return" some random hex number (something in the lines of
+"Cursor hash XXXXX returns 0xdeadbeef").
 
 Useful links
 ------------
