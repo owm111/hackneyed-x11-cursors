@@ -43,9 +43,8 @@ that you don't do this from a graphical application launcher. The code is in xli
 XcursorLogDiscover.
 
 You should not take into account the hashes for masks, i.e., the filled
-"images" displayed. If you can't tell a mask from a cursor, only consider hashes
-that "return" some random hex number (something in the lines of
-"Cursor hash XXXXX returns 0xdeadbeef").
+"images" displayed. Only consider hashes that return some random hex number
+(as in "Cursor hash XXXXX returns 0xdeadbeef").
 
 Useful links
 ------------
