@@ -50,9 +50,9 @@ Useful links
 ------------
 * [Freedesktop.org's cursor specification](http://www.freedesktop.org/wiki/Specifications/cursor-spec/ "We aren't a standards organization yadda yadda yadda")
 
-* [CSS cursors](http://dev.w3.org/csswg/css-ui/#cursor "2drafty4u")
+* [CSS cursors](http://dev.w3.org/csswg/css-ui/#propdef-cursor "2drafty4u")
 
-* [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor). Firefox is the only browser that allows fully themable cursors. Must be the only thing Mozilla didn't fuck up over the years.
+* [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor "Firefox is the only browser that allows fully themable cursors.")
 
 * [Qt requirements for X11 cursors](http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users)
 
