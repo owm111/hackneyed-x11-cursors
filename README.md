@@ -52,7 +52,7 @@ Useful links
 
 * [CSS cursors](http://dev.w3.org/csswg/css-ui/#propdef-cursor "2drafty4u")
 
-* [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor "Firefox is the only browser that allows fully themable cursors.")
+* [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor "Firefox is the only browser that uses more than a couple of cursors from the X11 theme")
 
 * [Qt requirements for X11 cursors](http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users)
 
