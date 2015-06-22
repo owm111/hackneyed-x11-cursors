@@ -13,8 +13,7 @@ Inkscape is _not_ optional; ImageMagick would revert to its own SVG renderer if 
 and results would be suboptimal.
 
 `make pack` will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
-or the right-handed theme, use the targets `ldist` or `dist`, respectively. Until the very moment in which these words
-are being poured to this world of dread, I had absolutely no feedback on the left-handed theme, so I happily assume I have done
+or the right-handed theme, use the targets `ldist` or `dist`, respectively. I had absolutely no feedback on the left-handed theme, so I happily assume I have done
 god's work.
 
 Other useful targets: `all`, `theme` and `theme.left`. These only generate the cursor files without packing them.
@@ -32,7 +31,7 @@ Credits
 
 Bugs
 ----
-Now that I'm back to GitHub, I have a free bugtracker again, so please report any
+Now that I'm back to GitHub, I have a free bugtracker again;  please report any
 bugs you might find, or any enhancements you might want.
 
 A word about hashes
@@ -59,3 +58,15 @@ Useful links
 * [Core X11 cursors](http://tronche.com/gui/x/xlib/appendix/b/ "coffe_mug > all")
 
 * [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html "I blame google for not finding this sooner")
+
+On XFCE
+-------
+XFCE (at least on Fedora) doesn't fully load a custom cursor theme at login unless it's set as the "default" theme. If you got pissed off like me
+and are looking for a fix, here it is:
+
+```
+[Icon Theme]
+Inherits=Hackneyed
+```
+
+Paste the two lines above into a file called "index.theme", save it on ~/.icons/default and set the mouse theme as "default".
