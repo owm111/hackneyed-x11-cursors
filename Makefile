@@ -36,9 +36,10 @@ based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee \
 draped_box coffee_mug
 LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
-zoom-out.left progress.left no-drop.left draft.left right_ptr.left
+zoom-out.left progress.left no-drop.left draft.left right_ptr.left \
+openhand.left closedhand.left pointer.left
 THEME_NAME = Hackneyed
-VERSION = $(shell head -n1 CHANGELOG)
+VERSION = 0.3.22
 SIZES ?= 32 40 48 56 64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
