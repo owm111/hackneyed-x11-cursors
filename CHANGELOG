@@ -1,3 +1,6 @@
+0.3.23
+- swap back col-resize/row-resize, GTK+ applications have fixed themselves
+
 0.3.22
 - left-handed versions of openhand, closedhand and pointer
 
