@@ -9,6 +9,7 @@ URL:		http://github.com/Enthymem/hackneyed-x11-cursors
 Source0:	hackneyed-x11-cursors-%{version}.tar.gz
 
 BuildRequires:	xorg-x11-apps inkscape ImageMagick make
+BuildArch:	noarch
 
 %description
 Inspired by old Windows 3.x cursors, the Hackneyed cursor theme for X11 brings an old-school feel to your wobbly-windowed, blocky and docky desktop of today.
