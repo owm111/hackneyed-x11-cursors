@@ -27,7 +27,7 @@ make theme theme.left
 
 
 %files
-%doc README CHANGELOG LICENSE
+%doc README.md CHANGELOG LICENSE
 %{_datadir}/icons/*Hackneyed
 
 %changelog
