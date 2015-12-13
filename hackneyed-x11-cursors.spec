@@ -6,7 +6,7 @@ Summary:	Windows 3.x-inspired cursors
 Group:		Unspecified
 License:	MIT
 URL:		http://github.com/Enthymem/hackneyed-x11-cursors
-Source0:	Hackneyed-%{version}.tar.bz2
+Source0:	hackneyed-x11-cursors-%{version}.tar.gz
 
 BuildRequires:	xorg-x11-apps inkscape ImageMagick make
 
