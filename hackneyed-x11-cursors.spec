@@ -14,7 +14,7 @@ BuildRequires:	xorg-x11-apps inkscape ImageMagick make
 Inspired by old Windows 3.x cursors, the Hackneyed cursor theme for X11 brings an old-school feel to your wobbly-windowed, blocky and docky desktop of today.
 
 %prep
-%setup -q
+%setup -q -n hackneyed-x11-cursors-%{version}
 
 
 %build
