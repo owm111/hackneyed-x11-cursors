@@ -17,7 +17,7 @@ or the right-handed theme, use the targets `ldist` or `dist`, respectively.
 
 Other useful targets: `all`, `theme` and `theme.left`. These only generate the cursor files without packing them.
 
-If you don't feel like building it from source, grab the tarball from [xfce-look.org]("http://xfce-look.org/content/show.php/Hackneyed?content=165283").
+If you don't feel like building it from source, grab the tarball from [xfce-look.org](http://xfce-look.org/content/show.php/Hackneyed?content=165283).
 
 Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
 
