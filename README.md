@@ -13,10 +13,13 @@ Inkscape is _not_ optional; ImageMagick would revert to its own SVG renderer if 
 and results would be suboptimal.
 
 `make pack` will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
-or the right-handed theme, use the targets `ldist` or `dist`, respectively. I had absolutely no feedback on the left-handed theme, so I happily assume I have done
-god's work.
+or the right-handed theme, use the targets `ldist` or `dist`, respectively.
 
 Other useful targets: `all`, `theme` and `theme.left`. These only generate the cursor files without packing them.
+
+If you don't feel like building it from source, grab the tarball from [xfce-look.org]("http://xfce-look.org/content/show.php/Hackneyed?content=165283").
+
+Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
 
 License
 -------
@@ -27,7 +30,7 @@ Credits
 * do-symlinks.sh, rewrite of addmissing.sh, which was taken from
   dummy-x11-cursors by ultr (on kde-look.org)
 
-* some SVGs taken from openclipart.org
+* some SVGs taken from openclipart.org (pencil, pirate and coffee_mug as far as I can remember)
 
 Bugs
 ----
@@ -55,9 +58,9 @@ Useful links
 
 * [Qt requirements for X11 cursors](http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users)
 
-* [Core X11 cursors](http://tronche.com/gui/x/xlib/appendix/b/ "coffe_mug > all")
+* [Core X11 cursors](http://tronche.com/gui/x/xlib/appendix/b/ "coffee_mug > all")
 
-* [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html "I blame google for not finding this sooner")
+* [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html "I blame Google for not finding this sooner")
 
 On XFCE
 -------
