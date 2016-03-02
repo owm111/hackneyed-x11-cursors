@@ -3,8 +3,7 @@
 Overview
 --------
 
-Hackneyed is a reactionary X11 cursor theme created for personal use (like all artwork I do -- or most people, for that matter).
-Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to your wobbly-windowed, docky and blocky desktop of today.
+Hackneyed is an X11 cursor theme created for personal use. Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to your wobbly-windowed, docky and blocky desktop of today.
 
 Installation
 ------------
@@ -17,7 +16,7 @@ or the right-handed theme, use the targets `ldist` or `dist`, respectively.
 
 Other useful targets: `all`, `theme` and `theme.left`. These only generate the cursor files without packing them.
 
-If you don't feel like building it from source, grab the tarball from [xfce-look.org](http://xfce-look.org/content/show.php/Hackneyed?content=165283).
+If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub.
 
 Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
 
