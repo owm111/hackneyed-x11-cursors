@@ -1,5 +1,5 @@
 Name:		hackneyed-cursor-theme	
-Version:	0.3.23
+Version:	0.3.24
 Release:	1%{?dist}
 Summary:	Windows 3.x-inspired cursors
 
