@@ -1,3 +1,6 @@
+0.3.24
+- make zoom's lens (and consequently zoom-in and zoom-out's) slightly bigger
+
 0.3.23
 - swap back col-resize/row-resize, GTK+ applications have fixed themselves
 
