@@ -58,10 +58,10 @@ source-dist:
 		hackneyed-x11-cursors-$(VERSION).tar.gz
 
 dist: theme
-	tar -jcof $(THEME_NAME)-$(VERSION).tar.bz2 $(THEME_NAME)
+	tar -jcof $(THEME_NAME)-$(VERSION)-right-handed.tar.bz2 $(THEME_NAME)
 
 ldist: theme.left
-	tar -jcof $(THEME_NAME)-$(VERSION)-left.tar.bz2 L$(THEME_NAME)
+	tar -jcof $(THEME_NAME)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME)
 
 theme: all
 	./do-symlinks.sh $(THEME_NAME)/cursors
