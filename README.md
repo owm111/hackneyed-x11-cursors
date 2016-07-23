@@ -63,12 +63,15 @@ Useful links
 
 On XFCE
 -------
-XFCE (at least on Fedora) doesn't fully load a custom cursor theme at login unless it's set as the "default" theme. If you got pissed off like me
-and are looking for a fix, here it is:
+XFCE (at least on Fedora) doesn't fully load a custom cursor theme at login unless it's set as the "default" theme. There is a fix that works most of the time:
 
 ```
 [Icon Theme]
 Inherits=Hackneyed
 ```
 
-Paste the two lines above into a file called "index.theme", save it on ~/.icons/default and set the mouse theme as "default".
+Paste the two lines above into a file called "index.theme", save it on ~/.icons/default and set the mouse theme as "default". I say "most of the time" because there seems to be a race condition in which settings are sometimes loaded after the desktop (panel and window manager), so you get mixed up cursors.
+
+What comes around, goes around
+------------------------------
+Hackneyed is now available [for Windows](https://github.com/Enthymem/hackneyed-x11-cursors/releases/download/0.3.24/Hackneyed-Windows.7z). I hate those stupid Aero cursors.
