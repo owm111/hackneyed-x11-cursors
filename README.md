@@ -16,7 +16,7 @@ or the right-handed theme, use the targets `ldist` or `dist`, respectively.
 
 Other useful targets: `all`, `theme` and `theme.left`. These only generate the cursor files without packing them.
 
-If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub.
+If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) here on GitHub, or from the artwork page on [xfce-look.org](https://www.xfce-look.org/p/999998/).
 
 Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
 
@@ -33,8 +33,7 @@ Credits
 
 Bugs
 ----
-Now that I'm back to GitHub, I have a free bugtracker again;  please report any
-bugs you might find, or any enhancements you might want.
+Please report, either here or on Xfce-look, any bugs you might find, or any enhancements you might want. I consider it finished, but there's always a corner to round.
 
 A word about hashes
 -------------------
@@ -45,17 +44,17 @@ XcursorLogDiscover.
 
 You should not take into account the hashes for masks, i.e., the filled
 "images" displayed. Only consider hashes that return some random hex number
-(as in "Cursor hash XXXXX returns 0xdeadbeef").
+(as in "Cursor hash XXXXX returns 0xdeadbeef"). Applications seem to be migrating away from libXcursor, so that cursor theming through hashes might become a thing of the past.
 
 Useful links
 ------------
-* [Freedesktop.org's cursor specification](http://www.freedesktop.org/wiki/Specifications/cursor-spec/ "We aren't a standards organization yadda yadda yadda")
+* [Freedesktop.org's cursor specification](http://www.freedesktop.org/wiki/Specifications/cursor-spec/ "The best standards are those followed without any obligation")
 
 * [CSS cursors](http://dev.w3.org/csswg/css-ui/#propdef-cursor "2drafty4u")
 
 * [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor "Firefox is the only browser that uses more than a couple of cursors from the X11 theme")
 
-* [Qt requirements for X11 cursors](http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users)
+* [Qt requirements for X11 cursors](http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users "Qt beyond measure")
 
 * [Core X11 cursors](http://tronche.com/gui/x/xlib/appendix/b/ "coffee_mug > all")
 
@@ -74,4 +73,4 @@ Paste the two lines above into a file called "index.theme", save it on ~/.icons/
 
 What comes around, goes around
 ------------------------------
-Hackneyed is now available [for Windows](https://github.com/Enthymem/hackneyed-x11-cursors/releases/download/0.3.24/Hackneyed-Windows.7z). I hate those stupid Aero cursors.
+Hackneyed is now available [for Windows](https://github.com/Enthymem/hackneyed-x11-cursors/releases/download/0.3.24/Hackneyed-Windows.7z). The Aero cursors are stupid, and the classic theme is too crude for our time.
