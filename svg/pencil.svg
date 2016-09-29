@@ -11,7 +11,7 @@
    id="svg9121"
    viewBox="0 0 128 128"
    version="1.1"
-   inkscape:version="0.91 r13322 custom"
+   inkscape:version="0.91 r13725"
    width="100%"
    height="100%"
    sodipodi:docname="pencil.svg">
@@ -24,15 +24,15 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1366"
-     inkscape:window-height="720"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
      id="namedview36"
      showgrid="false"
-     inkscape:zoom="2.4583333"
-     inkscape:cx="27.294217"
-     inkscape:cy="96.316765"
-     inkscape:window-x="-5"
-     inkscape:window-y="-2"
+     inkscape:zoom="6.9532166"
+     inkscape:cx="44.088217"
+     inkscape:cy="71.745547"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg9121"
      showguides="true"
@@ -146,14 +146,14 @@
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
         <dc:publisher>
           <cc:Agent
              rdf:about="http://openclipart.org/">
             <dc:title>Openclipart</dc:title>
           </cc:Agent>
         </dc:publisher>
-        <dc:title />
+        <dc:title></dc:title>
         <dc:date>2010-03-29T09:25:12</dc:date>
         <dc:description>This is a remix of &lt;a href=&quot;http://www.openclipart.org/detail/35401&quot;&gt; tango applications office &lt;/a&gt; icon.</dc:description>
         <dc:source>http://openclipart.org/detail/35449/tango-style-pencil-by-warszawianka</dc:source>
@@ -174,7 +174,7 @@
         </dc:subject>
       </cc:Work>
       <cc:License
-         rdf:about="http://creativecommons.org/licenses/publicdomain/">
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
         <cc:permits
            rdf:resource="http://creativecommons.org/ns#Reproduction" />
         <cc:permits
@@ -206,7 +206,7 @@
     <path
        sodipodi:nodetypes="cccccc"
        inkscape:connector-curvature="0"
-       style="fill:#ff8080;fill-rule:evenodd"
+       style="fill:#ff5858;fill-rule:evenodd;fill-opacity:1"
        d="m 55.259347,100.08053 c 5.88286,3.33476 9.164246,3.99438 15.790109,0.22914 l -0.184292,12.21738 c 0,0 -0.585959,5.43559 -8.048822,5.85852 -7.361726,0.42198 -7.791388,-6.1763 -7.791388,-6.1763 z"
        id="path2964" />
     <path
@@ -214,13 +214,13 @@
        inkscape:connector-curvature="0"
        id="path2982"
        d="m 60.96875,12.5625 -4.53125,12.875 c 4.439937,3.214173 9.750853,3.684998 13.711335,0.332097 l -4.26536,-13.15625 c -1.47601,1.104744 -3.648501,0.783721 -4.914725,-0.05085 z"
-       style="fill:#e9ddaf;fill-opacity:1;fill-rule:evenodd" />
+       style="fill:#f5e9be;fill-opacity:1;fill-rule:evenodd" />
     <path
        sodipodi:nodetypes="ccccc"
        inkscape:connector-curvature="0"
        id="path3002"
        d="M 55.21875,28.90625 55.375,96.5625 c 4.518693,3.241392 11.299383,4.47486 15.8125,-0.4375 L 71.25,29.875 c -4.725534,2.734494 -11.871581,2.833391 -16.03125,-0.96875 z"
-       style="opacity:0.81395353000000004;fill:#55d400;fill-opacity:1;fill-rule:evenodd" />
+       style="opacity:0.81395353;fill:#75ff19;fill-opacity:1;fill-rule:evenodd" />
     <path
        style="opacity:0.48837207999999999;fill:#000000;fill-rule:evenodd;"
        d="m 63.791573,10.708124 -3.723142,1.126856 -5.779729,15.582658 c 0.693511,4.990412 -1.662728,82.959262 0.596964,87.701582 1.464341,2.72656 5.31678,5.62861 8.048187,3.78084 l 0.175374,-88.983789 z"
