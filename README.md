@@ -73,4 +73,4 @@ Paste the two lines above into a file called "index.theme", save it on ~/.icons/
 
 What comes around, goes around
 ------------------------------
-Hackneyed is now available [for Windows](https://github.com/Enthymem/hackneyed-x11-cursors/releases/download/0.3.24/Hackneyed-Windows.7z). The Aero cursors are stupid, and the classic theme is too crude for our time.
+Hackneyed is now available [for Windows](https://github.com/Enthymem/hackneyed-x11-cursors/releases/download/0.3.24/Hackneyed-Windows.7z). The Aero cursors are stupid, and the classic theme is too crude for our time. We are living in interesting times, you see.
