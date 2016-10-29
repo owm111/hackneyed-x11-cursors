@@ -1,4 +1,4 @@
-# Copyright (C) Ludvig Hummel
+# Copyright (C) Ludvig Hummel, Richard Ferreira
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@ default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left \
 openhand.left closedhand.left pointer.left
 THEME_NAME = Hackneyed
-VERSION = 0.3.26
+VERSION = 0.4
 SIZES ?= 32 40 48 56 64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
@@ -86,14 +86,22 @@ wait: svg/wait-[1-9]*.svg conjure-frames.sh
 	./conjure-frames.sh sizes="$(SIZES)" target=$@
 	$(XCURSORGEN) wait.in $@
 
-%.in:
+%.in: config/*/%.in
 	./make-config.sh sizes="$(SIZES)" target=$@
 
-%.in_left:
+%.in_left: config/*/%.in_left
 	./make-config.sh sizes="$(SIZES)" target=$@
 
 %: %.in
 	./make-pngs.sh target=$@ sizes="$(SIZES)"
+	$(XCURSORGEN) $@.in $@
+
+text: text.in
+	./make-pngs.sh target=$@ sizes="$(SIZES)" method_32=scale
+	$(XCURSORGEN) $@.in $@
+
+crosshair: crosshair.in
+	./make-pngs.sh target=$@ sizes="$(SIZES)" method=scale
 	$(XCURSORGEN) $@.in $@
 
 %.left: %.in_left
@@ -107,10 +115,10 @@ preview: $(CURSORS) $(LCURSORS)
 		$(PREVIEW_SIZE)/{default_left,center_ptr,right_ptr_left}.png \
 		$(PREVIEW_SIZE)/{pencil_left,color-picker_left,openhand}.png \
 		$(PREVIEW_SIZE)/{nw-resize,n-resize,ne-resize,split_v,split_h}.png \
-		$(PREVIEW_SIZE)/{zoom,zoom-in,zoom-out,pointer}.png \
+		$(PREVIEW_SIZE)/{zoom,zoom-in,zoom-out,closedhand}.png \
 		$(PREVIEW_SIZE)/{w-resize,wait-4,e-resize,text,ew-resize}.png \
 		$(PREVIEW_SIZE)/{ns-resize,nesw-resize,nwse-resize}.png \
-		$(PREVIEW_SIZE)/{closedhand,sw-resize}.png \
+		$(PREVIEW_SIZE)/{pointer,sw-resize}.png \
 		$(PREVIEW_SIZE)/{s-resize,se-resize,vertical-text}.png \
 		$(PREVIEW_SIZE)/{zoom,zoom-in,zoom-out}_left.png \
 		$(PREVIEW_SIZE)/{move,crosshair,plus}.png \
