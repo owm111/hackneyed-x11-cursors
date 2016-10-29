@@ -11,7 +11,7 @@
    id="svg9121"
    viewBox="0 0 128 128"
    version="1.1"
-   inkscape:version="0.91 r13725"
+   inkscape:version="0.92pre2 r"
    width="100%"
    height="100%"
    sodipodi:docname="pencil.svg">
@@ -25,12 +25,12 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1920"
-     inkscape:window-height="1016"
+     inkscape:window-height="1019"
      id="namedview36"
      showgrid="false"
      inkscape:zoom="6.9532166"
-     inkscape:cx="44.088217"
-     inkscape:cy="71.745547"
+     inkscape:cx="91.576743"
+     inkscape:cy="60.81863"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -153,7 +153,7 @@
             <dc:title>Openclipart</dc:title>
           </cc:Agent>
         </dc:publisher>
-        <dc:title></dc:title>
+        <dc:title />
         <dc:date>2010-03-29T09:25:12</dc:date>
         <dc:description>This is a remix of &lt;a href=&quot;http://www.openclipart.org/detail/35401&quot;&gt; tango applications office &lt;/a&gt; icon.</dc:description>
         <dc:source>http://openclipart.org/detail/35449/tango-style-pencil-by-warszawianka</dc:source>
@@ -213,17 +213,17 @@
        sodipodi:nodetypes="ccccc"
        inkscape:connector-curvature="0"
        id="path2982"
-       d="m 60.96875,12.5625 -4.53125,12.875 c 4.439937,3.214173 9.750853,3.684998 13.711335,0.332097 l -4.26536,-13.15625 c -1.47601,1.104744 -3.648501,0.783721 -4.914725,-0.05085 z"
-       style="fill:#f5e9be;fill-opacity:1;fill-rule:evenodd" />
+       d="m 60.642274,11.478929 -4.945082,14.050856 c 4.84543,3.507718 10.641384,4.021543 14.963571,0.362427 L 66.005854,11.53442 c -1.610812,1.20564 -3.981713,0.855298 -5.36358,-0.05549 z"
+       style="fill:#f5e295;fill-opacity:1;fill-rule:evenodd;stroke-width:1" />
     <path
        sodipodi:nodetypes="ccccc"
        inkscape:connector-curvature="0"
        id="path3002"
-       d="M 55.21875,28.90625 55.375,96.5625 c 4.518693,3.241392 11.299383,4.47486 15.8125,-0.4375 L 71.25,29.875 c -4.725534,2.734494 -11.871581,2.833391 -16.03125,-0.96875 z"
-       style="opacity:0.81395353;fill:#75ff19;fill-opacity:1;fill-rule:evenodd" />
+       d="M 55.21875,28.90625 55.375,96.562504 c 4.518693,3.24139 11.299383,4.474856 15.8125,-0.4375 L 71.25,29.875 c -4.725534,2.734494 -11.871581,2.833391 -16.03125,-0.96875 z"
+       style="opacity:1;fill:#46e3aa;fill-opacity:1;fill-rule:evenodd" />
     <path
-       style="opacity:0.48837207999999999;fill:#000000;fill-rule:evenodd;"
-       d="m 63.791573,10.708124 -3.723142,1.126856 -5.779729,15.582658 c 0.693511,4.990412 -1.662728,82.959262 0.596964,87.701582 1.464341,2.72656 5.31678,5.62861 8.048187,3.78084 l 0.175374,-88.983789 z"
+       style="opacity:0.297;fill:#000000;fill-rule:evenodd"
+       d="M 62.876319,0.28439504 60.068431,11.83498 54.288702,27.417638 c 0.693511,4.990412 -1.662728,82.959262 0.596964,87.701582 1.464341,2.72656 5.31678,5.62861 8.048187,3.78084 l 0.175374,-88.983789 z"
        id="path4016"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccc" />
