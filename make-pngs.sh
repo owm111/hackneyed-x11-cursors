@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (C) Ludvig Hummel
+# Copyright (C) Ludvig Hummel, Richard Ferreira
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -28,6 +28,34 @@
 . sh-functions
 parse_cmdline "$@"
 xmkdir png $sizes
+set -- $remaining_args
+
+while [ "$1" ]; do
+	case $1 in
+	method=*)
+		eval method_all="$1"
+		shift
+		;;
+	method_*=*)
+		method_size="${1%=*}"
+		eval $method_size="method=${1#*=}"
+		shift
+		;;
+	filter=*)
+		eval filter="$1"
+		shift
+		;;
+	unsharp=*)
+		eval unsharp="$1"
+		shift
+		;;
+	*)
+		echo "unrecognized flag: $1" >&2
+		exit 1
+		shift
+		;;
+	esac
+done
 
 svg="svg/${target}.svg"
 [ "$with_svg" ] && svg=$with_svg
@@ -84,7 +112,9 @@ fi
 
 for s in $sizes; do
 	png_name="${s}/${target}.png"
-	transform size=${s} src=$source_png dest=$png_name || exit 1
+	method_size="method_$s"
+	eval [ \$$method_size ] && eval method=\$$method_size || method=$method_all
+	transform size=${s} $filter $method src=$source_png dest=$png_name || exit 1
 	[ -x config/transform/${target} ] && source config/transform/${target}
 done
 

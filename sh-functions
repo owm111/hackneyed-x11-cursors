@@ -1,5 +1,5 @@
 #
-# Copyright (C) Ludvig Hummel
+# Copyright (C) Ludvig Hummel, Richard Ferreira
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -88,7 +88,7 @@ export_png()
 
 transform()
 {
-	local src opt dest rotate raw_opts
+	local src opt dest rotate raw_opts method filter unsharp
 	while [ "$1" ]; do
 		case "$1" in
 		raw)
@@ -98,6 +98,14 @@ transform()
 			;;
 		flip|flop)
 			opt="$opt -$1"
+			shift
+			;;
+		method=*)
+			method="-${1#*=}"
+			shift
+			;;
+		filter=*)
+			filter="${1#*=}"
 			shift
 			;;
 		src=*)
@@ -113,7 +121,7 @@ transform()
 			shift
 			;;
 		size=*)
-			size="-resize ${1#*=}"
+			size="${1#*=}"
 			shift
 			;;
 		opt=*)
@@ -122,6 +130,10 @@ transform()
 			;;
 		rotate=*)
 			rotate="-rotate ${1#*=}"
+			shift
+			;;
+		unsharp=*)
+			unsharp="-unsharp ${1#*=}"
 			shift
 			;;
 		*)
@@ -137,7 +149,7 @@ transform()
 	echo "$dest"
 	: ${src:?no source file specified}
 	: ${dest:?no dest file specified}
-	convert -background none $rotate $size $opt $src $dest || exit 1
+	convert -background none ${method:--resize} $size $rotate $filter $unsharp $opt $src $dest || exit 1
 }
 
 xmkdir()
