@@ -1,5 +1,5 @@
 svg=svg/zoom.svg
 overlay=svg/overlay-minus-sign.svg
-overlay_size=100
-overlay_position=+57.7+36
+overlay_size=85
+overlay_position=+53+35
 flip_svg=1
