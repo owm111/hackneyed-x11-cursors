@@ -14,19 +14,20 @@
    height="128"
    id="svg3869"
    version="1.1"
-   inkscape:version="0.91 r13322 custom"
+   inkscape:version="0.92pre2 r"
    sodipodi:docname="center_ptr.svg"
    inkscape:export-filename="/home/ludvig/tmp/hackneyed/source/help.png"
    inkscape:export-xdpi="22.5"
-   inkscape:export-ydpi="22.5">
+   inkscape:export-ydpi="22.5"
+   viewBox="0 0 128 128">
   <defs
      id="defs3871">
     <filter
        inkscape:collect="always"
        style="color-interpolation-filters:sRGB"
        id="filter4126"
-       x="-0.16360373"
-       width="1.3272075"
+       x="-0.16360372"
+       width="1.3272074"
        y="-0.11062944"
        height="1.2212589">
       <feGaussianBlur
@@ -43,15 +44,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="61.164248"
+     inkscape:cx="99.550044"
      inkscape:cy="67.033238"
      inkscape:document-units="px"
      inkscape:current-layer="g2988"
      showgrid="false"
-     inkscape:window-width="1366"
-     inkscape:window-height="720"
-     inkscape:window-x="-5"
-     inkscape:window-y="-2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1019"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -60,7 +61,8 @@
     <sodipodi:guide
        orientation="1,0"
        position="63.773922,108.80026"
-       id="guide2987" />
+       id="guide2987"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <metadata
      id="metadata3874">
@@ -81,7 +83,7 @@
      transform="translate(0,-924.36218)">
     <g
        id="g2988"
-       transform="matrix(0.99997773,0.00667204,-0.00667204,0.99997773,9.4287164,-0.68375016)">
+       transform="rotate(0.38228257,107.19562,1412.8106)">
       <path
          sodipodi:type="inkscape:offset"
          inkscape:radius="4.3005652"
@@ -98,7 +100,7 @@
          id="path3877"
          d="m 89.611942,1005.5781 -21.356178,-12.205 1.031574,31.1465 c 0.173377,5.2348 -15.728039,5.5163 -15.71028,0.2778 l -0.07292,-31.16298 -19.838821,12.93438 26.83311,-64.84026 z"
          inkscape:transform-center-y="-14.559729"
-         style="fill:#ffffff;stroke:#000000;stroke-width:5.22200012;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+         style="fill:#ffffff;stroke:#000000;stroke-width:5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
     </g>
   </g>
 </svg>
