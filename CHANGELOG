@@ -1,3 +1,14 @@
+0.4
+- text, crosshair: avoid blurry shapes by aligning to pixel boundaries
+- pencil, draft: recoloring and reshaping
+- pointer, openhand, closedhand: be a bit more anatomically correct, align
+  to pixels as well so that the fingers don't look weird
+- zoom: make it fully white to stand out more
+- zoom-in, zoom-out: change colors
+- context-menu: the menu now looks more like a menu
+- overall repositioning of overlays because I must have fucked up with
+  something
+
 0.3.26
 - text, crosshair: more elegant shapes
 
