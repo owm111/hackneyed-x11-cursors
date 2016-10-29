@@ -27,6 +27,10 @@ wayland-cursor: svg/wayland-cursor.svg
 X_cursor: svg/X_cursor.svg
 zoom: svg/zoom.svg
 zoom.left: svg/zoom.svg
+zoom-in: zoom config/overlay/zoom-in svg/overlay-plus-sign.svg
+zoom-out: zoom config/overlay/zoom-out svg/overlay-minus-sign.svg
+zoom-in.left: zoom.left config/overlay/zoom-in_left svg/overlay-plus-sign.svg
+zoom-out.left: zoom.left config/overlay/zoom-out_left svg/overlay-minus-sign.svg
 based_arrow_down: svg/based_arrow_down.svg
 based_arrow_up: svg/based_arrow_up.svg
 top_tee: svg/top_tee.svg
