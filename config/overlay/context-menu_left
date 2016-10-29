@@ -1,5 +1,5 @@
 svg=svg/default.svg
 overlay=svg/overlay-menu.svg
 overlay_size=50
-overlay_position=+10+25
+overlay_position=+6+25
 flip_svg=1
