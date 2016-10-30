@@ -64,23 +64,27 @@ ldist: theme.left
 	tar -jcof $(THEME_NAME)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME)
 
 theme: all
-	./do-symlinks.sh $(THEME_NAME)/cursors
 	./generate-metadata.sh target=$@ sizes="$(SIZES)" > $(THEME_NAME)/index.theme
+	./do-symlinks.sh $(THEME_NAME)/cursors
 
 theme.left: lall
-	./do-symlinks.sh L$(THEME_NAME)/cursors
 	./generate-metadata.sh target=$@ sizes="$(SIZES)" > L$(THEME_NAME)/index.theme
+	./do-symlinks.sh L$(THEME_NAME)/cursors
 
 all: $(CURSORS)
-	test -d $(THEME_NAME)/cursors || mkdir -p $(THEME_NAME)/cursors
+	test -d $(THEME_NAME) && rm -rf $(THEME_NAME)
+	mkdir -p $(THEME_NAME)/cursors
 	cp $(CURSORS) $(THEME_NAME)/cursors
+#	echo \(trim-cursor-files "\"$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
 lall: $(CURSORS) $(LCURSORS)
-	test -d L$(THEME_NAME)/cursors || mkdir -p L$(THEME_NAME)/cursors
+	test -d L$(THEME_NAME) && rm -rf L$(THEME_NAME)
+	mkdir -p L$(THEME_NAME)/cursors
 	cp $(CURSORS) L$(THEME_NAME)/cursors
 	for l in $(LCURSORS); do \
 		cp $$l L$(THEME_NAME)/cursors/$${l/.left/}; \
 	done
+#	echo \(trim-cursor-files "\"L$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
 wait: svg/wait-[1-9]*.svg conjure-frames.sh
 	./conjure-frames.sh sizes="$(SIZES)" target=$@
