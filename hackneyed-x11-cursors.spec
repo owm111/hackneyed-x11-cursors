@@ -1,5 +1,5 @@
 Name:		hackneyed-cursor-theme	
-Version:	0.3.24
+Version:	0.4
 Release:	1%{?dist}
 Summary:	Windows 3.x-inspired cursors
 
@@ -15,7 +15,7 @@ BuildArch:	noarch
 Inspired by old Windows 3.x cursors, the Hackneyed cursor theme for X11
 brings an old-school feel to your wobbly-windowed, blocky and docky desktop
 of today. Available in sizes 32, 40, 48 56 and 64. Not all desktop environments
-support all sizes.
+support all sizes (in fact, only KDE will see the last two).
 
 %prep
 %setup -q -n hackneyed-x11-cursors-%{version}
