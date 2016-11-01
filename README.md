@@ -1,22 +1,22 @@
-![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "Spinning hourglass is the new spinning cube")
+![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "A blast from the past!")
 
 Overview
 --------
 
 Hackneyed is an X11 cursor theme created for personal use. Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to your wobbly-windowed, docky and blocky desktop of today.
 
-Installation
-------------
+Building
+--------
 Make sure you have ImageMagick (>=6.8.6), Inkscape (>=0.48.4), GNU make and xcursorgen installed.
 Inkscape is _not_ optional; ImageMagick would revert to its own SVG renderer if it wasn't found,
-and results would be suboptimal.
+and results would be suboptimal. The GIMP script requires GIMP >= 2.2 with the XMC plugin installed.
 
 `make pack` will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
 or the right-handed theme, use the targets `ldist` or `dist`, respectively.
 
 Other useful targets: `all`, `theme` and `theme.left`. These only generate the cursor files without packing them.
 
-If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) here on GitHub, or from the artwork page on [xfce-look.org](https://www.xfce-look.org/p/999998/).
+If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [xfce-look.org](https://www.xfce-look.org/p/999998/). The Windows version can only be found here.
 
 Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
 
@@ -69,8 +69,4 @@ XFCE (at least on Fedora) doesn't fully load a custom cursor theme at login unle
 Inherits=Hackneyed
 ```
 
-Paste the two lines above into a file called "index.theme", save it on ~/.icons/default and set the mouse theme as "default". I say "most of the time" because there seems to be a race condition in which settings are sometimes loaded after the desktop (panel and window manager), so you get mixed up cursors.
-
-What comes around, goes around
-------------------------------
-Hackneyed is now available [for Windows](https://github.com/Enthymem/hackneyed-x11-cursors/releases/download/0.3.24/Hackneyed-Windows.7z). The Aero cursors are stupid, and the classic theme is too crude for our time. We are living in interesting times, you see.
+Paste the two lines above into a file called "index.theme", save it on ~/.icons/default and set the mouse theme as "default". I say "most of the time" because there seems to be a race condition in which settings are sometimes loaded after the window manager, so you get mixed up cursors.
