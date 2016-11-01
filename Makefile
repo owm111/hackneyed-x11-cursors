@@ -86,10 +86,6 @@ lall: $(CURSORS) $(LCURSORS)
 	done
 #	echo \(trim-cursor-files "\"L$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
-wait: svg/wait-[1-9]*.svg conjure-frames.sh
-	./conjure-frames.sh sizes="$(SIZES)" target=$@
-	$(XCURSORGEN) wait.in $@
-
 %.in: config/*/%.in
 	./make-config.sh sizes="$(SIZES)" target=$@
 
@@ -120,7 +116,7 @@ preview: $(CURSORS) $(LCURSORS)
 		$(PREVIEW_SIZE)/{pencil_left,color-picker_left,openhand}.png \
 		$(PREVIEW_SIZE)/{nw-resize,n-resize,ne-resize,split_v,split_h}.png \
 		$(PREVIEW_SIZE)/{zoom,zoom-in,zoom-out,closedhand}.png \
-		$(PREVIEW_SIZE)/{w-resize,wait-4,e-resize,text,ew-resize}.png \
+		$(PREVIEW_SIZE)/{w-resize,wait,e-resize,text,ew-resize}.png \
 		$(PREVIEW_SIZE)/{ns-resize,nesw-resize,nwse-resize}.png \
 		$(PREVIEW_SIZE)/{pointer,sw-resize}.png \
 		$(PREVIEW_SIZE)/{s-resize,se-resize,vertical-text}.png \
