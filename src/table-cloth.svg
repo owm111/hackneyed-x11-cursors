@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="141.27782"
-     inkscape:cy="170.14953"
+     inkscape:zoom="4.0000001"
+     inkscape:cx="233.75395"
+     inkscape:cy="171.3065"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="webslicer-layer"
      showgrid="false"
      showborder="true"
      inkscape:snap-bbox="true"
@@ -129,7 +129,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1129,7 +1129,7 @@
     <g
        inkscape:label="Camada 1"
        id="g9045"
-       transform="matrix(0,-0.22951068,0.22951068,0,-87.453157,1022.9926)">
+       transform="matrix(0,-0.22951068,0.22951068,0,-85.453157,1023.4926)">
       <path
          transform="translate(-6.1111725,5.6148835)"
          sodipodi:type="inkscape:offset"
@@ -2509,7 +2509,8 @@
      transform="translate(0,-19)"
      inkscape:label="Borders"
      id="layer2"
-     inkscape:groupmode="layer">
+     inkscape:groupmode="layer"
+     sodipodi:insensitive="true">
     <rect
        y="19"
        x="0"
@@ -2922,12 +2923,12 @@
        id="text15122-5-1-1-4-9"
        y="236.75"
        x="119.64062"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6px;line-height:125%;font-family:Oxygen;-inkscape-font-specification:Oxygen;letter-spacing:0px;word-spacing:0px;display:inline;opacity:0.73308273;fill:#ffffff;fill-opacity:1;stroke:none"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6px;line-height:7.5px;font-family:Oxygen;-inkscape-font-specification:Oxygen;letter-spacing:0px;word-spacing:0px;display:inline;opacity:0.73308273;fill:#ffffff;fill-opacity:1;stroke:none"
        xml:space="preserve"><tspan
          y="236.75"
          x="119.64062"
          id="tspan15124-4-0-5-6-6"
-         sodipodi:role="line">nesw-resize</tspan></text>
+         sodipodi:role="line">nwse-resize</tspan></text>
     <text
        id="text15122-5-9-1-1-8-1"
        y="236.75"
@@ -2937,7 +2938,7 @@
          y="236.75"
          x="169.64062"
          id="tspan15124-4-5-33-5-4-2"
-         sodipodi:role="line">nwse-resize</tspan></text>
+         sodipodi:role="line">nesw-resize</tspan></text>
     <text
        id="text15122-5-9-0-3-6-7-3"
        y="236.75"
@@ -3249,7 +3250,8 @@
      style="display:none;opacity:1"
      inkscape:groupmode="layer"
      inkscape:label="Web Slicer"
-     id="webslicer-layer">
+     id="webslicer-layer"
+     sodipodi:insensitive="true">
     <rect
        style="opacity:0.5;fill:#ccff00"
        height="32"
@@ -3684,7 +3686,7 @@ layout-disposition: bg-el-norepeat
 layout-position-anchor: tl</desc>
     </rect>
     <rect
-       id="nwse-resize"
+       id="nesw-resize"
        x="174.35355"
        y="224.29291"
        width="32"
@@ -3702,7 +3704,7 @@ layout-position-anchor: tl</desc>
        width="32"
        y="224.46968"
        x="124.53033"
-       id="nesw-resize"
+       id="nwse-resize"
        style="opacity:0.5;fill:#ccff00"
        inkscape:label="#size_bdiag">
       <desc
