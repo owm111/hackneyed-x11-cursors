@@ -1,5 +1,5 @@
 #
-# Copyright (C) Ludvig Hummel, Richard Ferreira
+# Copyright (C) Richard Ferreira
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -53,105 +53,6 @@ parse_cmdline()
 	: ${target:?no target specified}
 }
 
-export_png()
-{
-	local opt size src dest
-	while [ "$1" ]; do
-		case "$1" in
-		size=*)
-			size=${1#*=}
-			shift
-			;;
-		src=*)
-			src=${1#*=}
-			shift
-			;;
-		dest=*)
-			dest=${1#*=}
-			shift
-			;;
-		opt=*)
-			opt=${1#*=}
-			shift
-			;;
-		*)
-			shift
-			;;
-		esac
-	done
-	: ${src:?undefined}
-	: ${dest:?undefined}
-	[ "$size" ] && convert_export_args="-resize $size"
-	echo "$src => $dest"
-	convert -background none $convert_export_args $rotate $opt $src $dest || exit 1
-}
-
-transform()
-{
-	local src opt dest rotate raw_opts method filter unsharp
-	while [ "$1" ]; do
-		case "$1" in
-		raw)
-			shift
-			raw_opts="$@"
-			break
-			;;
-		flip|flop)
-			opt="$opt -$1"
-			shift
-			;;
-		method=*)
-			method="-${1#*=}"
-			shift
-			;;
-		filter=*)
-			filter="${1#*=}"
-			shift
-			;;
-		src=*)
-			src=${1#*=}
-			shift
-			;;
-		opt=*)
-			opt=${1#*=}
-			shift
-			;;
-		dest=*)
-			dest=${1#*=}
-			shift
-			;;
-		size=*)
-			size="${1#*=}"
-			shift
-			;;
-		opt=*)
-			opt="$opt ${1#*=}"
-			shift
-			;;
-		rotate=*)
-			rotate="-rotate ${1#*=}"
-			shift
-			;;
-		unsharp=*)
-			unsharp="-unsharp ${1#*=}"
-			shift
-			;;
-		*)
-			shift
-			;;
-		esac
-	done
-	if [ "$raw_opts" ]; then
-		echo "convert $raw_opts"
-		convert $raw_opts || exit 1
-		return 0
-	fi
-	echo "$dest"
-	: ${src:?no source file specified}
-	: ${dest:?no dest file specified}
-	convert -background none ${method:--resize} $size $rotate $filter $unsharp $opt $src $dest || exit 1
-}
-
 xmkdir()
 {
 	while [ "$1" ]; do
@@ -183,6 +84,16 @@ calc()
 
 die()
 {
-	echo "$(basename $0): $@"
+	echo -e "\033[1;1;31m$(basename $0): $@\033[0m" >&2
 	exit 1
+}
+
+warning()
+{
+	echo -e "\033[1;1;33m$(basename $0): $@\033[0m" >&2
+}
+
+message()
+{
+	echo -e "\033[1;1;36m$(basename $0): $@\033[0m"
 }

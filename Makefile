@@ -1,4 +1,4 @@
-# Copyright (C) Ludvig Hummel, Richard Ferreira
+# Copyright (C) Richard Ferreira
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -23,15 +23,13 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
-include deps.mk config/overlay.mk config/transform.mk
-
 CURSORS = default text pointer help progress wait copy alias no-drop \
 not-allowed split_v split_h e-resize ne-resize nw-resize n-resize se-resize \
 sw-resize s-resize w-resize vertical-text crosshair up_arrow \
 context-menu ew-resize ns-resize nesw-resize nwse-resize pencil right_ptr \
 zoom zoom-in zoom-out pirate X_cursor closedhand openhand color-picker plus \
-center_ptr move all-scroll dnd-move wayland-cursor down-arrow draft \
-left-arrow right-arrow exchange ul_angle ur_angle ll_angle lr_angle \
+center_ptr move all-scroll dnd-move wayland-cursor down_arrow draft \
+left_arrow right_arrow exchange ul_angle ur_angle ll_angle lr_angle \
 based_arrow_down based_arrow_up top_tee bottom_tee left_tee right_tee \
 draped_box coffee_mug
 LCURSORS = alias.left color-picker.left context-menu.left copy.left \
@@ -72,13 +70,13 @@ theme.left: lall
 	./do-symlinks.sh L$(THEME_NAME)/cursors
 
 all: $(CURSORS)
-	test -d $(THEME_NAME) && rm -rf $(THEME_NAME)
+	test -d $(THEME_NAME) && rm -rf $(THEME_NAME) || true
 	mkdir -p $(THEME_NAME)/cursors
 	cp $(CURSORS) $(THEME_NAME)/cursors
 #	echo \(trim-cursor-files "\"$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
 lall: $(CURSORS) $(LCURSORS)
-	test -d L$(THEME_NAME) && rm -rf L$(THEME_NAME)
+	test -d L$(THEME_NAME) && rm -rf L$(THEME_NAME) || true
 	mkdir -p L$(THEME_NAME)/cursors
 	cp $(CURSORS) L$(THEME_NAME)/cursors
 	for l in $(LCURSORS); do \
@@ -92,19 +90,11 @@ lall: $(CURSORS) $(LCURSORS)
 %.in_left: config/*/%.in_left
 	./make-config.sh sizes="$(SIZES)" target=$@
 
-%: %.in
+%: %.in src/table-cloth.svg
 	./make-pngs.sh target=$@ sizes="$(SIZES)"
-	$(XCURSORGEN) $@.in $@
+	$(XCURSORGEN) $< $@
 
-text: text.in
-	./make-pngs.sh target=$@ sizes="$(SIZES)" method_32=scale
-	$(XCURSORGEN) $@.in $@
-
-crosshair: crosshair.in
-	./make-pngs.sh target=$@ sizes="$(SIZES)" method=scale
-	$(XCURSORGEN) $@.in $@
-
-%.left: %.in_left
+%.left: %.in_left src/wristband.svg
 	./make-pngs.sh target=$@ sizes="$(SIZES)"
 	$(XCURSORGEN) $< $@
 
@@ -124,68 +114,8 @@ preview: $(CURSORS) $(LCURSORS)
 		$(PREVIEW_SIZE)/{move,crosshair,plus}.png \
 		$(PREVIEW_SIZE)/{not-allowed,pencil}.png \
 		$(PREVIEW_SIZE)/{pirate,color-picker,X_cursor,draft}.png \
-		$(PREVIEW_SIZE)/{up_arrow,right-arrow,down-arrow,left-arrow,all-scroll,wayland-cursor}.png \
+		$(PREVIEW_SIZE)/{up_arrow,right-arrow,down_arrow,left_arrow,all-scroll,wayland-cursor}.png \
 		preview.png
-
-right_ptr: right_ptr.in default
-	$(XCURSORGEN) $@.in $@
-
-split_h: split_h.in split_v
-	$(XCURSORGEN) $@.in $@
-
-w-resize: w-resize.in
-n-resize: n-resize.in
-s-resize: s-resize.in
-se-resize: se-resize.in
-sw-resize: sw-resize.in
-down-arrow: down-arrow.in
-left-arrow: left-arrow.in
-right-arrow: right-arrow.in
-ns-resize: ns-resize.in
-nw-resize: nw-resize.in
-nesw-resize: nesw-resize.in
-
-bottom_tee: bottom_tee.in top_tee
-	$(XCURSORGEN) $@.in $@
-
-left_tee: left_tee.in top_tee
-	$(XCURSORGEN) $@.in $@
-
-right_tee: right_tee.in top_tee
-	$(XCURSORGEN) $@.in $@
-
-based_arrow_down: based_arrow_down.in based_arrow_up
-	$(XCURSORGEN) $@.in $@
-
-ur_angle: ur_angle.in ul_angle
-	$(XCURSORGEN) $@.in $@
-
-ll_angle: ll_angle.in ul_angle
-	$(XCURSORGEN) $@.in $@
-
-lr_angle: lr_angle.in ul_angle
-	$(XCURSORGEN) $@.in $@
-
-w-resize n-resize s-resize: e-resize
-	$(XCURSORGEN) $@.in $@
-
-ns-resize: ew-resize
-	$(XCURSORGEN) $@.in $@
-
-nesw-resize: nwse-resize
-	$(XCURSORGEN) $@.in $@
-
-nw-resize se-resize sw-resize: ne-resize
-	$(XCURSORGEN) $@.in $@
-
-vertical-text: vertical-text.in text
-	$(XCURSORGEN) $@.in $@
-
-down-arrow left-arrow right-arrow: up_arrow
-	$(XCURSORGEN) $@.in $@
-
-right_ptr.left: right_ptr.in_left center_ptr
-	$(XCURSORGEN) right_ptr.in_left $@
 
 Makefile.in Makefile: ;
 %.svg: ;

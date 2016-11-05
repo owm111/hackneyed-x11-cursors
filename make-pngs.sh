@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (C) Ludvig Hummel, Richard Ferreira
+# Copyright (C) Richard Ferreira
 #
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files (the
@@ -27,95 +27,27 @@
 
 . sh-functions
 parse_cmdline "$@"
-xmkdir png $sizes
+xmkdir $sizes
 set -- $remaining_args
 
-while [ "$1" ]; do
-	case $1 in
-	method=*)
-		eval method_all="$1"
-		shift
-		;;
-	method_*=*)
-		method_size="${1%=*}"
-		eval $method_size="method=${1#*=}"
-		shift
-		;;
-	filter=*)
-		eval filter="$1"
-		shift
-		;;
-	unsharp=*)
-		eval unsharp="$1"
-		shift
-		;;
-	*)
-		echo "unrecognized flag: $1" >&2
-		exit 1
-		shift
-		;;
-	esac
-done
+R_SOURCESVG="src/table-cloth.svg"
+L_SOURCESVG="src/wristband.svg"
 
-svg="svg/${target}.svg"
-[ "$with_svg" ] && svg=$with_svg
-if [ "$orientation" = "left" ]; then
-	if [ -e "svg/${target}_left.svg" ]; then
-		svg="svg/${target}_left.svg"
-	else
-		echo -n "no left-handed SVG for ${target}; "
-		if [ -e config/flip/${target} ]; then
-			echo "image will be flipped"
-			flop='-flop'
-		else
-			echo "no need for flipping"
-		fi
+source_svg="$R_SOURCESVG"
+[ "$with_svg" ] && source_svg=$with_svg || \
+	if [ "$orientation" = "left" ]; then
+		message "left-handed cursor"
+		source_svg="$L_SOURCESVG"
+		suffix="_left"
 	fi
-	target="${target}_left"
-fi
-source_png="png/${target}.png"
 
-if [ -x config/overlay/${target} ]; then
-	echo "found overlay config/overlay/${target}"
-	source config/overlay/${target}
-	: ${svg:?unset}
-	: ${overlay:?unset}
-	if ! [ -e $overlay ]; then
-		echo "${overlay}.svg not found"
-		exit 1
-	fi
-	: ${overlay_size:=50}
-	: ${overlay_position:?unset}
-	if [ "$flip_svg" = "1" ]; then
-		flop='-flop'
-		source_png="png/$(basename $svg .svg)_flipped.png"
-	else
-		source_png="png/$(basename $svg .svg).png"
-	fi
-fi
+[ -e $svg ] || die "$svg does not exist"
 
-if ! [ -e $svg ]; then
-	echo "${target}.svg does not exist"
-	exit 1
-fi
-export_png opt=$flop src=$svg dest=$source_png
-
-if [ "$overlay" ]; then
-	source_ovl="png/${target}.png"
-	tmp_ovl="$(basename $overlay .svg).png"
-	echo "generating $source_ovl"
-	export_png opt='-trim +repage' src=$overlay dest=$tmp_ovl
-	composite -background none -geometry $overlay_position \( $tmp_ovl -resize ${overlay_size}% \) \
-		$source_png $source_ovl || exit 1 && rm $tmp_ovl
-	source_png=$source_ovl
-fi
-
+# Better have some coffee
 for s in $sizes; do
-	png_name="${s}/${target}.png"
-	method_size="method_$s"
-	eval [ \$$method_size ] && eval method=\$$method_size || method=$method_all
-	transform size=${s} $filter $method src=$source_png dest=$png_name || exit 1
-	[ -x config/transform/${target} ] && source config/transform/${target}
+	dpi=$(( (96 * s)/32 ))
+	message "dpi $dpi for ${s}px size -> ${s}/${target}${suffix}.png"
+	inkscape -i $target -d $dpi -f $source_svg -e ${s}/${target}${suffix}.png >/dev/null || exit 1
 done
 
 exit 0
