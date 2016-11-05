@@ -101,20 +101,14 @@ lall: $(CURSORS) $(LCURSORS)
 preview: $(CURSORS) $(LCURSORS)
 	montage -background none -geometry +4+4 -mode concatenate -tile 9x10 \
 		$(PREVIEW_SIZE)/{default,help,progress,alias,copy,context-menu,no-drop,dnd-move}.png \
-		$(PREVIEW_SIZE)/{help,progress,alias,copy,context-menu,no-drop,dnd-move}_left.png \
-		$(PREVIEW_SIZE)/{default_left,center_ptr,right_ptr_left}.png \
-		$(PREVIEW_SIZE)/{pencil_left,color-picker_left,openhand}.png \
-		$(PREVIEW_SIZE)/{nw-resize,n-resize,ne-resize,split_v,split_h}.png \
-		$(PREVIEW_SIZE)/{zoom,zoom-in,zoom-out,closedhand}.png \
-		$(PREVIEW_SIZE)/{w-resize,wait,e-resize,text,ew-resize}.png \
-		$(PREVIEW_SIZE)/{ns-resize,nesw-resize,nwse-resize}.png \
-		$(PREVIEW_SIZE)/{pointer,sw-resize}.png \
-		$(PREVIEW_SIZE)/{s-resize,se-resize,vertical-text}.png \
-		$(PREVIEW_SIZE)/{zoom,zoom-in,zoom-out}_left.png \
-		$(PREVIEW_SIZE)/{move,crosshair,plus}.png \
-		$(PREVIEW_SIZE)/{not-allowed,pencil}.png \
-		$(PREVIEW_SIZE)/{pirate,color-picker,X_cursor,draft}.png \
-		$(PREVIEW_SIZE)/{up_arrow,right_arrow,down_arrow,left_arrow,all-scroll,wayland-cursor}.png \
+		$(PREVIEW_SIZE)/{help,progress,alias,copy,context-menu,no-drop,dnd-move,default}_left.png \
+		$(PREVIEW_SIZE)/{center_ptr,right_ptr_left,wait,openhand}.png \
+		$(PREVIEW_SIZE)/{pointer,closedhand,sw-resize,se-resize,w-resize,e-resize}.png \
+		$(PREVIEW_SIZE)/{n-resize,s-resize,nw-resize,ne-resize,split_v,zoom,zoom-in,zoom-out,nesw-resize}.png \
+		$(PREVIEW_SIZE)/{nwse-resize,ew-resize,ns-resize,split_h}.png \
+		$(PREVIEW_SIZE)/{text,vertical-text,move,crosshair,plus,not-allowed}.png \
+		$(PREVIEW_SIZE)/{pirate,X_cursor,wayland-cursor,draft,pencil,color-picker}.png \
+		$(PREVIEW_SIZE)/{up_arrow,right_arrow,left_arrow}.png \
 		preview.png
 
 Makefile.in Makefile: ;
