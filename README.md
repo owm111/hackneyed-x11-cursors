@@ -1,15 +1,16 @@
-![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "A blast from the past!")
+![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "Do you like big hands?")
 
 Overview
 --------
 
 Hackneyed is an X11 cursor theme created for personal use. Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to your wobbly-windowed, docky and blocky desktop of today.
 
+With the recent changes, though, Hackneyed has become nothing more than DMZ with hourglasses.
+
 Building
 --------
 Make sure you have ImageMagick (>=6.8.6), Inkscape (>=0.48.4), GNU make and xcursorgen installed.
-Inkscape is _not_ optional; ImageMagick would revert to its own SVG renderer if it wasn't found,
-and results would be suboptimal. The GIMP script requires GIMP >= 2.2 with the XMC plugin installed.
+The GIMP script requires GIMP >= 2.2 with the XMC plugin installed.
 
 `make pack` will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
 or the right-handed theme, use the targets `ldist` or `dist`, respectively.
@@ -26,10 +27,11 @@ Hackneyed is released under the MIT/X11 license.
 
 Credits
 -------
-* do-symlinks.sh, rewrite of addmissing.sh, which was taken from
-  dummy-x11-cursors by ultr (on kde-look.org)
+* do-symlinks.sh, rewrite of addmissing.sh, taken from dummy-x11-cursors by ultr (on kde-look.org)
 
 * some SVGs taken from openclipart.org (pencil, pirate and coffee_mug as far as I can remember)
+
+* monolithic SVG idea taken from KDE's Breeze theme by Ken Vermette, which probably took the idea from Jakub Steiner's DMZ
 
 Bugs
 ----
