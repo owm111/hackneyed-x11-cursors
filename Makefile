@@ -114,7 +114,7 @@ preview: $(CURSORS) $(LCURSORS)
 		$(PREVIEW_SIZE)/{move,crosshair,plus}.png \
 		$(PREVIEW_SIZE)/{not-allowed,pencil}.png \
 		$(PREVIEW_SIZE)/{pirate,color-picker,X_cursor,draft}.png \
-		$(PREVIEW_SIZE)/{up_arrow,right-arrow,down_arrow,left_arrow,all-scroll,wayland-cursor}.png \
+		$(PREVIEW_SIZE)/{up_arrow,right_arrow,down_arrow,left_arrow,all-scroll,wayland-cursor}.png \
 		preview.png
 
 Makefile.in Makefile: ;
