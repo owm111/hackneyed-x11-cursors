@@ -1,3 +1,0 @@
-transform flop src=$png_name dest=${s}/ur_angle.png
-transform flip src=$png_name dest=${s}/ll_angle.png
-transform flop src=${s}/ll_angle.png dest=${s}/lr_angle.png

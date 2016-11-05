@@ -1,3 +1,0 @@
-transform flip src=$png_name dest=${s}/bottom_tee.png
-transform rotate=90 src=$png_name dest=${s}/right_tee.png
-transform rotate=270 src=$png_name dest=${s}/left_tee.png

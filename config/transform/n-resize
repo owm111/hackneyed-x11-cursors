@@ -1,1 +1,0 @@
-transform flip src=$png_name dest=${s}/s-rezize.png

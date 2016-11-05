@@ -1,3 +1,0 @@
-transform flop src=$png_name dest=${s}/nw-resize.png
-transform flip src=$png_name dest=${s}/se-resize.png
-transform rotate=+180 src=$png_name dest=${s}/sw-resize.png

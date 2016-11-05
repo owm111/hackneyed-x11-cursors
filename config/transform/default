@@ -1,1 +1,0 @@
-transform flop src=$png_name dest=${s}/right_ptr.png
