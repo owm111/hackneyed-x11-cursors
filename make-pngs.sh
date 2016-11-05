@@ -47,7 +47,7 @@ source_svg="$R_SOURCESVG"
 for s in $sizes; do
 	dpi=$(( (96 * s)/32 ))
 	message "dpi $dpi for ${s}px size -> ${s}/${target}${suffix}.png"
-	inkscape -i $target -d $dpi -f $source_svg -e ${s}/${target}${suffix}.png >/dev/null || exit 1
+	inkscape --without-gui -i $target -d $dpi -f $source_svg -e ${s}/${target}${suffix}.png >/dev/null || exit 1
 done
 
 exit 0
