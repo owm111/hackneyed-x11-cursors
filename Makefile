@@ -35,7 +35,7 @@ draped_box coffee_mug
 LCURSORS = alias.left color-picker.left context-menu.left copy.left \
 default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left \
-openhand.left closedhand.left pointer.left
+openhand.left closedhand.left pointer.left coffee_mug.left exchange.left
 THEME_NAME = Hackneyed
 VERSION = 0.4
 SIZES ?= 32 40 48 56 64
