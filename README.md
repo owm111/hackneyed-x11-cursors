@@ -1,4 +1,4 @@
-![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "Do you like big hands?")
+![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "Ill-advised for those traumatized by GPFs")
 
 Overview
 --------
@@ -31,7 +31,7 @@ Credits
 
 * some SVGs taken from openclipart.org (pencil, pirate and coffee_mug as far as I can remember)
 
-* monolithic SVG idea taken from KDE's Breeze theme by Ken Vermette, which probably took the idea from Jakub Steiner's DMZ
+* monolithic SVG idea (and the SVG itself) taken from KDE's Breeze theme by Ken Vermette, who probably liked Jakub Steiner's DMZ way too much (but not enough to keep the Python script)
 
 Bugs
 ----
