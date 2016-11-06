@@ -37,7 +37,7 @@ default.left help.left pencil.left dnd-move.left zoom-in.left zoom.left \
 zoom-out.left progress.left no-drop.left draft.left right_ptr.left \
 openhand.left closedhand.left pointer.left coffee_mug.left exchange.left
 THEME_NAME = Hackneyed
-VERSION = 0.4
+VERSION = 0.5
 SIZES ?= 32 40 48 56 64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen

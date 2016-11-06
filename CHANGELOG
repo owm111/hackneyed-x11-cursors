@@ -1,3 +1,9 @@
+0.5
+- overhaul the artwork entirely
+- SVGs now amount to two, one for each variation; individual cursors
+  are exported through ids with inkscape
+- ditch all but one of the IM hacks
+
 0.4
 - text, crosshair: avoid blurry shapes by aligning to pixel boundaries
 - pencil, draft: recoloring and reshaping
