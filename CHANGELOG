@@ -1,3 +1,6 @@
+0.5.1
+- symlink grab -> openhand
+
 0.5
 - overhaul the artwork entirely
 - SVGs now amount to two, one for each variation; individual cursors
