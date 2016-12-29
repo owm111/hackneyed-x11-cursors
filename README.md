@@ -33,6 +33,8 @@ Credits
 
 * monolithic SVG idea (and the SVG itself) taken from KDE's Breeze theme by Ken Vermette, who probably liked Jakub Steiner's DMZ way too much (but not enough to keep the Python script)
 
+* util/ico2cur.c, a C rendition of [ico2cur.py](https://code.google.com/archive/p/ico2cur/)
+
 Bugs
 ----
 Please report, either here or on Xfce-look, any bugs you might find, or any enhancements you might want. I consider it finished, but there's always a corner to round.
