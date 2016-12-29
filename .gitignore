@@ -1,6 +1,7 @@
 /*
 !/doc
-!/svg
+!/src
+!/util
 !/config
 !*.sh
 !preview.png
