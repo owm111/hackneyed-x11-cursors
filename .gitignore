@@ -1,4 +1,6 @@
 /*
+/util/*.o
+/util/ico2cur
 !/doc
 !/src
 !/util
