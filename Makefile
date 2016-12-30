@@ -57,6 +57,11 @@ source-dist:
 	git archive --format=tar.gz --prefix=hackneyed-x11-cursors-$(VERSION)/ HEAD > \
 		hackneyed-x11-cursors-$(VERSION).tar.gz
 
+windows-cursors:
+	$(MAKE) -C util
+	rm -rf ico Hackneyed-Windows Hackneyed-Windows.7z
+	./make-windows-cursors.sh
+
 dist: theme
 	tar -jcof $(THEME_NAME)-$(VERSION)-right-handed.tar.bz2 $(THEME_NAME)
 
@@ -121,11 +126,13 @@ config/transform/%: ;
 %.sh: ;
 
 clean:
+	$(MAKE) -C util clean
 	rm -rf $(SIZES)
 	rm -rf $(THEME_NAME) L$(THEME_NAME)
 	rm -f *.in *.in_left
 	rm -f $(CURSORS) $(LCURSORS)
 	rm -rf png
+	rm -rf ico Hackneyed-Windows
 
-.PHONY: preview clean theme theme.left all lall dist ldist pack all-dist
+.PHONY: preview clean theme theme.left all lall dist ldist pack all-dist windows-cursors
 .PRECIOUS: %.in %.in_left
