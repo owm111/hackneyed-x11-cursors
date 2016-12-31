@@ -1,4 +1,4 @@
-![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "Ill-advised for those traumatized by GPFs")
+![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png)
 
 Overview
 --------
