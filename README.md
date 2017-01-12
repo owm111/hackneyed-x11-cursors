@@ -10,7 +10,7 @@ With the recent changes, though, Hackneyed has become nothing more than DMZ with
 Building
 --------
 Make sure you have ImageMagick (>=6.8.6), Inkscape (>=0.48.4), GNU make and xcursorgen installed.
-Other dependencies, depending on what you want to do:
+Some extra functionality has additional dependencies:
 
 * The GIMP script requires GIMP >= 2.2 with the XMC plugin installed;
 * A working C compiler (for ico2cur) and p7zip, to generate Windows cursors.
