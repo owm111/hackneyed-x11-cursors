@@ -25,7 +25,7 @@ Available targets for production:
 * `windows-cursors` for Windows.
 
 `make all-dist` targets all of the above, including all single-sized themes in all available sizes.
-All of these targets will generate tarballs for distribution.
+All targets generate tarballs for distribution.
 
 The targets described below are meant for debugging.
 
