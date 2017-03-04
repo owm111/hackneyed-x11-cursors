@@ -15,12 +15,43 @@ Some extra functionality has additional dependencies:
 * The GIMP script requires GIMP >= 2.2 with the XMC plugin installed;
 * A working C compiler (for ico2cur) and p7zip, to generate Windows cursors.
 
-`make pack` will drop you a tarball with the full theme, including the left-handed one. If you want either the left-
-or the right-handed theme, use the targets `ldist` or `dist`, respectively.
+Available targets for production:
 
-Other useful targets: `all`, `theme` and `theme.left`. These only generate the cursor files without packing them.
+* `pack`: build both multi-sized themes (left- and right-handed) into a single tarball;
+* `dist`: build the multi-sized, right-handed theme;
+* `ldist`: build the multi-sized, left-handed theme;
+* `dist.x`, where x can be 32, 48 or 64: build a single-sized, right-handed theme of the specified size;
+* `ldist.x`, where x can be 32, 48 or 64: build a single-sized, left-handed theme of the specified size;
+* `windows-cursors` for Windows.
 
-If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [xfce-look.org](https://www.xfce-look.org/p/999998/). The Windows version can only be found here.
+`make all-dist` targets all of the above, including all single-sized themes in all available sizes.
+All of these targets will generate tarballs for distribution.
+
+The targets described below are meant for debugging.
+
+The following targets don't generate tarballs:
+
+* `theme`: make the multi-sized, right-handed theme;
+* `theme.left`: make the multi-sized, right-handed theme;
+* `theme.x`: make a single-sized, right-handed theme of the specified size;
+* `theme.x.left`: make a single-sized, left-handed theme of the specified size.
+
+All of them run `do-symlinks.sh` when finished. The targets below do not:
+
+* `all`: make the multi-sized, right-handed theme;
+* `all.x`: make a single-sized, right-handed theme of the specified size;
+* `lall`: make the multi-sized, left-handed theme;
+* `lall.x`: make a single-sized, left-handed theme of the specified size.
+
+Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e.g.:
+
+* `make default.32.left` for a left-handed, 32x32-sized `default` cursor;
+* `make default.32` for a right-handed, 32x32-sized cursor;
+* `make default.left` for a multi-sized, left-handed cursor;
+* or simply `make default` for a multi-sized, right-handed cursor.
+
+If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [xfce-look.org](https://www.xfce-look.org/p/999998/).
+The Windows version can only be found on GitHub.
 
 Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
 
