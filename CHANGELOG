@@ -1,3 +1,6 @@
+0.5.2
+- make single-sized themes (for desktops like LXDE, and XFCE when size > 48)
+
 0.5.1
 - symlink grab -> openhand
 
