@@ -38,8 +38,8 @@ parse_cmdline()
 			;;
 		target=*)
 			target=${1#*=}
-			target=${target%.*}
-			orientation=${1#*.}
+			target=${target%%.*}
+			orientation=${1##*.}
 			[ "$orientation" = "$target" -o "$orientation" = "$1" ] && unset orientation
 			shift
 			;;
