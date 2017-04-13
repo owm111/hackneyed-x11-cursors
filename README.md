@@ -20,7 +20,7 @@ Extra functionality has additional dependencies:
 * The GIMP script requires GIMP >= 2.2 with the XMC plugin installed;
 * A working C compiler (for ico2cur), and p7zip, to generate Windows cursors.
 
-Available targets for production:
+Production targets (all of them generate tarballs for distribution):
 
 * `pack`: build both multi-sized themes (left- and right-handed) into a single package;
 * `dist`: build the multi-sized, right-handed theme;
@@ -30,7 +30,6 @@ Available targets for production:
 * `windows-cursors` for Windows.
 
 `make all-dist` targets all of the above, including all single-sized themes in all available sizes.
-All targets above generate tarballs for distribution.
 
 The targets described below are meant for debugging and do not generate tarballs:
 
