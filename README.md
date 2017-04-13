@@ -3,21 +3,26 @@
 Overview
 --------
 
-Hackneyed is an X11 cursor theme created for personal use. Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to your wobbly-windowed, docky and blocky desktop of today.
+Hackneyed is an X11 cursor theme created for personal use, and published *pro bono* because it may be interesting to others. Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to whatever trendy desktop paradigm you're being subjected to.
 
-With the recent changes, though, Hackneyed has become nothing more than DMZ with hourglasses.
 
 Building
 --------
-Make sure you have ImageMagick (>=6.8.6), Inkscape (>=0.48.4), GNU make and xcursorgen installed.
-Some extra functionality has additional dependencies:
+Minimum dependencies:
+
+* ImageMagick (>=6.8.6)
+* Inkscape (>=0.48.4)
+* GNU make
+* xcursorgen
+
+Extra functionality has additional dependencies:
 
 * The GIMP script requires GIMP >= 2.2 with the XMC plugin installed;
-* A working C compiler (for ico2cur) and p7zip, to generate Windows cursors.
+* A working C compiler (for ico2cur), and p7zip, to generate Windows cursors.
 
 Available targets for production:
 
-* `pack`: build both multi-sized themes (left- and right-handed) into a single tarball;
+* `pack`: build both multi-sized themes (left- and right-handed) into a single package;
 * `dist`: build the multi-sized, right-handed theme;
 * `ldist`: build the multi-sized, left-handed theme;
 * `dist.x`, where x can be 32, 48 or 64: build a single-sized, right-handed theme of the specified size;
@@ -25,11 +30,9 @@ Available targets for production:
 * `windows-cursors` for Windows.
 
 `make all-dist` targets all of the above, including all single-sized themes in all available sizes.
-All targets generate tarballs for distribution.
+All targets above generate tarballs for distribution.
 
-The targets described below are meant for debugging.
-
-The following targets don't generate tarballs:
+The targets described below are meant for debugging and do not generate tarballs:
 
 * `theme`: make the multi-sized, right-handed theme;
 * `theme.left`: make the multi-sized, right-handed theme;
@@ -98,9 +101,9 @@ Useful links
 
 * [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html "I blame Google for not finding this sooner")
 
-On XFCE
+On Xfce
 -------
-XFCE (at least on Fedora) doesn't fully load a custom cursor theme at login unless it's set as the "default" theme. There is a fix that works most of the time:
+Xfce (at least on Fedora) doesn't fully load a custom cursor theme at login unless it's set as the "default" theme. There is a fix that works most of the time:
 
 ```
 [Icon Theme]
