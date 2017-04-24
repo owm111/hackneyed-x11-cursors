@@ -57,6 +57,8 @@ THEME_NAME = Hackneyed
 THEME_NAME_32 = Hackneyed-32x32
 THEME_NAME_48 = Hackneyed-48x48
 THEME_NAME_64 = Hackneyed-64x64
+THEME_COMMENT = Windows 3.x-inspired cursors
+THEME_EXAMPLE = default
 VERSION = 0.5.2
 SIZES ?= 32 40 48 56 64
 PREVIEW_SIZE = 48
@@ -109,35 +111,51 @@ ldist.64: theme.64.left
 	tar -jcof $(THEME_NAME_64)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME_64)
 
 theme: all
-	./generate-metadata.sh target=$@ sizes="$(SIZES)" > $(THEME_NAME)/index.theme
+	./generate-metadata.sh target=$@ sizes="$(SIZES)" theme_name='$(THEME_NAME)' \
+		theme_comment='$(THEME_COMMENT)' theme_example='$(THEME_EXAMPLE)' \
+		> $(THEME_NAME)/index.theme
 	./do-symlinks.sh $(THEME_NAME)/cursors
 
 theme.left: lall
-	./generate-metadata.sh target=$@ sizes="$(SIZES)" > L$(THEME_NAME)/index.theme
+	./generate-metadata.sh target=$@ sizes="$(SIZES)" theme_name='$(THEME_NAME)' \
+		theme_comment='$(THEME_COMMENT)' theme_example='$(THEME_EXAMPLE)' \
+		> L$(THEME_NAME)/index.theme
 	./do-symlinks.sh L$(THEME_NAME)/cursors
 
 theme.32: all.32
-	./generate-metadata.sh target=$@ sizes=32 > $(THEME_NAME_32)/index.theme
+	./generate-metadata.sh target=$@ sizes=32 theme_name='$(THEME_NAME)' \
+		theme_comment='$(THEME_COMMENT)' theme_example='$(THEME_EXAMPLE)' \
+		> $(THEME_NAME_32)/index.theme
 	./do-symlinks.sh $(THEME_NAME_32)/cursors
 
 theme.48: all.48
-	./generate-metadata.sh target=$@ sizes=48 > $(THEME_NAME_48)/index.theme
+	./generate-metadata.sh target=$@ sizes=48 theme_name='$(THEME_NAME)' \
+		theme_comment='$(THEME_COMMENT)' theme_example='$(THEME_EXAMPLE)' \
+		> $(THEME_NAME_48)/index.theme
 	./do-symlinks.sh $(THEME_NAME_48)/cursors
 
 theme.64: all.64
-	./generate-metadata.sh target=$@ sizes=64 > $(THEME_NAME_64)/index.theme
+	./generate-metadata.sh target=$@ sizes=64 theme_name='$(THEME_NAME)' \
+		theme_comment='$(THEME_COMMENT)' theme_example='$(THEME_EXAMPLE)' \
+		> $(THEME_NAME_64)/index.theme
 	./do-symlinks.sh $(THEME_NAME_64)/cursors
 
 theme.32.left: lall.32
-	./generate-metadata.sh target=$@ sizes=32 > L$(THEME_NAME_32)/index.theme
+	./generate-metadata.sh target=$@ sizes=32 theme_name='$(THEME_NAME)' \
+		theme_comment='$(THEME_COMMENT)' theme_example='$(THEME_EXAMPLE)' \
+		> L$(THEME_NAME_32)/index.theme
 	./do-symlinks.sh L$(THEME_NAME_32)/cursors
 
 theme.48.left: lall.48
-	./generate-metadata.sh target=$@ sizes=48 > L$(THEME_NAME_48)/index.theme
+	./generate-metadata.sh target=$@ sizes=48 theme_name='$(THEME_NAME)' \
+		theme_comment='$(THEME_COMMENT)' theme_example='$(THEME_EXAMPLE)' \
+		> L$(THEME_NAME_48)/index.theme
 	./do-symlinks.sh L$(THEME_NAME_48)/cursors
 
 theme.64.left: lall.64
-	./generate-metadata.sh target=$@ sizes=64 > L$(THEME_NAME_64)/index.theme
+	./generate-metadata.sh target=$@ sizes=64 theme_name='$(THEME_NAME)' \
+		theme_comment='$(THEME_COMMENT)' theme_example='$(THEME_EXAMPLE)' \
+		> L$(THEME_NAME_64)/index.theme
 	./do-symlinks.sh L$(THEME_NAME_64)/cursors
 
 all: $(CURSORS)
