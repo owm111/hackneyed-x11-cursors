@@ -43,6 +43,18 @@ parse_cmdline()
 			[ "$orientation" = "$target" -o "$orientation" = "$1" ] && unset orientation
 			shift
 			;;
+		theme_name=*)
+			theme_name="${1#*=}"
+			shift
+			;;
+		theme_comment=*)
+			theme_comment="${1#*=}"
+			shift
+			;;
+		theme_example=*)
+			theme_example="${1#*=}"
+			shift
+			;;
 		*)
 			remaining_args="$remaining_args $1"
 			shift
