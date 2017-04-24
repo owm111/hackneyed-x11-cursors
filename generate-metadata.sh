@@ -27,12 +27,10 @@
 
 . sh-functions
 parse_cmdline "$@"
-metadata=config/metadata
-source $metadata || exit 1
 
-: ${name:?undefined}
-: ${comment:?undefined}
-: ${example:?undefined}
+: ${theme_name:?theme needs a name}
+: ${theme_comment:?no description for theme}
+: ${theme_example:?no theme example defined}
 
 set -- $sizes
 
@@ -41,7 +39,7 @@ set -- $sizes
 
 cat <<-EOF
 [Icon Theme]
-Name = ${name}${desc}
-Comment = $comment
-Example = $example
+Name = ${theme_name}${desc}
+Comment = $theme_comment
+Example = $theme_example
 EOF
