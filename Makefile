@@ -42,6 +42,17 @@ openhand.32.left closedhand.32.left pointer.32.left coffee_mug.32.left exchange.
 LCURSORS_48 = $(LCURSORS_32:.32.left=.48.left)
 LCURSORS_64 = $(LCURSORS_32:.32.left=.64.left)
 LCURSORS = $(LCURSORS_32:.32.left=.left)
+WINCURSORS = default.cur help.cur progress.cur wait.cur text.cur crosshair.cur pencil.cur \
+ns-resize.cur ew-resize.cur nesw-resize.cur nwse-resize.cur up_arrow.cur pointer.cur move.cur \
+n-resize.cur s-resize.cur e-resize.cur w-resize.cur ne-resize.cur nw-resize.cur se-resize.cur sw-resize.cur \
+not-allowed.cur
+WINCURSORS_LARGE = default_large.cur help_large.cur progress_large.cur wait_large.cur text_large.cur \
+crosshair_large.cur pencil_large.cur ns-resize_large.cur ew-resize_large.cur nesw-resize_large.cur \
+nwse-resize_large.cur up_arrow_large.cur pointer_large.cur move_large.cur n-resize_large.cur \
+s-resize_large.cur e-resize_large.cur w-resize_large.cur ne-resize_large.cur nw-resize_large.cur \
+se-resize_large.cur sw-resize_large.cur
+LWINCURSORS = default_left.cur help_left.cur progress_left.cur pencil_left.cur pointer_left.cur
+LWINCURSORS_LARGE = $(LWINCURSORS:_left.cur=_large_left.cur)
 THEME_NAME = Hackneyed
 THEME_NAME_32 = Hackneyed-32x32
 THEME_NAME_48 = Hackneyed-48x48
@@ -66,10 +77,12 @@ source-dist:
 	git archive --format=tar.gz --prefix=hackneyed-x11-cursors-$(VERSION)/ HEAD > \
 		hackneyed-x11-cursors-$(VERSION).tar.gz
 
-windows-cursors:
-	$(MAKE) -C util
-	rm -rf ico Hackneyed-Windows Hackneyed-Windows.7z
-	./make-windows-cursors.sh
+windows-cursors: $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
+	rm -rf Hackneyed-Windows
+	mkdir -p Hackneyed-Windows/{King-size,Standard}
+	cp $(WINCURSORS_LARGE) $(LWINCURSORS_LARGE) Hackneyed-Windows/King-size
+	cp $(WINCURSORS) $(LWINCURSORS) Hackneyed-Windows/Standard
+	7z a Hackneyed-Windows.7z Hackneyed-Windows
 
 dist: theme
 	tar -jcof $(THEME_NAME)-$(VERSION)-right-handed.tar.bz2 $(THEME_NAME)
@@ -225,6 +238,20 @@ lall.64: $(CURSORS_64) $(LCURSORS_64)
 	./make-pngs.sh target=$@ sizes=64
 	$(XCURSORGEN) $< $@
 
+ico2cur: ico2cur.c
+	$(CC) -std=c99 -Wall -Werror -pedantic -g -o ico2cur ico2cur.c
+
+%.cur: ico2cur src/prosthesis.svg config/cur/hotspots
+	{ \
+		dest_png=$(@:.cur=.png); \
+		dest_ico=$(@:.cur=.ico); \
+		target=$(@:.cur=); \
+		inkscape --without-gui -i $$target -f src/prosthesis.svg -e $$dest_png >/dev/null && \
+			convert $$dest_png $$dest_ico && rm -f $$dest_png && \
+			./ico2cur -p config/cur/hotspots $$dest_ico && \
+			rm -f $$dest_ico; \
+	}
+
 preview: $(CURSORS) $(LCURSORS)
 	montage -background none -geometry +4+4 -mode concatenate -tile 9x10 \
 		$(PREVIEW_SIZE)/{default,help,progress,alias,copy,context-menu,no-drop,dnd-move}.png \
@@ -241,18 +268,13 @@ preview: $(CURSORS) $(LCURSORS)
 Makefile.in Makefile: ;
 %.svg: ;
 %.mk: ;
-config/overlay/%: ;
-config/transform/%: ;
 %.sh: ;
 
 clean:
-	$(MAKE) -C util clean
 	rm -rf $(SIZES)
 	rm -rf $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_32) $(THEME_NAME_48) $(THEME_NAME_64) L$(THEME_NAME_32) L$(THEME_NAME_48) L$(THEME_NAME_64)
-	rm -f *.in *.in_left
 	rm -f $(CURSORS) $(CURSORS_32) $(CURSORS_48) $(CURSORS_64) $(LCURSORS) $(LCURSORS_32) $(LCURSORS_48) $(LCURSORS_64)
-	rm -rf png
-	rm -rf ico Hackneyed-Windows
+	rm -f Hackneyed-Windows.7z
+	rm -f $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
 
 .PHONY: preview clean theme theme.left all lall dist ldist pack all-dist windows-cursors
-.PRECIOUS: %.in %.in_left
