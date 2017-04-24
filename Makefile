@@ -54,9 +54,9 @@ se-resize_large.cur sw-resize_large.cur
 LWINCURSORS = default_left.cur help_left.cur progress_left.cur pencil_left.cur pointer_left.cur
 LWINCURSORS_LARGE = $(LWINCURSORS:_left.cur=_large_left.cur)
 THEME_NAME = Hackneyed
-THEME_NAME_32 = Hackneyed-32x32
-THEME_NAME_48 = Hackneyed-48x48
-THEME_NAME_64 = Hackneyed-64x64
+THEME_NAME_32 = $(THEME_NAME)-32x32
+THEME_NAME_48 = $(THEME_NAME)-48x48
+THEME_NAME_64 = $(THEME_NAME)-64x64
 THEME_COMMENT = Windows 3.x-inspired cursors
 THEME_EXAMPLE = default
 VERSION = 0.5.2
