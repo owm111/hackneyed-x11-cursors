@@ -41,10 +41,6 @@
 
 #define HEADERLEN	13
 
-struct hotspot {
-	unsigned short x, y;
-};
-
 void die(const char *msg, ...)
 {
 	va_list argp;
@@ -110,42 +106,39 @@ char *strbtrim(char *s, const char *forbidden)
 	return begin;
 }
 
-struct hotspot *get_hotspot(const char *src, const char *name)
+void get_hotspot(const char *src, const char *name, unsigned short *x, unsigned short *y)
 {
 	FILE *f = fopen(src, "r");
 	char buf[BUFSIZ] = "";
-	char *x, *y, *tail;
-	struct hotspot *ret = NULL;
+	char *sx, *sy, *tail;
 
 	if (!f)
 		die("fopen: %s", src);
-	ret = malloc(sizeof(*ret));
 	while (fgets(buf, sizeof(buf), f)) {
 		if (*buf == '#' || *buf == ';')
 			continue;
 		strbtrim(buf, "\n\t ");
-		if (!(x = strchr(buf, '\t')))
+		if (!(sx = strchr(buf, '\t')))
 			continue;
-		*x = 0;
-		x++;
+		*sx = 0;
+		sx++;
 		if (strcmp(buf, name))
 			continue;
-		strbtrim(x, "\n\t ");
-		if (!(y = strchr(x, ' ')))
+		strbtrim(sx, "\n\t ");
+		if (!(sy = strchr(sx, ' ')))
 			continue;
-		*y = 0;
-		y++;
-		ret->x = strtol(x, &tail, 0);
-		if (ret->x > 31 || x == tail)
-			die("%s: invalid x axis: %s", buf, x);
-		ret->y = strtol(y, &tail, 0);
-		if (ret->y > 31 || y == tail)
-			die("%s: invalid y axis: %s", buf, y);
+		*sy = 0;
+		sy++;
+		*x = strtol(sx, &tail, 0);
+		if (*x > 31 || sx == tail)
+			die("%s: invalid x axis: %s", buf, sx);
+		*y = strtol(sy, &tail, 0);
+		if (*y > 31 || sy == tail)
+			die("%s: invalid y axis: %s", buf, sy);
 		fclose(f);
-		return ret;
+		return;
 	}
 	die("%s not found in %s", name, src);
-	return NULL;
 }
 
 int main(int argc, char **argv)
@@ -160,7 +153,6 @@ int main(int argc, char **argv)
 	char *dest = NULL;
 	char *p;
 	char *hotspotsrc = NULL, *name = NULL;
-	struct hotspot *xy;
 	
 	x = y = 0;
 	while ((c = getopt(argc, argv, "x:y:hp:")) != -1) {
@@ -194,19 +186,15 @@ int main(int argc, char **argv)
 		strncpy(buf, src, sizeof(buf));
 		p = basename(buf);
 		name = extsub(p, NULL);
-		if (!(xy = get_hotspot(hotspotsrc, name))) {
-			xy = malloc(sizeof(*xy));
-			xy->x = x;
-			xy->y = y;
-		}
-		printf("%s: (%d,%d)\n", name, xy->x, xy->y);
+		get_hotspot(hotspotsrc, name, &x, &y);
+		printf("%s: (%d,%d)\n", name, x, y);
 		free(name);
 		free(hotspotsrc);
 	}
 	/* A kind of magic */
 	header[2] = (char)2;
-	header[10] = (char)xy->x;
-	header[12] = (char)xy->y;
+	header[10] = (char)x;
+	header[12] = (char)y;
 	dest = extsub(src, ".cur");
 	if (!(fdest = fopen(dest, "w+")))
 		die("%s: %s", dest, strerror(errno));
@@ -215,7 +203,6 @@ int main(int argc, char **argv)
 		fwrite(buf, sizeof(char), b, fdest);
 	printf("%s -> %s\n", src, dest);
 	free(dest);
-	free(xy);
 	fclose(fsrc);
 	fclose(fdest);
 	return 0;
