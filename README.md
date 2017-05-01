@@ -29,7 +29,7 @@ Production targets (all of them generate tarballs for distribution):
 * `dist.x.left`, where x can be 32, 48 or 64: build a single-sized, left-handed theme of the specified size;
 * `windows-cursors` for Windows.
 
-`make all-dist` targets all of the above, including all single-sized themes in all available sizes.
+`make all-dist` targets all of the above (except `windows-cursors`), including all single-sized themes in all available sizes.
 
 The targets described below are meant for debugging and do not generate tarballs:
 
