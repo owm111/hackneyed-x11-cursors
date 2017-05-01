@@ -218,10 +218,10 @@ lall.64: $(CURSORS_64) $(LCURSORS_64)
 		cp $$l L$(THEME_NAME_64)/cursors/$${l/.64.left/}; \
 	done
 
-%.in: config/*/%.in
+%.in: hotspots/*/%.in
 	./make-config.sh sizes="$(SIZES)" target=$@
 
-%.in_left: config/*/%.in_left
+%.in_left: hotspots/*/%.in_left
 	./make-config.sh sizes="$(SIZES)" target=$@
 
 %: %.in src/table-cloth.svg
@@ -232,41 +232,41 @@ lall.64: $(CURSORS_64) $(LCURSORS_64)
 	./make-pngs.sh target=$@ sizes="$(SIZES)"
 	$(XCURSORGEN) $< $@
 
-%.32: config/32/%.in src/table-cloth.svg
+%.32: hotspots/32/%.in src/table-cloth.svg
 	./make-pngs.sh target=$@ sizes=32
 	$(XCURSORGEN) $< $@
 
-%.48: config/48/%.in src/table-cloth.svg
+%.48: hotspots/48/%.in src/table-cloth.svg
 	./make-pngs.sh target=$@ sizes=48
 	$(XCURSORGEN) $< $@
 
-%.64: config/64/%.in src/table-cloth.svg
+%.64: hotspots/64/%.in src/table-cloth.svg
 	./make-pngs.sh target=$@ sizes=64
 	$(XCURSORGEN) $< $@
 
-%.32.left: config/32/%.in_left src/wristband.svg
+%.32.left: hotspots/32/%.in_left src/wristband.svg
 	./make-pngs.sh target=$@ sizes=32
 	$(XCURSORGEN) $< $@
 
-%.48.left: config/48/%.in_left src/wristband.svg
+%.48.left: hotspots/48/%.in_left src/wristband.svg
 	./make-pngs.sh target=$@ sizes=48
 	$(XCURSORGEN) $< $@
 
-%.64.left: config/64/%.in_left src/wristband.svg
+%.64.left: hotspots/64/%.in_left src/wristband.svg
 	./make-pngs.sh target=$@ sizes=64
 	$(XCURSORGEN) $< $@
 
 ico2cur: ico2cur.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o ico2cur ico2cur.c
 
-%.cur: ico2cur src/prosthesis.svg config/cur/hotspots
+%.cur: ico2cur src/prosthesis.svg hotspots/windows-cursors
 	{ \
 		dest_png=$(@:.cur=.png); \
 		dest_ico=$(@:.cur=.ico); \
 		target=$(@:.cur=); \
 		inkscape --without-gui -i $$target -f src/prosthesis.svg -e $$dest_png >/dev/null && \
 			convert $$dest_png $$dest_ico && rm -f $$dest_png && \
-			./ico2cur -p config/cur/hotspots $$dest_ico && \
+			./ico2cur -p hotspots/windows-cursors $$dest_ico && \
 			rm -f $$dest_ico; \
 	}
 
@@ -291,4 +291,5 @@ clean:
 	rm -f $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
 
 .PHONY: preview clean theme theme.left all lall dist ldist pack all-dist windows-cursors
+
 .SUFFIXES:

@@ -35,8 +35,8 @@ dest=${target}.in
 rm -f $dest
 
 for s in $sizes; do
-	[ -e config/$s ] || die "size $s not found"
-	source_file=config/${s}/${dest}
+	[ -e hotspots/$s ] || die "size $s not found"
+	source_file=hotspots/${s}/${dest}
 	[ -e $source_file ] || die "No source file found for size $s"
 	cat $source_file >> $dest || exit 1
 done
