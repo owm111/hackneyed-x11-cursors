@@ -310,11 +310,23 @@ ico2cur: ico2cur.c
 %_left.ico: %.32.left.png
 	convert $< $@
 
-%.cur: %.ico hotspots/windows-cursors ico2cur
-	./ico2cur -p hotspots/windows-cursors $<
+%.cur: %.ico hotspots/32/%.in ico2cur
+	{\
+		set -- $$(cat hotspots/32/$(@:.cur=.in)); \
+		./ico2cur -x $$2 -y $$3 $<; \
+	}
 
-%_large.cur: %_large.ico hotspots/windows-cursors ico2cur
-	./ico2cur -p hotspots/windows-cursors $<
+%_left.cur: %_left.ico hotspots/32/%.in_left ico2cur
+	{\
+		set -- $$(cat hotspots/32/$(@:_left.cur=.in_left)); \
+		./ico2cur -x $$2 -y $$3 $<; \
+	}
+
+%_large.cur: %_large.ico hotspots/wc-large ico2cur
+	./ico2cur -p hotspots/wc-large $<
+
+%_large_left.cur: %_large_left.ico hotspots/wc-large ico2cur
+	./ico2cur -p hotspots/wc-large $<
 
 preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE))
 	montage -background none -geometry +4+4 -mode concatenate -tile 9x10 \
