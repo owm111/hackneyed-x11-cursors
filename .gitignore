@@ -1,6 +1,6 @@
-*
-!src/
-!hotspots/
+/*
+!src
+!hotspots
 !*.sh
 !*.c
 !CHANGELOG
