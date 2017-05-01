@@ -244,7 +244,7 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 %.in: hotspots/*/%.in
 	cat hotspots/{$(SIZES)}/$@ > $@
 
-%.in_left: hotspots/*/%.in_left
+%_left.in: hotspots/*/%_left.in
 	cat hotspots/{$(SIZES)}/$@ > $@
 
 %.png: $(RSVG_SOURCE)
@@ -268,7 +268,7 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 %: %.in %.32.png %.40.png %.48.png %.56.png %.64.png
 	$(XCURSORGEN) $< $@
 
-%.left: %.in_left %.32.left.png %.40.left.png %.48.left.png %.56.left.png %.64.left.png
+%.left: %_left.in %.32.left.png %.40.left.png %.48.left.png %.56.left.png %.64.left.png
 	$(XCURSORGEN) $< $@
 
 %.32: hotspots/32/%.in %.32.png
@@ -280,13 +280,13 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 %.64: hotspots/64/%.in %.64.png
 	$(XCURSORGEN) $< $@
 
-%.32.left: hotspots/32/%.in_left %.32.left.png
+%.32.left: hotspots/32/%_left.in %.32.left.png
 	$(XCURSORGEN) $< $@
 
-%.48.left: hotspots/48/%.in_left %.48.left.png
+%.48.left: hotspots/48/%_left.in %.48.left.png
 	$(XCURSORGEN) $< $@
 
-%.64.left: hotspots/64/%.in_left %.64.left.png
+%.64.left: hotspots/64/%_left.in %.64.left.png
 	$(XCURSORGEN) $< $@
 
 ico2cur: ico2cur.c
@@ -311,14 +311,8 @@ ico2cur: ico2cur.c
 	convert $< $@
 
 %.cur: %.ico hotspots/32/%.in ico2cur
-	{\
+	@{\
 		set -- $$(cat hotspots/32/$(@:.cur=.in)); \
-		./ico2cur -x $$2 -y $$3 $<; \
-	}
-
-%_left.cur: %_left.ico hotspots/32/%.in_left ico2cur
-	{\
-		set -- $$(cat hotspots/32/$(@:_left.cur=.in_left)); \
 		./ico2cur -x $$2 -y $$3 $<; \
 	}
 
@@ -346,11 +340,11 @@ clean:
 	rm -f $(PNG_32) $(PNG_40) $(PNG_48) $(PNG_56) $(PNG_64)
 	rm -f $(LPNG_32) $(LPNG_40) $(LPNG_48) $(LPNG_56) $(LPNG_64)
 	rm -f $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
-	rm -f *.in *.in_left ico2cur
+	rm -f *.in ico2cur
 
 .PHONY: all all-dist all.left all.32 all.48 all.64 all.32.left all.48.left all.64.left clean dist dist.left \
 dist.32 dist.48 dist.64 dist.32.left dist.48.left dist.64.left install pack preview source-dist theme theme.left \
 theme.32 theme.48 theme.64 theme.32.left theme.48.left theme.64.left windows-cursors all-sizes all-themes
 .SUFFIXES:
-.PRECIOUS: %.in %.in_left %.png %.left.png
+.PRECIOUS: %.in %_left.in %.png %.left.png
 .DELETE_ON_ERROR:
