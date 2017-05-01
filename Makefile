@@ -283,11 +283,6 @@ preview: $(CURSORS) $(LCURSORS)
 		$(PREVIEW_SIZE)/{up_arrow,right_arrow,left_arrow}.png \
 		preview.png
 
-Makefile.in Makefile: ;
-%.svg: ;
-%.mk: ;
-%.sh: ;
-
 clean:
 	rm -rf $(SIZES)
 	rm -rf $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_32) $(THEME_NAME_48) $(THEME_NAME_64) L$(THEME_NAME_32) L$(THEME_NAME_48) L$(THEME_NAME_64)
@@ -296,3 +291,4 @@ clean:
 	rm -f $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
 
 .PHONY: preview clean theme theme.left all lall dist ldist pack all-dist windows-cursors
+.SUFFIXES:
