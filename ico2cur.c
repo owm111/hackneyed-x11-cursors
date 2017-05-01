@@ -189,7 +189,6 @@ int main(int argc, char **argv)
 		p = basename(buf);
 		name = extsub(p, NULL);
 		get_hotspot(hotspotsrc, name, &x, &y);
-		printf("%s: (%d,%d)\n", name, x, y);
 		free(name);
 		free(hotspotsrc);
 	}
@@ -203,9 +202,9 @@ int main(int argc, char **argv)
 	fwrite(header, sizeof(char), sizeof(header), fdest);
 	while ((b = fread(buf, sizeof(char), sizeof(buf), fsrc)))
 		fwrite(buf, sizeof(char), b, fdest);
-	printf("%s -> %s\n", src, dest);
+	fclose(fdest);
+	printf("%s -> %s (%d,%d)\n", src, dest, x, y);
 	free(dest);
 	fclose(fsrc);
-	fclose(fdest);
 	return 0;
 }
