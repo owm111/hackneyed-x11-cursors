@@ -99,7 +99,7 @@ windows-cursors: $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_
 	mkdir -p Hackneyed-Windows/{King-size,Standard}
 	cp $(WINCURSORS_LARGE) $(LWINCURSORS_LARGE) Hackneyed-Windows/King-size
 	cp $(WINCURSORS) $(LWINCURSORS) Hackneyed-Windows/Standard
-	7z a Hackneyed-Windows.7z Hackneyed-Windows
+	zip -r Hackneyed-Windows.zip Hackneyed-Windows
 
 dist: theme
 	tar -jcof $(THEME_NAME)-$(VERSION)-right-handed.tar.bz2 $(THEME_NAME)
@@ -333,7 +333,6 @@ clean:
 	rm -f $(CURSORS) $(CURSORS_32) $(CURSORS_48) $(CURSORS_64) $(LCURSORS) $(LCURSORS_32) $(LCURSORS_48) $(LCURSORS_64)
 	rm -f $(PNG_32) $(PNG_40) $(PNG_48) $(PNG_56) $(PNG_64)
 	rm -f $(LPNG_32) $(LPNG_40) $(LPNG_48) $(LPNG_56) $(LPNG_64)
-	rm -f Hackneyed-Windows.7z
 	rm -f $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
 	rm -f *.in *.in_left ico2cur
 
