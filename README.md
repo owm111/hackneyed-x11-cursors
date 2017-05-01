@@ -24,9 +24,9 @@ Production targets (all of them generate tarballs for distribution):
 
 * `pack`: build both multi-sized themes (left- and right-handed) into a single package;
 * `dist`: build the multi-sized, right-handed theme;
-* `ldist`: build the multi-sized, left-handed theme;
+* `dist.left`: build the multi-sized, left-handed theme;
 * `dist.x`, where x can be 32, 48 or 64: build a single-sized, right-handed theme of the specified size;
-* `ldist.x`, where x can be 32, 48 or 64: build a single-sized, left-handed theme of the specified size;
+* `dist.x.left`, where x can be 32, 48 or 64: build a single-sized, left-handed theme of the specified size;
 * `windows-cursors` for Windows.
 
 `make all-dist` targets all of the above, including all single-sized themes in all available sizes.
@@ -42,8 +42,8 @@ All of them run `do-symlinks.sh` when finished. The targets below do not:
 
 * `all`: make the multi-sized, right-handed theme;
 * `all.x`: make a single-sized, right-handed theme of the specified size;
-* `lall`: make the multi-sized, left-handed theme;
-* `lall.x`: make a single-sized, left-handed theme of the specified size.
+* `all.left`: make the multi-sized, left-handed theme;
+* `all.x.left`: make a single-sized, left-handed theme of the specified size.
 
 Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e.g.:
 
