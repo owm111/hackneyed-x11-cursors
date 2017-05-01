@@ -47,6 +47,8 @@ void die(const char *msg, ...)
 	
 	va_start(argp, msg);
 	vfprintf(stderr, msg, argp);
+	if (errno)
+		fprintf(stderr, ": %s", strerror(errno));
 	putc('\n', stderr);
 	va_end(argp);
 	exit(EXIT_FAILURE);
