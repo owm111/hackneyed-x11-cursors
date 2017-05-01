@@ -288,8 +288,8 @@ clean:
 	rm -rf $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_32) $(THEME_NAME_48) $(THEME_NAME_64) L$(THEME_NAME_32) L$(THEME_NAME_48) L$(THEME_NAME_64)
 	rm -f $(CURSORS) $(CURSORS_32) $(CURSORS_48) $(CURSORS_64) $(LCURSORS) $(LCURSORS_32) $(LCURSORS_48) $(LCURSORS_64)
 	rm -f Hackneyed-Windows.7z
-	rm -f $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
+	rm -f ico Hackneyed-Windows $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
+	rm -f *.in *.in_left
 
-.PHONY: preview clean theme theme.left all lall dist ldist pack all-dist windows-cursors
-
+.PHONY: preview clean theme theme.left all lall dist ldist pack all-dist windows-cursors theme.*
 .SUFFIXES:
