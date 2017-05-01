@@ -28,6 +28,27 @@
 . sh-functions
 LC_NUMERIC=C
 
+dynaspot()
+{
+	: ${1?:dynaspot: argument required}
+	image_size=$(identify $1|cut -d' ' -f3)
+	: ${image_size:?undefined}
+	size_x=${image_size%x*}
+	size_y=${image_size#*x}
+	: ${size_x:?undefined}
+	: ${size_y:?undefined}
+	hotspot_x=$(calc "($size_x/2)-1")
+	hotspot_y=$(calc "($size_y/2)-1")
+	: ${hotspot_x:?undefined}
+	: ${hotspot_y:?undefined}
+}
+
+calc()
+{
+	LC_NUMERIC=C
+	printf "%.0f" $(bc <<< "scale=2; $@")
+}
+
 while [ "$1" ]; do
 	case "$1" in
 	sizes=*)
