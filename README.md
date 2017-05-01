@@ -12,13 +12,13 @@ Minimum dependencies:
 
 * ImageMagick (>=6.8.6)
 * Inkscape (>=0.48.4)
-* GNU make
-* xcursorgen
+* GNU `make`
+* `xcursorgen`
 
 Extra functionality has additional dependencies:
 
 * The GIMP script requires GIMP >= 2.2 with the XMC plugin installed;
-* A working C compiler (for ico2cur), and p7zip, to generate Windows cursors.
+* A working C compiler for `ico2cur`, and `zip`, to generate and pack Windows cursors.
 
 Production targets (all of them generate tarballs for distribution):
 
