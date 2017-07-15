@@ -1,9 +1,9 @@
-![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png)
+![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "The sands of time are running out for you, bro")
 
 Overview
 --------
 
-Hackneyed is an X11 cursor theme created for personal use, and published *pro bono* because it may be interesting to others. Inspired by old Windows 3.x cursors, Hackneyed brings an old school feel to whatever trendy desktop paradigm you're being subjected to.
+Hackneyed is a cursor theme inspired by the good old Windows 3.x cursors and retains their best features -- high-contrast and sensible use of colors -- along with sizes fit for high resolution screens; left-handed pointers are available, as well. It also brings an old school feel to whatever trendy desktop paradigm you're being subjected to. And hourglasses. Why did hourglasses disappear from cursor themes?
 
 
 Building
@@ -13,11 +13,11 @@ Minimum dependencies:
 * ImageMagick (>=6.8.6)
 * Inkscape (>=0.48.4)
 * GNU `make`
-* `xcursorgen`
+* `xcursorgen` (part of the xorg-utils package)
 
 Extra functionality has additional dependencies:
 
-* The GIMP script requires GIMP >= 2.2 with the XMC plugin installed;
+* The GIMP script requires GIMP >= 2.2 with the XMC plugin installed (the script isn't very useful anyway; cf. the comment in its header);
 * A working C compiler for `ico2cur`, and `zip`, to generate and pack Windows cursors.
 
 Production targets (all of them generate tarballs for distribution):
@@ -52,8 +52,7 @@ Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e
 * `make default.left` for a multi-sized, left-handed cursor;
 * or simply `make default` for a multi-sized, right-handed cursor.
 
-If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [xfce-look.org](https://www.xfce-look.org/p/999998/).
-The Windows version can only be found on GitHub.
+If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/). Windows cursor files, for those who hate the Aero cursors as much as I do, can only be found on GitHub.
 
 Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
 
@@ -63,17 +62,19 @@ Hackneyed is released under the MIT/X11 license.
 
 Credits
 -------
-* do-symlinks.sh, rewrite of addmissing.sh, taken from dummy-x11-cursors by ultr (on kde-look.org)
+* do-symlinks.sh, rewrite of addmissing.sh, taken from [dummy-x11-cursors](https://www.opendesktop.org/p/999853/) by ultr
 
 * some SVGs taken from openclipart.org (pencil, pirate and coffee_mug as far as I can remember)
 
-* monolithic SVG idea (and the SVG itself) taken from KDE's Breeze theme by Ken Vermette, who probably liked Jakub Steiner's DMZ way too much (but not enough to keep the Python script)
+* monolithic SVG idea (and the SVG itself) taken from KDE's [Breeze theme](https://github.com/KDE/breeze/tree/master/cursors) by Ken Vermette, who probably liked Jakub Steiner's DMZ way too much (but not enough to keep the Python script)
 
 * util/ico2cur.c, a C rendition of [ico2cur.py](https://gist.github.com/RyanBalfanz/2371463)
 
+
 Bugs
 ----
-Please report, either here or on Xfce-look, any bugs you might find, or any enhancements you might want. I consider it finished, but there's always a corner to round.
+Please report, either here or on openDesktop.org, any bugs you might find, or any enhancements you might want. I consider it finished, but there's always a corner to round.
+
 
 A word about hashes
 -------------------
@@ -102,11 +103,4 @@ Useful links
 
 On Xfce
 -------
-Xfce (at least on Fedora) doesn't fully load a custom cursor theme at login unless it's set as the "default" theme. There is a fix that works most of the time:
-
-```
-[Icon Theme]
-Inherits=Hackneyed
-```
-
-Paste the two lines above into a file called "index.theme", save it on ~/.icons/default and set the mouse theme as "default". I say "most of the time" because there seems to be a race condition in which settings are sometimes loaded after the window manager, so you get mixed up cursors.
+Xfce doesn't fully load a custom cursor theme at login unless you set a splash screen to show up while the DE is loading. There seems to be a race condition in which the session manager loads user settings after starting the window manager, resulting in mixed up cursors. This only happens in LightDM, the usual display manager for Xfce distros, with the GTK+ greeter. Restarting Xfwm4 (with `xfwm4 --replace`) also fixes it, although it's annoying to run it whenever you log in.
