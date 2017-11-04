@@ -89,17 +89,17 @@ You should not take into account the hashes for masks, i.e., the filled
 
 Useful links
 ------------
-* [Freedesktop.org's cursor specification](http://www.freedesktop.org/wiki/Specifications/cursor-spec/ "The best standards are those followed without any obligation")
+* [Freedesktop.org's cursor specification](http://www.freedesktop.org/wiki/Specifications/cursor-spec/)
 
 * [CSS cursors](http://dev.w3.org/csswg/css-ui/#propdef-cursor "2drafty4u")
 
 * [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor "Firefox is the only browser that uses more than a couple of cursors from the X11 theme")
 
-* [Qt requirements for X11 cursors](http://qt-project.org/doc/qt-4.8/qcursor.html#a-note-for-x11-users "Qt beyond measure")
+* [Qt requirements for X11 cursors](http://doc.qt.io/qt-5/qcursor.html#a-note-for-x11-users)
 
 * [Core X11 cursors](http://tronche.com/gui/x/xlib/appendix/b/ "coffee_mug > all")
 
-* [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html "I blame Google for not finding this sooner")
+* [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html)
 
 On Xfce
 -------
