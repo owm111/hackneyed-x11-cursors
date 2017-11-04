@@ -107,4 +107,4 @@ Xfce doesn't fully load a custom cursor theme at login unless you set a splash s
 
 Plasma on Wayland
 -----------------
-Plasma 5 makes a mess with the pointers, which doesn't happen with their default theme (Breeze); on the other hand, GNOME and Weston have no trouble in picking up the same cursors they do under X11. I will look into it as soon as Plasma becomes usable under Wayland, and I don't think reporting a bug at this stage is appropriate: they surely have more important things to care about.
+Plasma 5 makes a mess with the pointers, which doesn't happen with their default theme (Breeze); on the other hand, GNOME has no trouble in picking up the same cursors it does under X11, and Weston shows no issues as well. I will look into it as soon as Plasma becomes usable under Wayland, and I don't think reporting a bug at this stage is appropriate: they surely have more important things to care about.
