@@ -104,3 +104,7 @@ Useful links
 On Xfce
 -------
 Xfce doesn't fully load a custom cursor theme at login unless you set a splash screen to show up while the DE is loading. There seems to be a race condition in which the session manager loads user settings after starting the window manager, resulting in mixed up cursors. This only happens in LightDM, the usual display manager for Xfce distros, with the GTK+ greeter. Restarting Xfwm4 (with `xfwm4 --replace`) also fixes it, although it's annoying to run it whenever you log in.
+
+Plasma on Wayland
+-----------------
+Plasma 5 makes a mess with the pointers, which doesn't happen with their default theme (Breeze); on the other hand, GNOME and Weston have no trouble in picking up the same cursors they do under X11. I will look into it as soon as Plasma becomes usable under Wayland, and I don't think reporting a bug at this stage is appropriate: they surely have more important things to care about.
