@@ -107,6 +107,6 @@ Xfce doesn't fully load a custom cursor theme at login unless you set a splash s
 
 Plasma on Wayland
 -----------------
-Plasma 5 makes a mess with the pointers, which doesn't happen with its stock theme (Breeze); on the other hand, GNOME has no trouble picking up the same cursors it does under X11, and Weston shows no issues as well. I will look into it as soon as Plasma becomes usable under Wayland, and I don't think reporting a bug at this stage is appropriate: they surely have more important things to care about.
+Plasma 5 makes a mess with the pointers. I will look into it as soon as Plasma becomes usable under Wayland, and I don't think reporting such a bug at this stage is appropriate: they have more important things to care about.
 
-Out of curiosity, starting a Wayland session with a [debug theme](https://github.com/Enthymem/xcursor-debug-theme) shows that KWin's default pointer is `left_ptr` (a symlink to `default`), while the Plasma shell and other applications employ `left_arrow`, which looks like a Qt bug (Breeze has no `left_arrow`). KWin, though, replaces `size_bdiag` with `size_fdiag` when you click and drag to resize the window.
+Out of curiosity, starting a Wayland session with a [debug theme](https://github.com/Enthymem/xcursor-debug-theme) shows KWin's default pointer as `left_ptr` (a symlink to `default`), while the Plasma shell and other applications employ `left_arrow`, which looks like a Qt bug (Breeze has no `left_arrow`, forcing a fallback to `default` or one of the symlinks to it). KWin, though, replaces `size_bdiag` with `size_fdiag` when you drag the pointer to resize a window.
