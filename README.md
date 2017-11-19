@@ -93,7 +93,7 @@ Useful links
 
 * [CSS cursors](http://dev.w3.org/csswg/css-ui/#propdef-cursor "2drafty4u")
 
-* [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor "Firefox is the only browser that uses more than a couple of cursors from the X11 theme")
+* [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor)
 
 * [Qt requirements for X11 cursors](http://doc.qt.io/qt-5/qcursor.html#a-note-for-x11-users)
 
@@ -114,4 +114,6 @@ Out of curiosity, starting a Wayland session with a [debug theme](https://github
 
 Chromium 62 and up
 ------------------
-For whatever reason, Chromium developers think that `all-scroll` and `move` are the same cursors. There doesn't seem to be a bug report yet.
+Recent versions of Chromium pull out whatever cursors the theme provides. How nice.
+
+Still, Chromium developers assumed that `all-scroll` and `move` are the same thing. There doesn't seem to be a bug report yet.
