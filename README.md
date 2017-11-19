@@ -110,3 +110,8 @@ Plasma on Wayland
 Plasma 5 makes a mess with the pointers. I will look into it as soon as Plasma becomes usable under Wayland, and I don't think reporting such a bug at this stage is appropriate: they have more important things to care about.
 
 Out of curiosity, starting a Wayland session with a [debug theme](https://github.com/Enthymem/xcursor-debug-theme) shows KWin's default pointer as `left_ptr` (a symlink to `default`), while the Plasma shell and other applications employ `left_arrow`, which looks like a Qt bug (Breeze has no `left_arrow`, forcing a fallback to `default` or one of the symlinks to it). KWin, though, replaces `size_bdiag` with `size_fdiag` when you drag the pointer to resize a window.
+
+
+Chromium 62 and up
+------------------
+For whatever reason, Chromium developers think that `all-scroll` and `move` are the same cursors. There doesn't seem to be a bug report yet.
