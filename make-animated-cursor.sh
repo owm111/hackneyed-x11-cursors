@@ -31,8 +31,6 @@ die()
 	exit 1
 }
 
-nprocs=$(getconf _NPROCESSORS_ONLN)
-
 while [ "$1" ]; do
 	case "$1" in
 	size=*)
