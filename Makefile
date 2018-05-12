@@ -399,6 +399,7 @@ clean:
 	rm -f $(LPNG_32) $(LPNG_40) $(LPNG_48) $(LPNG_56) $(LPNG_64)
 	rm -f $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
 	rm -f *.in ico2cur
+	rm -f wait*.png
 
 .PHONY: all all-dist all.left all.32 all.48 all.64 all.32.left all.48.left all.64.left clean dist dist.left \
 dist.32 dist.48 dist.64 dist.32.left dist.48.left dist.64.left install pack preview source-dist theme theme.left \
