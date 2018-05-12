@@ -251,7 +251,7 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 	@{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		dpi=$$(((96 * $$size) / 32)); \
+		dpi=$$(((90 * $$size) / 32)); \
 		echo "$${target} ($@): $${size}px, $${dpi} DPI"; \
 		inkscape --without-gui -i $${target} -d $$dpi -f $< -e $@ >/dev/null; \
 	}
@@ -260,7 +260,7 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 	@{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		dpi=$$(((96 * $$size) / 32)); \
+		dpi=$$(((90 * $$size) / 32)); \
 		echo "$${target} ($@): $${size}px, $${dpi} DPI"; \
 		inkscape --without-gui -i $${target} -d $$dpi -f $< -e $@ >/dev/null; \
 	}
