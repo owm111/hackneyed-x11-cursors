@@ -25,28 +25,11 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
-. sh-functions
 LC_NUMERIC=C
-
-dynaspot()
-{
-	: ${1?:dynaspot: argument required}
-	image_size=$(identify $1|cut -d' ' -f3)
-	: ${image_size:?undefined}
-	size_x=${image_size%x*}
-	size_y=${image_size#*x}
-	: ${size_x:?undefined}
-	: ${size_y:?undefined}
-	hotspot_x=$(calc "($size_x/2)-1")
-	hotspot_y=$(calc "($size_y/2)-1")
-	: ${hotspot_x:?undefined}
-	: ${hotspot_y:?undefined}
-}
 
 calc()
 {
-	LC_NUMERIC=C
-	printf "%.0f" $(bc <<< "scale=2; $@")
+	printf "%.0f" $(bc <<< "scale=3; $@")
 }
 
 while [ "$1" ]; do
@@ -68,57 +51,49 @@ while [ "$1" ]; do
 		shift
 		;;
 	*)
-		c=$1
+		target=$1
 		shift
 		;;
 	esac
 done
 
-: ${c:?no file specified}
-target=${c%.*}
-orientation=${c#*.}
-c=$target
+orientation=${target#*.}
+if [ "$orientation" = "left" ]; then
+	target=${target%.*}
+else
+	unset orientation
+fi
 : ${target:?undefined}
 : ${sizes:?no size specified}
 : ${replace:=1}
 : ${dry_run:=0}
 
-filename="$(basename $target).png"
-target="${c}.in"
-if [ "$orientation" = "left" ]; then
-	target="${c}.in_left"
-	c="${c}.left"
-	filename="${filename/.png/_left.png}"
-fi
-: ${filename:?undefined}
-nominal_size=$(cut -d' ' -f1 <<< $base_size_line)
-: ${nominal_size:?undefined}
-dynaspot ${nominal_size}/${filename}
-base_hotspot_x=$(cut -d' ' -f2 <<< $base_size_line)
-: ${base_hotspot_x:undefined}
-base_hotspot_y=$(cut -d' ' -f3 <<< $base_size_line)
-: ${base_hotspot_y:undefined}
-
-base_size_x=$size_x
-base_size_y=$size_y
-echo "$nominal_size ${base_hotspot_x} ${base_hotspot_y} $filename"
+set -- $base_size_line
+base_size=$1
+: ${base_size:?undefined}
+base_hotspot_x=$2
+: ${base_hotspot_x:?undefined}
+base_hotspot_y=$3
+: ${base_hotspot_y:?undefined}
 
 for s in $sizes; do
-	config_file=config/${s}/${target}
+	if [ "$orientation" ]; then
+		config_file=hotspots/${s}/${target}_${orientation}.in
+		source_png=${target}.${s}.${orientation}.png
+	else
+		config_file=hotspots/${s}/${target}.in
+		source_png=${target}.${s}.png
+	fi
 	if [ -e $config_file -a "$replace" = "0" ]; then
 		echo "$config_file: skipping $s" >&2
 		continue
 	fi
-	png="${s}/${filename}"
-	if [ ! -e $png ]; then
-		./make-pngs.sh sizes=${s} target=$c || exit 1
-	fi
-	dynaspot $png
-	echo "$png: ${size_x}x${size_y}"
-	hotspot_x=$(calc "$base_hotspot_x * ($size_x / $base_size_x)")
-	hotspot_y=$(calc "$base_hotspot_y * ($size_y / $base_size_y)")
-
-	output="${s} ${hotspot_x} ${hotspot_y} ${s}/$(basename $filename)"
+	[ "$dry_run" = "0" ] && rm -f $config_file
+	hotspot_x=$(calc "($s * $base_hotspot_x) / $base_size")
+	hotspot_y=$(calc "($s * $base_hotspot_y) / $base_size")
+	: ${hotspot_x:?undefined}
+	: ${hotspot_y:?undefined}
+	output="${s} ${hotspot_x} ${hotspot_y} $source_png"
 	echo "$config_file: $output"
-	[ "$dry_run" = "1" ] || echo "${output}" > $config_file
+	[ "$dry_run" = "1" ] || echo "${output}" >> $config_file
 done
