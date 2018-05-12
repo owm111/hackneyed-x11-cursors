@@ -31,10 +31,12 @@ die()
 	exit 1
 }
 
+nprocs=$(getconf _NPROCESSORS_ONLN)
+
 while [ "$1" ]; do
 	case "$1" in
-	sizes=*)
-		sizes=${1#*=}
+	size=*)
+		size=${1#*=}
 		shift ;;
 	src=*)
 		src=${1#*=}
@@ -45,10 +47,10 @@ while [ "$1" ]; do
 	frames=*)
 		frames=${1#*=}
 		shift ;;
-	default_frame_delay=*)
-		default_frame_delay=${1#*=}
+	default_frametime=*)
+		default_frametime=${1#*=}
 		shift ;;
-	frame_*_delay=*)
+	frame_*_time=*)
 		var=${1%=*}
 		eval $var=${1#*=}
 		shift ;;
@@ -57,21 +59,20 @@ while [ "$1" ]; do
 	esac
 done
 
-: ${default_frame_delay:=30}
-: ${sizes:?need a list of cursor sizes to work}
+: ${default_frametime:=30}
+: ${size:?need a cursor size to work}
 : ${src:?no source svg specified}
 : ${target:?missing target}
 : ${frames:?missing frame count}
-for s in $sizes; do
-	dpi=$(( (90 * s)/32 ))
-	: ${dpi:?invalid size $s}
-	center=$(( (s / 2) - 1 ))
-	rm -f ${target}.${s}.in
-	for ((i = 1; i <= frames; i++)); do
-		output="${target}-${i}.${s}.png"
-		echo "$target: $output"
-		inkscape --without-gui -i "$target-$i" -d $dpi -f $src -e $output >/dev/null || die
-		eval frame_delay=\$frame_${i}_delay
-		echo "$s $center $center $output ${frame_delay:=$default_frame_delay}" >> ${target}.${s}.in || die
-	done
+dpi=$(( (90 * size)/32 ))
+: ${dpi:?invalid size $size}
+center=$(( (size - 1) / 2 ))
+rm -f ${target}.${size}.in
+for ((i = 1; i <= frames; i++)); do
+	output="${target}-${i}.${size}.png"
+	echo "$target ($size): $output"
+	inkscape --without-gui -i "$target-$i" -d $dpi -f $src -e $output &>/dev/null || die
+	eval frametime=\$frame_${i}_time
+	: ${frametime:=$default_frametime}
+	echo "$size $center $center $output ${frametime}" >> ${target}.${size}.in || die
 done

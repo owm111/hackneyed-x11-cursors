@@ -23,6 +23,8 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
+# Bashisms are a hell of a drug
+SHELL = /bin/bash
 RSVG_SOURCE = src/theme-right.svg
 LSVG_SOURCE = src/theme-left.svg
 WSVG_SOURCE = src/wc-large.svg
@@ -72,12 +74,15 @@ THEME_NAME_48 = $(THEME_NAME)-48x48
 THEME_NAME_64 = $(THEME_NAME)-64x64
 THEME_COMMENT = Windows 3.x-inspired cursors
 THEME_EXAMPLE = default
-VERSION = 0.5.2
+VERSION = 0.5.3
 SIZES ?= 32,40,48,56,64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
 .DEFAULT_GOAL = all-dist
 PREFIX ?= /usr/local
+WAIT_FRAMES=26
+WAIT_DEFAULT_FRAMETIME=35
+WAIT_CUSTOM_FRAMETIMES=frame_11_time=650
 
 all-dist: pack dist dist.left dist.32 dist.48 dist.64 dist.32.left dist.48.left dist.64.left
 all-sizes: all all.32 all.48 all.64 all.32.left all.48.left all.64.left all.left
@@ -322,6 +327,48 @@ ico2cur: ico2cur.c
 %_large_left.cur: %_large_left.ico hotspots/wc-large ico2cur
 	./ico2cur -p hotspots/wc-large $<
 
+wait.32.in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=wait size=32 \
+	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
+	frames=$(WAIT_FRAMES)
+
+wait.40.in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=wait size=40 \
+	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
+	frames=$(WAIT_FRAMES)
+
+wait.48.in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=wait size=48 \
+	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
+	frames=$(WAIT_FRAMES)
+
+wait.56.in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=wait size=56 \
+	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
+	frames=$(WAIT_FRAMES)
+
+wait.64.in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=wait size=64 \
+	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
+	frames=$(WAIT_FRAMES)
+
+wait.32: wait.32.in
+	$(XCURSORGEN) $< $@
+
+wait.48: wait.48.in
+	$(XCURSORGEN) $< $@
+
+wait.64: wait.64.in
+	$(XCURSORGEN) $< $@
+
+wait: wait.32.in wait.40.in wait.48.in wait.56.in wait.64.in
+	cat wait.*.in|$(XCURSORGEN) - $@
+
 preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE))
 	montage -background none -geometry +4+4 -mode concatenate -tile 9x10 \
 		{default,help,progress,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
@@ -333,6 +380,7 @@ preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE))
 		{pirate,X_cursor,wayland-cursor,draft,pencil,color-picker}.$(PREVIEW_SIZE).png \
 		{up_arrow,right_arrow,left_arrow}.$(PREVIEW_SIZE).png \
 		preview.png
+		rm -f wait.48.png
 
 clean:
 	rm -rf Hackneyed-Windows $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_32) $(THEME_NAME_48) $(THEME_NAME_64) L$(THEME_NAME_32) L$(THEME_NAME_48) L$(THEME_NAME_64)
