@@ -204,26 +204,32 @@ all.left: $(CURSORS) $(LCURSORS)
 all.32: $(CURSORS_32)
 	rm -rf $(THEME_NAME_32)
 	mkdir -p $(THEME_NAME_32)/cursors
-	cp $(CURSORS_32) $(THEME_NAME_32)/cursors
-	rename .32 '' $(THEME_NAME_32)/cursors/*
+	for l in $(CURSORS_32); do \
+		cp $$l $(THEME_NAME_32)/cursors/$${l/.32/}; \
+	done
 
 all.48: $(CURSORS_48)
 	rm -rf $(THEME_NAME_48)
 	mkdir -p $(THEME_NAME_48)/cursors
-	cp $(CURSORS_48) $(THEME_NAME_48)/cursors
-	rename .48 '' $(THEME_NAME_48)/cursors/*
+	for l in $(CURSORS_48); do \
+		cp $$l $(THEME_NAME_48)/cursors/$${l/.48/}; \
+	done
 
 all.64: $(CURSORS_64)
 	rm -rf $(THEME_NAME_64)
 	mkdir -p $(THEME_NAME_64)/cursors
 	cp $(CURSORS_64) $(THEME_NAME_64)/cursors
-	rename .64 '' $(THEME_NAME_64)/cursors/*
+	for l in $(CURSORS_64); do \
+		cp $$l $(THEME_NAME_64)/cursors/$${l/.64/}; \
+	done
 
 all.32.left: $(CURSORS_32) $(LCURSORS_32)
 	rm -rf L$(THEME_NAME_32)
 	mkdir -p L$(THEME_NAME_32)/cursors
 	cp $(CURSORS_32) L$(THEME_NAME_32)/cursors
-	rename .32 '' L$(THEME_NAME_32)/cursors/*
+	for l in $(CURSORS_32); do \
+		cp $$l L$(THEME_NAME_32)/cursors/$${l/.32/}; \
+	done
 	for l in $(LCURSORS_32); do \
 		cp $$l L$(THEME_NAME_32)/cursors/$${l/.32.left/}; \
 	done
@@ -232,7 +238,9 @@ all.48.left: $(CURSORS_48) $(LCURSORS_48)
 	rm -rf L$(THEME_NAME_48)
 	mkdir -p L$(THEME_NAME_48)/cursors
 	cp $(CURSORS_48) L$(THEME_NAME_48)/cursors
-	rename .48 '' L$(THEME_NAME_48)/cursors/*
+	for l in $(CURSORS_48); do \
+		cp $$l L$(THEME_NAME_48)/cursors/$${l/.48/}; \
+	done
 	for l in $(LCURSORS_48); do \
 		cp $$l L$(THEME_NAME_48)/cursors/$${l/.48.left/}; \
 	done
@@ -241,7 +249,9 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 	rm -rf L$(THEME_NAME_64)
 	mkdir -p L$(THEME_NAME_64)/cursors
 	cp $(CURSORS_64) L$(THEME_NAME_64)/cursors
-	rename .64 '' L$(THEME_NAME_64)/cursors/*
+	for l in $(CURSORS_64); do \
+		cp $$l L$(THEME_NAME_64)/cursors/$${l/.64/}; \
+	done
 	for l in $(LCURSORS_64); do \
 		cp $$l L$(THEME_NAME_64)/cursors/$${l/.64.left/}; \
 	done
