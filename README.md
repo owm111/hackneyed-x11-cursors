@@ -11,7 +11,7 @@ Building
 Minimum dependencies:
 
 * ImageMagick (>=6.8.6)
-* Inkscape (>=0.48.4)
+* Inkscape (>=0.92.3)
 * GNU `make`
 * `xcursorgen` (part of the xorg-utils package)
 
@@ -51,6 +51,8 @@ Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e
 * `make default.32` for a right-handed, 32x32-sized cursor;
 * `make default.left` for a multi-sized, left-handed cursor;
 * or simply `make default` for a multi-sized, right-handed cursor.
+
+Parallel jobs (`-j`) are supported.
 
 If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/). Windows cursor files, for those who hate the Aero cursors as much as I do, can only be found on GitHub.
 
