@@ -26,9 +26,9 @@
 ;; ----------------------------------------------------------------
 ;; Slightly modified version of the script found in
 ;; https://www.gimp.org/tutorials/Basic_Batch/
-;; The point was to reduce the "jumpy" effect when switching
-;; cursors, but the result is... not quite as smooth as I thought. I'll
-;; leave the script here for anyone who is interested, though.
+;; The point was to reduce the "jumpy" effect when switching cursors, but
+;; the result is... not quite as smooth as I thought. I'll; leave the script
+;; here for anyone interested. Seems to be a driver issue or whatever.
 
 (define copyright "(C) Richard Ferreira")
 (define license "MIT/X11")

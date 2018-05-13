@@ -3,7 +3,7 @@
 Overview
 --------
 
-Hackneyed is a cursor theme inspired by the good old Windows 3.x cursors and retains their best features -- high-contrast and sensible use of colors -- along with sizes fit for high resolution screens; left-handed pointers are available, as well. It also brings an old school feel to whatever trendy desktop paradigm you're being subjected to. And hourglasses. Why did hourglasses disappear from cursor themes?
+Hackneyed is a scalable cursor theme mildly resembing old Windows 3.x/NT 3.x cursors. Left-handed pointers are available, as well, and it also brings an old school feel to whatever trendy desktop paradigm you're being subjected to. And hourglasses. Why did hourglasses disappear from cursor themes?
 
 
 Building
@@ -11,13 +11,13 @@ Building
 Minimum dependencies:
 
 * ImageMagick (>=6.8.6)
-* Inkscape (>=0.92.3)
-* GNU `make`
+* Inkscape (>=0.92.3, older versions will make a mess with the DPI settings)
+* GNU `make` and `bash` (really, a POSIX shell won't cut it)
 * `xcursorgen` (part of the xorg-utils package)
 
 Extra functionality has additional dependencies:
 
-* The GIMP script requires GIMP >= 2.2 with the XMC plugin installed (the script isn't very useful anyway; cf. the comment in its header);
+* The GIMP script requires GIMP >= 2.2 with the XMC plugin installed (the script isn't very useful anyway; refer to the in-file comments);
 * A working C compiler for `ico2cur`, and `zip`, to generate and pack Windows cursors.
 
 Production targets (all of them generate tarballs for distribution):
@@ -52,9 +52,9 @@ Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e
 * `make default.left` for a multi-sized, left-handed cursor;
 * or simply `make default` for a multi-sized, right-handed cursor.
 
-Parallel jobs (`-j`) are supported.
+Parallel jobs (`-j`) are recommended (Inkscape is _slow_).
 
-If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/). Windows cursor files, for those who hate the Aero cursors as much as I do, can only be found on GitHub.
+If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/). Windows cursor files are available only on GitHub.
 
 Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
 
@@ -75,7 +75,7 @@ Credits
 
 Bugs
 ----
-Please report, either here or on openDesktop.org, any bugs you might find, or any enhancements you might want. I consider it finished, but there's always a corner to round.
+Please report, either here or on openDesktop.org, any bugs you might find, or any enhancements you might want.
 
 
 A word about hashes
@@ -87,7 +87,7 @@ XcursorLogDiscover.
 
 You should not take into account the hashes for masks, i.e., the filled
 "images" displayed. Only consider hashes that return some random hex number
-(as in "Cursor hash XXXXX returns 0xdeadbeef"). Applications seem to be migrating away from libXcursor, so that cursor theming through hashes might become a thing of the past.
+(as in "Cursor hash XXXXX returns 0xdeadbeef"). Applications are migrating away from libXcursor, so cursor theming through hashes might become a thing of the past.
 
 Useful links
 ------------
@@ -116,6 +116,4 @@ Out of curiosity, starting a Wayland session with a [debug theme](https://github
 
 Chromium 62 and up
 ------------------
-Recent versions of Chromium pull out whatever cursors the theme provides. How nice.
-
-Still, Chromium developers assumed that `all-scroll` and `move` are the same thing. There doesn't seem to be a bug report yet.
+Recent versions of Chromium pull out whatever cursors the theme provides. How nice. Still, Chromium developers assumed that `all-scroll` and `move` are the same thing (they aren't, but I don't believe this warrants a bug report).
