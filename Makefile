@@ -84,9 +84,9 @@ WAIT_FRAMES=26
 WAIT_DEFAULT_FRAMETIME=35
 WAIT_CUSTOM_FRAMETIMES=frame_11_time=650
 
-all-dist: pack dist dist.left dist.32 dist.48 dist.64 dist.32.left dist.48.left dist.64.left
-all-sizes: all all.32 all.48 all.64 all.32.left all.48.left all.64.left all.left
-all-themes: theme theme.32 theme.32.left theme.48 theme.48.left theme.64 theme.64.left theme.left
+all-sizes: all.32 all.48 all.64 all.32.left all.48.left all.64.left all.left all
+all-themes: theme.32 theme.32.left theme.48 theme.48.left theme.64 theme.64.left theme.left theme
+all-dist: dist.left dist.32 dist.48 dist.64 dist.32.left dist.48.left dist.64.left pack dist
 
 install: theme theme.left
 	test -e $(DESTDIR)$(PREFIX)/share/icons || install -d -m755 $(DESTDIR)$(PREFIX)/share/icons
@@ -266,7 +266,7 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 	@{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		dpi=$$(((90 * $$size) / 32)); \
+		dpi=$$(((96 * $$size) / 32)); \
 		echo "$${target} ($@): $${size}px, $${dpi} DPI"; \
 		inkscape --without-gui -i $${target} -d $$dpi -f $< -e $@ >/dev/null; \
 	}
@@ -275,7 +275,7 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 	@{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		dpi=$$(((90 * $$size) / 32)); \
+		dpi=$$(((96 * $$size) / 32)); \
 		echo "$${target} ($@): $${size}px, $${dpi} DPI"; \
 		inkscape --without-gui -i $${target} -d $$dpi -f $< -e $@ >/dev/null; \
 	}
@@ -390,7 +390,6 @@ preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE))
 		{pirate,X_cursor,wayland-cursor,draft,pencil,color-picker}.$(PREVIEW_SIZE).png \
 		{up_arrow,right_arrow,left_arrow}.$(PREVIEW_SIZE).png \
 		preview.png
-		rm -f wait.48.png
 
 clean:
 	rm -rf Hackneyed-Windows $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_32) $(THEME_NAME_48) $(THEME_NAME_64) L$(THEME_NAME_32) L$(THEME_NAME_48) L$(THEME_NAME_64)
