@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="22.627418"
-     inkscape:cx="329.86378"
-     inkscape:cy="65.507894"
+     inkscape:zoom="4.0000002"
+     inkscape:cx="96.515325"
+     inkscape:cy="130.54748"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="webslicer-layer"
      showgrid="false"
      showborder="true"
      inkscape:snap-bbox="true"
@@ -37,7 +37,7 @@
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:snap-global="false"
+     inkscape:snap-global="true"
      showguides="true"
      inkscape:guide-bbox="true"
      fit-margin-top="0"
@@ -45,10 +45,11 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:bbox-paths="true"
-     inkscape:snap-bbox-edge-midpoints="true"
-     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-bbox-edge-midpoints="false"
+     inkscape:snap-bbox-midpoints="false"
      inkscape:bbox-nodes="true"
-     units="px">
+     units="px"
+     inkscape:object-paths="true">
     <inkscape:grid
        id="grid11941"
        type="xygrid"
@@ -58,6 +59,76 @@
        empspacing="5"
        originx="0"
        originy="-161" />
+    <sodipodi:guide
+       position="246.81249,144.39644"
+       orientation="0,1"
+       id="guide1132"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="51.999999,150"
+       orientation="0,1"
+       id="guide1134"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="242.99999,100.00001"
+       orientation="0,1"
+       id="guide1136"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="246.81249,102.37499"
+       orientation="1,0"
+       id="guide1138"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="296.80806,150"
+       orientation="1,0"
+       id="guide1140"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="347.51609,144.71416"
+       orientation="1,0"
+       id="guide1142"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="246.33166,94.397178"
+       orientation="0,1"
+       id="guide1144"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="352.75,149.97227"
+       orientation="1,0"
+       id="guide1146"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="302,150"
+       orientation="1,0"
+       id="guide1148"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="252,100.00001"
+       orientation="1,0"
+       id="guide1150"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="197.01762,148.05047"
+       orientation="1,0"
+       id="guide1152"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="202,150"
+       orientation="1,0"
+       id="guide1154"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="47.339314,145.06771"
+       orientation="1,0"
+       id="guide1156"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="51.999999,147.24999"
+       orientation="1,0"
+       id="guide1158"
+       inkscape:locked="false" />
   </sodipodi:namedview>
   <defs
      id="defs11026">
@@ -132,16 +203,16 @@
        y="0"
        xlink:href="#g6054"
        id="use1133"
-       transform="translate(300.17678,0.35355338)"
+       transform="translate(300.17678)"
        width="100%"
        height="100%" />
     <g
        id="g4747"
-       transform="translate(-0.91132285,1.4915572)">
+       transform="translate(-1.2812528,1.9212677)">
       <use
          height="100%"
          width="100%"
-         transform="translate(250.75,-1.2499999)"
+         transform="translate(250.75,-1.9212677)"
          id="use6060"
          xlink:href="#g6054"
          y="0"
@@ -363,7 +434,7 @@
     </g>
     <g
        id="g6054"
-       transform="matrix(-1.0000001,0,0,1.0000001,72.564863,0.49998675)">
+       transform="matrix(-1.0000001,0,0,1.0000001,72.564863,1.1712546)">
       <path
          transform="matrix(0.91499598,0.11480473,-0.1150337,0.91682096,89.454529,64.621302)"
          d="m 22.023438,743.13867 2.511718,19.03125 3.056641,-5.85156 4.279297,7.37305 c 0.719284,1.2394 4.442639,-0.99838 3.685547,-2.21485 l -4.50586,-7.23828 6.603516,0.0449 z"
@@ -385,7 +456,7 @@
     </g>
     <g
        id="g4741"
-       transform="translate(-1.0242773,1.149895)">
+       transform="translate(-0.52682304,1.4212712)">
       <path
          transform="matrix(0.24501451,0,0,0.24501451,219.49046,527.14725)"
          d="m 47.875,950.35938 c -4.253405,0 -7.671875,3.45369 -7.671875,7.70312 v 7.10938 H 33.0625 c -4.253405,0 -7.703125,3.44972 -7.703125,7.70312 0,4.25341 3.449721,7.70313 7.703125,7.70312 h 7.140625 v 7.10938 c 0,4.24943 3.41847,7.70313 7.671875,7.70312 4.253405,0 7.703125,-3.44972 7.703125,-7.70312 v -7.10938 h 7.140625 c 4.253404,0 7.703125,-3.44971 7.703125,-7.70312 0,-4.2534 -3.44972,-7.70312 -7.703125,-7.70312 h -7.140625 v -7.10938 c 0,-4.2534 -3.44972,-7.70312 -7.703125,-7.70312 z"
@@ -402,7 +473,7 @@
       <use
          height="100%"
          width="100%"
-         transform="translate(200,-0.74999997)"
+         transform="translate(200,-1.4212678)"
          id="use6058"
          xlink:href="#g6054"
          y="0"
@@ -410,7 +481,7 @@
     </g>
     <g
        id="g4782"
-       transform="matrix(0.93750917,0,0,0.93750917,18.94623,53.231103)">
+       transform="matrix(0.93750917,0,0,0.93750917,18.872278,52.095987)">
       <g
          inkscape:label="Camada 1"
          id="layer1-7"
@@ -424,7 +495,7 @@
            id="path4142"
            inkscape:href="#path4123-7"
            d="m 60.068359,941.43555 a 3.0416814,3.0416814 0 0 0 -2.105468,0.89062 L 37.634766,962.6543 a 3.0416814,3.0416814 0 0 0 -0.841797,1.61328 3.0416814,3.0416814 0 0 0 -1.611328,0.83789 l -20.328125,20.32812 a 3.0416814,3.0416814 0 0 0 0,4.30079 l 20.328125,20.32812 a 3.0416814,3.0416814 0 0 0 1.615234,0.8418 3.0416814,3.0416814 0 0 0 0.837891,1.6113 l 20.328125,20.3282 a 3.0416814,3.0416814 0 0 0 4.300781,0 l 20.328125,-20.3282 a 3.0416814,3.0416814 0 0 0 0.841797,-1.6133 3.0416814,3.0416814 0 0 0 1.607422,-0.8378 l 20.330074,-20.33012 a 3.0416814,3.0416814 0 0 0 0,-4.30079 L 85.041016,965.10547 a 3.0416814,3.0416814 0 0 0 -1.611328,-0.83985 3.0416814,3.0416814 0 0 0 -0.837891,-1.61132 L 62.263672,942.32617 a 3.0416814,3.0416814 0 0 0 -2.195313,-0.89062 z M 40.373047,967.8457 h 9.185547 v 9.18555 h -9.185547 z m 30.292969,0 h 9.183593 v 9.18555 h -9.183593 z m -30.292969,30.29102 h 9.185547 v 9.18748 h -9.185547 z m 30.292969,0 h 9.183593 v 9.18748 h -9.183593 z"
-           transform="translate(3.1539179,6.1655116)" />
+           transform="translate(3.1539179,4.2096563)" />
         <path
            style="fill:#d4ff2a;fill-opacity:1;stroke:#000000;stroke-width:5.30000019;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
            d="m 60.11264,944.47606 -20.328377,20.3287 h 12.815931 v 15.26665 H 37.332372 v -12.81613 l -20.328378,20.32868 20.328378,20.32864 v -12.81604 h 15.267822 v 15.26804 H 39.784263 l 20.328377,20.3287 20.328377,-20.3287 H 67.625086 v -15.26804 h 15.266409 v 12.81754 L 103.22127,987.58396 82.891495,967.25528 v 12.81613 H 67.625086 v -15.26665 h 12.815931 z"
@@ -434,7 +505,7 @@
       <use
          height="100%"
          width="100%"
-         transform="matrix(1.0666562,0,0,1.0666563,300.0552,-1.5205225)"
+         transform="matrix(1.0666562,0,0,1.0666563,300.0552,-2.2365346)"
          id="use6068"
          xlink:href="#g6054"
          y="0"
@@ -593,7 +664,7 @@
     </g>
     <g
        id="g4736"
-       transform="translate(-1.3790732,1.9785584)">
+       transform="translate(-1.0716933,1.6712678)">
       <g
          inkscape:label="Camada 1"
          id="layer1-8"
@@ -623,7 +694,7 @@
       <use
          height="100%"
          width="100%"
-         transform="translate(150.75,-0.99999996)"
+         transform="translate(150.75,-1.6712678)"
          id="use6056"
          xlink:href="#g6054"
          y="0"
@@ -656,7 +727,7 @@
        y="0"
        xlink:href="#g6054"
        id="use6064"
-       transform="translate(249.48289,50.437162)"
+       transform="translate(249.46875,49.999262)"
        width="100%"
        height="100%" />
     <g
@@ -932,11 +1003,11 @@
        transform="translate(0.50000082,-719.36218)" />
     <g
        id="g4788"
-       transform="matrix(0.93750917,0,0,0.93750917,12.576096,51.540975)">
+       transform="matrix(0.93750917,0,0,0.93750917,13.056924,51.540975)">
       <use
          height="100%"
          width="100%"
-         transform="matrix(1.0666562,0,0,1.0666563,198.84206,-0.92851508)"
+         transform="matrix(1.0666562,0,0,1.0666563,198.84206,-1.6445271)"
          id="use6062"
          xlink:href="#g6054"
          y="0"
@@ -1616,7 +1687,8 @@
      style="display:none;opacity:1"
      inkscape:groupmode="layer"
      inkscape:label="Web Slicer"
-     id="webslicer-layer">
+     id="webslicer-layer"
+     sodipodi:insensitive="true">
     <rect
        height="32"
        width="32"
@@ -1828,8 +1900,8 @@ layout-position-anchor: tl</desc>
     <rect
        style="opacity:0.5;fill:#ccff00;stroke-width:1"
        id="dnd-move"
-       x="320.83325"
-       y="71.485916"
+       x="320.75"
+       y="69.999992"
        width="32"
        height="32">
       <desc
