@@ -1,3 +1,9 @@
+0.5.3.1
+- fix all-dist targets copying extra files
+
+0.5.3
+- no comments
+
 0.5.2
 - make single-sized themes (for desktops like LXDE, and XFCE when size > 48)
 

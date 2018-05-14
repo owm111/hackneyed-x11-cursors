@@ -74,7 +74,7 @@ THEME_NAME_48 = $(THEME_NAME)-48x48
 THEME_NAME_64 = $(THEME_NAME)-64x64
 THEME_COMMENT = Windows 3.x-inspired cursors
 THEME_EXAMPLE = default
-VERSION = 0.5.3
+VERSION = 0.5.3.1
 SIZES ?= 32,40,48,56,64
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
@@ -218,7 +218,6 @@ all.48: $(CURSORS_48)
 all.64: $(CURSORS_64)
 	rm -rf $(THEME_NAME_64)
 	mkdir -p $(THEME_NAME_64)/cursors
-	cp $(CURSORS_64) $(THEME_NAME_64)/cursors
 	for l in $(CURSORS_64); do \
 		cp $$l $(THEME_NAME_64)/cursors/$${l/.64/}; \
 	done
@@ -226,7 +225,6 @@ all.64: $(CURSORS_64)
 all.32.left: $(CURSORS_32) $(LCURSORS_32)
 	rm -rf L$(THEME_NAME_32)
 	mkdir -p L$(THEME_NAME_32)/cursors
-	cp $(CURSORS_32) L$(THEME_NAME_32)/cursors
 	for l in $(CURSORS_32); do \
 		cp $$l L$(THEME_NAME_32)/cursors/$${l/.32/}; \
 	done
@@ -237,7 +235,6 @@ all.32.left: $(CURSORS_32) $(LCURSORS_32)
 all.48.left: $(CURSORS_48) $(LCURSORS_48)
 	rm -rf L$(THEME_NAME_48)
 	mkdir -p L$(THEME_NAME_48)/cursors
-	cp $(CURSORS_48) L$(THEME_NAME_48)/cursors
 	for l in $(CURSORS_48); do \
 		cp $$l L$(THEME_NAME_48)/cursors/$${l/.48/}; \
 	done
@@ -248,7 +245,6 @@ all.48.left: $(CURSORS_48) $(LCURSORS_48)
 all.64.left: $(CURSORS_64) $(LCURSORS_64)
 	rm -rf L$(THEME_NAME_64)
 	mkdir -p L$(THEME_NAME_64)/cursors
-	cp $(CURSORS_64) L$(THEME_NAME_64)/cursors
 	for l in $(CURSORS_64); do \
 		cp $$l L$(THEME_NAME_64)/cursors/$${l/.64/}; \
 	done
