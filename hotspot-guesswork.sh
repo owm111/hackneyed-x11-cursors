@@ -95,5 +95,5 @@ for s in $sizes; do
 	: ${hotspot_y:?undefined}
 	output="${s} ${hotspot_x} ${hotspot_y} $source_png"
 	echo "$config_file: $output"
-	[ "$dry_run" = "1" ] || echo "${output}" >> $config_file
+	[ "$dry_run" = "0" ] && echo "${output}" >> $config_file
 done

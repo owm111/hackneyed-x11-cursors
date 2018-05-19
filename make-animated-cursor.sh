@@ -62,14 +62,14 @@ done
 : ${src:?no source svg specified}
 : ${target:?missing target}
 : ${frames:?missing frame count}
-dpi=$(( (90 * size)/32 ))
+dpi=$(( (96 * size)/24 ))
 : ${dpi:?invalid size $size}
 center=$(( (size - 1) / 2 ))
 rm -f ${target}.${size}.in
 for ((i = 1; i <= frames; i++)); do
 	output="${target}-${i}.${size}.png"
 	echo "$target ($size): $output"
-	inkscape --without-gui -i "$target-$i" -d $dpi -f $src -e $output &>/dev/null || die
+	inkscape --without-gui -i "$target-$i" -d $dpi -f $src -e $output >/dev/null || die
 	eval frametime=\$frame_${i}_time
 	: ${frametime:=$default_frametime}
 	echo "$size $center $center $output ${frametime}" >> ${target}.${size}.in || die

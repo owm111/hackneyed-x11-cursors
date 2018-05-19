@@ -25,42 +25,42 @@
 
 # Bashisms are a hell of a drug
 SHELL = /bin/bash
-RSVG_SOURCE = src/theme-right.svg
+RSVG_SOURCE = src/theme-main.svg
 LSVG_SOURCE = src/theme-left.svg
 WSVG_SOURCE = src/wc-large.svg
-CURSORS_32 = default.32 text.32 pointer.32 help.32 progress.32 wait.32 copy.32 alias.32 no-drop.32 \
-not-allowed.32 split_v.32 split_h.32 e-resize.32 ne-resize.32 nw-resize.32 n-resize.32 se-resize.32 \
-sw-resize.32 s-resize.32 w-resize.32 vertical-text.32 crosshair.32 up_arrow.32 \
-context-menu.32 ew-resize.32 ns-resize.32 nesw-resize.32 nwse-resize.32 pencil.32 right_ptr.32 \
-zoom.32 zoom-in.32 zoom-out.32 pirate.32 X_cursor.32 closedhand.32 openhand.32 color-picker.32 plus.32 \
-center_ptr.32 move.32 all-scroll.32 dnd-move.32 wayland-cursor.32 down_arrow.32 draft.32 \
-left_arrow.32 right_arrow.32 exchange.32 ul_angle.32 ur_angle.32 ll_angle.32 lr_angle.32 \
-based_arrow_down.32 based_arrow_up.32 top_tee.32 bottom_tee.32 left_tee.32 right_tee.32 \
-draped_box.32 coffee_mug.32
-CURSORS_40 = $(CURSORS_32:.32=.40)
-CURSORS_48 = $(CURSORS_32:.32=.48)
-CURSORS_56 = $(CURSORS_32:.32=.56)
-CURSORS_64 = $(CURSORS_32:.32=.64)
-CURSORS = $(CURSORS_32:.32=)
-PNG_32 = $(CURSORS_32:.32=.32.png)
-PNG_40 = $(CURSORS_32:.32=.40.png)
-PNG_48 = $(CURSORS_32:.32=.48.png)
-PNG_56 = $(CURSORS_32:.32=.56.png)
-PNG_64 = $(CURSORS_32:.32=.64.png)
-LCURSORS_32 = alias.32.left color-picker.32.left context-menu.32.left copy.32.left \
-default.32.left help.32.left pencil.32.left dnd-move.32.left zoom-in.32.left zoom.32.left \
-zoom-out.32.left progress.32.left no-drop.32.left draft.32.left right_ptr.32.left \
-openhand.32.left closedhand.32.left pointer.32.left coffee_mug.32.left exchange.32.left
-LCURSORS_40 = $(LCURSORS_32:.32.left=.40.left)
-LCURSORS_48 = $(LCURSORS_32:.32.left=.48.left)
-LCURSORS_56 = $(LCURSORS_32:.32.left=.56.left)
-LCURSORS_64 = $(LCURSORS_32:.32.left=.64.left)
-LCURSORS = $(LCURSORS_32:.32.left=.left)
-LPNG_32 = $(LCURSORS_32:.32.left=.32.left.png)
-LPNG_40 = $(LCURSORS_32:.32.left=.40.left.png)
-LPNG_48 = $(LCURSORS_32:.32.left=.48.left.png)
-LPNG_56 = $(LCURSORS_32:.32.left=.56.left.png)
-LPNG_64 = $(LCURSORS_32:.32.left=.64.left.png)
+CURSORS_24 = default.24 text.24 pointer.24 help.24 progress.24 wait.24 copy.24 alias.24 no-drop.24 \
+not-allowed.24 split_v.24 split_h.24 e-resize.24 ne-resize.24 nw-resize.24 n-resize.24 se-resize.24 \
+sw-resize.24 s-resize.24 w-resize.24 vertical-text.24 crosshair.24 up_arrow.24 \
+context-menu.24 ew-resize.24 ns-resize.24 nesw-resize.24 nwse-resize.24 pencil.24 right_ptr.24 \
+zoom.24 zoom-in.24 zoom-out.24 pirate.24 X_cursor.24 closedhand.24 openhand.24 color-picker.24 plus.24 \
+center_ptr.24 move.24 all-scroll.24 dnd-move.24 wayland-cursor.24 down_arrow.24 draft.24 \
+left_arrow.24 right_arrow.24 exchange.24 ul_angle.24 ur_angle.24 ll_angle.24 lr_angle.24 \
+based_arrow_down.24 based_arrow_up.24 top_tee.24 bottom_tee.24 left_tee.24 right_tee.24 \
+draped_box.24 coffee_mug.24
+CURSORS_36 = $(CURSORS_24:.24=.36)
+CURSORS_48 = $(CURSORS_24:.24=.48)
+CURSORS_60 = $(CURSORS_24:.24=.60)
+CURSORS_72 = $(CURSORS_24:.24=.72)
+CURSORS = $(CURSORS_24:.24=)
+PNG_24 = $(CURSORS_24:.24=.24.png)
+PNG_36 = $(CURSORS_24:.24=.36.png)
+PNG_48 = $(CURSORS_24:.24=.48.png)
+PNG_60 = $(CURSORS_24:.24=.60.png)
+PNG_72 = $(CURSORS_24:.24=.72.png)
+LCURSORS_24 = alias.24.left color-picker.24.left context-menu.24.left copy.24.left \
+default.24.left help.24.left pencil.24.left dnd-move.24.left zoom-in.24.left zoom.24.left \
+zoom-out.24.left progress.24.left no-drop.24.left draft.24.left right_ptr.24.left \
+openhand.24.left closedhand.24.left pointer.24.left coffee_mug.24.left exchange.24.left
+LCURSORS_36 = $(LCURSORS_24:.24.left=.36.left)
+LCURSORS_48 = $(LCURSORS_24:.24.left=.48.left)
+LCURSORS_60 = $(LCURSORS_24:.24.left=.60.left)
+LCURSORS_72 = $(LCURSORS_24:.24.left=.72.left)
+LCURSORS = $(LCURSORS_24:.24.left=.left)
+LPNG_24 = $(LCURSORS_24:.24.left=.24.left.png)
+LPNG_36 = $(LCURSORS_24:.24.left=.36.left.png)
+LPNG_48 = $(LCURSORS_24:.24.left=.48.left.png)
+LPNG_60 = $(LCURSORS_24:.24.left=.60.left.png)
+LPNG_72 = $(LCURSORS_24:.24.left=.72.left.png)
 WINCURSORS = default.cur help.cur progress.cur wait.cur text.cur crosshair.cur pencil.cur \
 ns-resize.cur ew-resize.cur nesw-resize.cur nwse-resize.cur up_arrow.cur pointer.cur move.cur \
 n-resize.cur s-resize.cur e-resize.cur w-resize.cur ne-resize.cur nw-resize.cur se-resize.cur sw-resize.cur \
@@ -69,24 +69,24 @@ WINCURSORS_LARGE = $(WINCURSORS:.cur=_large.cur)
 LWINCURSORS = default_left.cur help_left.cur progress_left.cur pencil_left.cur pointer_left.cur
 LWINCURSORS_LARGE = $(LWINCURSORS:_left.cur=_large_left.cur)
 THEME_NAME = Hackneyed
-THEME_NAME_32 = $(THEME_NAME)-32x32
+THEME_NAME_24 = $(THEME_NAME)-24x24
+THEME_NAME_36 = $(THEME_NAME)-36x36
 THEME_NAME_48 = $(THEME_NAME)-48x48
-THEME_NAME_64 = $(THEME_NAME)-64x64
 THEME_COMMENT = Windows 3.x-inspired cursors
 THEME_EXAMPLE = default
-VERSION = 0.5.3.1
-SIZES ?= 32,40,48,56,64
+VERSION = 0.6
+SIZES ?= 24,36,48,60,72
 PREVIEW_SIZE = 48
 XCURSORGEN = xcursorgen
 .DEFAULT_GOAL = all-dist
 PREFIX ?= /usr/local
-WAIT_FRAMES=26
+WAIT_FRAMES=28
 WAIT_DEFAULT_FRAMETIME=35
 WAIT_CUSTOM_FRAMETIMES=frame_11_time=650
 
-all-sizes: all.32 all.48 all.64 all.32.left all.48.left all.64.left all.left all
-all-themes: theme.32 theme.32.left theme.48 theme.48.left theme.64 theme.64.left theme.left theme
-all-dist: dist.left dist.32 dist.48 dist.64 dist.32.left dist.48.left dist.64.left pack dist
+all-sizes: all.24 all.36 all.48 all.24.left all.36.left all.48.left all.left all
+all-themes: theme.24 theme.24.left theme.36 theme.36.left theme.36 theme.36.left theme.left theme
+all-dist: dist.left dist.24 dist.36 dist.36 dist.24.left dist.36.left dist.36.left pack dist
 
 install: theme theme.left
 	test -e $(DESTDIR)$(PREFIX)/share/icons || install -d -m755 $(DESTDIR)$(PREFIX)/share/icons
@@ -112,22 +112,22 @@ dist: theme
 dist.left: theme.left
 	tar -jcof $(THEME_NAME)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME)
 
-dist.32: theme.32
+dist.24: theme.24
 	tar -jcof $(THEME_NAME_32)-$(VERSION)-right-handed.tar.bz2 $(THEME_NAME_32)
 
-dist.48: theme.48
+dist.36: theme.36
 	tar -jcof $(THEME_NAME_48)-$(VERSION)-right-handed.tar.bz2 $(THEME_NAME_48)
 
-dist.64: theme.64
+dist.48: theme.64
 	tar -jcof $(THEME_NAME_64)-$(VERSION)-right-handed.tar.bz2 $(THEME_NAME_64)
 
-dist.32.left: theme.32.left
+dist.24.left: theme.24.left
 	tar -jcof $(THEME_NAME_32)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME_32)
 
-dist.48.left: theme.48.left
+dist.36.left: theme.36.left
 	tar -jcof $(THEME_NAME_48)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME_48)
 
-dist.64.left: theme.64.left
+dist.48.left: theme.36.left
 	tar -jcof $(THEME_NAME_64)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME_64)
 
 theme: all
@@ -144,33 +144,40 @@ theme.left: all.left
 		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME)/index.theme
 	./do-symlinks.sh L$(THEME_NAME)/cursors
 
-theme.32: all.32
+theme.24: all.24
 	sed "s/THEME_NAME/$(THEME_NAME)/1; \
-		s/THEME_DESC/32x32/1; \
+		s/THEME_DESC/24x24/1; \
 		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
-		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > $(THEME_NAME_32)/index.theme
-	./do-symlinks.sh $(THEME_NAME_32)/cursors
+		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > $(THEME_NAME_24)/index.theme
+	./do-symlinks.sh $(THEME_NAME_24)/cursors
+
+theme.36: all.36
+	sed "s/THEME_NAME/$(THEME_NAME)/1; \
+		s/THEME_DESC/36x36/1; \
+		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
+		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > $(THEME_NAME_36)/index.theme
+	./do-symlinks.sh $(THEME_NAME_36)/cursors
 
 theme.48: all.48
 	sed "s/THEME_NAME/$(THEME_NAME)/1; \
-		s/THEME_DESC/48x48/1; \
+		s/THEME_DESC/64x64/1; \
 		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
 		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > $(THEME_NAME_48)/index.theme
 	./do-symlinks.sh $(THEME_NAME_48)/cursors
 
-theme.64: all.64
+theme.24.left: all.24.left
 	sed "s/THEME_NAME/$(THEME_NAME)/1; \
-		s/THEME_DESC/64x64/1; \
+		s/THEME_DESC/24x24, left-handed/1; \
 		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
-		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > $(THEME_NAME_64)/index.theme
-	./do-symlinks.sh $(THEME_NAME_64)/cursors
+		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME_24)/index.theme
+	./do-symlinks.sh L$(THEME_NAME_24)/cursors
 
-theme.32.left: all.32.left
+theme.36.left: all.36.left
 	sed "s/THEME_NAME/$(THEME_NAME)/1; \
-		s/THEME_DESC/32x32, left-handed/1; \
+		s/THEME_DESC/36x36, left-handed/1; \
 		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
-		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME_32)/index.theme
-	./do-symlinks.sh L$(THEME_NAME_32)/cursors
+		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME_36)/index.theme
+	./do-symlinks.sh L$(THEME_NAME_36)/cursors
 
 theme.48.left: all.48.left
 	sed "s/THEME_NAME/$(THEME_NAME)/1; \
@@ -178,13 +185,6 @@ theme.48.left: all.48.left
 		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
 		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME_48)/index.theme
 	./do-symlinks.sh L$(THEME_NAME_48)/cursors
-
-theme.64.left: all.64.left
-	sed "s/THEME_NAME/$(THEME_NAME)/1; \
-		s/THEME_DESC/64x64, left-handed/1; \
-		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
-		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME_64)/index.theme
-	./do-symlinks.sh L$(THEME_NAME_64)/cursors
 
 all: $(CURSORS)
 	rm -rf $(THEME_NAME)
@@ -201,35 +201,45 @@ all.left: $(CURSORS) $(LCURSORS)
 	done
 #	echo \(trim-cursor-files "\"L$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
-all.32: $(CURSORS_32)
-	rm -rf $(THEME_NAME_32)
-	mkdir -p $(THEME_NAME_32)/cursors
-	for l in $(CURSORS_32); do \
-		cp $$l $(THEME_NAME_32)/cursors/$${l/.32/}; \
+all.24: $(CURSORS_24)
+	rm -rf $(THEME_NAME_24)
+	mkdir -p $(THEME_NAME_24)/cursors
+	for l in $(CURSORS_24); do \
+		cp $$l $(THEME_NAME_24)/cursors/$${l/.24/}; \
+	done
+
+all.36: $(CURSORS_36)
+	rm -rf $(THEME_NAME_36)
+	mkdir -p $(THEME_NAME_36)/cursors
+	for l in $(CURSORS_36); do \
+		cp $$l $(THEME_NAME_36)/cursors/$${l/.36/}; \
 	done
 
 all.48: $(CURSORS_48)
 	rm -rf $(THEME_NAME_48)
 	mkdir -p $(THEME_NAME_48)/cursors
 	for l in $(CURSORS_48); do \
-		cp $$l $(THEME_NAME_48)/cursors/$${l/.48/}; \
+		cp $$l $(THEME_NAME_48)/cursors/$${l/48/}; \
 	done
 
-all.64: $(CURSORS_64)
-	rm -rf $(THEME_NAME_64)
-	mkdir -p $(THEME_NAME_64)/cursors
-	for l in $(CURSORS_64); do \
-		cp $$l $(THEME_NAME_64)/cursors/$${l/.64/}; \
+all.24.left: $(CURSORS_24) $(LCURSORS_24)
+	rm -rf L$(THEME_NAME_24)
+	mkdir -p L$(THEME_NAME_24)/cursors
+	for l in $(CURSORS_24); do \
+		cp $$l L$(THEME_NAME_24)/cursors/$${l/.24/}; \
+	done
+	for l in $(LCURSORS_24); do \
+		cp $$l L$(THEME_NAME_24)/cursors/$${l/.24.left/}; \
 	done
 
-all.32.left: $(CURSORS_32) $(LCURSORS_32)
-	rm -rf L$(THEME_NAME_32)
-	mkdir -p L$(THEME_NAME_32)/cursors
-	for l in $(CURSORS_32); do \
-		cp $$l L$(THEME_NAME_32)/cursors/$${l/.32/}; \
+all.36.left: $(CURSORS_36) $(LCURSORS_36)
+	rm -rf L$(THEME_NAME_36)
+	mkdir -p L$(THEME_NAME_36)/cursors
+	for l in $(CURSORS_36); do \
+		cp $$l L$(THEME_NAME_36)/cursors/$${l/.36/}; \
 	done
-	for l in $(LCURSORS_32); do \
-		cp $$l L$(THEME_NAME_32)/cursors/$${l/.32.left/}; \
+	for l in $(LCURSORS_36); do \
+		cp $$l L$(THEME_NAME_36)/cursors/$${l/.36.left/}; \
 	done
 
 all.48.left: $(CURSORS_48) $(LCURSORS_48)
@@ -242,16 +252,6 @@ all.48.left: $(CURSORS_48) $(LCURSORS_48)
 		cp $$l L$(THEME_NAME_48)/cursors/$${l/.48.left/}; \
 	done
 
-all.64.left: $(CURSORS_64) $(LCURSORS_64)
-	rm -rf L$(THEME_NAME_64)
-	mkdir -p L$(THEME_NAME_64)/cursors
-	for l in $(CURSORS_64); do \
-		cp $$l L$(THEME_NAME_64)/cursors/$${l/.64/}; \
-	done
-	for l in $(LCURSORS_64); do \
-		cp $$l L$(THEME_NAME_64)/cursors/$${l/.64.left/}; \
-	done
-
 %.in: hotspots/*/%.in
 	cat hotspots/{$(SIZES)}/$@ > $@
 
@@ -262,7 +262,7 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 	@{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		dpi=$$(((96 * $$size) / 32)); \
+		dpi=$$(((96 * $$size) / 24)); \
 		echo "$${target} ($@): $${size}px, $${dpi} DPI"; \
 		inkscape --without-gui -i $${target} -d $$dpi -f $< -e $@ >/dev/null; \
 	}
@@ -271,33 +271,33 @@ all.64.left: $(CURSORS_64) $(LCURSORS_64)
 	@{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		dpi=$$(((96 * $$size) / 32)); \
+		dpi=$$(((96 * $$size) / 24)); \
 		echo "$${target} ($@): $${size}px, $${dpi} DPI"; \
 		inkscape --without-gui -i $${target} -d $$dpi -f $< -e $@ >/dev/null; \
 	}
 
-%: %.in %.32.png %.40.png %.48.png %.56.png %.64.png
+%: %.in %.24.png %.36.png %.48.png %.60.png %.72.png
 	$(XCURSORGEN) $< $@
 
-%.left: %_left.in %.32.left.png %.40.left.png %.48.left.png %.56.left.png %.64.left.png
+%.left: %_left.in %.24.left.png %.36.left.png %.48.left.png %.60.left.png %.72.left.png
 	$(XCURSORGEN) $< $@
 
-%.32: hotspots/32/%.in %.32.png
+%.24: hotspots/24/%.in %.24.png
+	$(XCURSORGEN) $< $@
+
+%.36: hotspots/36/%.in %.36.png
 	$(XCURSORGEN) $< $@
 
 %.48: hotspots/48/%.in %.48.png
 	$(XCURSORGEN) $< $@
 
-%.64: hotspots/64/%.in %.64.png
+%.24.left: hotspots/24/%_left.in %.24.left.png
 	$(XCURSORGEN) $< $@
 
-%.32.left: hotspots/32/%_left.in %.32.left.png
+%.36.left: hotspots/36/%_left.in %.36.left.png
 	$(XCURSORGEN) $< $@
 
 %.48.left: hotspots/48/%_left.in %.48.left.png
-	$(XCURSORGEN) $< $@
-
-%.64.left: hotspots/64/%_left.in %.64.left.png
 	$(XCURSORGEN) $< $@
 
 ico2cur: ico2cur.c
@@ -315,10 +315,10 @@ ico2cur: ico2cur.c
 %_large.ico: %_large.png
 	convert $< $@
 
-%.ico: %.32.png
+%.ico: %.24.png
 	convert $< $@
 
-%_left.ico: %.32.left.png
+%_left.ico: %.24.left.png
 	convert $< $@
 
 %.cur: %.ico hotspots/32/%.in ico2cur
@@ -333,15 +333,15 @@ ico2cur: ico2cur.c
 %_large_left.cur: %_large_left.ico hotspots/wc-large ico2cur
 	./ico2cur -p hotspots/wc-large $<
 
-wait.32.in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.24.in: $(RSVG_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=32 \
+	@./make-animated-cursor.sh src=$< target=wait size=24 \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
-wait.40.in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.36.in: $(RSVG_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=40 \
+	@./make-animated-cursor.sh src=$< target=wait size=36 \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
@@ -351,32 +351,32 @@ wait.48.in: $(RSVG_SOURCE) make-animated-cursor.sh
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
-wait.56.in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.60.in: $(RSVG_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=56 \
+	@./make-animated-cursor.sh src=$< target=wait size=60 \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
-wait.64.in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.72.in: $(RSVG_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=64 \
+	@./make-animated-cursor.sh src=$< target=wait size=72 \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
-wait.32: wait.32.in
+wait.24: wait.24.in
+	$(XCURSORGEN) $< $@
+
+wait.36: wait.36.in
 	$(XCURSORGEN) $< $@
 
 wait.48: wait.48.in
 	$(XCURSORGEN) $< $@
 
-wait.64: wait.64.in
-	$(XCURSORGEN) $< $@
-
-wait: wait.32.in wait.40.in wait.48.in wait.56.in wait.64.in
+wait: wait.24.in wait.36.in wait.48.in wait.60.in wait.72.in
 	cat wait.*.in|$(XCURSORGEN) - $@
 
 preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE))
-	montage -background none -geometry +4+4 -mode concatenate -tile 9x10 \
+	montage -background none -gravity center -geometry +10+10 -mode concatenate -tile 9x10 \
 		{default,help,progress,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
 		{help,progress,alias,copy,context-menu,no-drop,dnd-move,default,right_ptr}.$(PREVIEW_SIZE).left.png \
 		{wait,openhand,pointer,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
@@ -396,9 +396,9 @@ clean:
 	rm -f *.in ico2cur
 	rm -f wait*.png
 
-.PHONY: all all-dist all.left all.32 all.48 all.64 all.32.left all.48.left all.64.left clean dist dist.left \
-dist.32 dist.48 dist.64 dist.32.left dist.48.left dist.64.left install pack preview source-dist theme theme.left \
-theme.32 theme.48 theme.64 theme.32.left theme.48.left theme.64.left windows-cursors all-sizes all-themes
+.PHONY: all all-dist all.left all.24 all.36 all.48 all.24.left all.36.left all.48.left clean dist dist.left \
+dist.24 dist.36 dist.48 dist.24.left dist.36.left dist.48.left install pack preview source-dist theme theme.left \
+theme.24 theme.36 theme.48 theme.24.left theme.36.left theme.48.left windows-cursors all-sizes all-themes
 .SUFFIXES:
 .PRECIOUS: %.in %_left.in %.png %.left.png
 .DELETE_ON_ERROR:
