@@ -460,8 +460,8 @@ wait.$(SIZE_LARGE): wait.$(SIZE_LARGE).in
 wait: wait.$(SIZE_SMALL).in wait.$(SIZE_MEDIUM).in wait.$(SIZE_LARGE).in wait.$(SIZE_LARGE1).in wait.$(SIZE_LARGE2).in
 	cat wait.*.in|$(XCURSORGEN) - $@
 
-preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE))
-	montage -background none -mode concatenate -tile 9x10 -geometry +10+5 \
+preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE)) wait.$(PREVIEW_SIZE).png
+	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
 		{default,help,progress,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
 		{help,progress,alias,copy,context-menu,no-drop,dnd-move,default,right_ptr}.$(PREVIEW_SIZE).left.png \
 		{wait,openhand,pointer,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
