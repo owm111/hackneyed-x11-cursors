@@ -27,7 +27,6 @@
 SHELL = /bin/bash
 RSVG_SOURCE = src/theme-main.svg
 LSVG_SOURCE = src/theme-left.svg
-WSVG_SOURCE = src/wc-large.svg
 SIZE_SMALL=24
 SIZE_MEDIUM=36
 SIZE_LARGE=48
@@ -376,35 +375,47 @@ all.large.left: $(CURSORS_LARGE) $(LCURSORS_LARGE)
 ico2cur: ico2cur.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o ico2cur ico2cur.c
 
-%_large_left.png: $(WSVG_SOURCE)
+# harcoding this is no problem, Windows cannot make use of larger cursors anyway
+# (and probably never will)
+%_large_left.png: %.32.left.png
 	inkscape --without-gui -i $(@:.png=) -f $< -e $@ >/dev/null
 
-%_large.png: $(WSVG_SOURCE)
+%_large.png: %.32.png
 	inkscape --without-gui -i $(@:.png=) -f $< -e $@ >/dev/null
 
-%_large_left.ico: %_large_left.png
+%_large_left.ico: %.32.left.png
 	convert $< $@
 
-%_large.ico: %_large.png
+%_large.ico: %.32.png
 	convert $< $@
 
 %.ico: %.$(SIZE_SMALL).png
-	convert $< $@
+	convert -background none -extent 32x32 $< $@
 
 %_left.ico: %.$(SIZE_SMALL).left.png
-	convert $< $@
+	convert -background none -extent 32x32 $< $@
 
-%.cur: %.ico hotspots/32/%.in ico2cur
+%.cur: %.ico hotspots/$(SIZE_SMALL)/%.in ico2cur
 	@{\
-		set -- $$(cat hotspots/32/$(@:.cur=.in)); \
+		set -- $$(cat hotspots/$(SIZE_SMALL)/$(@:.cur=.in)); \
 		./ico2cur -x $$2 -y $$3 $<; \
 	}
 
-%_large.cur: %_large.ico hotspots/wc-large ico2cur
-	./ico2cur -p hotspots/wc-large $<
+%_large.cur: %_large.ico ico2cur
+	{\
+		set -- $$(cat hotspots/$(SIZE_SMALL)/$(@:_large.cur=.in)); \
+		x=$$(( (32 * $$2) / ($(SIZE_SMALL) - 1) )); \
+		y=$$(( (32 * $$3) / ($(SIZE_SMALL) - 1) )); \
+		./ico2cur -x $$x -y $$y $<; \
+	}
 
-%_large_left.cur: %_large_left.ico hotspots/wc-large ico2cur
-	./ico2cur -p hotspots/wc-large $<
+%_large_left.cur: %_large_left.ico ico2cur
+	@{\
+		set -- $$(cat hotspots/$(SIZE_SMALL)/$(@:_large_left.cur=_left.in)); \
+		x=$$(( (32 * $$2) / ($(SIZE_SMALL) - 1) )); \
+		y=$$(( (32 * $$3) / ($(SIZE_SMALL) - 1) )); \
+		./ico2cur -x $$x -y $$y $<; \
+	}
 
 wait.$(SIZE_SMALL).in: $(RSVG_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
@@ -474,5 +485,5 @@ clean:
 	install pack preview source-dist theme theme.left theme.small theme.medium theme.large theme.small.left \
 	theme.medium.left theme.large.left windows-cursors all-sizes all-themes
 .SUFFIXES:
-.PRECIOUS: %.in %_left.in %.png %.left.png
+.PRECIOUS: %.in %_left.in %.png %.left.png %_left.ico %.ico %_large.ico %_large_left.ico
 .DELETE_ON_ERROR:
