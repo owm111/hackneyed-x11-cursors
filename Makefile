@@ -158,7 +158,7 @@ WAIT_DEFAULT_FRAMETIME=35
 WAIT_CUSTOM_FRAMETIMES=frame_11_time=650
 
 all-sizes: all.small all.medium all.large all.small.left all.medium.left all.large.left all.left all
-all-themes: theme theme.small theme.small.left theme.medium theme.large.left theme.medium theme.large.left theme.left
+all-themes: theme theme.left theme.small theme.medium theme.large theme.small.left theme.medium.left theme.large.left
 all-dist: dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left pack dist
 
 install: theme theme.left
