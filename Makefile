@@ -25,6 +25,7 @@
 
 # Bashisms are a hell of a drug
 SHELL = /bin/bash
+VERSION = 0.6
 RSVG_SOURCE = src/theme-main.svg
 LSVG_SOURCE = src/theme-left.svg
 SIZE_SMALL=24
@@ -146,7 +147,7 @@ THEME_NAME_MEDIUM = $(THEME_NAME)-$(SIZE_MEDIUM)x$(SIZE_MEDIUM)
 THEME_NAME_LARGE = $(THEME_NAME)-$(SIZE_LARGE)x$(SIZE_LARGE)
 THEME_COMMENT = Windows 3.x-inspired cursors
 THEME_EXAMPLE = default
-VERSION = 0.6
+THEME_WINDOWS = $(THEME_NAME)-Windows-$(VERSION)
 SIZES ?= $(SIZE_SMALL),$(SIZE_MEDIUM),$(SIZE_LARGE),$(SIZE_LARGE1),$(SIZE_LARGE2)
 PREVIEW_SIZE = $(SIZE_MEDIUM)
 XCURSORGEN = xcursorgen
@@ -172,11 +173,11 @@ source-dist:
 		hackneyed-x11-cursors-$(VERSION).tar.gz
 
 windows-cursors: $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
-	rm -rf Hackneyed-Windows
-	mkdir -p Hackneyed-Windows/{King-size,Standard}
-	cp $(WINCURSORS_LARGE) $(LWINCURSORS_LARGE) Hackneyed-Windows/King-size
-	cp $(WINCURSORS) $(LWINCURSORS) Hackneyed-Windows/Standard
-	zip -r Hackneyed-Windows.zip Hackneyed-Windows
+	rm -rf $(THEME_WINDOWS)
+	mkdir -p $(THEME_WINDOWS)/{King-size,Standard}
+	cp $(WINCURSORS_LARGE) $(LWINCURSORS_LARGE) $(THEME_WINDOWS)/King-size
+	cp $(WINCURSORS) $(LWINCURSORS) $(THEME_WINDOWS)/Standard
+	zip -r $(THEME_WINDOWS).zip $(THEME_WINDOWS)
 
 dist: theme
 	tar -jcof $(THEME_NAME)-$(VERSION)-right-handed.tar.bz2 $(THEME_NAME)
@@ -472,7 +473,7 @@ preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE))
 		preview.png
 
 clean:
-	rm -rf Hackneyed-Windows $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_SMALL) $(THEME_NAME_MEDIUM) $(THEME_NAME_LARGE) L$(THEME_NAME_SMALL) L$(THEME_NAME_MEDIUM) L$(THEME_NAME_LARGE)
+	rm -rf $(THEME_WINDOWS) $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_SMALL) $(THEME_NAME_MEDIUM) $(THEME_NAME_LARGE) L$(THEME_NAME_SMALL) L$(THEME_NAME_MEDIUM) L$(THEME_NAME_LARGE)
 	rm -f $(CURSORS) $(CURSORS_SMALL) $(CURSORS_MEDIUM) $(CURSORS_LARGE) $(LCURSORS) $(LCURSORS_SMALL) $(LCURSORS_MEDIUM) $(LCURSORS_LARGE)
 	rm -f $(PNG_SMALL) $(PNG_MEDIUM) $(PNG_LARGE) $(PNG_LARGE1) $(PNG_LARGE2)
 	rm -f $(LPNG_SMALL) $(LPNG_MEDIUM) $(LPNG_LARGE) $(LPNG_LARGE1) $(LPNG_LARGE2)
