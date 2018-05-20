@@ -3,7 +3,7 @@
 Overview
 --------
 
-Hackneyed is a scalable cursor theme mildly resembing old Windows 3.x/NT 3.x cursors. Left-handed pointers are available, as well, and it also brings an old school feel to whatever trendy desktop paradigm you're being subjected to. And hourglasses. Why did hourglasses disappear from cursor themes?
+Hackneyed is a scalable cursor theme mildly resembing old Windows 3.x/NT 3.x cursors. Left-handed pointers are available, as well.
 
 
 Building
@@ -25,8 +25,8 @@ Production targets (all of them generate tarballs for distribution):
 * `pack`: build both multi-sized themes (left- and right-handed) into a single package;
 * `dist`: build the multi-sized, right-handed theme;
 * `dist.left`: build the multi-sized, left-handed theme;
-* `dist.x`, where x can be 32, 48 or 64: build a single-sized, right-handed theme of the specified size;
-* `dist.x.left`, where x can be 32, 48 or 64: build a single-sized, left-handed theme of the specified size;
+* `dist.x`, where x can be 24, 36 or 48: build a single-sized, right-handed theme of the specified size;
+* `dist.x.left`, where x can be 24, 36 or 48: build a single-sized, left-handed theme of the specified size;
 * `windows-cursors` for Windows.
 
 `make all-dist` targets all of the above (except `windows-cursors`), including all single-sized themes in all available sizes.
@@ -47,20 +47,23 @@ All of them run `do-symlinks.sh` when finished. The targets below do not:
 
 Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e.g.:
 
-* `make default.32.left` for a left-handed, 32x32-sized `default` cursor;
-* `make default.32` for a right-handed, 32x32-sized cursor;
+* `make default.24.left` for a left-handed, 24px `default` cursor;
+* `make default.24` for a right-handed, 24px cursor;
 * `make default.left` for a multi-sized, left-handed cursor;
+* `make default.24.png` for a 24px PNG only. PNG sizes aren't hardcoded, so you can specify any size you want;
 * or simply `make default` for a multi-sized, right-handed cursor.
 
 Parallel jobs (`-j`) are recommended (Inkscape is _slow_).
 
-If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/). Windows cursor files are available only on GitHub.
+If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/).
 
-Hackneyed's build system is simply a collection of shell scripts and a Makefile. It wasn't hard to write, and it shouldn't be hard to understand.
+Hackneyed for Windows can only be found on Github, although with a static hourglass.
+
 
 License
 -------
 Hackneyed is released under the MIT/X11 license.
+
 
 Credits
 -------
@@ -117,3 +120,8 @@ Out of curiosity, starting a Wayland session with a [debug theme](https://github
 Chromium 62 and up
 ------------------
 Recent versions of Chromium pull out whatever cursors the theme provides. How nice. Still, Chromium developers assumed that `all-scroll` and `move` are the same thing (they aren't, but I don't believe this warrants a bug report).
+
+
+TODO
+----
+A way to automate the making of ANI cursors for Windows. But don't count on that.
