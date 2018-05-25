@@ -153,9 +153,9 @@ PREVIEW_SIZE = $(SIZE_MEDIUM)
 XCURSORGEN = xcursorgen
 .DEFAULT_GOAL = all-dist
 PREFIX ?= /usr/local
-WAIT_FRAMES=28
-WAIT_DEFAULT_FRAMETIME=35
-WAIT_CUSTOM_FRAMETIMES=frame_11_time=650
+WAIT_FRAMES=35
+WAIT_DEFAULT_FRAMETIME=45
+WAIT_CUSTOM_FRAMETIMES=frame_10_time=650
 
 all-sizes: all.small all.medium all.large all.small.left all.medium.left all.large.left all.left all
 all-themes: theme theme.left theme.small theme.medium theme.large theme.small.left theme.medium.left theme.large.left
