@@ -154,7 +154,7 @@ XCURSORGEN = xcursorgen
 .DEFAULT_GOAL = all-dist
 PREFIX ?= /usr/local
 WAIT_FRAMES=35
-WAIT_DEFAULT_FRAMETIME=45
+WAIT_DEFAULT_FRAMETIME=30
 WAIT_CUSTOM_FRAMETIMES=frame_10_time=650
 
 all-sizes: all.small all.medium all.large all.small.left all.medium.left all.large.left all.left all
