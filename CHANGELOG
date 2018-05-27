@@ -1,8 +1,9 @@
 0.6
-- new size set (24-36-48-60-72), should be more consistent
+- new size set (24-36-48-60-72), more consistency across sizes
+- overall optimizations to account for the smaller size
+- redo static/animated hourglass
 - drop wc-large.svg, use a 32px png made on the fly
 - rewrite Makefile to be more maintainable
-- etc.
 
 0.5.3.1
 - fix all-dist targets copying extra files
