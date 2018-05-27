@@ -198,7 +198,7 @@ dist.small.left: theme.small.left
 	tar -jcof $(THEME_NAME_SMALL)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME_SMALL)
 
 dist.medium.left: theme.medium.left
-	tar -jcof $(THEME_NAME_LARGE)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME_MEDIUM)
+	tar -jcof $(THEME_NAME_MEDIUM)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME_MEDIUM)
 
 dist.large.left: theme.large.left
 	tar -jcof $(THEME_NAME_LARGE)-$(VERSION)-left-handed.tar.bz2 L$(THEME_NAME_LARGE)
