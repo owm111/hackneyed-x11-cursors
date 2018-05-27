@@ -471,8 +471,11 @@ preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE)) wait.$(PREVIEW_SIZE).png
 		{pirate,X_cursor,wayland-cursor,draft,pencil,color-picker}.$(PREVIEW_SIZE).png \
 		{up_arrow,right_arrow,left_arrow}.$(PREVIEW_SIZE).png \
 		preview.png
-	montage -background none -mode concatenate -tile 3x2 -geometry +5+5 \
-	{default,help,progress,wait,pointer,pencil}.$(PREVIEW_SIZE).png preview-small.png
+	montage -background none -mode concatenate -tile 4x4 -geometry +5+5 \
+	{default,help,progress,no-drop,wait,pencil,zoom-in,context-menu}.$(PREVIEW_SIZE).png \
+	{pointer,openhand,closedhand,pirate}.$(PREVIEW_SIZE).png \
+	{n-resize,s-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
+	preview-small.png
 
 clean:
 	rm -rf $(THEME_WINDOWS) $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_SMALL) $(THEME_NAME_MEDIUM) $(THEME_NAME_LARGE) L$(THEME_NAME_SMALL) L$(THEME_NAME_MEDIUM) L$(THEME_NAME_LARGE)
