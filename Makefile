@@ -173,7 +173,7 @@ source-dist:
 		hackneyed-x11-cursors-$(VERSION).tar.gz
 
 windows-cursors: $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
-	rm -rf $(THEME_WINDOWS)
+	rm -rf $(THEME_WINDOWS) $(THEME_WINDOWS).zip
 	mkdir -p $(THEME_WINDOWS)/{King-size,Standard}
 	cp $(WINCURSORS_LARGE) $(LWINCURSORS_LARGE) $(THEME_WINDOWS)/King-size
 	cp $(WINCURSORS) $(LWINCURSORS) $(THEME_WINDOWS)/Standard
