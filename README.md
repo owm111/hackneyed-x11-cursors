@@ -1,4 +1,4 @@
-![hackneyed-preview](https://raw.githubusercontent.com/Enthymem/hackneyed-x11-cursors/master/preview.png "The sands of time are running out for you, bro")
+![hackneyed-preview](https://gitlab.com/Enthymeme/hackneyed-x11-cursors/raw/master/preview.png "The sands of time are running out for you, bro")
 
 Overview
 --------
@@ -55,9 +55,7 @@ Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e
 
 Parallel jobs (`-j`) are recommended (Inkscape is _slow_).
 
-If you don't feel like building it from source, grab the latest builds from [the "Releases" page](https://github.com/Enthymem/hackneyed-x11-cursors/releases) on GitHub, or from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/).
-
-Hackneyed for Windows can only be found on Github, although with a static hourglass.
+If you don't feel like building it from source, grab the latest builds from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/).
 
 
 License
