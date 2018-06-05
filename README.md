@@ -55,7 +55,8 @@ Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e
 
 Parallel jobs (`-j`) are recommended (Inkscape is _slow_).
 
-If you don't feel like building it from source, grab the latest builds from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/).
+If you don't feel like building it from source, grab the latest builds from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/)
+or from [GitLab](https://gitlab.com/Enthymeme/hackneyed-x11-cursors/tags). The Windows version is only available on the latter.
 
 
 License
