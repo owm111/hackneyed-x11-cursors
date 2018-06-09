@@ -55,7 +55,7 @@ Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e
 
 Parallel jobs (`-j`) are recommended (Inkscape is _slow_).
 
-If you don't feel like building it from source, grab the latest builds from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/).
+If you don't feel like building it from source, grab the latest builds from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/) or from [Gitlab](https://gitlab.com/Enthymeme/hackneyed-x11-cursors/tags).
 
 
 License
@@ -88,15 +88,15 @@ XcursorLogDiscover.
 
 You should not take into account the hashes for masks, i.e., the filled
 "images" displayed. Only consider hashes that return some random hex number
-(as in "Cursor hash XXXXX returns 0xdeadbeef"). Applications are migrating away from libXcursor, so cursor theming through hashes might become a thing of the past.
+(as in "Cursor hash XXXXX returns 0xdeadbeef").
 
 Useful links
 ------------
 * [Freedesktop.org's cursor specification](http://www.freedesktop.org/wiki/Specifications/cursor-spec/)
 
-* [CSS cursors](http://dev.w3.org/csswg/css-ui/#propdef-cursor "2drafty4u")
+* [CSS cursors from W3C](http://dev.w3.org/csswg/css-ui/#propdef-cursor "2drafty4u")
 
-* [Test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor)
+* [Mozilla's test page for CSS cursors](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor)
 
 * [Qt requirements for X11 cursors](http://doc.qt.io/qt-5/qcursor.html#a-note-for-x11-users)
 
@@ -112,12 +112,12 @@ Plasma on Wayland
 -----------------
 Plasma 5 makes a mess with the pointers. I will look into it as soon as Plasma becomes usable under Wayland, and I don't think reporting such a bug at this stage is appropriate: they have more important things to care about.
 
-Out of curiosity, starting a Wayland session with a [debug theme](https://github.com/Enthymem/xcursor-debug-theme) shows KWin's default pointer as `left_ptr` (a symlink to `default`), while the Plasma shell and other applications employ `left_arrow`, which looks like a Qt bug (Breeze has no `left_arrow`, forcing a fallback to `default` or one of the symlinks to it). KWin, though, replaces `size_bdiag` with `size_fdiag` when you drag the pointer to resize a window.
+Out of curiosity, starting a Wayland session with a [debug theme](https://gitlab.com/Enthymeme/xcursor-debug-theme) shows KWin's default pointer as `left_ptr` (a symlink to `default`), while the Plasma shell and other applications employ `left_arrow`, which looks like a Qt bug (Breeze has no `left_arrow`, forcing a fallback to `default` or one of the symlinks to it). KWin, though, replaces `size_bdiag` with `size_fdiag` when you drag the pointer to resize a window.
 
 
 Chromium 62 and up
 ------------------
-Recent versions of Chromium pull out whatever cursors the theme provides. How nice. Still, Chromium developers assumed that `all-scroll` and `move` are the same thing (they aren't, but I don't believe this warrants a bug report).
+Recent versions of Chromium pull out whatever cursors the theme provides. Still, Chromium developers assumed that `all-scroll` and `move` are the same thing -- they aren't, but I don't believe this warrants a bug report.
 
 
 TODO
