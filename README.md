@@ -25,27 +25,29 @@ Production targets (all of them generate tarballs for distribution):
 * `pack`: build both multi-sized themes (left- and right-handed) into a single package;
 * `dist`: build the multi-sized, right-handed theme;
 * `dist.left`: build the multi-sized, left-handed theme;
-* `dist.x`, where x can be 24, 36 or 48: build a single-sized, right-handed theme of the specified size;
-* `dist.x.left`, where x can be 24, 36 or 48: build a single-sized, left-handed theme of the specified size;
+* `dist.<size>`, where `size` can be small, medium or large: build a single-sized, right-handed theme of the specified size;
+* `dist.<size>.left`: build a single-sized, left-handed theme of the specified size;
 * `windows-cursors` for Windows.
 
 `make all-dist` targets all of the above (except `windows-cursors`), including all single-sized themes in all available sizes.
+
+`small`, `medium` and `large` are currently defined as 24, 36 and 48, respectively. The making of individual cursors recognizes the integer argument only (see below).
 
 The targets described below are meant for debugging and do not generate tarballs:
 
 * `theme`: make the multi-sized, right-handed theme;
 * `theme.left`: make the multi-sized, right-handed theme;
-* `theme.x`: make a single-sized, right-handed theme of the specified size;
-* `theme.x.left`: make a single-sized, left-handed theme of the specified size.
+* `theme.<size>`: make a single-sized, right-handed theme of the specified size;
+* `theme.<size>.left`: make a single-sized, left-handed theme of the specified size.
 
 All of them run `do-symlinks.sh` when finished. The targets below do not:
 
 * `all`: make the multi-sized, right-handed theme;
-* `all.x`: make a single-sized, right-handed theme of the specified size;
+* `all.<size>`: make a single-sized, right-handed theme of the specified size;
 * `all.left`: make the multi-sized, left-handed theme;
-* `all.x.left`: make a single-sized, left-handed theme of the specified size.
+* `all.<size>.left`: make a single-sized, left-handed theme of the specified size.
 
-Individual cursors can be made with `make <cursor_name>.<size>.<orientation>`, e.g.:
+Individual cursors can be made with `make <cursor_name>.<size in pixels>.<orientation>`, e.g.:
 
 * `make default.24.left` for a left-handed, 24px `default` cursor;
 * `make default.24` for a right-handed, 24px cursor;
@@ -103,6 +105,19 @@ Useful links
 * [Core X11 cursors](http://tronche.com/gui/x/xlib/appendix/b/ "coffee_mug > all")
 
 * [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html)
+
+
+Dealing with inconsistent cursors
+---------------------------------
+Setting the cursor theme through a graphical interface doesn't always propagate to all applications. _Most of the time_, this can be solved by creating a file called `index.theme` with the following content...
+
+```
+[Icon Theme]
+inherits=Hackneyed
+```
+
+...and saving it in `~/.icons/default` (create this folder if it doesn't exist already).
+
 
 On Xfce
 -------
