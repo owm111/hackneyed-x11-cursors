@@ -59,6 +59,10 @@ Parallel jobs (`-j`) are recommended (Inkscape is _slow_).
 
 If you don't feel like building it from source, grab the latest builds from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/) or from [Gitlab](https://gitlab.com/Enthymeme/hackneyed-x11-cursors/tags).
 
+Installation
+------------
+Simply choose a tarball and extract it to `$HOME/.icons`. If you've built it from source, pick a size or variant (e.g., `Hackneyed`, `LHackneyed-36x36`) and move it to `$HOME/.icons`.
+
 
 License
 -------
