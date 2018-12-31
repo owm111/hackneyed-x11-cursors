@@ -64,13 +64,16 @@ done
 : ${frames:?missing frame count}
 dpi=$(( (96 * size)/24 ))
 : ${dpi:?invalid size $size}
-center=$(( (size - 1) / 2 ))
 rm -f ${target}.${size}.in
+center=$(( (size - 1) / 2 ))
+[ -e hotspots/${size}/${target}.in ] && hotspots=$(cat hotspots/${size}/${target}.in|cut -d' ' -f1-3) || \
+	hotspots="$size $center $center"
+
 for ((i = 1; i <= frames; i++)); do
 	output="${target}-${i}.${size}.png"
 	echo "$target ($size): $output"
 	inkscape --without-gui -i "$target-$i" -d $dpi -f $src -e $output >/dev/null || die
 	eval frametime=\$frame_${i}_time
 	: ${frametime:=$default_frametime}
-	echo "$size $center $center $output ${frametime}" >> ${target}.${size}.in || die
+	echo "$hotspots $output ${frametime}" >> ${target}.${size}.in || die
 done
