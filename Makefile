@@ -332,22 +332,10 @@ all.large.left: $(CURSORS_LARGE) $(LCURSORS_LARGE)
 	cat hotspots/{$(SIZES)}/$@ > $@
 
 %.png: $(RSVG_SOURCE)
-	@{\
-		target=$$(cut -d. -f1 <<< $@); \
-		size=$$(cut -d. -f2 <<< $@); \
-		dpi=$$(((96 * $$size) / $(SIZE_SMALL))); \
-		echo "$${target} ($@): $${size}px, $${dpi} DPI"; \
-		inkscape --without-gui -i $${target} -d $$dpi -f $< -e $@ >/dev/null; \
-	}
+	./make-png.sh src=$< target=$$(cut -d. -f1 <<< $@) size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@
 
 %.left.png: $(LSVG_SOURCE)
-	@{\
-		target=$$(cut -d. -f1 <<< $@); \
-		size=$$(cut -d. -f2 <<< $@); \
-		dpi=$$(((96 * $$size) / $(SIZE_SMALL))); \
-		echo "$${target} ($@): $${size}px, $${dpi} DPI"; \
-		inkscape --without-gui -i $${target} -d $$dpi -f $< -e $@ >/dev/null; \
-	}
+	./make-png.sh src=$< target=$$(cut -d. -f1 <<< $@) size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@
 
 %: %.in %.$(SIZE_SMALL).png %.$(SIZE_MEDIUM).png %.$(SIZE_LARGE).png %.$(SIZE_LARGE1).png %.$(SIZE_LARGE2).png
 	$(XCURSORGEN) $< $@
