@@ -25,7 +25,7 @@
 
 # Bashisms are a hell of a drug
 SHELL = /bin/bash
-VERSION = 0.6
+VERSION = 0.6.1
 RSVG_SOURCE = src/theme-main.svg
 LSVG_SOURCE = src/theme-left.svg
 SIZE_SMALL=24

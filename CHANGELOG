@@ -1,3 +1,10 @@
+0.6.1
+- progress: animate hourglass
+- wait: redo animation because it sucked
+- reinstate make-png.sh
+- make-animated-cursor.sh can now deal with variants (i.e. left-handed
+  pointers)
+
 0.6
 - new size set (24-36-48-60-72), more consistency across sizes
 - overall optimizations to account for the smaller size
