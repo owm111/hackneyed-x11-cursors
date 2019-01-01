@@ -153,9 +153,12 @@ PREVIEW_SIZE = $(SIZE_MEDIUM)
 XCURSORGEN = xcursorgen
 .DEFAULT_GOAL = all-dist
 PREFIX ?= /usr/local
-WAIT_FRAMES=35
+WAIT_FRAMES=16
 WAIT_DEFAULT_FRAMETIME=30
-WAIT_CUSTOM_FRAMETIMES=frame_10_time=650
+WAIT_CUSTOM_FRAMETIMES=frame_5_time=300
+PROGRESS_FRAMES=16
+PROGRESS_DEFAULT_FRAMETIME=30
+PROGRESS_CUSTOM_FRAMETIMES=frame_5_time=300
 
 all-sizes: all.small all.medium all.large all.small.left all.medium.left all.large.left all.left all
 all-themes: theme theme.left theme.small theme.medium theme.large theme.small.left theme.medium.left theme.large.left
@@ -447,6 +450,90 @@ wait.$(SIZE_LARGE): wait.$(SIZE_LARGE).in
 
 wait: wait.$(SIZE_SMALL).in wait.$(SIZE_MEDIUM).in wait.$(SIZE_LARGE).in wait.$(SIZE_LARGE1).in wait.$(SIZE_LARGE2).in
 	cat wait.*.in|$(XCURSORGEN) - $@
+
+progress: progress.$(SIZE_SMALL).in progress.$(SIZE_MEDIUM).in progress.$(SIZE_LARGE).in progress.$(SIZE_LARGE1).in progress.$(SIZE_LARGE2).in
+	cat progress.*.in|$(XCURSORGEN) - $@
+
+progress.$(SIZE_SMALL): progress.$(SIZE_SMALL).in
+	$(XCURSORGEN) $< $@
+
+progress.$(SIZE_MEDIUM): progress.$(SIZE_MEDIUM).in
+	$(XCURSORGEN) $< $@
+
+progress.$(SIZE_LARGE): progress.$(SIZE_LARGE).in
+	$(XCURSORGEN) $< $@
+
+progress.$(SIZE_SMALL).in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_SMALL) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress.$(SIZE_MEDIUM).in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_MEDIUM) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress.$(SIZE_LARGE).in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_LARGE) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress.$(SIZE_LARGE1).in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_LARGE1) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress.$(SIZE_LARGE2).in: $(RSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_LARGE2) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress_left.$(SIZE_SMALL).in: $(LSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_SMALL) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress_left.$(SIZE_MEDIUM).in: $(LSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_MEDIUM) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress_left.$(SIZE_LARGE).in: $(LSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_LARGE) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress_left.$(SIZE_LARGE1).in: $(LSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_LARGE1) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress_left.$(SIZE_LARGE2).in: $(LSVG_SOURCE) make-animated-cursor.sh
+	@echo '>>> $@'
+	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_LARGE2) \
+	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
+	frames=$(PROGRESS_FRAMES)
+
+progress.left: progress_left.$(SIZE_SMALL).in progress_left.$(SIZE_MEDIUM).in progress_left.$(SIZE_LARGE).in progress_left.$(SIZE_LARGE1).in progress_left.$(SIZE_LARGE2).in
+	cat progress_left.*.in|$(XCURSORGEN) - $@
+
+progress.$(SIZE_SMALL).left: progress_left.$(SIZE_SMALL).in
+	$(XCURSORGEN) $< $@
+
+progress.$(SIZE_MEDIUM).left: progress_left.$(SIZE_MEDIUM).in
+	$(XCURSORGEN) $< $@
+
+progress.$(SIZE_LARGE).left: progress_left.$(SIZE_LARGE).in
+	$(XCURSORGEN) $< $@
 
 preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE)) wait.$(PREVIEW_SIZE).png
 	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
