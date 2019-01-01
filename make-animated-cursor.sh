@@ -66,14 +66,25 @@ dpi=$(( (96 * size)/24 ))
 : ${dpi:?invalid size $size}
 rm -f ${target}.${size}.in
 center=$(( (size - 1) / 2 ))
-[ -e hotspots/${size}/${target}.in ] && hotspots=$(cat hotspots/${size}/${target}.in|cut -d' ' -f1-3) || \
-	hotspots="$size $center $center"
 
+variant=${target#*.}
+hotspot_src=hotspots/${size}/${target}.in
+hotspot_dest=${target}.${size}.in
+[ "$variant" = "$target" ] && unset variant
+if [ "$variant" ]; then
+	target=${target%.*}
+	hotspot_src=hotspots/${size}/${target}_${variant}.in
+	hotspot_dest=${target}_${variant}.${size}.in
+fi
+
+hotspot="$size $center $center"
+[ -e $hotspot_src ] && hotspot=$(cut -d' ' -f1-3 $hotspot_src)
+rm -f $hotspot_dest
 for ((i = 1; i <= frames; i++)); do
-	output="${target}-${i}.${size}.png"
+	[ "$variant" ] && output="${target}-${i}.${size}.${variant}.png" || output="${target}-${i}.${size}.png"
 	echo "$target ($size): $output"
 	inkscape --without-gui -i "$target-$i" -d $dpi -f $src -e $output >/dev/null || die
 	eval frametime=\$frame_${i}_time
 	: ${frametime:=$default_frametime}
-	echo "$hotspots $output ${frametime}" >> ${target}.${size}.in || die
+	echo "$hotspot $output ${frametime}" >> $hotspot_dest || die
 done
