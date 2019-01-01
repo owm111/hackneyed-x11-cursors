@@ -578,6 +578,7 @@ clean:
 	rm -f $(LWINCURSORS_LARGE)
 	rm -f *.in ico2cur
 	rm -f wait*.png
+	rm -f progress*.png
 	rm -f *.ico
 
 .PHONY: all all-dist all.left all.small all.medium all.large all.small.left all.medium.left all.large.left \
