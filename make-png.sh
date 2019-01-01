@@ -59,6 +59,6 @@ done
 : ${base_size:?missing base size}
 : ${output:?no outfile specified}
 
-dpi=$(( (96 * $size) / $base_size ))
+dpi=$(( (96 * size) / base_size ))
 echo "${target}: ${output}, ${size}px, ${dpi} DPI"; \
 inkscape --without-gui -i ${target} -d $dpi -f $src -e $output >/dev/null;
