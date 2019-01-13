@@ -96,4 +96,7 @@ for s in $sizes; do
 	output="${s} ${hotspot_x} ${hotspot_y} $source_png"
 	echo "$config_file: $output"
 	[ "$dry_run" = "0" ] && echo "${output}" >> $config_file
+	base_size=$((base_size + s))
+	base_hotspot_x=$((hotspot_x + base_hotspot_x))
+	base_hotspot_y=$((hotspot_y + base_hotspot_y))
 done
