@@ -23,7 +23,6 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
-# Bashisms are a hell of a drug
 SHELL = /bin/bash
 VERSION = 0.6.1
 RSVG_SOURCE = src/theme-main.svg
