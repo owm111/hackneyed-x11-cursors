@@ -534,11 +534,11 @@ progress.$(SIZE_MEDIUM).left: progress_left.$(SIZE_MEDIUM).in
 progress.$(SIZE_LARGE).left: progress_left.$(SIZE_LARGE).in
 	$(XCURSORGEN) $< $@
 
-preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE)) wait.$(PREVIEW_SIZE).png
+preview: $(PNG_MEDIUM) $(LPNG_MEDIUM) wait-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
 	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
-		{default,help,progress,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
-		{help,progress,alias,copy,context-menu,no-drop,dnd-move,default,right_ptr}.$(PREVIEW_SIZE).left.png \
-		{wait,openhand,pointer,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
+		{default,help,progress-1,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
+		{help,progress-1,alias,copy,context-menu,no-drop,dnd-move,default,right_ptr}.$(PREVIEW_SIZE).left.png \
+		{wait-1,openhand,pointer,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
 		{n-resize,s-resize,nw-resize,ne-resize,split_v,zoom,zoom-in,zoom-out,nesw-resize}.$(PREVIEW_SIZE).png \
 		{nwse-resize,ew-resize,ns-resize,split_h}.$(PREVIEW_SIZE).png \
 		{text,vertical-text,move,crosshair,plus,not-allowed}.$(PREVIEW_SIZE).png \
@@ -546,7 +546,7 @@ preview: $(PNG_$(PREVIEW_SIZE)) $(LPNG_$(PREVIEW_SIZE)) wait.$(PREVIEW_SIZE).png
 		{up_arrow,right_arrow,left_arrow}.$(PREVIEW_SIZE).png \
 		preview.png
 	montage -background none -mode concatenate -tile 4x4 -geometry +5+5 \
-	{default,help,progress,no-drop,wait,pencil,zoom-in,context-menu}.$(PREVIEW_SIZE).png \
+	{default,help,progress-1,no-drop,wait-1,pencil,zoom-in,context-menu}.$(PREVIEW_SIZE).png \
 	{pointer,openhand,closedhand,pirate}.$(PREVIEW_SIZE).png \
 	{n-resize,s-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
 	preview-small.png
