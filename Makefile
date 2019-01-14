@@ -24,75 +24,86 @@
 # use or other dealings in this Software without prior written authorization.
 
 SHELL = /bin/bash
-VERSION = 0.6.1
-RSVG_SOURCE = src/theme-main.svg
-LSVG_SOURCE = src/theme-left.svg
+VERSION = 0.7
+COMMON_SOURCE = theme/common-white.svg
+RSVG_SOURCE = theme/right-handed-white.svg
+LSVG_SOURCE = theme/left-handed-white.svg
 SIZE_SMALL=24
 SIZE_MEDIUM=36
 SIZE_LARGE=48
 SIZE_LARGE1=60
 SIZE_LARGE2=72
-CURSORS_SMALL = default.$(SIZE_SMALL) \
-	text.$(SIZE_SMALL) \
-	pointer.$(SIZE_SMALL) \
-	help.$(SIZE_SMALL) \
-	progress.$(SIZE_SMALL) \
-	wait.$(SIZE_SMALL) \
-	copy.$(SIZE_SMALL) \
-	alias.$(SIZE_SMALL) \
-	no-drop.$(SIZE_SMALL) \
-	not-allowed.$(SIZE_SMALL) \
-	split_v.$(SIZE_SMALL) \
-	split_h.$(SIZE_SMALL) \
-	e-resize.$(SIZE_SMALL) \
-	ne-resize.$(SIZE_SMALL) \
-	nw-resize.$(SIZE_SMALL) \
-	n-resize.$(SIZE_SMALL) \
-	se-resize.$(SIZE_SMALL) \
-	sw-resize.$(SIZE_SMALL) \
-	s-resize.$(SIZE_SMALL) \
-	w-resize.$(SIZE_SMALL) \
+COMMON_SMALL = text.$(SIZE_SMALL) \
 	vertical-text.$(SIZE_SMALL) \
-	crosshair.$(SIZE_SMALL) \
 	up_arrow.$(SIZE_SMALL) \
-	context-menu.$(SIZE_SMALL) \
-	ew-resize.$(SIZE_SMALL) \
-	ns-resize.$(SIZE_SMALL) \
-	nesw-resize.$(SIZE_SMALL) \
-	nwse-resize.$(SIZE_SMALL) \
-	pencil.$(SIZE_SMALL) \
-	right_ptr.$(SIZE_SMALL) \
-	zoom.$(SIZE_SMALL) \
-	zoom-in.$(SIZE_SMALL) \
-	zoom-out.$(SIZE_SMALL) \
-	pirate.$(SIZE_SMALL) \
-	X_cursor.$(SIZE_SMALL) \
-	closedhand.$(SIZE_SMALL) \
-	openhand.$(SIZE_SMALL) \
-	color-picker.$(SIZE_SMALL) \
-	plus.$(SIZE_SMALL) \
-	center_ptr.$(SIZE_SMALL) \
-	move.$(SIZE_SMALL) \
-	all-scroll.$(SIZE_SMALL) \
-	dnd-move.$(SIZE_SMALL) \
-	wayland-cursor.$(SIZE_SMALL) \
 	down_arrow.$(SIZE_SMALL) \
-	draft.$(SIZE_SMALL) \
 	left_arrow.$(SIZE_SMALL) \
 	right_arrow.$(SIZE_SMALL) \
-	exchange.$(SIZE_SMALL) \
+	pirate.$(SIZE_SMALL) \
+	based_arrow_up.$(SIZE_SMALL) \
+	based_arrow_down.$(SIZE_SMALL) \
+	ns-resize.$(SIZE_SMALL) \
+	ew-resize.$(SIZE_SMALL) \
+	nwse-resize.$(SIZE_SMALL) \
+	nesw-resize.$(SIZE_SMALL) \
+	move.$(SIZE_SMALL) \
+	plus.$(SIZE_SMALL) \
+	crosshair.$(SIZE_SMALL) \
+	n-resize.$(SIZE_SMALL) \
+	s-resize.$(SIZE_SMALL) \
+	w-resize.$(SIZE_SMALL) \
+	e-resize.$(SIZE_SMALL) \
+	nw-resize.$(SIZE_SMALL) \
+	ne-resize.$(SIZE_SMALL) \
+	sw-resize.$(SIZE_SMALL) \
+	se-resize.$(SIZE_SMALL) \
+	center_ptr.$(SIZE_SMALL) \
+	all-scroll.$(SIZE_SMALL) \
+	not-allowed.$(SIZE_SMALL) \
+	draped_box.$(SIZE_SMALL) \
+	wayland-cursor.$(SIZE_SMALL) \
+	X_cursor.$(SIZE_SMALL) \
 	ul_angle.$(SIZE_SMALL) \
 	ur_angle.$(SIZE_SMALL) \
 	ll_angle.$(SIZE_SMALL) \
 	lr_angle.$(SIZE_SMALL) \
-	based_arrow_down.$(SIZE_SMALL) \
-	based_arrow_up.$(SIZE_SMALL) \
+	split_v.$(SIZE_SMALL) \
+	split_h.$(SIZE_SMALL) \
 	top_tee.$(SIZE_SMALL) \
 	bottom_tee.$(SIZE_SMALL) \
 	left_tee.$(SIZE_SMALL) \
 	right_tee.$(SIZE_SMALL) \
-	draped_box.$(SIZE_SMALL)\
-	coffee_mug.$(SIZE_SMALL)
+	wait.$(SIZE_SMALL)
+COMMON_MEDIUM=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
+COMMON_LARGE=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
+COMMON_LARGE1=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
+COMMON_LARGE2=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
+COMMON_CURSORS=$(COMMON_SMALL:.$(SIZE_SMALL)=)
+PNG_COMMON_SMALL=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_SMALL).png)
+PNG_COMMON_MEDIUM=$(COMMON_MEDIUM:.$(SIZE_MEDIUM)=.$(SIZE_MEDIUM).png)
+PNG_COMMON_LARGE=$(COMMON_LARGE:.$(SIZE_LARGE)=.$(SIZE_LARGE).png)
+PNG_COMMON_LARGE1=$(COMMON_LARGE1:.$(SIZE_LARGE1)=.$(SIZE_LARGE1).png)
+PNG_COMMON_LARGE2=$(COMMON_LARGE2:.$(SIZE_LARGE2)=.$(SIZE_LARGE2).png)
+CURSORS_SMALL = alias.$(SIZE_SMALL) \
+	color-picker.$(SIZE_SMALL) \
+	context-menu.$(SIZE_SMALL) \
+	copy.$(SIZE_SMALL) \
+	default.$(SIZE_SMALL) \
+	help.$(SIZE_SMALL) \
+	pencil.$(SIZE_SMALL) \
+	dnd-move.$(SIZE_SMALL) \
+	zoom.$(SIZE_SMALL) \
+	zoom-in.$(SIZE_SMALL) \
+	zoom-out.$(SIZE_SMALL) \
+	progress.$(SIZE_SMALL) \
+	no-drop.$(SIZE_SMALL) \
+	draft.$(SIZE_SMALL) \
+	right_ptr.$(SIZE_SMALL) \
+	openhand.$(SIZE_SMALL) \
+	closedhand.$(SIZE_SMALL) \
+	pointer.$(SIZE_SMALL) \
+	coffee_mug.$(SIZE_SMALL) \
+	exchange.$(SIZE_SMALL)
 CURSORS_MEDIUM = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
 CURSORS_LARGE = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
 CURSORS_LARGE1 = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
@@ -111,8 +122,8 @@ LCURSORS_SMALL = alias.$(SIZE_SMALL).left \
 	help.$(SIZE_SMALL).left \
 	pencil.$(SIZE_SMALL).left \
 	dnd-move.$(SIZE_SMALL).left \
-	zoom-in.$(SIZE_SMALL).left \
 	zoom.$(SIZE_SMALL).left \
+	zoom-in.$(SIZE_SMALL).left \
 	zoom-out.$(SIZE_SMALL).left \
 	progress.$(SIZE_SMALL).left \
 	no-drop.$(SIZE_SMALL).left \
@@ -141,9 +152,9 @@ WINCURSORS_LARGE = $(WINCURSORS:.cur=_large.cur)
 LWINCURSORS = default_left.cur help_left.cur progress_left.cur pencil_left.cur pointer_left.cur
 LWINCURSORS_LARGE = $(LWINCURSORS:_left.cur=_large_left.cur)
 THEME_NAME = Hackneyed
-THEME_NAME_SMALL = $(THEME_NAME)-$(SIZE_SMALL)x$(SIZE_SMALL)
-THEME_NAME_MEDIUM = $(THEME_NAME)-$(SIZE_MEDIUM)x$(SIZE_MEDIUM)
-THEME_NAME_LARGE = $(THEME_NAME)-$(SIZE_LARGE)x$(SIZE_LARGE)
+THEME_NAME_SMALL = $(THEME_NAME)-$(SIZE_SMALL)px
+THEME_NAME_MEDIUM = $(THEME_NAME)-$(SIZE_MEDIUM)px
+THEME_NAME_LARGE = $(THEME_NAME)-$(SIZE_LARGE)px
 THEME_COMMENT = Windows 3.x-inspired cursors
 THEME_EXAMPLE = default
 THEME_WINDOWS = $(THEME_NAME)-Windows-$(VERSION)
@@ -261,13 +272,13 @@ theme.large.left: all.large.left
 		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME_LARGE)/index.theme
 	./do-symlinks.sh L$(THEME_NAME_LARGE)/cursors
 
-all: $(CURSORS)
+all: $(CURSORS) $(COMMON_CURSORS)
 	rm -rf $(THEME_NAME)
 	mkdir -p $(THEME_NAME)/cursors
 	cp $(CURSORS) $(THEME_NAME)/cursors
 #	echo \(trim-cursor-files "\"$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
-all.left: $(CURSORS) $(LCURSORS)
+all.left: $(CURSORS) $(LCURSORS) $(COMMON_CURSORS)
 	rm -rf L$(THEME_NAME)
 	mkdir -p L$(THEME_NAME)/cursors
 	cp $(CURSORS) L$(THEME_NAME)/cursors
@@ -276,28 +287,28 @@ all.left: $(CURSORS) $(LCURSORS)
 	done
 #	echo \(trim-cursor-files "\"L$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
-all.small: $(CURSORS_SMALL)
+all.small: $(CURSORS_SMALL) $(COMMON_SMALL)
 	rm -rf $(THEME_NAME_SMALL)
 	mkdir -p $(THEME_NAME_SMALL)/cursors
 	for l in $(CURSORS_SMALL); do \
 		cp $$l $(THEME_NAME_SMALL)/cursors/$${l/.$(SIZE_SMALL)/}; \
 	done
 
-all.medium: $(CURSORS_MEDIUM)
+all.medium: $(CURSORS_MEDIUM) $(COMMON_MEDIUM)
 	rm -rf $(THEME_NAME_MEDIUM)
 	mkdir -p $(THEME_NAME_MEDIUM)/cursors
 	for l in $(CURSORS_MEDIUM); do \
 		cp $$l $(THEME_NAME_MEDIUM)/cursors/$${l/.$(SIZE_MEDIUM)/}; \
 	done
 
-all.large: $(CURSORS_LARGE)
+all.large: $(CURSORS_LARGE) $(COMMON_LARGE)
 	rm -rf $(THEME_NAME_LARGE)
 	mkdir -p $(THEME_NAME_LARGE)/cursors
 	for l in $(CURSORS_LARGE); do \
 		cp $$l $(THEME_NAME_LARGE)/cursors/$${l/.$(SIZE_LARGE)/}; \
 	done
 
-all.small.left: $(CURSORS_SMALL) $(LCURSORS_SMALL)
+all.small.left: $(CURSORS_SMALL) $(LCURSORS_SMALL) $(COMMON_SMALL)
 	rm -rf L$(THEME_NAME_SMALL)
 	mkdir -p L$(THEME_NAME_SMALL)/cursors
 	for l in $(CURSORS_SMALL); do \
@@ -307,7 +318,7 @@ all.small.left: $(CURSORS_SMALL) $(LCURSORS_SMALL)
 		cp $$l L$(THEME_NAME_SMALL)/cursors/$${l/.$(SIZE_SMALL).left/}; \
 	done
 
-all.medium.left: $(CURSORS_MEDIUM) $(LCURSORS_MEDIUM)
+all.medium.left: $(CURSORS_MEDIUM) $(LCURSORS_MEDIUM) $(COMMON_MEDIUM)
 	rm -rf L$(THEME_NAME_MEDIUM)
 	mkdir -p L$(THEME_NAME_MEDIUM)/cursors
 	for l in $(CURSORS_MEDIUM); do \
@@ -317,7 +328,7 @@ all.medium.left: $(CURSORS_MEDIUM) $(LCURSORS_MEDIUM)
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$${l/.$(SIZE_MEDIUM).left/}; \
 	done
 
-all.large.left: $(CURSORS_LARGE) $(LCURSORS_LARGE)
+all.large.left: $(CURSORS_LARGE) $(LCURSORS_LARGE) $(COMMON_LARGE)
 	rm -rf L$(THEME_NAME_LARGE)
 	mkdir -p L$(THEME_NAME_LARGE)/cursors
 	for l in $(CURSORS_LARGE); do \
@@ -333,11 +344,31 @@ all.large.left: $(CURSORS_LARGE) $(LCURSORS_LARGE)
 %_left.in: hotspots/*/%_left.in
 	cat hotspots/{$(SIZES)}/$@ > $@
 
-%.png: $(RSVG_SOURCE)
-	./make-png.sh src=$< target=$$(cut -d. -f1 <<< $@) size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@
+%.png: $(RSVG_SOURCE) $(COMMON_SOURCE)
+	{\
+		target=$$(cut -d. -f1 <<< $@); \
+		src=$<; \
+		for c in $(COMMON_CURSORS); do \
+			if [ "$$target" = "$$c" ]; then \
+				export src=$(COMMON_SOURCE); \
+				break; \
+			fi; \
+		done; \
+		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@; \
+	}
 
-%.left.png: $(LSVG_SOURCE)
-	./make-png.sh src=$< target=$$(cut -d. -f1 <<< $@) size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@
+%.left.png: $(LSVG_SOURCE) $(COMMON_SOURCE)
+	{\
+		target=$$(cut -d. -f1 <<< $@); \
+		src=$<; \
+		for c in $(COMMON_CURSORS); do \
+			if [ "$$target" = "$$c" ]; then \
+				export src=$(COMMON_SOURCE); \
+				break; \
+			fi; \
+		done; \
+		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@; \
+	}
 
 %: %.in %.$(SIZE_SMALL).png %.$(SIZE_MEDIUM).png %.$(SIZE_LARGE).png %.$(SIZE_LARGE1).png %.$(SIZE_LARGE2).png
 	$(XCURSORGEN) $< $@
