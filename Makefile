@@ -439,31 +439,31 @@ ico2cur: ico2cur.c
 		./ico2cur -x $$x -y $$y $<; \
 	}
 
-wait.$(SIZE_SMALL).in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.$(SIZE_SMALL).in: $(COMMON_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
 	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_SMALL) \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
-wait.$(SIZE_MEDIUM).in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.$(SIZE_MEDIUM).in: $(COMMON_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
 	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_MEDIUM) \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
-wait.$(SIZE_LARGE).in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.$(SIZE_LARGE).in: $(COMMON_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
 	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_LARGE) \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
-wait.$(SIZE_LARGE1).in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.$(SIZE_LARGE1).in: $(COMMON_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
 	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_LARGE1) \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
 	frames=$(WAIT_FRAMES)
 
-wait.$(SIZE_LARGE2).in: $(RSVG_SOURCE) make-animated-cursor.sh
+wait.$(SIZE_LARGE2).in: $(COMMON_SOURCE) make-animated-cursor.sh
 	@echo '>>> $@'
 	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_LARGE2) \
 	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
@@ -565,11 +565,14 @@ progress.$(SIZE_MEDIUM).left: progress_left.$(SIZE_MEDIUM).in
 progress.$(SIZE_LARGE).left: progress_left.$(SIZE_LARGE).in
 	$(XCURSORGEN) $< $@
 
-preview: $(PNG_MEDIUM) $(LPNG_MEDIUM) wait-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
+wait-preview.$(PREVIEW_SIZE).png: $(COMMON_SOURCE)
+	./make-png.sh target=wait-1 src=$< size=$(PREVIEW_SIZE) base_size=$(SIZE_SMALL) output=$@
+
+preview: $(PNG_MEDIUM) $(LPNG_MEDIUM) wait-preview.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
 	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
 		{default,help,progress-1,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
 		{help,progress-1,alias,copy,context-menu,no-drop,dnd-move,default,right_ptr}.$(PREVIEW_SIZE).left.png \
-		{wait-1,openhand,pointer,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
+		{wait-preview,openhand,pointer,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
 		{n-resize,s-resize,nw-resize,ne-resize,split_v,zoom,zoom-in,zoom-out,nesw-resize}.$(PREVIEW_SIZE).png \
 		{nwse-resize,ew-resize,ns-resize,split_h}.$(PREVIEW_SIZE).png \
 		{text,vertical-text,move,crosshair,plus,not-allowed}.$(PREVIEW_SIZE).png \
