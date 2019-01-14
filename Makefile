@@ -218,14 +218,14 @@ dist.large.left: theme.large.left
 
 theme: all
 	sed "s/THEME_NAME/$(THEME_NAME)/1; \
-		s/THEME_DESC/multi-sized/1; \
+		s/THEME_DESC/scalable/1; \
 		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
 		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > $(THEME_NAME)/index.theme
 	./do-symlinks.sh $(THEME_NAME)/cursors
 
 theme.left: all.left
 	sed "s/THEME_NAME/$(THEME_NAME)/1; \
-		s/THEME_DESC/left-handed, multi-sized/1; \
+		s/THEME_DESC/left-handed, scalable/1; \
 		s/THEME_COMMENT/$(THEME_COMMENT)/1; \
 		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME)/index.theme
 	./do-symlinks.sh L$(THEME_NAME)/cursors
@@ -275,13 +275,13 @@ theme.large.left: all.large.left
 all: $(CURSORS) $(COMMON_CURSORS)
 	rm -rf $(THEME_NAME)
 	mkdir -p $(THEME_NAME)/cursors
-	cp $(CURSORS) $(THEME_NAME)/cursors
+	cp $(CURSORS) $(COMMON_CURSORS) $(THEME_NAME)/cursors
 #	echo \(trim-cursor-files "\"$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
-all.left: $(CURSORS) $(LCURSORS) $(COMMON_CURSORS)
+all.left: $(LCURSORS) $(COMMON_CURSORS)
 	rm -rf L$(THEME_NAME)
 	mkdir -p L$(THEME_NAME)/cursors
-	cp $(CURSORS) L$(THEME_NAME)/cursors
+	cp $(COMMON_CURSORS) L$(THEME_NAME)/cursors
 	for l in $(LCURSORS); do \
 		cp $$l L$(THEME_NAME)/cursors/$${l/.left/}; \
 	done
@@ -290,59 +290,59 @@ all.left: $(CURSORS) $(LCURSORS) $(COMMON_CURSORS)
 all.small: $(CURSORS_SMALL) $(COMMON_SMALL)
 	rm -rf $(THEME_NAME_SMALL)
 	mkdir -p $(THEME_NAME_SMALL)/cursors
-	for l in $(CURSORS_SMALL); do \
+	for l in $(CURSORS_SMALL) $(COMMON_SMALL); do \
 		cp $$l $(THEME_NAME_SMALL)/cursors/$${l/.$(SIZE_SMALL)/}; \
 	done
 
 all.medium: $(CURSORS_MEDIUM) $(COMMON_MEDIUM)
 	rm -rf $(THEME_NAME_MEDIUM)
 	mkdir -p $(THEME_NAME_MEDIUM)/cursors
-	for l in $(CURSORS_MEDIUM); do \
+	for l in $(CURSORS_MEDIUM) $(COMMON_MEDIUM); do \
 		cp $$l $(THEME_NAME_MEDIUM)/cursors/$${l/.$(SIZE_MEDIUM)/}; \
 	done
 
 all.large: $(CURSORS_LARGE) $(COMMON_LARGE)
 	rm -rf $(THEME_NAME_LARGE)
 	mkdir -p $(THEME_NAME_LARGE)/cursors
-	for l in $(CURSORS_LARGE); do \
+	for l in $(CURSORS_LARGE) $(COMMON_LARGE); do \
 		cp $$l $(THEME_NAME_LARGE)/cursors/$${l/.$(SIZE_LARGE)/}; \
 	done
 
-all.small.left: $(CURSORS_SMALL) $(LCURSORS_SMALL) $(COMMON_SMALL)
+all.small.left: $(LCURSORS_SMALL) $(COMMON_SMALL)
 	rm -rf L$(THEME_NAME_SMALL)
 	mkdir -p L$(THEME_NAME_SMALL)/cursors
-	for l in $(CURSORS_SMALL); do \
+	for l in $(COMMON_SMALL); do \
 		cp $$l L$(THEME_NAME_SMALL)/cursors/$${l/.$(SIZE_SMALL)/}; \
 	done
 	for l in $(LCURSORS_SMALL); do \
 		cp $$l L$(THEME_NAME_SMALL)/cursors/$${l/.$(SIZE_SMALL).left/}; \
 	done
 
-all.medium.left: $(CURSORS_MEDIUM) $(LCURSORS_MEDIUM) $(COMMON_MEDIUM)
+all.medium.left: $(LCURSORS_MEDIUM) $(COMMON_MEDIUM)
 	rm -rf L$(THEME_NAME_MEDIUM)
 	mkdir -p L$(THEME_NAME_MEDIUM)/cursors
-	for l in $(CURSORS_MEDIUM); do \
+	for l in $(COMMON_MEDIUM); do \
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$${l/.$(SIZE_MEDIUM)/}; \
 	done
 	for l in $(LCURSORS_MEDIUM); do \
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$${l/.$(SIZE_MEDIUM).left/}; \
 	done
 
-all.large.left: $(CURSORS_LARGE) $(LCURSORS_LARGE) $(COMMON_LARGE)
+all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 	rm -rf L$(THEME_NAME_LARGE)
 	mkdir -p L$(THEME_NAME_LARGE)/cursors
-	for l in $(CURSORS_LARGE); do \
+	for l in $(COMMON_LARGE); do \
 		cp $$l L$(THEME_NAME_LARGE)/cursors/$${l/.$(SIZE_LARGE)/}; \
 	done
 	for l in $(LCURSORS_LARGE); do \
 		cp $$l L$(THEME_NAME_LARGE)/cursors/$${l/.$(SIZE_LARGE).left/}; \
 	done
 
-%.in: hotspots/*/%.in
-	cat hotspots/{$(SIZES)}/$@ > $@
+%.in: theme/*/%.in
+	cat theme/{$(SIZES)}/$@ > $@
 
-%_left.in: hotspots/*/%_left.in
-	cat hotspots/{$(SIZES)}/$@ > $@
+%_left.in: theme/*/%_left.in
+	cat theme/{$(SIZES)}/$@ > $@
 
 %.png: $(RSVG_SOURCE) $(COMMON_SOURCE)
 	{\
@@ -376,22 +376,22 @@ all.large.left: $(CURSORS_LARGE) $(LCURSORS_LARGE) $(COMMON_LARGE)
 %.left: %_left.in %.$(SIZE_SMALL).left.png %.$(SIZE_MEDIUM).left.png %.$(SIZE_LARGE).left.png %.$(SIZE_LARGE1).left.png %.$(SIZE_LARGE2).left.png
 	$(XCURSORGEN) $< $@
 
-%.$(SIZE_SMALL): hotspots/$(SIZE_SMALL)/%.in %.$(SIZE_SMALL).png
+%.$(SIZE_SMALL): theme/$(SIZE_SMALL)/%.in %.$(SIZE_SMALL).png
 	$(XCURSORGEN) $< $@
 
-%.$(SIZE_MEDIUM): hotspots/$(SIZE_MEDIUM)/%.in %.$(SIZE_MEDIUM).png
+%.$(SIZE_MEDIUM): theme/$(SIZE_MEDIUM)/%.in %.$(SIZE_MEDIUM).png
 	$(XCURSORGEN) $< $@
 
-%.$(SIZE_LARGE): hotspots/$(SIZE_LARGE)/%.in %.$(SIZE_LARGE).png
+%.$(SIZE_LARGE): theme/$(SIZE_LARGE)/%.in %.$(SIZE_LARGE).png
 	$(XCURSORGEN) $< $@
 
-%.$(SIZE_SMALL).left: hotspots/$(SIZE_SMALL)/%_left.in %.$(SIZE_SMALL).left.png
+%.$(SIZE_SMALL).left: theme/$(SIZE_SMALL)/%_left.in %.$(SIZE_SMALL).left.png
 	$(XCURSORGEN) $< $@
 
-%.$(SIZE_MEDIUM).left: hotspots/$(SIZE_MEDIUM)/%_left.in %.$(SIZE_MEDIUM).left.png
+%.$(SIZE_MEDIUM).left: theme/$(SIZE_MEDIUM)/%_left.in %.$(SIZE_MEDIUM).left.png
 	$(XCURSORGEN) $< $@
 
-%.$(SIZE_LARGE).left: hotspots/$(SIZE_LARGE)/%_left.in %.$(SIZE_LARGE).left.png
+%.$(SIZE_LARGE).left: theme/$(SIZE_LARGE)/%_left.in %.$(SIZE_LARGE).left.png
 	$(XCURSORGEN) $< $@
 
 ico2cur: ico2cur.c
@@ -417,15 +417,15 @@ ico2cur: ico2cur.c
 %_left.ico: %.$(SIZE_SMALL).left.png
 	convert -background none -extent 32x32 $< $@
 
-%.cur: %.ico hotspots/$(SIZE_SMALL)/%.in ico2cur
+%.cur: %.ico theme/$(SIZE_SMALL)/%.in ico2cur
 	@{\
-		set -- $$(cat hotspots/$(SIZE_SMALL)/$(@:.cur=.in)); \
+		set -- $$(cat theme/$(SIZE_SMALL)/$(@:.cur=.in)); \
 		./ico2cur -x $$2 -y $$3 $<; \
 	}
 
 %_large.cur: %_large.ico ico2cur
 	{\
-		set -- $$(cat hotspots/$(SIZE_SMALL)/$(@:_large.cur=.in)); \
+		set -- $$(cat theme/$(SIZE_SMALL)/$(@:_large.cur=.in)); \
 		x=$$(( (32 * $$2) / ($(SIZE_SMALL) - 1) )); \
 		y=$$(( (32 * $$3) / ($(SIZE_SMALL) - 1) )); \
 		./ico2cur -x $$x -y $$y $<; \
@@ -433,7 +433,7 @@ ico2cur: ico2cur.c
 
 %_large_left.cur: %_large_left.ico ico2cur
 	@{\
-		set -- $$(cat hotspots/$(SIZE_SMALL)/$(@:_large_left.cur=_left.in)); \
+		set -- $$(cat theme/$(SIZE_SMALL)/$(@:_large_left.cur=_left.in)); \
 		x=$$(( (32 * $$2) / ($(SIZE_SMALL) - 1) )); \
 		y=$$(( (32 * $$3) / ($(SIZE_SMALL) - 1) )); \
 		./ico2cur -x $$x -y $$y $<; \
