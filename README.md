@@ -22,38 +22,38 @@ Extra functionality has additional dependencies:
 
 Production targets (all of them generate tarballs for distribution):
 
-* `pack`: build both multi-sized themes (left- and right-handed) into a single package;
-* `dist`: build the multi-sized, right-handed theme;
-* `dist.left`: build the multi-sized, left-handed theme;
-* `dist.<size>`, where `size` can be small, medium or large: build a single-sized, right-handed theme of the specified size;
-* `dist.<size>.left`: build a single-sized, left-handed theme of the specified size;
+* `pack`: build both scalable themes (left- and right-handed) into a single package;
+* `dist`: build the scalable, right-handed theme;
+* `dist.left`: build the scalable, left-handed theme;
+* `dist.<size>`, where `size` can be small, medium or large: build a fixed-size, right-handed theme of the specified size;
+* `dist.<size>.left`: build a fixed-size, left-handed theme of the specified size;
 * `windows-cursors` for Windows. These are high color cursors and will only work on Windows XP and later.
 
-`make all-dist` targets all of the above (except `windows-cursors`), including all single-sized themes in all available sizes.
+`make all-dist` targets all of the above (except `windows-cursors`), including all fixed-size themes in all available sizes.
 
 `small`, `medium` and `large` are currently defined as 24, 36 and 48, respectively. The making of individual cursors recognizes the integer argument only (see below).
 
 The targets described below are meant for debugging and do not generate tarballs:
 
-* `theme`: make the multi-sized, right-handed theme;
-* `theme.left`: make the multi-sized, right-handed theme;
-* `theme.<size>`: make a single-sized, right-handed theme of the specified size;
-* `theme.<size>.left`: make a single-sized, left-handed theme of the specified size.
+* `theme`: make the scalable, right-handed theme;
+* `theme.left`: make the scalable, right-handed theme;
+* `theme.<size>`: make a fixed-size, right-handed theme of the specified size;
+* `theme.<size>.left`: make a fixed-size, left-handed theme of the specified size.
 
 All of them run `do-symlinks.sh` when finished. The targets below do not:
 
-* `all`: make the multi-sized, right-handed theme;
-* `all.<size>`: make a single-sized, right-handed theme of the specified size;
-* `all.left`: make the multi-sized, left-handed theme;
-* `all.<size>.left`: make a single-sized, left-handed theme of the specified size.
+* `all`: make the scalable, right-handed theme;
+* `all.<size>`: make a fixed-size, right-handed theme of the specified size;
+* `all.left`: make the scalable, left-handed theme;
+* `all.<size>.left`: make a fixed-size, left-handed theme of the specified size.
 
 Individual cursors can be made with `make <cursor_name>.<size in pixels>.<orientation>`, e.g.:
 
 * `make default.24.left` for a left-handed, 24px `default` cursor;
 * `make default.24` for a right-handed, 24px cursor;
-* `make default.left` for a multi-sized, left-handed cursor;
+* `make default.left` for a scalable, left-handed cursor;
 * `make default.24.png` for a 24px PNG only. PNG sizes aren't hardcoded, so you can specify any size you want;
-* or simply `make default` for a multi-sized, right-handed cursor.
+* or simply `make default` for a scalable, right-handed cursor.
 
 Parallel jobs (`-j`) are recommended (Inkscape is _slow_).
 
