@@ -24,9 +24,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="16"
-     inkscape:cx="123.72188"
-     inkscape:cy="127.73278"
+     inkscape:zoom="32"
+     inkscape:cx="200.30025"
+     inkscape:cy="199.11594"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -136,7 +136,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
         <cc:license
            rdf:resource="https://en.wikipedia.org/wiki/MIT_License" />
       </cc:Work>
@@ -1038,8 +1038,8 @@
        id="path1793"
        inkscape:connector-curvature="0" />
     <path
-       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.93750012;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       d="m 184.04073,953.0088 -4.22058,4.2187 -4.45679,4.4532 4.22058,4.2224 h 0.002 l 0.23438,0.2344 4.22058,4.2224 4.45496,-4.4568 h -0.005 l 4.22607,-4.2188 -4.22058,-4.2205 -0.23621,-0.2363 z m -4.22058,4.455 h 2.82715 l -0.002,2.8216 h -2.82532 z m 5.63782,0 h 2.80151 v 2.8271 h -2.80334 z m -5.63782,5.6323 h 2.82166 l -0.002,2.807 h -2.81983 z m 5.63599,0 h 2.80334 v 2.807 h -2.80517 z"
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.96108818;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 184.0712,952.78802 -4.32646,4.32516 -4.56859,4.56558 4.32646,4.32895 h 0.002 l 0.24026,0.24032 4.32647,4.32895 4.56671,-4.56927 h -0.005 l 4.33209,-4.32527 -4.32646,-4.32699 -0.24213,-0.24227 z m -4.32646,4.56743 h 2.89808 l -0.002,2.8928 h -2.89619 z m 5.77926,0 h 2.87179 v 2.89844 h -2.87366 z m -5.77926,5.77442 h 2.89245 l -0.002,2.87784 h -2.89056 z m 5.77739,0 h 2.87366 v 2.87784 h -2.87554 z"
        id="path1821"
        inkscape:connector-curvature="0" />
     <circle
