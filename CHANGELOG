@@ -1,3 +1,9 @@
+0.7:
+- actually put effort into aligning to pixels
+- redo mostly everything as a result
+- steal pointer from X11, steal zoom again from Breeze
+- dark theme ofc
+
 0.6.1
 - progress: animate hourglass
 - wait: redo animation because it sucked
