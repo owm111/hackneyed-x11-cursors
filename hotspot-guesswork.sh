@@ -78,10 +78,10 @@ base_hotspot_y=$3
 
 for s in $sizes; do
 	if [ "$orientation" ]; then
-		config_file=hotspots/${s}/${target}_${orientation}.in
+		config_file=theme/${s}/${target}_${orientation}.in
 		source_png=${target}.${s}.${orientation}.png
 	else
-		config_file=hotspots/${s}/${target}.in
+		config_file=theme/${s}/${target}.in
 		source_png=${target}.${s}.png
 	fi
 	if [ -e $config_file -a "$replace" = "0" ]; then
@@ -96,7 +96,7 @@ for s in $sizes; do
 	output="${s} ${hotspot_x} ${hotspot_y} $source_png"
 	echo "$config_file: $output"
 	[ "$dry_run" = "0" ] && echo "${output}" >> $config_file
-	base_size=$((base_size + s))
-	base_hotspot_x=$((hotspot_x + base_hotspot_x))
-	base_hotspot_y=$((hotspot_y + base_hotspot_y))
+#	base_size=$((base_size + s))
+#	base_hotspot_x=$((hotspot_x + base_hotspot_x))
+#	base_hotspot_y=$((hotspot_y + base_hotspot_y))
 done
