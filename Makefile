@@ -568,7 +568,7 @@ progress.$(SIZE_LARGE).left: progress_left.$(SIZE_LARGE).in
 wait-preview.$(PREVIEW_SIZE).png: $(COMMON_SOURCE)
 	./make-png.sh target=wait-1 src=$< size=$(PREVIEW_SIZE) base_size=$(SIZE_SMALL) output=$@
 
-preview: $(PNG_MEDIUM) $(LPNG_MEDIUM) wait-preview.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
+preview: $(COMMON_MEDIUM) $(PNG_MEDIUM) $(LPNG_MEDIUM) wait-preview.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
 	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
 		{default,help,progress-1,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
 		{help,progress-1,alias,copy,context-menu,no-drop,dnd-move,default,right_ptr}.$(PREVIEW_SIZE).left.png \
@@ -580,7 +580,7 @@ preview: $(PNG_MEDIUM) $(LPNG_MEDIUM) wait-preview.$(PREVIEW_SIZE).png progress-
 		{up_arrow,right_arrow,left_arrow}.$(PREVIEW_SIZE).png \
 		preview.png
 	montage -background none -mode concatenate -tile 4x4 -geometry +5+5 \
-	{default,help,progress-1,no-drop,wait-1,pencil,zoom-in,context-menu}.$(PREVIEW_SIZE).png \
+	{default,help,progress-1,no-drop,wait-preview,pencil,zoom-in,context-menu}.$(PREVIEW_SIZE).png \
 	{pointer,openhand,closedhand,pirate}.$(PREVIEW_SIZE).png \
 	{n-resize,s-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
 	preview-small.png
@@ -591,10 +591,14 @@ clean:
 	rm -f $(CURSORS_SMALL)
 	rm -f $(CURSORS_MEDIUM)
 	rm -f $(CURSORS_LARGE)
+	rm -f $(CURSORS_LARGE1)
+	rm -f $(CURSORS_LARGE2)
 	rm -f $(LCURSORS)
 	rm -f $(LCURSORS_SMALL)
 	rm -f $(LCURSORS_MEDIUM)
 	rm -f $(LCURSORS_LARGE)
+	rm -f $(LCURSORS_LARGE1)
+	rm -f $(LCURSORS_LARGE2)
 	rm -f $(PNG_SMALL)
 	rm -f $(PNG_MEDIUM)
 	rm -f $(PNG_LARGE)
@@ -605,14 +609,25 @@ clean:
 	rm -f $(LPNG_LARGE)
 	rm -f $(LPNG_LARGE1)
 	rm -f $(LPNG_LARGE2)
+	rm -f $(COMMON_CURSORS)
+	rm -f $(COMMON_SMALL)
+	rm -f $(COMMON_MEDIUM)
+	rm -f $(COMMON_LARGE)
+	rm -f $(COMMON_LARGE1)
+	rm -f $(COMMON_LARGE2)
+	rm -f $(PNG_COMMON_SMALL)
+	rm -f $(PNG_COMMON_MEDIUM)
+	rm -f $(PNG_COMMON_LARGE)
+	rm -f $(PNG_COMMON_LARGE1)
+	rm -f $(PNG_COMMON_LARGE2)
 	rm -f $(WINCURSORS)
 	rm -f $(WINCURSORS_LARGE)
 	rm -f $(LWINCURSORS)
 	rm -f $(LWINCURSORS_LARGE)
 	rm -f *.in ico2cur
+	rm -f *.32*.png
 	rm -f wait*.png
 	rm -f progress*.png
-	rm -f *.ico
 
 .PHONY: all all-dist all.left all.small all.medium all.large all.small.left all.medium.left all.large.left \
 	clean dist dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left \
