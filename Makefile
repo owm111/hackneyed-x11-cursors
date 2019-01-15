@@ -414,6 +414,30 @@ ico2cur: ico2cur.c
 %.ico: %.$(SIZE_SMALL).png
 	convert -background none -extent 32x32 $< $@
 
+wait.ico:
+	./make-png.sh target=wait-1 base_size=24 size=24 src=$(COMMON_SOURCE) output=wait_ico.png
+	convert -background none -extent 32x32 wait_ico.png $@
+
+wait_large.ico:
+	./make-png.sh target=wait-1 base_size=24 size=32 src=$(COMMON_SOURCE) output=wait_large_ico.png
+	convert -background none wait_large_ico.png $@
+
+progress.ico:
+	./make-png.sh target=progress-1 base_size=24 size=24 src=$(RSVG_SOURCE) output=progress_ico.png
+	convert -background none -extent 32x32 progress_ico.png $@
+
+progress_large.ico:
+	./make-png.sh target=progress-1 base_size=24 size=32 src=$(RSVG_SOURCE) output=progress_large_ico.png
+	convert -background none progress_large_ico.png $@
+
+progress_left.ico:
+	./make-png.sh target=progress-1 base_size=24 size=24 src=$(LSVG_SOURCE) output=progress_left_ico.png
+	convert -background none -extent 32x32 progress_left_ico.png $@
+
+progress_large_left.ico:
+	./make-png.sh target=progress-1 base_size=24 size=32 src=$(LSVG_SOURCE) output=progress_large_left_ico.png
+	convert -background none progress_large_left_ico.png $@
+
 %_left.ico: %.$(SIZE_SMALL).left.png
 	convert -background none -extent 32x32 $< $@
 
@@ -626,8 +650,8 @@ clean:
 	rm -f $(LWINCURSORS_LARGE)
 	rm -f *.in ico2cur
 	rm -f *.32*.png
-	rm -f wait*.png
-	rm -f progress*.png
+	rm -f progress*.png wait*.png
+	rm -f *_ico.png
 
 .PHONY: all all-dist all.left all.small all.medium all.large all.small.left all.medium.left all.large.left \
 	clean dist dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left \
