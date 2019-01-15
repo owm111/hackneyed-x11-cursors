@@ -578,12 +578,12 @@ preview: $(COMMON_MEDIUM) $(PNG_MEDIUM) $(LPNG_MEDIUM) wait-preview.$(PREVIEW_SI
 		{text,vertical-text,move,crosshair,plus,not-allowed}.$(PREVIEW_SIZE).png \
 		{pirate,X_cursor,wayland-cursor,draft,pencil,color-picker}.$(PREVIEW_SIZE).png \
 		{up_arrow,right_arrow,left_arrow}.$(PREVIEW_SIZE).png \
-		preview.png
+		preview-$(THEME_NAME).png
 	montage -background none -mode concatenate -tile 4x4 -geometry +5+5 \
 	{default,help,progress-1,no-drop,wait-preview,pencil,zoom-in,context-menu}.$(PREVIEW_SIZE).png \
 	{pointer,openhand,closedhand,pirate}.$(PREVIEW_SIZE).png \
 	{n-resize,s-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
-	preview-small.png
+	preview-small-$(THEME_NAME).png
 
 clean:
 	rm -rf $(THEME_WINDOWS) $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_SMALL) $(THEME_NAME_MEDIUM) $(THEME_NAME_LARGE) L$(THEME_NAME_SMALL) L$(THEME_NAME_MEDIUM) L$(THEME_NAME_LARGE)
