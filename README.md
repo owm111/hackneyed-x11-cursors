@@ -1,4 +1,5 @@
-![hackneyed-preview](https://gitlab.com/Enthymeme/hackneyed-x11-cursors/raw/master/preview.png "The sands of time are running out for you, bro")
+![hackneyed-light-preview](preview-Hackneyed.png "The sands of time are running out for you, bro")
+![hackneyed-dark-preview](preview-Hackneyed-Dark.png "SO DAAAARK! SO PUUUUURE!")
 
 Overview
 --------
