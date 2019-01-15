@@ -68,12 +68,12 @@ rm -f ${target}.${size}.in
 center=$(( (size - 1) / 2 ))
 
 variant=${target#*.}
-hotspot_src=hotspots/${size}/${target}.in
+hotspot_src=theme/${size}/${target}.in
 hotspot_dest=${target}.${size}.in
 [ "$variant" = "$target" ] && unset variant
 if [ "$variant" ]; then
 	target=${target%.*}
-	hotspot_src=hotspots/${size}/${target}_${variant}.in
+	hotspot_src=theme/${size}/${target}_${variant}.in
 	hotspot_dest=${target}_${variant}.${size}.in
 fi
 
