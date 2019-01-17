@@ -24,7 +24,7 @@
 # use or other dealings in this Software without prior written authorization.
 
 SHELL = /bin/bash
-VERSION = 0.7
+VERSION = 0.7.1
 COMMON_SOURCE = theme/common-white.svg
 RSVG_SOURCE = theme/right-handed-white.svg
 LSVG_SOURCE = theme/left-handed-white.svg
@@ -651,7 +651,7 @@ clean:
 	rm -f *.in ico2cur
 	rm -f *.32*.png
 	rm -f progress*.png wait*.png
-	rm -f *_ico.png
+	rm -f *_ico.png *.ico
 
 .PHONY: all all-dist all.left all.small all.medium all.large all.small.left all.medium.left all.large.left \
 	clean dist dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left \
