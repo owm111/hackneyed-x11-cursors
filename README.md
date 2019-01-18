@@ -4,7 +4,7 @@
 Overview
 --------
 
-Hackneyed is a scalable cursor theme mildly resembing old Windows 3.x/NT 3.x cursors. Left-handed pointers are available, as well.
+Hackneyed is a scalable cursor theme mildly resembing old Windows 3.x/NT 3.x cursors. Dark and left-handed versions are also available.
 
 
 Building
@@ -58,7 +58,12 @@ Individual cursors can be made with `make <cursor_name>.<size in pixels>.<orient
 
 Parallel jobs (`-j`) are recommended (Inkscape is _slow_).
 
-If you don't feel like building it from source, grab the latest builds from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/) or from [Gitlab](https://gitlab.com/Enthymeme/hackneyed-x11-cursors/tags).
+If you don't feel like building it from source, grab the latet builds from the artwork page on [openDesktop.org](https://www.opendesktop.org/p/999998/) or from [Gitlab](https://gitlab.com/Enthymeme/hackneyed-x11-cursors/tags).
+
+To build the dark theme, tell `make` to use the dark versions of `COMMON_SOURCE`, `RSVG_SOURCE` and `LSVG_SOURCE`, and change `THEME_NAME`:
+
+`$ make -B THEME_NAME=Hackneyed-Dark COMMON_SOURCE=theme/common-dark.svg RSVG_SOURCE=theme/right-handed-dark.svg LSVG_SOURCE=theme/left-handed-dark.svg <target>`
+
 
 Installation
 ------------
