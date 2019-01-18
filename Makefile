@@ -159,7 +159,7 @@ THEME_COMMENT = Windows 3.x-inspired cursors
 THEME_EXAMPLE = default
 THEME_WINDOWS = $(THEME_NAME)-Windows-$(VERSION)
 SIZES ?= $(SIZE_SMALL),$(SIZE_MEDIUM),$(SIZE_LARGE),$(SIZE_LARGE1),$(SIZE_LARGE2)
-PREVIEW_SIZE = $(SIZE_MEDIUM)
+PREVIEW_SIZE = $(SIZE_SMALL)
 XCURSORGEN = xcursorgen
 .DEFAULT_GOAL = all-dist
 PREFIX ?= /usr/local
@@ -592,11 +592,11 @@ progress.$(SIZE_LARGE).left: progress_left.$(SIZE_LARGE).in
 wait-preview.$(PREVIEW_SIZE).png: $(COMMON_SOURCE)
 	./make-png.sh target=wait-1 src=$< size=$(PREVIEW_SIZE) base_size=$(SIZE_SMALL) output=$@
 
-preview: $(COMMON_MEDIUM) $(PNG_MEDIUM) $(LPNG_MEDIUM) wait-preview.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
+preview: $(COMMON_SMALL) $(PNG_SMALL) $(LPNG_SMALL) wait-preview.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
 	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
 		{default,help,progress-1,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
 		{help,progress-1,alias,copy,context-menu,no-drop,dnd-move,default,right_ptr}.$(PREVIEW_SIZE).left.png \
-		{wait-preview,openhand,pointer,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
+		{wait-preview,pointer,openhand,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
 		{n-resize,s-resize,nw-resize,ne-resize,split_v,zoom,zoom-in,zoom-out,nesw-resize}.$(PREVIEW_SIZE).png \
 		{nwse-resize,ew-resize,ns-resize,split_h}.$(PREVIEW_SIZE).png \
 		{text,vertical-text,move,crosshair,plus,not-allowed}.$(PREVIEW_SIZE).png \
