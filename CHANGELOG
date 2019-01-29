@@ -1,3 +1,8 @@
+0.7.2:
+- revert pointer to a standard pointing hand
+- get pirate and pencil from Breeze
+- minor misaligment fixes
+
 0.7.1:
 - enlarge hands by a few pixels, they were way too tiny
 
