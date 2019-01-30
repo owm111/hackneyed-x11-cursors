@@ -2,6 +2,7 @@
 - revert pointer to a standard pointing hand
 - get pirate and pencil from Breeze
 - minor misaligment fixes
+- double down on the horn hand sign for wayland-cursor
 
 0.7.1:
 - enlarge hands by a few pixels, they were way too tiny
