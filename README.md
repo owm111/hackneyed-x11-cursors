@@ -131,11 +131,11 @@ inherits=Hackneyed
 
 Known bugs
 ----------
-The bugs described below are NotMyProblem™ and should be dealt with by upstream:
+The bugs described below are NotMyProblem^tm and should be dealt with by upstream:
 
 - **Xfce:** There seems to be a race condition in which the session manager loads user settings after starting the window manager, resulting in mixed up cursors. Restarting Xfwm4 (with `xfwm4 --replace`) also fixes it (I'm sure there is a better fix but I can't seem to remember);
 
-- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme, then set a debug theme like [this one](https://gitlab.com/Enthymeme/xcursor-debug-theme) to see the current state of cursors under Plasma on Wayland. Restarting the session is necessary because, as of now, Plasma cannot change the theme on the fly.
+- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme, then set a debug theme like [this one](https://gitlab.com/Enthymeme/xcursor-debug-theme) to see the current state of cursors. Restarting the session is necessary because, as of now, Plasma cannot change the theme on the fly.
 
 - **Chromium 62+ and derivatives:** For Chromium, `all-scroll` and `move` are the same thing.
 
