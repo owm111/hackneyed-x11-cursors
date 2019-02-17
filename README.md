@@ -140,7 +140,7 @@ Plasma on Wayland
 
 If you're wondering, start a Wayland session with this (or any other) theme, then set a debug theme like [this one](https://gitlab.com/Enthymeme/xcursor-debug-theme) to see the current state of cursors under Plasma on Wayland. Restarting the session is necessary because, as of now, Plasma cannot change the theme on the fly.
 
-*Do not* report bugs regarding Plasma on Wayland. I've been browsing bug reports on Qt and most of them boil down to **LOL WAYLAND IS A MISTERY CLOSED NOTABUG**.
+*Do not* report bugs regarding Plasma on Wayland. I've been browsing bug reports on Qt and most of them boil down to **LOL WAYLAND IS A MYSTERY CLOSED NOTABUG**.
 
 
 Browsers
