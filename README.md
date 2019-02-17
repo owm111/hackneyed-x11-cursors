@@ -135,7 +135,7 @@ The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with 
 
 - **Xfce:** If you get your distro's default theme mixed with your custom one, run `xfwm4 --replace` (already fixed in `lightdm-gtk-greeter`?);
 
-- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme. Be aware that, as of now, Plasma cannot change the theme on the fly, so you have to set the theme before starting a new Wayland session;
+- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme. Be aware that, as of now, Plasma cannot change the theme on the fly, so you have to set it before starting a new session;
 
 - **Chromium 62+ and derivatives:** Uses `all-scroll` as `move`;
 
