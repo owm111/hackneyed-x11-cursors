@@ -133,18 +133,24 @@ On Xfce
 -------
 Xfce doesn't fully load a custom cursor theme at login unless you set a splash screen to show up while the DE is loading. There seems to be a race condition in which the session manager loads user settings after starting the window manager, resulting in mixed up cursors. This only happens when the usual display manager for Xfce distros, LightDM, is used with the GTK+ greeter. Restarting Xfwm4 (with `xfwm4 --replace`) also fixes it, although it's annoying to run it whenever you log in.
 
+
 Plasma on Wayland
 -----------------
-Plasma 5 makes a mess with the pointers. I will look into it as soon as Plasma becomes usable under Wayland, and I don't think reporting such a bug at this stage is appropriate: they have more important things to care about.
+[Other bugs aside](https://community.kde.org/Plasma/5.13_Errata#Wayland), Plasma makes no good use of cursors. Whoever claims to use it as a daily driver had to work around the inconsistencies.
 
-Out of curiosity, starting a Wayland session with a [debug theme](https://gitlab.com/Enthymeme/xcursor-debug-theme) shows KWin's default pointer as `left_ptr` (a symlink to `default`), while the Plasma shell and other applications employ `left_arrow`, which looks like a Qt bug (Breeze has no `left_arrow`, forcing a fallback to `default` or one of the symlinks to it). KWin, though, replaces `size_bdiag` with `size_fdiag` when you drag the pointer to resize a window.
+If you're wondering, start a Wayland session with this (or any other) theme, then set a debug theme like [this one](https://gitlab.com/Enthymeme/xcursor-debug-theme) to see the current state of cursors under Plasma on Wayland. Restarting the session is necessary because, as of now, Plasma cannot change the theme on the fly.
+
+*Do not* report bugs regarding Plasma on Wayland. I've been browsing bug reports on Qt and most of them boil down to **LOL WAYLAND IS A MISTERY CLOSED NOTABUG**.
 
 
-Chromium 62 and up
-------------------
-Recent versions of Chromium pull out whatever cursors the theme provides. Still, Chromium developers assumed that `all-scroll` and `move` are the same thing -- they aren't, but I don't believe this warrants a bug report.
+Browsers
+--------
+**Chromium 62+ and derivatives:** For Chromium, `all-scroll` and `move` are the same thing.
+**Firefox [(-∞,+∞)????]**: Same as above. [A 14-year old bug.](https://bugzilla.mozilla.org/show_bug.cgi?id=275174). (Do they even care anymore?)
 
 
 TODO
 ----
-A way to automate the making of ANI cursors for Windows. But don't count on that.
+Making ANI cursors from Linux, because I'm not going to do it manually with each release for a secondary platform.
+
+(I need a RIFF encoder/decoder for that. Maybe get a hint from `libgig`?)
