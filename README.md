@@ -117,27 +117,29 @@ Useful links
 * [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html)
 
 
-Dealing with inconsistent cursors
----------------------------------
+Setting a default theme for all applications
+--------------------------------------------
 Setting the cursor theme through a graphical interface doesn't always propagate to all applications. _Most of the time_, this can be solved by creating a file called `index.theme` with the following content...
 
 ```
 [Icon Theme]
-inherits=Hackneyed
+inherits=Hackneyed      # or Hackneyed-48px, LHackneyed etc.
 ```
 
-...and saving it in `~/.icons/default` (create this folder if it doesn't exist already).
+...and saving it in `~/.icons/default` (create the folder if it doesn't exist already).
+
+(There's advice [here](https://forum.manjaro.org/t/multiple-mouse-themes-problem/37451/5) discouraging this practice. Choose wisely.)
 
 
 Known bugs
 ----------
 The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with by upstream:
 
-- **Xfce:** There seems to be a race condition in which the session manager loads user settings after starting the window manager, resulting in mixed up cursors. Restarting Xfwm4 (with `xfwm4 --replace`) also fixes it (I'm sure there is a better fix but I can't seem to remember);
+- **Xfce:** If you get your distro's default theme mixed with your custom one, run `xfwm4 --replace` (already fixed in `lightdm-gtk-greeter`?);
 
-- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme, then set a debug theme like [this one](https://gitlab.com/Enthymeme/xcursor-debug-theme) to see the current state of cursors. Restarting the session is necessary because, as of now, Plasma cannot change the theme on the fly.
+- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme. Be aware that, as of now, Plasma cannot change the theme on the fly, so you'll have to restart the session to see the new theme;
 
-- **Chromium 62+ and derivatives:** For Chromium, `all-scroll` and `move` are the same thing.
+- **Chromium 62+ and derivatives:** Uses `all-scroll` as `move`;
 
 - **Firefox [(-∞,+∞)????]**: Same as above. [A 14-year-old bug.](https://bugzilla.mozilla.org/show_bug.cgi?id=275174). (Do they even care anymore?)
 
