@@ -146,4 +146,4 @@ TODO
 ----
 Making ANI cursors from Linux, because I'm not going to do it manually with each release for a secondary platform.
 
-(I need a RIFF encoder/decoder for that. Maybe get a hint from `libgig`?)
+(I need a RIFF encoder/decoder for that. Maybe try studying `libgig`'s code?)
