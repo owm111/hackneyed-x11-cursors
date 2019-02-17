@@ -81,26 +81,24 @@ Credits
 
 * some SVGs taken from openclipart.org (pencil, pirate and coffee_mug as far as I can remember)
 
+* pencil and pirate borrowed from Breeze
+
 * monolithic SVG idea (and the SVG itself) taken from KDE's [Breeze theme](https://github.com/KDE/breeze/tree/master/cursors) by Ken Vermette, who probably liked Jakub Steiner's DMZ way too much (but not enough to keep the Python script)
 
 * ico2cur.c, a C rendition of [ico2cur.py](https://gist.github.com/RyanBalfanz/2371463)
 
 
-Bugs
-----
-Please report, either here or on openDesktop.org, any bugs you might find, or any enhancements you might want.
+Bugs/enhancements
+-----------------
+Suggestions and bug reports can be made here or on openDesktop.
 
 
 A word about hashes
 -------------------
-libXcursor has an undocumented "hash logger", which is triggered when one exports a variable called
-XCURSOR_DISCOVER, no matter the value. The hashes are printed on the terminal, so it's important
-that you don't do this from a graphical application launcher. The code is in xlib.c, in a function called
-XcursorLogDiscover.
+libXcursor-based applications will return a hash for custom cursors when you run them
+like `env XCURSOR_DISCOVER=1 <executable>` on a terminal. Take into account only the hashes
+that return zero, e.g., "Cursor hash `0xdeadbeef` returns `0x0`".
 
-You should not take into account the hashes for masks, i.e., the filled
-"images" displayed. Only consider hashes that return some random hex number
-(as in "Cursor hash XXXXX returns 0xdeadbeef").
 
 Useful links
 ------------
@@ -137,7 +135,7 @@ The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with 
 
 - **Xfce:** If you get your distro's default theme mixed with your custom one, run `xfwm4 --replace` (already fixed in `lightdm-gtk-greeter`?);
 
-- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme. Be aware that, as of now, Plasma cannot change the theme on the fly, so you'll have to restart the session to see the new theme;
+- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme. Be aware that, as of now, Plasma cannot change the theme on the fly, so you have to set the theme before starting a new Wayland session;
 
 - **Chromium 62+ and derivatives:** Uses `all-scroll` as `move`;
 
