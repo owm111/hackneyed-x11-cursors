@@ -129,25 +129,17 @@ inherits=Hackneyed
 ...and saving it in `~/.icons/default` (create this folder if it doesn't exist already).
 
 
-On Xfce
--------
-Xfce doesn't fully load a custom cursor theme at login unless you set a splash screen to show up while the DE is loading. There seems to be a race condition in which the session manager loads user settings after starting the window manager, resulting in mixed up cursors. This only happens when the usual display manager for Xfce distros, LightDM, is used with the GTK+ greeter. Restarting Xfwm4 (with `xfwm4 --replace`) also fixes it, although it's annoying to run it whenever you log in.
+Known bugs
+----------
+The bugs described below are NotMyProblem™ and should be dealt with by upstream:
 
+- **Xfce:** There seems to be a race condition in which the session manager loads user settings after starting the window manager, resulting in mixed up cursors. Restarting Xfwm4 (with `xfwm4 --replace`) also fixes it (I'm sure there is a better fix but I can't seem to remember);
 
-Plasma on Wayland
------------------
-[Other bugs aside](https://community.kde.org/Plasma/5.13_Errata#Wayland), Plasma makes no good use of cursors. Whoever claims to use it as a daily driver had to work around the inconsistencies.
+- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme, then set a debug theme like [this one](https://gitlab.com/Enthymeme/xcursor-debug-theme) to see the current state of cursors under Plasma on Wayland. Restarting the session is necessary because, as of now, Plasma cannot change the theme on the fly.
 
-If you're wondering, start a Wayland session with this (or any other) theme, then set a debug theme like [this one](https://gitlab.com/Enthymeme/xcursor-debug-theme) to see the current state of cursors under Plasma on Wayland. Restarting the session is necessary because, as of now, Plasma cannot change the theme on the fly.
+- **Chromium 62+ and derivatives:** For Chromium, `all-scroll` and `move` are the same thing.
 
-*Do not* report bugs regarding Plasma on Wayland. I've been browsing bug reports on Qt and most of them boil down to **LOL WAYLAND IS A MYSTERY CLOSED NOTABUG**.
-
-
-Browsers
---------
-**Chromium 62+ and derivatives:** For Chromium, `all-scroll` and `move` are the same thing.
-
-**Firefox [(-∞,+∞)????]**: Same as above. [A 14-year-old bug.](https://bugzilla.mozilla.org/show_bug.cgi?id=275174). (Do they even care anymore?)
+- **Firefox [(-∞,+∞)????]**: Same as above. [A 14-year-old bug.](https://bugzilla.mozilla.org/show_bug.cgi?id=275174). (Do they even care anymore?)
 
 
 TODO
