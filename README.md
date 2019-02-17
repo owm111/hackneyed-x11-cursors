@@ -146,6 +146,7 @@ If you're wondering, start a Wayland session with this (or any other) theme, the
 Browsers
 --------
 **Chromium 62+ and derivatives:** For Chromium, `all-scroll` and `move` are the same thing.
+
 **Firefox [(-∞,+∞)????]**: Same as above. [A 14-year old bug.](https://bugzilla.mozilla.org/show_bug.cgi?id=275174). (Do they even care anymore?)
 
 
