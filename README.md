@@ -131,7 +131,7 @@ inherits=Hackneyed
 
 Known bugs
 ----------
-The bugs described below are NotMyProblem^tm and should be dealt with by upstream:
+The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with by upstream:
 
 - **Xfce:** There seems to be a race condition in which the session manager loads user settings after starting the window manager, resulting in mixed up cursors. Restarting Xfwm4 (with `xfwm4 --replace`) also fixes it (I'm sure there is a better fix but I can't seem to remember);
 
