@@ -99,6 +99,8 @@ libXcursor-based applications will return a hash for custom cursors when you run
 like `env XCURSOR_DISCOVER=1 <executable>` on a terminal. Take into account only the hashes
 that return zero, e.g., "Cursor hash `0xdeadbeef` returns `0x0`".
 
+(Forget about doing this to animated cursors: a hash is generated for every frame.)
+
 
 Useful links
 ------------
@@ -111,8 +113,6 @@ Useful links
 * [Qt requirements for X11 cursors](http://doc.qt.io/qt-5/qcursor.html#a-note-for-x11-users)
 
 * [Core X11 cursors](http://tronche.com/gui/x/xlib/appendix/b/ "coffee_mug > all")
-
-* [ComixCursors README](http://www.filewatcher.com/d/Debian/all/x11/comixcursors-lefthanded-opaque_0.7.2-3_all.deb.2350708.html)
 
 
 Setting a default theme for all applications
@@ -133,17 +133,15 @@ Known bugs
 ----------
 The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with by upstream:
 
-- **Xfce:** If you get your distro's default theme mixed with your custom one, run `xfwm4 --replace` (already fixed in `lightdm-gtk-greeter`?);
+- **Unchangeable root window cursor in Xfce:** If you get an X default/distro default left arrow mixed with this theme, reload the WM by running `xfwm4 --replace` (already fixed in `lightdm-gtk-greeter`?);
 
-- **Plasma on Wayland:** Whoever claims to use it as a daily driver had to work around the inconsistencies. If you're wondering, start a Wayland session with this (or any other) theme. Be aware that, as of now, Plasma cannot change the theme on the fly, so you have to set it before starting a new session;
+- **`left_arrow` as `left_ptr` and other adventures of Plasma on Wayland:** Although some of the awkwardness was fixed in KWin, Qt on Wayland is still broken, cursor-wise (try `QT_QPA_PLATFORM=waylang-egl <qt application>` and marvel. But before that, export `XCURSOR_SIZE` to match your current cursor size);
 
-- **Chromium 62+ and derivatives:** Uses `all-scroll` as `move`;
-
-- **Firefox [(-∞,+∞)????]**: Same as above. [A 14-year-old bug.](https://bugzilla.mozilla.org/show_bug.cgi?id=275174). (Do they even care anymore?)
+- **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
 
 TODO
 ----
-Making ANI cursors from Linux, because I'm not going to do it manually with each release for a secondary platform.
+Making ANI cursors from Linux. I'll write a RIFF encoder/decoder for that someday.
 
-(I need a RIFF encoder/decoder for that. Maybe try studying `libgig`'s code?)
+If this affects you, send me patches.
