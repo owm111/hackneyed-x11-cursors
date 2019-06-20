@@ -1,5 +1,5 @@
 ![hackneyed-light-preview](preview-Hackneyed.png "The sands of time are running out for you, bro")
-![hackneyed-dark-preview](preview-Hackneyed-Dark.png "SO DAAAARK! SO PUUUUURE!")
+![hackneyed-dark-preview](preview-Hackneyed-Dark.png "SO PUUUUURE! SO COOOOOLD!")
 
 Overview
 --------
@@ -13,13 +13,13 @@ Minimum dependencies:
 
 * ImageMagick (>=6.8.6)
 * Inkscape (>=0.92.3, older versions will make a mess with the DPI settings)
-* GNU `make` and `bash` (really, a POSIX shell won't cut it)
+* GNU `make` and `bash` (I might replace the bashisms someday)
 * `xcursorgen` (part of the xorg-utils package)
 
 Extra functionality has additional dependencies:
 
 * The GIMP script requires GIMP >= 2.2 with the XMC plugin installed (the script isn't very useful anyway; refer to the in-file comments);
-* A working C compiler for `ico2cur`, and `zip`, to generate and pack Windows cursors.
+* A working C compiler for `ico2cur`, and `zip`, to generate and pack Windows cursors. `progress` (application starting) and `wait` (busy) aren't animated yet; they will be once I take care of it, but it's _sine die_.
 
 Production targets (all of them generate tarballs for distribution):
 
@@ -139,9 +139,3 @@ The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with 
 
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
-
-TODO
-----
-Making ANI cursors from Linux. I'll write a RIFF encoder/decoder for that someday.
-
-If this affects you, send me patches.
