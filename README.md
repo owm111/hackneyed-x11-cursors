@@ -19,7 +19,7 @@ Minimum dependencies:
 Extra functionality has additional dependencies:
 
 * The GIMP script requires GIMP >= 2.2 with the XMC plugin installed (the script isn't very useful anyway; refer to the in-file comments);
-* A working C compiler for `ico2cur`, and `zip`, to generate and pack Windows cursors. `progress` (application starting) and `wait` (busy) aren't animated yet; they will be once I take care of it, but it's _sine die_.
+* A working C compiler for `ico2cur` and `animaker`, and `zip`, to generate and pack Windows cursors.
 
 Production targets (all of them generate tarballs for distribution):
 

@@ -148,9 +148,13 @@ WINCURSORS = default.cur help.cur progress.cur wait.cur text.cur crosshair.cur p
 ns-resize.cur ew-resize.cur nesw-resize.cur nwse-resize.cur up_arrow.cur pointer.cur move.cur \
 n-resize.cur s-resize.cur e-resize.cur w-resize.cur ne-resize.cur nw-resize.cur se-resize.cur sw-resize.cur \
 not-allowed.cur
+WINCURSORS_ANI = wait.ani progress.ani
 WINCURSORS_LARGE = $(WINCURSORS:.cur=_large.cur)
+WINCURSORS_LARGE_ANI = wait_large.ani progress_large.ani
 LWINCURSORS = default_left.cur help_left.cur progress_left.cur pencil_left.cur pointer_left.cur
+LWINCURSORS_ANI = progress_left.ani
 LWINCURSORS_LARGE = $(LWINCURSORS:_left.cur=_large_left.cur)
+LWINCURSORS_LARGE_ANI = progress_large_left.ani
 THEME_NAME = Hackneyed
 THEME_NAME_SMALL = $(THEME_NAME)-$(SIZE_SMALL)px
 THEME_NAME_MEDIUM = $(THEME_NAME)-$(SIZE_MEDIUM)px
@@ -169,6 +173,10 @@ WAIT_CUSTOM_FRAMETIMES=frame_5_time=300
 PROGRESS_FRAMES=16
 PROGRESS_DEFAULT_FRAMETIME=30
 PROGRESS_CUSTOM_FRAMETIMES=frame_5_time=300
+WINDOWS_WAIT_DEFAULT_FRAMETIME=2
+WINDOWS_WAIT_CUSTOM_FRAMETIMES=frame_5_time=15
+WINDOWS_PROGRESS_DEFAULT_FRAMETIME=2
+WINDOWS_PROGRESS_CUSTOM_FRAMETIMES=frame_5_time=15
 
 all-sizes: all.small all.medium all.large all.small.left all.medium.left all.large.left all.left all
 all-themes: theme theme.left theme.small theme.medium theme.large theme.small.left theme.medium.left theme.large.left
@@ -185,11 +193,11 @@ source-dist:
 	git archive --format=tar.gz --prefix=hackneyed-x11-cursors-$(VERSION)/ HEAD > \
 		hackneyed-x11-cursors-$(VERSION).tar.gz
 
-windows-cursors: $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE)
+windows-cursors: $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE) $(WINCURSORS_ANI) $(LWINCURSORS_ANI) $(WINCURSORS_LARGE_ANI) $(LWINCURSORS_LARGE_ANI)
 	rm -rf $(THEME_WINDOWS) $(THEME_WINDOWS).zip
 	mkdir -p $(THEME_WINDOWS)/{King-size,Standard}
-	cp $(WINCURSORS_LARGE) $(LWINCURSORS_LARGE) $(THEME_WINDOWS)/King-size
-	cp $(WINCURSORS) $(LWINCURSORS) $(THEME_WINDOWS)/Standard
+	cp $(WINCURSORS_LARGE) $(LWINCURSORS_LARGE) $(WINCURSORS_LARGE_ANI) $(LWINCURSORS_LARGE_ANI) $(THEME_WINDOWS)/King-size
+	cp $(WINCURSORS) $(LWINCURSORS) $(WINCURSORS_ANI) $(LWINCURSORS_ANI) $(THEME_WINDOWS)/Standard
 	zip -r $(THEME_WINDOWS).zip $(THEME_WINDOWS)
 
 dist: theme
@@ -397,6 +405,9 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 ico2cur: ico2cur.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o ico2cur ico2cur.c
 
+animaker: animaker.c
+	$(CC) -std=c99 -Wall -Werror -pedantic -g -o animaker animaker.c
+
 # harcoding this is no problem, Windows cannot make use of larger cursors anyway
 # (and probably never will)
 %_large_left.png: %.32.left.png
@@ -504,6 +515,24 @@ wait.$(SIZE_LARGE): wait.$(SIZE_LARGE).in
 
 wait: wait.$(SIZE_SMALL).in wait.$(SIZE_MEDIUM).in wait.$(SIZE_LARGE).in wait.$(SIZE_LARGE1).in wait.$(SIZE_LARGE2).in
 	cat wait.*.in|$(XCURSORGEN) - $@
+
+wait.ani: $(COMMON_SOURCE) make-windows-ani.sh ico2cur animaker
+	./make-windows-ani.sh src=$(COMMON_SOURCE) target=wait output_ani=$@ frames=$(WAIT_FRAMES) default_frametime=$(WINDOWS_WAIT_DEFAULT_FRAMETIME) $(WINDOWS_WAIT_CUSTOM_FRAMETIMES)
+
+wait_large.ani: $(COMMON_SOURCE) make-windows-ani.sh ico2cur animaker
+	./make-windows-ani.sh src=$(COMMON_SOURCE) target=wait.large output_ani=$@ frames=$(WAIT_FRAMES) default_frametime=$(WINDOWS_WAIT_DEFAULT_FRAMETIME) $(WINDOWS_WAIT_CUSTOM_FRAMETIMES)
+
+progress.ani: $(RSVG_SOURCE) make-windows-ani.sh ico2cur animaker
+	./make-windows-ani.sh src=$(RSVG_SOURCE) target=progress output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES)
+
+progress_large.ani: $(RSVG_SOURCE) make-windows-ani.sh ico2cur animaker
+	./make-windows-ani.sh src=$(RSVG_SOURCE) target=progress.large output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES)
+
+progress_left.ani: $(LSVG_SOURCE) make-windows-ani.sh ico2cur animaker
+	./make-windows-ani.sh src=$(LSVG_SOURCE) target=progress output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES) hotspot_src=theme/24/progress_left.in
+
+progress_large_left.ani: $(LSVG_SOURCE) make-windows-ani.sh ico2cur animaker
+	./make-windows-ani.sh src=$(LSVG_SOURCE) target=progress.large output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES) hotspot_src=theme/24/progress_left.in
 
 progress: progress.$(SIZE_SMALL).in progress.$(SIZE_MEDIUM).in progress.$(SIZE_LARGE).in progress.$(SIZE_LARGE1).in progress.$(SIZE_LARGE2).in
 	cat progress.*.in|$(XCURSORGEN) - $@
