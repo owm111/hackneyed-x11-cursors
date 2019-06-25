@@ -226,7 +226,7 @@ int main(int argc, char **argv)
 		die("fopen: %s", outfile);
 	fwrite(&af, sizeof(af), 1, f);
 	af.riff_header.size = sizeof(af);
-	af.riff_header.size += write_rate(f, fb, af.frames) + write_fram(f, fb, af.frames);
+	af.riff_header.size += write_rate(f, fb, af.frames) + write_fram(f, fb, af.frames) - 8;
 	rewind(f);
 	fwrite(&af, sizeof(af), 1, f);
 	printf("%s: %u bytes, %u frames\n", outfile, af.riff_header.size, af.frames);
