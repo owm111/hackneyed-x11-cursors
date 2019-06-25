@@ -137,10 +137,11 @@ size_t write_rate(FILE *f, struct frameinfo *fb, int len)
 
 	memcpy(rate.id, "rate", 4);
 	rate.size = len * sizeof(fb[i].jiffies);
+	ret = rate.size + sizeof(rate);
 	fwrite(&rate, sizeof(rate), 1, f);
 	for (i = 0; i < len; i++)
-		ret += fwrite(&fb[i].jiffies, sizeof(fb[i].jiffies), 1, f);
-	return sizeof(rate) + ret;
+		fwrite(&fb[i].jiffies, sizeof(fb[i].jiffies), 1, f);
+	return ret;
 }
 
 size_t write_fram(FILE *f, struct frameinfo *fb, int len)
@@ -224,10 +225,11 @@ int main(int argc, char **argv)
 	if (!(f = fopen(outfile, "w")))
 		die("fopen: %s", outfile);
 	fwrite(&af, sizeof(af), 1, f);
-	af.riff_header.size = sizeof(af) + 1;
+	af.riff_header.size = sizeof(af);
 	af.riff_header.size += write_rate(f, fb, af.frames) + write_fram(f, fb, af.frames);
 	rewind(f);
 	fwrite(&af, sizeof(af), 1, f);
+	printf("%s: %u bytes, %u frames\n", outfile, af.riff_header.size, af.frames);
 	fmfree(&fb, af.frames);
 	free(outfile);
 	fclose(f);
