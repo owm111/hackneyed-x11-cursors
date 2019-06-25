@@ -529,10 +529,10 @@ progress_large.ani: $(RSVG_SOURCE) make-windows-ani.sh ico2cur animaker
 	./make-windows-ani.sh src=$(RSVG_SOURCE) target=progress.large output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES)
 
 progress_left.ani: $(LSVG_SOURCE) make-windows-ani.sh ico2cur animaker
-	./make-windows-ani.sh src=$(LSVG_SOURCE) target=progress output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES) hotspot_src=theme/24/progress_left.in
+	./make-windows-ani.sh src=$(LSVG_SOURCE) left=1 target=progress output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES) hotspot_src=theme/24/progress_left.in
 
 progress_large_left.ani: $(LSVG_SOURCE) make-windows-ani.sh ico2cur animaker
-	./make-windows-ani.sh src=$(LSVG_SOURCE) target=progress.large output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES) hotspot_src=theme/24/progress_left.in
+	./make-windows-ani.sh src=$(LSVG_SOURCE) left=1 target=progress.large output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES) hotspot_src=theme/24/progress_left.in
 
 progress: progress.$(SIZE_SMALL).in progress.$(SIZE_MEDIUM).in progress.$(SIZE_LARGE).in progress.$(SIZE_LARGE1).in progress.$(SIZE_LARGE2).in
 	cat progress.*.in|$(XCURSORGEN) - $@
@@ -681,6 +681,7 @@ clean:
 	rm -f *.32*.png
 	rm -f progress*.png wait*.png
 	rm -f *_ico.png *.ico
+	rm -f *.ani
 
 .PHONY: all all-dist all.left all.small all.medium all.large all.small.left all.medium.left all.large.left \
 	clean dist dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left \

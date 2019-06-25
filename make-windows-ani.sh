@@ -55,6 +55,9 @@ while [ "$1" ]; do
 	output_ani=*)
 		output_ani=${1#*=}
 		shift ;;
+	left=*)
+		left=${1#*=}
+		shift ;;
 	*)
 		die "invalid parameter: $1"
 	esac
@@ -82,7 +85,7 @@ if [ "$variant" = "large" ]; then
 	set -- $x $y
 fi
 for ((i = 1; i <= frames; i++)); do
-	output="${target}-${i}.${size}.png"
+	[ "$left" = 1 ] && output="${target}-${i}.${size}.left.png" || output="${target}-${i}.${size}.png"
 	output_ico="${output%*.png}.ico"
 	output_cur="${output%*.png}.cur"
 	inkscape --without-gui -i "$target-$i" -d $dpi -f $src -e $output >/dev/null || die
