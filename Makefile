@@ -408,8 +408,6 @@ ico2cur: ico2cur.c
 animaker: animaker.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o animaker animaker.c
 
-# harcoding this is no problem, Windows cannot make use of larger cursors anyway
-# (and probably never will)
 %_large_left.png: %.32.left.png
 	inkscape --without-gui -i $(@:.png=) -f $< -e $@ >/dev/null
 
