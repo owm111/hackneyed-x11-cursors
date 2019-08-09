@@ -128,7 +128,7 @@ inherits=Hackneyed      # or Hackneyed-48px, LHackneyed etc.
 
 (There's advice [here](https://forum.manjaro.org/t/multiple-mouse-themes-problem/37451/5) discouraging this practice. Choose wisely.)
 
-Chromium and Chromium-based browsers won't pick up a new theme unless you restart it.
+Chromium and Chromium-based browsers won't pick up a new theme unless you restart the browser.
 
 
 Known bugs
