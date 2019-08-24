@@ -24,7 +24,7 @@
 # use or other dealings in this Software without prior written authorization.
 
 SHELL = /bin/bash
-VERSION = 0.7.2
+VERSION = 0.7.3
 COMMON_SOURCE = theme/common-white.svg
 RSVG_SOURCE = theme/right-handed-white.svg
 LSVG_SOURCE = theme/left-handed-white.svg

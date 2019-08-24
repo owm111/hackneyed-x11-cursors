@@ -1,3 +1,6 @@
+0.7.3:
+- all-scroll: don't reverse colors on the center dot
+
 0.7.2:
 - revert pointer to a standard pointing hand
 - get pirate and pencil from Breeze
