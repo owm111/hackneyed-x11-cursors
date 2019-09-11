@@ -32,6 +32,7 @@
 #endif
 
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
@@ -54,9 +55,9 @@ void die(const char *msg, ...)
 	exit(EXIT_FAILURE);
 }
 
-unsigned short get_axis(const char *s, char axis)
+uint16_t get_axis(const char *s, char axis)
 {
-	short ret;
+	int16_t ret;
 	char *tail;
 	
 	ret = strtol(s, &tail, 0);
@@ -148,7 +149,7 @@ int main(int argc, char **argv)
 	FILE *fsrc, *fdest;
 	size_t b;
 	int c;
-	unsigned short x, y;
+	uint16_t x, y;
 	char buf[BUFSIZ] = "";
 	char header[HEADERLEN] = "";
 	char *src = NULL;
