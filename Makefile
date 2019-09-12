@@ -405,6 +405,9 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 ico2cur: ico2cur.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o ico2cur ico2cur.c
 
+png2cur: png2cur.c
+	$(CC) -std=c99 -Wall -Werror -pedantic -g -o png2cur png2cur.c -lpng
+
 animaker: animaker.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o animaker animaker.c
 
