@@ -43,12 +43,19 @@
 #include <getopt.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <libgen.h>
 #include <png.h>
 #include <sys/stat.h>
 #include <wand/magick_wand.h>
 
-#define ICONMAX		1024
-#define PNG_BYTES	8
+#define ICONMAX			1024
+#define PNG_BYTES		8
+#define TEMPFNAME_PREFIX	".png2cur"
+
+typedef enum {
+	GET_BASENAME,
+	GET_DIRNAME
+} component_t;
 
 typedef struct {
 	uint8_t width;
@@ -102,20 +109,65 @@ void check_if_png(const char *name)
 	FILE *f = fopen(name, "r");
 
 	if (!f)
-		die("fopen: %s", name);
+		die("%s: fopen: %s", __func__, name);
 	fread(buf, sizeof(*buf), PNG_BYTES, f);
 	if (png_sig_cmp((png_const_bytep)buf, 0, PNG_BYTES) != 0)
 		die("%s: not a PNG file", name);
 	fclose(f);
 }
 
-/* note: this will modify the original file */
-void png_add_extent(const char *src)
+char *get_file_component(component_t what, const char *filename)
+{
+	char *buf = strdup(filename);
+	char *p, *ret, *fname;
+	char *(*component_func)(char *);
+
+	switch (what) {
+	case GET_BASENAME:
+		component_func = basename;
+		break;
+	case GET_DIRNAME:
+		component_func = dirname;
+	}
+	if (!buf)
+		die("%s: malloc error", __func__);
+	p = buf;
+	fname = component_func(buf);
+	if (!(ret = strdup(fname)))
+		die("%s: malloc error", __func__);
+	free(p);
+	return ret;
+}
+
+long get_pathmax(const char *dirpath)
+{
+	long pathmax;
+
+	if ((pathmax = pathconf(dirpath, _PC_PATH_MAX)) < 0) {
+		if (errno)
+			die("%s: pathconf: %s", __func__, dirpath);
+		pathmax = _POSIX_PATH_MAX;
+	}
+	return pathmax;
+}
+
+char *png_add_extent(const char *src)
 {
 	MagickWand *mb = NULL;
 	PixelWand *pb;
 	int width, height;
+	long pathmax = get_pathmax(src);
+	char *basefname, *dirfname;
+	char *extfname, *outfname;
 
+	if (!(extfname = malloc(pathmax)))
+		die("%s: malloc error", __func__);
+	if (!(outfname = malloc(pathmax)))
+		die("%s: malloc error", __func__);
+	basefname = get_file_component(GET_BASENAME, src);
+	dirfname = get_file_component(GET_DIRNAME, src);
+	snprintf(extfname, pathmax - 1, "%s/%s-%s", dirfname, TEMPFNAME_PREFIX, basefname);
+	snprintf(outfname, pathmax - 1, "png32:%s/%s-%s", dirfname, TEMPFNAME_PREFIX, basefname);
 	MagickWandGenesis();
 	mb = NewMagickWand();
 	pb = NewPixelWand();
@@ -123,16 +175,23 @@ void png_add_extent(const char *src)
 	MagickReadImage(mb, src);
 	width = MagickGetImageWidth(mb);
 	height = MagickGetImageHeight(mb);
-	if (width >= 32 && height >= 32)
+	if (width >= 32 && height >= 32) {
+		free(extfname);
+		extfname = NULL;
 		goto noop;
+	}
 	MagickSetImageBackgroundColor(mb, pb);
 	MagickExtentImage(mb, 32, 32, 0, 0);
-	if (MagickWriteImage(mb, NULL) == MagickFalse)
+	if (MagickWriteImage(mb, outfname) == MagickFalse)
 		die("%s: MagickWriteImage failed", src);
 noop:
 	mb = DestroyMagickWand(mb);
 	pb = DestroyPixelWand(pb);
 	MagickWandTerminus();
+	free(basefname);
+	free(dirfname);
+	free(outfname);
+	return extfname;
 }
 
 int get_hotspots(const char *fname, struct fileinfo *fb)
@@ -166,6 +225,7 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 {
 	struct fileinfo *ret = malloc(argc * sizeof(*ret));
 	struct stat sb;
+	char *extfname;
 	png_image pmb;
 	uint8_t prev_w, prev_h;
 	int has_hotspot = 0;
@@ -179,7 +239,10 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 		check_if_png(ret[i].fname);
 		pmb.version = PNG_IMAGE_VERSION;
 		pmb.format = PNG_FORMAT_RGBA;
-		png_add_extent(ret[i].fname);
+		if ((extfname = png_add_extent(ret[i].fname))) {
+			free(ret[i].fname);
+			ret[i].fname = extfname;
+		}
 		if (png_image_begin_read_from_file(&pmb, ret[i].fname) == 0)
 			die("libpng error: %s", pmb.message);
 		if (stat(ret[i].fname, &sb) < 0)
@@ -214,18 +277,21 @@ void fbfree(struct fileinfo **fb, size_t len)
 
 void write_pngs(struct fileinfo *fb, size_t count, FILE *dest)
 {
-	char buf[BUFSIZ] = "";
+	char buf[BUFSIZ];
 	FILE *src;
 	int i;
 	size_t read;
 
 	for (i = 0; i < count; i++) {
+		memset(buf, 0, sizeof(buf));
 		if (!(src = fopen(fb[i].fname, "r")))
 			die("fopen: %s", fb[i].fname);
 		while ((read = fread(buf, sizeof(*buf), sizeof(buf), src)))
 			fwrite(buf, sizeof(*buf), read, dest);
 		fclose(src);
-		read = 0;
+		if (!strncmp(fb[i].fname, TEMPFNAME_PREFIX, strlen(TEMPFNAME_PREFIX))) /* temporary file */
+			if (remove(fb[i].fname) < 0)
+				fprintf(stderr, "%s: removing %s: %s", __func__, fb[i].fname, strerror(errno));
 	}
 }
 
@@ -273,5 +339,6 @@ int main(int argc, char **argv)
 		fwrite(&fb[i].ie, sizeof(fb[i].ie), 1, fdest);
 	write_pngs(fb, ib.count, fdest);
 	fclose(fdest);
+	fbfree(&fb, ib.count);
 	return EXIT_SUCCESS;
 }
