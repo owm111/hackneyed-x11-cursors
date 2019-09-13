@@ -253,8 +253,8 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 		ret[i].ie.height = pmb.height;
 		if (!has_hotspot) {
 			if (prev_w && prev_h) {
-				ret[i].ie.x_hotspot = round((ret[i].ie.width * base_x) / ret[0].ie.width);
-				ret[i].ie.y_hotspot = round((ret[i].ie.height * base_y) / ret[0].ie.height);
+				ret[i].ie.x_hotspot = round((double)(ret[i].ie.width * base_x) / ret[0].ie.width);
+				ret[i].ie.y_hotspot = round((double)(ret[i].ie.height * base_y) / ret[0].ie.height);
 			} else {
 				ret[i].ie.x_hotspot = base_x;
 				ret[i].ie.y_hotspot = base_y;
@@ -336,8 +336,11 @@ int main(int argc, char **argv)
 	fb[0].ie.offset = sizeof(ib) + sizeof(fb[0].ie) * ib.count;
 	for (i = 1; i < ib.count; i++)
 		fb[i].ie.offset = fb[i - 1].ie.offset + fb[i - 1].ie.size;
-	for (i = 0; i < ib.count; i++)
+	for (i = 0; i < ib.count; i++) {
+		printf("frame %lu: %dx%d, hotspot %d,%d\n", i, fb[i].ie.width,
+			fb[i].ie.height, fb[i].ie.x_hotspot, fb[i].ie.y_hotspot);
 		fwrite(&fb[i].ie, sizeof(fb[i].ie), 1, fdest);
+	}
 	write_pngs(fb, ib.count, fdest);
 	fclose(fdest);
 	fbfree(&fb, ib.count);
