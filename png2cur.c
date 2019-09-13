@@ -46,6 +46,7 @@
 #include <libgen.h>
 #include <png.h>
 #include <sys/stat.h>
+#include <math.h>
 #include <wand/magick_wand.h>
 
 #define ICONMAX			1024
@@ -252,8 +253,8 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 		ret[i].ie.height = pmb.height;
 		if (!has_hotspot) {
 			if (prev_w && prev_h) {
-				ret[i].ie.x_hotspot = (ret[i].ie.width * base_x) / prev_w;
-				ret[i].ie.y_hotspot = (ret[i].ie.height * base_y) / prev_h;
+				ret[i].ie.x_hotspot = round((ret[i].ie.width * base_x) / ret[0].ie.width);
+				ret[i].ie.y_hotspot = round((ret[i].ie.height * base_y) / ret[0].ie.height);
 			} else {
 				ret[i].ie.x_hotspot = base_x;
 				ret[i].ie.y_hotspot = base_y;

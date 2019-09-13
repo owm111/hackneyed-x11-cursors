@@ -406,7 +406,7 @@ ico2cur: ico2cur.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o ico2cur ico2cur.c
 
 png2cur: png2cur.c
-	$(CC) -std=c99 -Wall -Werror -pedantic -g -o png2cur png2cur.c `pkg-config --cflags --libs libpng MagickWand`
+	$(CC) -std=c99 -Wall -Werror -pedantic -g -o png2cur png2cur.c -lm `pkg-config --cflags --libs libpng MagickWand`
 
 animaker: animaker.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o animaker animaker.c
