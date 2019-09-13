@@ -25,8 +25,9 @@
  * use or other dealings in this Software without prior written authorization.
  */
  
- /* png2cur.c: convert a PNG file to a cursor (.cur) file
-  * requires: libpng >= 1.6.36
+ /* png2cur.c: convert one or more PNG files to a Windows cursor (.cur) file
+  * requires:	libpng >= 1.6.36
+  * 		ImageMagick >= 6.9.10
   * 
   * note: PNG-based cursors require Windows Vista and later */
 
@@ -43,6 +44,8 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <png.h>
+#include <sys/stat.h>
+#include <wand/magick_wand.h>
 
 #define ICONMAX		1024
 #define PNG_BYTES	8
@@ -61,8 +64,13 @@ typedef struct {
 typedef struct {
 	uint16_t reserved; /* 0 */
 	uint16_t type;	/* 1 = icon, 2 = cursor */
-	uint16_t count;
+	uint16_t count; /* icondirentry[count] entries */
 } icondir;
+
+struct fileinfo {
+	char *fname;
+	icondirentry ie;
+};
 
 void die(const char *msg, ...)
 {
@@ -88,42 +96,151 @@ uint16_t get_axis(const char *s, char axis)
 	return ret;
 }
 
-void check_if_png(const char *name, FILE *f)
+void check_if_png(const char *name)
 {
 	char buf[PNG_BYTES] = "";
+	FILE *f = fopen(name, "r");
 
-	rewind(f);
+	if (!f)
+		die("fopen: %s", name);
 	fread(buf, sizeof(*buf), PNG_BYTES, f);
 	if (png_sig_cmp((png_const_bytep)buf, 0, PNG_BYTES) != 0)
 		die("%s: not a PNG file", name);
-	rewind(f);
+	fclose(f);
 }
 
-uint32_t get_file_size(FILE *f)
+/* note: this will modify the original file */
+void png_add_extent(const char *src)
 {
-	uint32_t ret;
-	
-	rewind(f);
-	fseeko(f, 0, SEEK_END);
-	ret = ftello(f);
-	rewind(f);
+	MagickWand *mb = NULL;
+	PixelWand *pb;
+	int width, height;
+
+	MagickWandGenesis();
+	mb = NewMagickWand();
+	pb = NewPixelWand();
+	PixelSetColor(pb, "none");
+	MagickReadImage(mb, src);
+	width = MagickGetImageWidth(mb);
+	height = MagickGetImageHeight(mb);
+	if (width >= 32 && height >= 32)
+		goto noop;
+	MagickSetImageBackgroundColor(mb, pb);
+	MagickExtentImage(mb, 32, 32, 0, 0);
+	if (MagickWriteImage(mb, NULL) == MagickFalse)
+		die("%s: MagickWriteImage failed", src);
+noop:
+	mb = DestroyMagickWand(mb);
+	pb = DestroyPixelWand(pb);
+	MagickWandTerminus();
+}
+
+int get_hotspots(const char *fname, struct fileinfo *fb)
+{
+	char *hotspot_x, *hotspot_y;
+	char *tail;
+
+	memset(fb, 0, sizeof(*fb));
+	fb->fname = strdup(fname);
+	if (!(hotspot_x = strrchr(fb->fname, '=')))
+		return 0;
+	*hotspot_x = 0;
+	hotspot_x++;
+	if (!(hotspot_y = strchr(hotspot_x, ',')))
+		die("invalid hotspot coordinates: %s", hotspot_x);
+	*hotspot_y = 0;
+	hotspot_y++;
+	if (!*hotspot_y)
+		die("empty y pixel");
+	fb->ie.x_hotspot = strtol(hotspot_x, &tail, 10);
+	if (hotspot_x == tail)
+		die("invalid x hotspot: %s", hotspot_x);
+	fb->ie.y_hotspot = strtol(hotspot_y, &tail, 10);
+	if (hotspot_y == tail)
+		die("invalid y hotspot: %s", hotspot_y);
+	return 1;
+}
+
+/* file.png=4,4 */
+struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t base_y)
+{
+	struct fileinfo *ret = malloc(argc * sizeof(*ret));
+	struct stat sb;
+	png_image pmb;
+	uint8_t prev_w, prev_h;
+	int has_hotspot = 0;
+	int i;
+
+	if (!ret)
+		die("malloc error");
+	prev_w = prev_h = 0;
+	for (i = 0; i < argc; i++) {
+		has_hotspot = get_hotspots(argv[i], &ret[i]);
+		check_if_png(ret[i].fname);
+		pmb.version = PNG_IMAGE_VERSION;
+		pmb.format = PNG_FORMAT_RGBA;
+		png_add_extent(ret[i].fname);
+		if (png_image_begin_read_from_file(&pmb, ret[i].fname) == 0)
+			die("libpng error: %s", pmb.message);
+		if (stat(ret[i].fname, &sb) < 0)
+			die("stat: %s", ret[i].fname);
+		ret[i].ie.size = sb.st_size;
+		ret[i].ie.width = pmb.width;
+		ret[i].ie.height = pmb.height;
+		if (!has_hotspot) {
+			if (prev_w && prev_h) {
+				ret[i].ie.x_hotspot = (ret[i].ie.width * base_x) / prev_w;
+				ret[i].ie.y_hotspot = (ret[i].ie.height * base_y) / prev_h;
+			} else {
+				ret[i].ie.x_hotspot = base_x;
+				ret[i].ie.y_hotspot = base_y;
+			}
+		}
+		prev_w = pmb.width;
+		prev_h = pmb.height;
+		memset(&pmb, 0, sizeof(pmb));
+	}
 	return ret;
+}
+
+void fbfree(struct fileinfo **fb, size_t len)
+{
+	int i;
+
+	for (i = 0; i < len; i++)
+		free((*fb)[i].fname);
+	free(*fb);
+}
+
+void write_pngs(struct fileinfo *fb, size_t count, FILE *dest)
+{
+	char buf[BUFSIZ] = "";
+	FILE *src;
+	int i;
+	size_t read;
+
+	for (i = 0; i < count; i++) {
+		if (!(src = fopen(fb[i].fname, "r")))
+			die("fopen: %s", fb[i].fname);
+		while ((read = fread(buf, sizeof(*buf), sizeof(buf), src)))
+			fwrite(buf, sizeof(*buf), read, dest);
+		fclose(src);
+		read = 0;
+	}
 }
 
 int main(int argc, char **argv)
 {
 	int c;
-	char buf[BUFSIZ];
-	size_t read;
 	uint16_t x, y;
-	FILE *fdest, *fsrc;
-	char *dest, *src;
+	struct fileinfo *fb;
+	FILE *fdest;
+	char *dest = NULL;
+	size_t i;
 	icondir ib;
-	icondirentry ie;
-	png_image pmb;
 
 	x = y = 0;
-	while ((c = getopt(argc, argv, "x:y:")) != -1) {
+	while ((c = getopt(argc, argv, "x:y:o:")) != -1) {
 		switch (c) {
 		case 'x':
 			x = get_axis(optarg, c);
@@ -131,39 +248,30 @@ int main(int argc, char **argv)
 		case 'y':
 			y = get_axis(optarg, c);
 			break;
+		case 'o':
+			dest = strdup(optarg);
+			break;
 		default:
 			exit(EXIT_FAILURE);
 		}
 	}
-	memset(&ib, 0, sizeof(ib));
-	memset(&ie, 0, sizeof(ie));
-	memset(&pmb, 0, sizeof(pmb));
-	pmb.version = PNG_IMAGE_VERSION;
-	pmb.format = PNG_FORMAT_RGBA;
+	if (!dest)
+		die("need a destination file");
 	ib.reserved = 0;
 	ib.type = 2;
-	ib.count = 1;
-	if (argc - optind < 2)
-		die("need source and dest files");
-	src = argv[optind];
-	dest = argv[optind + 1];
-	if (!(fsrc = fopen(src, "r")))
-		die("fopen: %s", src);
-	check_if_png(src, fsrc);
-	if (png_image_begin_read_from_stdio(&pmb, fsrc) == 0)
-		die("png_image_begin_read_from_stdio: %s", pmb.message);
+	if (argc - optind == 0)
+		die("specify at least one source PNG");
+	ib.count = argc - optind;
+	fb = get_fileinfo(ib.count, &argv[optind], x, y);
 	if (!(fdest = fopen(dest, "w")))
 		die("fopen: %s", dest);
-	ie.width = pmb.width;
-	ie.height = pmb.height;
-	ie.x_hotspot = x;
-	ie.y_hotspot = y;
-	ie.size = get_file_size(fsrc);
-	ie.offset = sizeof(ib) + sizeof(ie);
 	fwrite(&ib, sizeof(ib), 1, fdest);
-	fwrite(&ie, sizeof(ie), 1, fdest);
-	while ((read = fread(buf, sizeof(*buf), sizeof(buf), fsrc)))
-		fwrite(buf, sizeof(*buf), read, fdest);
+	fb[0].ie.offset = sizeof(ib) + sizeof(fb[0].ie) * ib.count;
+	for (i = 1; i < ib.count; i++)
+		fb[i].ie.offset = fb[i - 1].ie.offset + fb[i - 1].ie.size;
+	for (i = 0; i < ib.count; i++)
+		fwrite(&fb[i].ie, sizeof(fb[i].ie), 1, fdest);
+	write_pngs(fb, ib.count, fdest);
 	fclose(fdest);
 	return EXIT_SUCCESS;
 }
