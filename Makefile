@@ -144,17 +144,13 @@ LPNG_MEDIUM = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_MEDIUM).left.png)
 LPNG_LARGE = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE).left.png)
 LPNG_LARGE1 = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE1).left.png)
 LPNG_LARGE2 = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE2).left.png)
-WINCURSORS = default.cur help.cur progress.cur wait.cur text.cur crosshair.cur pencil.cur \
+WINCURSORS = default.cur help.cur text.cur crosshair.cur pencil.cur \
 ns-resize.cur ew-resize.cur nesw-resize.cur nwse-resize.cur up_arrow.cur pointer.cur move.cur \
 n-resize.cur s-resize.cur e-resize.cur w-resize.cur ne-resize.cur nw-resize.cur se-resize.cur sw-resize.cur \
 not-allowed.cur
 WINCURSORS_ANI = wait.ani progress.ani
-WINCURSORS_LARGE = $(WINCURSORS:.cur=_large.cur)
-WINCURSORS_LARGE_ANI = wait_large.ani progress_large.ani
-LWINCURSORS = default_left.cur help_left.cur progress_left.cur pencil_left.cur pointer_left.cur
+LWINCURSORS = default_left.cur help_left.cur pencil_left.cur pointer_left.cur
 LWINCURSORS_ANI = progress_left.ani
-LWINCURSORS_LARGE = $(LWINCURSORS:_left.cur=_large_left.cur)
-LWINCURSORS_LARGE_ANI = progress_large_left.ani
 THEME_NAME = Hackneyed
 THEME_NAME_SMALL = $(THEME_NAME)-$(SIZE_SMALL)px
 THEME_NAME_MEDIUM = $(THEME_NAME)-$(SIZE_MEDIUM)px
@@ -193,11 +189,10 @@ source-dist:
 	git archive --format=tar.gz --prefix=hackneyed-x11-cursors-$(VERSION)/ HEAD > \
 		hackneyed-x11-cursors-$(VERSION).tar.gz
 
-windows-cursors: $(WINCURSORS) $(WINCURSORS_LARGE) $(LWINCURSORS) $(LWINCURSORS_LARGE) $(WINCURSORS_ANI) $(LWINCURSORS_ANI) $(WINCURSORS_LARGE_ANI) $(LWINCURSORS_LARGE_ANI)
+windows-cursors: $(WINCURSORS) $(LWINCURSORS) $(WINCURSORS_ANI) $(LWINCURSORS_ANI)
 	rm -rf $(THEME_WINDOWS) $(THEME_WINDOWS).zip
-	mkdir -p $(THEME_WINDOWS)/{King-size,Standard}
-	cp $(WINCURSORS_LARGE) $(LWINCURSORS_LARGE) $(WINCURSORS_LARGE_ANI) $(LWINCURSORS_LARGE_ANI) $(THEME_WINDOWS)/King-size
-	cp $(WINCURSORS) $(LWINCURSORS) $(WINCURSORS_ANI) $(LWINCURSORS_ANI) $(THEME_WINDOWS)/Standard
+	mkdir -p $(THEME_WINDOWS)
+	cp $(WINCURSORS) $(LWINCURSORS) $(WINCURSORS_ANI) $(LWINCURSORS_ANI) $(THEME_WINDOWS)
 	zip -r $(THEME_WINDOWS).zip $(THEME_WINDOWS)
 
 dist: theme
@@ -362,6 +357,7 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 				break; \
 			fi; \
 		done; \
+		echo ">>> target: $$target"; \
 		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@; \
 	}
 
@@ -402,221 +398,128 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 %.$(SIZE_LARGE).left: theme/$(SIZE_LARGE)/%_left.in %.$(SIZE_LARGE).left.png
 	$(XCURSORGEN) $< $@
 
-ico2cur: ico2cur.c
-	$(CC) -std=c99 -Wall -Werror -pedantic -g -o ico2cur ico2cur.c
-
 png2cur: png2cur.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o png2cur png2cur.c -lm `pkg-config --cflags --libs libpng MagickWand`
 
 animaker: animaker.c
 	$(CC) -std=c99 -Wall -Werror -pedantic -g -o animaker animaker.c
 
-%_large_left.png: %.32.left.png
-	inkscape --without-gui -i $(@:.png=) -f $< -e $@ >/dev/null
-
-%_large.png: %.32.png
-	inkscape --without-gui -i $(@:.png=) -f $< -e $@ >/dev/null
-
-%_large_left.ico: %.32.left.png
-	convert $< $@
-
-%_large.ico: %.32.png
-	convert $< $@
-
-%.ico: %.$(SIZE_SMALL).png
-	convert -background none -extent 32x32 $< $@
-
-wait.ico:
-	./make-png.sh target=wait-1 base_size=24 size=24 src=$(COMMON_SOURCE) output=wait_ico.png
-	convert -background none -extent 32x32 wait_ico.png $@
-
-wait_large.ico:
-	./make-png.sh target=wait-1 base_size=24 size=32 src=$(COMMON_SOURCE) output=wait_large_ico.png
-	convert -background none wait_large_ico.png $@
-
-progress.ico:
-	./make-png.sh target=progress-1 base_size=24 size=24 src=$(RSVG_SOURCE) output=progress_ico.png
-	convert -background none -extent 32x32 progress_ico.png $@
-
-progress_large.ico:
-	./make-png.sh target=progress-1 base_size=24 size=32 src=$(RSVG_SOURCE) output=progress_large_ico.png
-	convert -background none progress_large_ico.png $@
-
-progress_left.ico:
-	./make-png.sh target=progress-1 base_size=24 size=24 src=$(LSVG_SOURCE) output=progress_left_ico.png
-	convert -background none -extent 32x32 progress_left_ico.png $@
-
-progress_large_left.ico:
-	./make-png.sh target=progress-1 base_size=24 size=32 src=$(LSVG_SOURCE) output=progress_large_left_ico.png
-	convert -background none progress_large_left_ico.png $@
-
-%_left.ico: %.$(SIZE_SMALL).left.png
-	convert -background none -extent 32x32 $< $@
-
-%.cur: %.ico theme/$(SIZE_SMALL)/%.in ico2cur
-	@{\
-		set -- $$(cat theme/$(SIZE_SMALL)/$(@:.cur=.in)); \
-		./ico2cur -x $$2 -y $$3 $<; \
-	}
-
-%_large.cur: %_large.ico ico2cur
+%_left.cur: theme/$(SIZE_SMALL)/%_left.in png2cur %.24.left.png %.48.left.png %.64.left.png
 	{\
-		set -- $$(cat theme/$(SIZE_SMALL)/$(@:_large.cur=.in)); \
-		x=$$(( (32 * $$2) / ($(SIZE_SMALL) - 1) )); \
-		y=$$(( (32 * $$3) / ($(SIZE_SMALL) - 1) )); \
-		./ico2cur -x $$x -y $$y $<; \
+		set -- $$(cat $<); \
+		x=$$2; \
+		y=$$3; \
+		set -- $^; \
+		shift 2; \
+		./png2cur -x $$x -y $$y -o $@ $$*; \
 	}
 
-%_large_left.cur: %_large_left.ico ico2cur
-	@{\
-		set -- $$(cat theme/$(SIZE_SMALL)/$(@:_large_left.cur=_left.in)); \
-		x=$$(( (32 * $$2) / ($(SIZE_SMALL) - 1) )); \
-		y=$$(( (32 * $$3) / ($(SIZE_SMALL) - 1) )); \
-		./ico2cur -x $$x -y $$y $<; \
+%.cur: theme/$(SIZE_SMALL)/%.in png2cur %.24.png %.48.png %.64.png
+	{\
+		set -- $$(cat $<); \
+		x=$$2; \
+		y=$$3; \
+		set -- $^; \
+		shift 2; \
+		./png2cur -x $$x -y $$y -o $@ $$*; \
 	}
 
-wait.$(SIZE_SMALL).in: $(COMMON_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_SMALL) \
-	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
-	frames=$(WAIT_FRAMES)
+wait_all_frames: wait.$(SIZE_SMALL).frames wait.$(SIZE_MEDIUM).frames \
+	wait.$(SIZE_LARGE).frames wait.$(SIZE_LARGE1).frames wait.$(SIZE_LARGE2).frames
 
-wait.$(SIZE_MEDIUM).in: $(COMMON_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_MEDIUM) \
-	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
-	frames=$(WAIT_FRAMES)
+wait_all_hotspots: wait.$(SIZE_SMALL).in wait.$(SIZE_MEDIUM).in wait.$(SIZE_LARGE).in \
+	wait.$(SIZE_LARGE1).in wait.$(SIZE_LARGE2).in
 
-wait.$(SIZE_LARGE).in: $(COMMON_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_LARGE) \
-	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
-	frames=$(WAIT_FRAMES)
+progress_all_frames: progress.$(SIZE_SMALL).frames progress.$(SIZE_MEDIUM).frames \
+	progress.$(SIZE_LARGE).frames progress.$(SIZE_LARGE1).frames progress.$(SIZE_LARGE2).frames
 
-wait.$(SIZE_LARGE1).in: $(COMMON_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_LARGE1) \
-	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
-	frames=$(WAIT_FRAMES)
+progress_all_hotspots: progress.$(SIZE_SMALL).in progress.$(SIZE_MEDIUM).in progress.$(SIZE_LARGE).in \
+	progress.$(SIZE_LARGE1).in progress.$(SIZE_LARGE2).in
 
-wait.$(SIZE_LARGE2).in: $(COMMON_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=wait size=$(SIZE_LARGE2) \
-	default_frametime=$(WAIT_DEFAULT_FRAMETIME) $(WAIT_CUSTOM_FRAMETIMES) \
-	frames=$(WAIT_FRAMES)
+progress_left_all_frames: progress.left.$(SIZE_SMALL).frames progress.left.$(SIZE_MEDIUM).frames \
+	progress.left.$(SIZE_LARGE).frames progress.left.$(SIZE_LARGE1).frames progress.left.$(SIZE_LARGE2).frames
 
-wait.$(SIZE_SMALL): wait.$(SIZE_SMALL).in
+progress_left_all_hotspots: progress.left.$(SIZE_SMALL).in progress.left.$(SIZE_MEDIUM).in progress.left.$(SIZE_LARGE).in \
+	progress.left.$(SIZE_LARGE1).in progress.left.$(SIZE_LARGE2).in
+
+wait.%.frames: $(COMMON_SOURCE) make-ani-frames.sh
+	{\
+		target=$$(cut -d. -f1 <<< $@); \
+		size=$$(cut -d. -f2 <<< $@); \
+		./make-ani-frames.sh src=$< target=$$target size=$$size frames=$(WAIT_FRAMES); \
+	}
+
+progress.%.frames: $(RSVG_SOURCE) make-ani-frames.sh
+	{\
+		target=$$(cut -d. -f1 <<< $@); \
+		size=$$(cut -d. -f2 <<< $@); \
+		./make-ani-frames.sh src=$< target=$$target size=$$size frames=$(PROGRESS_FRAMES); \
+	}
+
+progress.left.%.frames: $(LSVG_SOURCE) make-ani-frames.sh
+	{\
+		target=$$(cut -d. -f1,2 <<< $@); \
+		size=$$(cut -d. -f3 <<< $@); \
+		./make-ani-frames.sh src=$< target=$$target size=$$size frames=$(PROGRESS_FRAMES); \
+	}
+
+wait.%.in: theme/%/wait.in make-ani-hotspots.sh
+	{\
+		target=$$(cut -d. -f1 <<< $@); \
+		size=$$(cut -d. -f2 <<< $@); \
+		./make-ani-hotspots.sh target=$$target size=$$size frames=$(WAIT_FRAMES) \
+			default_frametime=$(WAIT_DEFAULT_FRAMETIME) \
+			$(WAIT_CUSTOM_FRAMETIMES); \
+	}
+
+wait.%: wait.%.in
 	$(XCURSORGEN) $< $@
 
-wait.$(SIZE_MEDIUM): wait.$(SIZE_MEDIUM).in
-	$(XCURSORGEN) $< $@
-
-wait.$(SIZE_LARGE): wait.$(SIZE_LARGE).in
-	$(XCURSORGEN) $< $@
-
-wait: wait.$(SIZE_SMALL).in wait.$(SIZE_MEDIUM).in wait.$(SIZE_LARGE).in wait.$(SIZE_LARGE1).in wait.$(SIZE_LARGE2).in
+wait: wait_all_frames wait_all_hotspots
 	cat wait.*.in|$(XCURSORGEN) - $@
 
-wait.ani: $(COMMON_SOURCE) make-windows-ani.sh ico2cur animaker
-	./make-windows-ani.sh src=$(COMMON_SOURCE) target=wait output_ani=$@ frames=$(WAIT_FRAMES) default_frametime=$(WINDOWS_WAIT_DEFAULT_FRAMETIME) $(WINDOWS_WAIT_CUSTOM_FRAMETIMES)
+wait.ani: png2cur animaker make-windows-ani.sh wait.24.frames wait.48.frames wait.64.frames
+	./make-windows-ani.sh target=wait output_ani=$@ frames=$(WAIT_FRAMES) \
+		default_frametime=$(WINDOWS_WAIT_DEFAULT_FRAMETIME) $(WINDOWS_WAIT_CUSTOM_FRAMETIMES) \
+		hotspot_48=23,23 hotspot_64=31,31
 
-wait_large.ani: $(COMMON_SOURCE) make-windows-ani.sh ico2cur animaker
-	./make-windows-ani.sh src=$(COMMON_SOURCE) target=wait.large output_ani=$@ frames=$(WAIT_FRAMES) default_frametime=$(WINDOWS_WAIT_DEFAULT_FRAMETIME) $(WINDOWS_WAIT_CUSTOM_FRAMETIMES)
+progress.ani: png2cur animaker make-windows-ani.sh progress.24.frames progress.48.frames progress.64.frames
+	./make-windows-ani.sh target=progress output_ani=$@ frames=$(PROGRESS_FRAMES) \
+		default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES)
 
-progress.ani: $(RSVG_SOURCE) make-windows-ani.sh ico2cur animaker
-	./make-windows-ani.sh src=$(RSVG_SOURCE) target=progress output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES)
+progress_left.ani: png2cur animaker make-windows-ani.sh progress.left.24.frames progress.left.48.frames progress.left.64.frames
+	./make-windows-ani.sh target=progress.left output_ani=$@ frames=$(PROGRESS_FRAMES) \
+		default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES)
 
-progress_large.ani: $(RSVG_SOURCE) make-windows-ani.sh ico2cur animaker
-	./make-windows-ani.sh src=$(RSVG_SOURCE) target=progress.large output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES)
-
-progress_left.ani: $(LSVG_SOURCE) make-windows-ani.sh ico2cur animaker
-	./make-windows-ani.sh src=$(LSVG_SOURCE) left=1 target=progress output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES) hotspot_src=theme/24/progress_left.in
-
-progress_large_left.ani: $(LSVG_SOURCE) make-windows-ani.sh ico2cur animaker
-	./make-windows-ani.sh src=$(LSVG_SOURCE) left=1 target=progress.large output_ani=$@ frames=$(PROGRESS_FRAMES) default_frametime=$(WINDOWS_PROGRESS_DEFAULT_FRAMETIME) $(WINDOWS_PROGRESS_CUSTOM_FRAMETIMES) hotspot_src=theme/24/progress_left.in
-
-progress: progress.$(SIZE_SMALL).in progress.$(SIZE_MEDIUM).in progress.$(SIZE_LARGE).in progress.$(SIZE_LARGE1).in progress.$(SIZE_LARGE2).in
+progress: progress_all_frames progress_all_hotspots
 	cat progress.*.in|$(XCURSORGEN) - $@
 
-progress.$(SIZE_SMALL): progress.$(SIZE_SMALL).in
+progress.%: progress.%.in
 	$(XCURSORGEN) $< $@
 
-progress.$(SIZE_MEDIUM): progress.$(SIZE_MEDIUM).in
-	$(XCURSORGEN) $< $@
+progress.%.in: theme/%/progress.in make-ani-hotspots.sh
+	{\
+		target=$$(cut -d. -f1 <<< $@); \
+		size=$$(cut -d. -f2 <<< $@); \
+		./make-ani-hotspots.sh target=$$target size=$$size frames=$(PROGRESS_FRAMES) \
+			default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) \
+			$(PROGRESS_CUSTOM_FRAMETIMES); \
+	}
 
-progress.$(SIZE_LARGE): progress.$(SIZE_LARGE).in
-	$(XCURSORGEN) $< $@
+progress_left.%.in: theme/%/progress_left.in make-animated-cursor.sh
+	{\
+		target=$$(cut -d. -f1 <<< $@); \
+		target=$${target/_/.}
+		size=$$(cut -d. -f2 <<< $@); \
+		./make-ani-hotspots.sh target=$$target size=$$size frames=$(PROGRESS_FRAMES) \
+			default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) \
+			$(PROGRESS_CUSTOM_FRAMETIMES); \
+	}
 
-progress.$(SIZE_SMALL).in: $(RSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_SMALL) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress.$(SIZE_MEDIUM).in: $(RSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_MEDIUM) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress.$(SIZE_LARGE).in: $(RSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_LARGE) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress.$(SIZE_LARGE1).in: $(RSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_LARGE1) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress.$(SIZE_LARGE2).in: $(RSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress size=$(SIZE_LARGE2) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress_left.$(SIZE_SMALL).in: $(LSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_SMALL) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress_left.$(SIZE_MEDIUM).in: $(LSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_MEDIUM) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress_left.$(SIZE_LARGE).in: $(LSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_LARGE) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress_left.$(SIZE_LARGE1).in: $(LSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_LARGE1) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress_left.$(SIZE_LARGE2).in: $(LSVG_SOURCE) make-animated-cursor.sh
-	@echo '>>> $@'
-	@./make-animated-cursor.sh src=$< target=progress.left size=$(SIZE_LARGE2) \
-	default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) $(PROGRESS_CUSTOM_FRAMETIMES) \
-	frames=$(PROGRESS_FRAMES)
-
-progress.left: progress_left.$(SIZE_SMALL).in progress_left.$(SIZE_MEDIUM).in progress_left.$(SIZE_LARGE).in progress_left.$(SIZE_LARGE1).in progress_left.$(SIZE_LARGE2).in
+progress.left: progress_left_all_frames progress_left.$(SIZE_SMALL).in progress_left.$(SIZE_MEDIUM).in progress_left.$(SIZE_LARGE).in progress_left.$(SIZE_LARGE1).in progress_left.$(SIZE_LARGE2).in
 	cat progress_left.*.in|$(XCURSORGEN) - $@
 
-progress.$(SIZE_SMALL).left: progress_left.$(SIZE_SMALL).in
-	$(XCURSORGEN) $< $@
-
-progress.$(SIZE_MEDIUM).left: progress_left.$(SIZE_MEDIUM).in
-	$(XCURSORGEN) $< $@
-
-progress.$(SIZE_LARGE).left: progress_left.$(SIZE_LARGE).in
+progress.%.left: progress_left.%.in
 	$(XCURSORGEN) $< $@
 
 wait-preview.$(PREVIEW_SIZE).png: $(COMMON_SOURCE)
@@ -674,20 +577,18 @@ clean:
 	rm -f $(PNG_COMMON_LARGE)
 	rm -f $(PNG_COMMON_LARGE1)
 	rm -f $(PNG_COMMON_LARGE2)
-	rm -f $(WINCURSORS)
-	rm -f $(WINCURSORS_LARGE)
-	rm -f $(LWINCURSORS)
-	rm -f $(LWINCURSORS_LARGE)
-	rm -f *.in ico2cur
-	rm -f *.32*.png
-	rm -f progress*.png wait*.png
-	rm -f *_ico.png *.ico
+	rm -f $(WINCURSORS) $(LWINCURSORS)
+	rm -f *.in png2cur
+	rm -f *.64.*png
 	rm -f *.ani
+	rm -f *.cur
 
 .PHONY: all all-dist all.left all.small all.medium all.large all.small.left all.medium.left all.large.left \
 	clean dist dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left \
 	install pack preview source-dist theme theme.left theme.small theme.medium theme.large theme.small.left \
-	theme.medium.left theme.large.left windows-cursors all-sizes all-themes
+	theme.medium.left theme.large.left windows-cursors all-sizes all-themes wait.%.frames \
+	wait_all_frames progress_all_frames progress_left_all_frames wait_all_hotspots progress_all_hotspots \
+	progress_left_all_hotspots
 .SUFFIXES:
 .PRECIOUS: %.in %_left.in %.png %.left.png %_left.ico %.ico %_large.ico %_large_left.ico
 .DELETE_ON_ERROR:
