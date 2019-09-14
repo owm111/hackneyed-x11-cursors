@@ -152,7 +152,7 @@ long get_pathmax(const char *dirpath)
 	return pathmax;
 }
 
-char *png_add_extent(const char *src)
+char *png_add_extent(const char *src, uint8_t *old_width, uint8_t *old_height)
 {
 	MagickWand *mb = NULL;
 	PixelWand *pb;
@@ -181,6 +181,8 @@ char *png_add_extent(const char *src)
 		extfname = NULL;
 		goto noop;
 	}
+	*old_width = width;
+	*old_height = height;
 	MagickSetImageBackgroundColor(mb, pb);
 	MagickExtentImage(mb, 32, 32, 0, 0);
 	if (MagickWriteImage(mb, outfname) == MagickFalse)
@@ -228,19 +230,19 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 	struct stat sb;
 	char *extfname;
 	png_image pmb;
-	uint8_t prev_w, prev_h;
+	uint8_t zero_w, zero_h;
 	int has_hotspot = 0;
 	int i;
 
 	if (!ret)
 		die("malloc error");
-	prev_w = prev_h = 0;
+	zero_w = zero_h = 0;
 	for (i = 0; i < argc; i++) {
 		has_hotspot = get_hotspots(argv[i], &ret[i]);
 		check_if_png(ret[i].fname);
 		pmb.version = PNG_IMAGE_VERSION;
 		pmb.format = PNG_FORMAT_RGBA;
-		if ((extfname = png_add_extent(ret[i].fname))) {
+		if ((extfname = png_add_extent(ret[i].fname, &zero_w, &zero_h))) {
 			free(ret[i].fname);
 			ret[i].fname = extfname;
 		}
@@ -252,16 +254,14 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 		ret[i].ie.width = pmb.width;
 		ret[i].ie.height = pmb.height;
 		if (!has_hotspot) {
-			if (prev_w && prev_h) {
-				ret[i].ie.x_hotspot = round((double)(ret[i].ie.width * base_x) / ret[0].ie.width);
-				ret[i].ie.y_hotspot = round((double)(ret[i].ie.height * base_y) / ret[0].ie.height);
+			if (zero_w && zero_h && !extfname) {
+				ret[i].ie.x_hotspot = round((double)(ret[i].ie.width * ret[0].ie.x_hotspot) / zero_w);
+				ret[i].ie.y_hotspot = round((double)(ret[i].ie.height * ret[0].ie.y_hotspot) / zero_h);
 			} else {
 				ret[i].ie.x_hotspot = base_x;
 				ret[i].ie.y_hotspot = base_y;
 			}
 		}
-		prev_w = pmb.width;
-		prev_h = pmb.height;
 		memset(&pmb, 0, sizeof(pmb));
 	}
 	return ret;
