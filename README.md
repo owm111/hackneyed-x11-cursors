@@ -19,7 +19,12 @@ Minimum dependencies:
 Extra functionality has additional dependencies:
 
 * The GIMP script requires GIMP >= 2.2 with the XMC plugin installed (the script isn't very useful anyway; refer to the in-file comments);
-* A working C compiler for `ico2cur` and `animaker`, and `zip`, to generate and pack Windows cursors.
+* To generate and pack Windows cursors:
+	* A working C compiler;
+	* `ImageMagick` >= 6.9.10;
+	* `libpng` >= 1.6.36;
+	* `pkg-config`;
+	* `zip`.
 
 Production targets (all of them generate tarballs for distribution):
 
@@ -28,7 +33,7 @@ Production targets (all of them generate tarballs for distribution):
 * `dist.left`: build the scalable, left-handed theme;
 * `dist.<size>`, where `size` can be small, medium or large: build a fixed-size, right-handed theme of the specified size;
 * `dist.<size>.left`: build a fixed-size, left-handed theme of the specified size;
-* `windows-cursors` for Windows. These cursors use alpha channels, so only Windows XP and later can display them properly.
+* `windows-cursors` for Windows. These cursors are PNG-compressed and work only in Windows Vista and later (they are high-DPI ready as well).
 
 `make all-dist` targets all of the above (except `windows-cursors`), including all fixed-size themes in all available sizes.
 
