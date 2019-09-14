@@ -337,7 +337,7 @@ int main(int argc, char **argv)
 	for (i = 1; i < ib.count; i++)
 		fb[i].ie.offset = fb[i - 1].ie.offset + fb[i - 1].ie.size;
 	for (i = 0; i < ib.count; i++) {
-		printf("frame %lu: %dx%d, hotspot %d,%d\n", i, fb[i].ie.width,
+		printf("%s[%lu]: %dx%d, hotspot %d,%d\n", dest, i, fb[i].ie.width,
 			fb[i].ie.height, fb[i].ie.x_hotspot, fb[i].ie.y_hotspot);
 		fwrite(&fb[i].ie, sizeof(fb[i].ie), 1, fdest);
 	}
