@@ -91,7 +91,7 @@ if [ -e $hotspot_src ]; then
 fi
 for ((i = 1; i <= frames; i++)); do
 	make_source_list "${target}-${i}"
-	output_cur="${target}-${i}.cur"
+	[ "$variant" ] && output_cur="${target}-${i}.${variant}.cur" || output_cur="${target}-${i}.cur"
 	./png2cur -x $hotspot_x -y $hotspot_y -o $output_cur $source_pngs || die
 	eval frametime=\$frame_${i}_time
 	[ "$frametime" ] && output_cur="$output_cur=$frametime"
