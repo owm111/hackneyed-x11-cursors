@@ -152,7 +152,7 @@ long get_pathmax(const char *dirpath)
 	return pathmax;
 }
 
-char *png_add_extent(const char *src, uint8_t *old_width, uint8_t *old_height)
+char *png_add_extent(const char *src, uint8_t *zero_w, uint8_t *zero_h)
 {
 	MagickWand *mb = NULL;
 	PixelWand *pb;
@@ -181,8 +181,10 @@ char *png_add_extent(const char *src, uint8_t *old_width, uint8_t *old_height)
 		extfname = NULL;
 		goto noop;
 	}
-	*old_width = width;
-	*old_height = height;
+	if (!*zero_w && !*zero_h) {
+		*zero_w = width;
+		*zero_h = height;
+	}
 	MagickSetImageBackgroundColor(mb, pb);
 	MagickExtentImage(mb, 32, 32, 0, 0);
 	if (MagickWriteImage(mb, outfname) == MagickFalse)
