@@ -132,16 +132,14 @@ struct frameinfo *get_frameinfo(int argc, char **argv, uint32_t default_rate)
 size_t write_rate(FILE *f, struct frameinfo *fb, int len)
 {
 	chunk_t rate;
-	size_t ret = 0;
 	int i;
 
 	memcpy(rate.id, "rate", 4);
 	rate.size = len * sizeof(fb[i].jiffies);
-	ret = rate.size + sizeof(rate);
 	fwrite(&rate, sizeof(rate), 1, f);
 	for (i = 0; i < len; i++)
 		fwrite(&fb[i].jiffies, sizeof(fb[i].jiffies), 1, f);
-	return ret;
+	return sizeof(rate) + rate.size;
 }
 
 /* TO DO: write multiple-sized images per frame, since Windows 10
@@ -156,16 +154,21 @@ size_t write_fram(FILE *f, struct frameinfo *fb, int len)
 {
 	chunk_t icon, list;
 	FILE *src;
-	char buf[BUFSIZ] = "";
+	char buf[BUFSIZ];
 	int i;
-	size_t nread;
-	size_t ret = 0;
+	size_t nread, padding;
 
 	memcpy(list.id, "LIST", 4);
+	/* "fram" == 4 */
 	list.size = 4 + sizeof(icon) * len;
-	for (i = 0; i < len; i++)
+	for (i = 0; i < len; i++) {
+		/* odd chunks need padding */
+		if (fb[i].fsize % 2 != 0)
+			padding++;
 		list.size += fb[i].fsize;
-	ret = list.size + sizeof(list);
+	}
+	/* LIST size must include padding */
+	list.size += padding;
 	fwrite(&list, sizeof(list), 1, f);
 	fwrite("fram", 4, 1, f);
 	memcpy(icon.id, "icon", 4);
@@ -174,12 +177,13 @@ size_t write_fram(FILE *f, struct frameinfo *fb, int len)
 			die("%s: fopen: %s", __func__, fb[i].fname);
 		icon.size = fb[i].fsize;
 		fwrite(&icon, sizeof(icon), 1, f);
-		while ((nread = fread(&buf, sizeof(*buf), sizeof(buf), src)))
-			fwrite(&buf, sizeof(*buf), nread, f);
+		while ((nread = fread(buf, sizeof(*buf), sizeof(buf), src)))
+			fwrite(buf, sizeof(*buf), nread, f);
+		if (icon.size % 2 != 0)
+			fputc(0, f);
 		fclose(src);
-		memset(&buf, 0, sizeof(buf));
 	}
-	return ret;
+	return sizeof(list) + list.size;
 }
 
 void fmfree(struct frameinfo **fb, int len)
@@ -232,9 +236,8 @@ int main(int argc, char **argv)
 		die("error getting frameinfo");
 	if (!(f = fopen(outfile, "w")))
 		die("fopen: %s", outfile);
-	fwrite(&af, sizeof(af), 1, f);
-	af.riff_header.size = sizeof(af);
-	af.riff_header.size += write_rate(f, fb, af.frames) + write_fram(f, fb, af.frames) - 8;
+	fseek(f, sizeof(af), SEEK_SET);
+	af.riff_header.size = sizeof(af) + write_rate(f, fb, af.frames) + write_fram(f, fb, af.frames) - 8;
 	rewind(f);
 	fwrite(&af, sizeof(af), 1, f);
 	printf("%s: %u bytes, %u frames\n", outfile, af.riff_header.size, af.frames);
