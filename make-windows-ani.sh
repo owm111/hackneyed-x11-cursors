@@ -25,17 +25,27 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
+SIZES='24 48 64'
+
 die()
 {
 	echo $@ >&2
 	exit 1
 }
 
+make_source_list()
+{
+	local custom_hotspot
+
+	for s in $SIZES; do
+		eval [ "\$hotspot_${s}" ] && eval custom_hotspot="=\$hotspot_${s}"
+		[ "$variant" ] && source_pngs="$source_pngs $@.$s.${variant}.png${custom_hotspot}" ||\
+			source_pngs="$source_pngs $@.$s.png${custom_hotspot}"
+	done
+}
+
 while [ "$1" ]; do
 	case "$1" in
-	src=*)
-		src=${1#*=}
-		shift ;;
 	target=*)
 		target=${1#*=}
 		shift ;;
@@ -49,14 +59,12 @@ while [ "$1" ]; do
 		var=${1%=*}
 		eval $var=${1#*=}
 		shift ;;
-	hotspot_src=*)
-		hotspot_src=${1#*=}
+	hotspot_*=*)
+		var=${1%=*}
+		eval $var=${1#*=}
 		shift ;;
 	output_ani=*)
 		output_ani=${1#*=}
-		shift ;;
-	left=*)
-		left=${1#*=}
 		shift ;;
 	*)
 		die "invalid parameter: $1"
@@ -64,35 +72,30 @@ while [ "$1" ]; do
 done
 
 : ${default_frametime:=1}
-: ${src:?no source svg specified}
 : ${target:?missing target}
 : ${frames:?missing frame count}
-: ${hotspot_x:=15}
-: ${hotspot_y:=15}
 : ${output_ani:?no output file specified}
-dpi=96
-size=24
+: ${hotspot_src:=theme/24/${target}.in}
 variant=${target#*.}
-target=${target%.*}
-: ${hotspot_src:=theme/${size}/${target}.in}
-set -- $hotspot_x $hotspot_y
-[ -e $hotspot_src ] && set -- $(cut -d' ' -f2,3 $hotspot_src)
-if [ "$variant" = "large" ]; then
-	x=$(( (32 * $1) / (24 - 1) ))
-	y=$(( (32 * $2) / (24 - 1) ))
-	dpi=$(( (96 * 32) / 24 ))
-	size=32
-	set -- $x $y
+[ "$variant" = "$target" ] && unset variant
+if [ "$variant" ]; then
+	target=${target%.*}
+	hotspot_src=theme/24/${target}_${variant}.in
+fi
+: ${hotspot_x:=0}
+: ${hotspot_y:=0}
+if [ -e $hotspot_src ]; then
+	set -- $(cut -d' ' -f2,3 $hotspot_src)
+	hotspot_x=$1
+	hotspot_y=$2
 fi
 for ((i = 1; i <= frames; i++)); do
-	[ "$left" = 1 ] && output="${target}-${i}.${size}.left.png" || output="${target}-${i}.${size}.png"
-	output_ico="${output%*.png}.ico"
-	output_cur="${output%*.png}.cur"
-	inkscape --without-gui -i "$target-$i" -d $dpi -f $src -e $output >/dev/null || die
-	convert -background none -extent 32x32 $output $output_ico || die
-	./ico2cur -x $1 -y $2 $output_ico || die
+	make_source_list "${target}-${i}"
+	output_cur="${target}-${i}.cur"
+	./png2cur -x $hotspot_x -y $hotspot_y -o $output_cur $source_pngs || die
 	eval frametime=\$frame_${i}_time
 	[ "$frametime" ] && output_cur="$output_cur=$frametime"
 	cmdline="$cmdline $output_cur"
+	unset source_pngs
 done
 ./animaker -o ${output_ani} -t $default_frametime $cmdline
