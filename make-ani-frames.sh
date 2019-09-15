@@ -33,6 +33,9 @@ die()
 
 while [ "$1" ]; do
 	case "$1" in
+	smallest_size=*)
+		smallest_size=${1#*=}
+		shift ;;
 	size=*)
 		size=${1#*=}
 		shift ;;
@@ -54,12 +57,14 @@ done
 : ${src:?no source svg specified}
 : ${target:?missing target}
 : ${frames:?missing frame count}
-dpi=$(( (96 * size)/24 ))
-: ${dpi:?invalid size $size}
+: ${smallest_size:?missing smallest size}
 
+dpi=$(( (96 * size)/smallest_size ))
+: ${dpi:?invalid size $size}
 variant=${target#*.}
 [ "$variant" = "$target" ] && unset variant
 [ "$variant" ] && target=${target%.*}
+
 for ((i = 1; i <= frames; i++)); do
 	[ "$variant" ] && output="${target}-${i}.${size}.${variant}.png" || output="${target}-${i}.${size}.png"
 	echo "make-ani-frames.sh: $target ($size): $output"

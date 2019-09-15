@@ -42,8 +42,8 @@ while [ "$1" ]; do
 	size=*)
 		size=${1#*=}
 		shift ;;
-	base_size=*)
-		base_size=${1#*=}
+	smallest_size=*)
+		smallest_size=${1#*=}
 		shift ;;
 	output=*)
 		output=${1#*=}
@@ -56,9 +56,9 @@ done
 : ${src:?no source svg specified}
 : ${target:?missing target}
 : ${size:?no size specified}
-: ${base_size:?missing base size}
+: ${smallest_size:?missing smallest size}
 : ${output:?no outfile specified}
 
-dpi=$(( (96 * size) / base_size ))
+dpi=$(( (96 * size) / smallest_size ))
 echo "${target}: ${output}, ${size}px, ${dpi} DPI"; \
 inkscape --without-gui -i ${target} -d $dpi -f $src -e $output >/dev/null;

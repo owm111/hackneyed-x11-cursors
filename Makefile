@@ -358,7 +358,7 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 			fi; \
 		done; \
 		echo ">>> target: $$target"; \
-		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@; \
+		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) smallest_size=$(SIZE_SMALL) output=$@; \
 	}
 
 %.left.png: $(LSVG_SOURCE) $(COMMON_SOURCE)
@@ -371,7 +371,7 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 				break; \
 			fi; \
 		done; \
-		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) base_size=$(SIZE_SMALL) output=$@; \
+		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) smallest_size=$(SIZE_SMALL) output=$@; \
 	}
 
 %: %.in %.$(SIZE_SMALL).png %.$(SIZE_MEDIUM).png %.$(SIZE_LARGE).png %.$(SIZE_LARGE1).png %.$(SIZE_LARGE2).png
@@ -446,21 +446,21 @@ wait.%.frames: $(COMMON_SOURCE) make-ani-frames.sh
 	{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		./make-ani-frames.sh src=$< target=$$target size=$$size frames=$(WAIT_FRAMES); \
+		./make-ani-frames.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(WAIT_FRAMES); \
 	}
 
 progress.%.frames: $(RSVG_SOURCE) make-ani-frames.sh
 	{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		./make-ani-frames.sh src=$< target=$$target size=$$size frames=$(PROGRESS_FRAMES); \
+		./make-ani-frames.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(PROGRESS_FRAMES); \
 	}
 
 progress.left.%.frames: $(LSVG_SOURCE) make-ani-frames.sh
 	{\
 		target=$$(cut -d. -f1,2 <<< $@); \
 		size=$$(cut -d. -f3 <<< $@); \
-		./make-ani-frames.sh src=$< target=$$target size=$$size frames=$(PROGRESS_FRAMES); \
+		./make-ani-frames.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(PROGRESS_FRAMES); \
 	}
 
 wait.%.in: theme/%/wait.in make-ani-hotspots.sh
@@ -543,7 +543,9 @@ preview: $(COMMON_SMALL) $(PNG_SMALL) $(LPNG_SMALL) wait-preview.$(PREVIEW_SIZE)
 	preview-small-$(THEME_NAME).png
 
 clean:
-	rm -rf $(THEME_WINDOWS) $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_SMALL) $(THEME_NAME_MEDIUM) $(THEME_NAME_LARGE) L$(THEME_NAME_SMALL) L$(THEME_NAME_MEDIUM) L$(THEME_NAME_LARGE)
+	rm -rf $(THEME_WINDOWS)
+	rm -rf $(THEME_NAME) L$(THEME_NAME) $(THEME_NAME_SMALL) $(THEME_NAME_MEDIUM) $(THEME_NAME_LARGE) \
+		L$(THEME_NAME_SMALL) L$(THEME_NAME_MEDIUM) L$(THEME_NAME_LARGE)
 	rm -f $(CURSORS)
 	rm -f $(CURSORS_SMALL)
 	rm -f $(CURSORS_MEDIUM)
@@ -577,18 +579,18 @@ clean:
 	rm -f $(PNG_COMMON_LARGE)
 	rm -f $(PNG_COMMON_LARGE1)
 	rm -f $(PNG_COMMON_LARGE2)
-	rm -f $(WINCURSORS) $(LWINCURSORS)
-	rm -f *.in png2cur
-	rm -f *.64.*png
-	rm -f *.ani
+	rm -f wait*.png progress*.png
+	rm -f $(WINCURSORS) $(LWINCURSORS) $(WINCURSORS_ANI) $(LWINCURSORS_ANI)
+	rm -f *.in png2cur animaker
+	rm -f *.64*.png
 	rm -f *.cur
 
 .PHONY: all all-dist all.left all.small all.medium all.large all.small.left all.medium.left all.large.left \
 	clean dist dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left \
 	install pack preview source-dist theme theme.left theme.small theme.medium theme.large theme.small.left \
 	theme.medium.left theme.large.left windows-cursors all-sizes all-themes wait.%.frames \
-	wait_all_frames progress_all_frames progress_left_all_frames wait_all_hotspots progress_all_hotspots \
-	progress_left_all_hotspots
+	progress.%.frames progress.left.%.frames wait_all_frames progress_all_frames \
+	progress_left_all_frames wait_all_hotspots progress_all_hotspots progress_left_all_hotspots
 .SUFFIXES:
-.PRECIOUS: %.in %_left.in %.png %.left.png %_left.ico %.ico %_large.ico %_large_left.ico
+.PRECIOUS: %.in %_left.in %.png %.left.png
 .DELETE_ON_ERROR:
