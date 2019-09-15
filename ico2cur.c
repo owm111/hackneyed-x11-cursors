@@ -26,6 +26,7 @@
  */
  
  /* ico2cur.c: convert a Windows icon (.ico) file to a cursor (.cur) file */
+ /* TODO: handle multiple cursors per file */
 
 #if defined __GNUC__ && !defined _GNU_SOURCE
 # define _GNU_SOURCE
