@@ -26,7 +26,6 @@
  */
  
  /* ico2cur.c: convert a Windows icon (.ico) file to a cursor (.cur) file */
- /* TODO: handle multiple cursors per file */
 
 #if defined __GNUC__ && !defined _GNU_SOURCE
 # define _GNU_SOURCE
@@ -42,6 +41,29 @@
 #include <errno.h>
 
 #define HEADERLEN	13
+#define ICONMAX		1024
+
+typedef struct {
+	uint8_t width;
+	uint8_t height;
+	uint8_t colors; /* colors in the image (0 if >=8bpp) */
+	uint8_t reserved; /* 0 */
+	uint16_t x_hotspot;
+	uint16_t y_hotspot;
+	uint32_t size;
+	uint32_t offset; /* position of the image in file */
+} icondirentry;
+
+typedef struct {
+	uint16_t reserved; /* 0 */
+	uint16_t type;	/* 1 = icon, 2 = cursor */
+	uint16_t count; /* icondirentry[count] entries */
+} icondir;
+
+struct iconfile {
+	icondir ib;
+	icondirentry *ie;
+};
 
 void die(const char *msg, ...)
 {
@@ -54,6 +76,112 @@ void die(const char *msg, ...)
 	putc('\n', stderr);
 	va_end(argp);
 	exit(EXIT_FAILURE);
+}
+
+void iffree(struct iconfile **fb)
+{
+	free((*fb)->ie);
+	free(*fb);
+}
+
+struct iconfile *get_ico_headers(const char *src)
+{
+	FILE *f = fopen(src, "r");
+	size_t i;
+	struct iconfile *ret;
+
+	if (!f)
+		die("fopen: %s", src);
+	ret = malloc(sizeof(*ret));
+	memset(ret, 0, sizeof(*ret));
+	fread(&ret->ib, sizeof(ret->ib), 1, f);
+	if (ret->ib.reserved != 0 || (ret->ib.type != 1 && ret->ib.type != 2) || ret->ib.count == 0 || ret->ib.count > ICONMAX)
+		die("%s: not an ICO/CUR file or corrupted", src);
+	ret->ie = malloc(sizeof(*ret->ie) * ret->ib.count);
+	for (i = 0; i < ret->ib.count; i++) {
+		if (fread(&ret->ie[i], sizeof(*ret->ie), 1, f) < sizeof(*ret->ie) && feof(f))
+			die("%s: unexpected end of file", src);
+		if (ferror(f))
+			die("%s: read error", src);
+		if (ret->ie[i].reserved != 0)
+			die("%s: invalid icondirentry", src);
+	}
+	fclose(f);
+	return ret;
+}
+
+void get_ico_info(const char *name)
+{
+	size_t i;
+	const char *filetype = "icon";
+	const char *field_5 = "planes";
+	const char *field_6 = "bpp";
+	struct iconfile *fb;
+
+	fb = get_ico_headers(name);
+	if (fb->ib.type == 2) {
+		filetype = "cursor";
+		field_5 = "x_hotspot";
+		field_6 = "y_hotspot";
+	}
+	printf("%s\n", name);
+	printf("filetype: %s (%u)\n", filetype, fb->ib.type);
+	printf("icondirentry count: %u\n", fb->ib.count);
+	printf("-------------------------\n");
+	for (i = 0; i < fb->ib.count; i++) {
+		printf("[%lu] dimensions: %ux%u\n", i, fb->ie[i].width, fb->ie[i].height);
+		printf("[%lu] colors: %u\n", i, fb->ie[i].colors);
+		printf("[%lu] %s: %u\n", i, field_5, fb->ie[i].x_hotspot);
+		printf("[%lu] %s: %u\n", i, field_6, fb->ie[i].y_hotspot);
+		printf("[%lu] image size: %u\n", i, fb->ie[i].size);
+		printf("[%lu] image offset: %u\n", i, fb->ie[i].offset);
+		if (fb->ib.count - i > 1)
+			printf("-------------------------\n");
+	}
+	iffree(&fb);
+	exit(EXIT_SUCCESS);
+}
+
+void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y)
+{
+	FILE *fdest;
+	FILE *fsrc;
+	uint16_t zero_w, zero_h;
+	size_t i;
+	size_t w;
+	off_t start;
+	char buf[BUFSIZ];
+	struct iconfile *fb;
+
+	fb = get_ico_headers(src);
+	fb->ib.type = 2;
+	zero_w = fb->ie[0].width;
+	zero_h = fb->ie[0].height;
+	for (i = 1; i < fb->ib.count; i++) {
+		if (fb->ie[i].width < zero_w)
+			zero_w = fb->ie[i].width;
+		if (fb->ie[i].height < zero_h)
+			zero_h = fb->ie[i].height;
+	}
+	for (i = 0; i < fb->ib.count; i++) {
+		fb->ie[i].x_hotspot = (fb->ie[i].width * x) / zero_w;
+		fb->ie[i].y_hotspot = (fb->ie[i].width * y) / zero_h;
+		printf("[%lu]: %ux%u (%d,%d)\n", i, fb->ie[i].width, fb->ie[i].height,
+			fb->ie[i].x_hotspot, fb->ie[i].y_hotspot);
+	}
+	if (!(fdest = fopen(dest, "w")))
+		die("fopen: %s", dest);
+	if (!(fsrc = fopen(src, "r")))
+		die("fopen: %s", src);
+	fwrite(&fb->ib, sizeof(fb->ib), 1, fdest);
+	fwrite(fb->ie, sizeof(*fb->ie), fb->ib.count, fdest);
+	start = ftello(fdest);
+	fseeko(fsrc, start, SEEK_SET);
+	while ((w = fread(buf, sizeof(*buf), sizeof(buf), fsrc)))
+		fwrite(buf, sizeof(*buf), w, fdest);
+	fclose(fsrc);
+	fclose(fdest);
+	printf("%s -> %s\n", src, dest);
 }
 
 uint16_t get_axis(const char *s, char axis)
@@ -147,19 +275,16 @@ void get_hotspot(const char *src, const char *name, unsigned short *x, unsigned 
 
 int main(int argc, char **argv)
 {
-	FILE *fsrc, *fdest;
-	size_t b;
 	int c;
 	uint16_t x, y;
 	char buf[BUFSIZ] = "";
-	char header[HEADERLEN] = "";
 	char *src = NULL;
 	char *dest = NULL;
 	char *p;
 	char *hotspotsrc = NULL, *name = NULL;
 	
 	x = y = 0;
-	while ((c = getopt(argc, argv, "x:y:hp:")) != -1) {
+	while ((c = getopt(argc, argv, "x:y:hp:i:")) != -1) {
 		switch (c) {
 		case 'x':
 			x = get_axis(optarg, c);
@@ -173,6 +298,9 @@ int main(int argc, char **argv)
 		case 'p':
 			hotspotsrc = strdup(optarg);
 			break;
+		case 'i':
+			get_ico_info(optarg);
+			break;
 		default:
 			exit(EXIT_FAILURE);
 		}
@@ -181,11 +309,6 @@ int main(int argc, char **argv)
 		src = argv[optind];
 	else
 		die("no filename specified");
-	if (!(fsrc = fopen(src, "r")))
-		die("%s: %s", src, strerror(errno));
-	fread(header, sizeof(char), sizeof(header), fsrc);
-	if (ferror(fsrc))
-		die("%s: could not read file", src);
 	if (hotspotsrc) {
 		strncpy(buf, src, sizeof(buf));
 		p = basename(buf);
@@ -194,19 +317,7 @@ int main(int argc, char **argv)
 		free(name);
 		free(hotspotsrc);
 	}
-	/* A kind of magic */
-	header[2] = (char)2;
-	header[10] = (char)x;
-	header[12] = (char)y;
 	dest = extsub(src, ".cur");
-	if (!(fdest = fopen(dest, "w+")))
-		die("%s: %s", dest, strerror(errno));
-	fwrite(header, sizeof(char), sizeof(header), fdest);
-	while ((b = fread(buf, sizeof(char), sizeof(buf), fsrc)))
-		fwrite(buf, sizeof(char), b, fdest);
-	fclose(fdest);
-	printf("%s -> %s (%d,%d)\n", src, dest, x, y);
-	free(dest);
-	fclose(fsrc);
+	ico2cur(src, dest, x, y);
 	return 0;
 }
