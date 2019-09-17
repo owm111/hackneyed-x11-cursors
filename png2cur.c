@@ -259,6 +259,12 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 		ret[i].ie.height = pmb.height;
 		memset(&pmb, 0, sizeof(pmb));
 	}
+	/* stock Windows cursors are sorted in descendant order (largest image
+	 * first), even though the OS itself doesn't seem to care -- except for
+	 * animated cursors. an ANI starting with a 64x64 image will make
+	 * Windows load it first and I'm not sure why (the default ANI Aero
+	 * cursors use the same sorting as the static files and they're loaded
+	 * correctly; not sure what I'm doing wrong) */
 	for (i = 0; i < argc; i++) {
 		for (j = 0; j < (argc - i - 1); j++) {
 			if (ret[j].ie.width > ret[j + 1].ie.width && ret[j].ie.height > ret[j + 1].ie.height) {
