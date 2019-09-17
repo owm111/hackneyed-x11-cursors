@@ -250,8 +250,10 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 			free(ret[i].fname);
 			ret[i].fname = extfname;
 		}
-		if (png_image_begin_read_from_file(&pmb, ret[i].fname) == 0)
+		if (png_image_begin_read_from_file(&pmb, ret[i].fname) == 0) {
+			errno = 0;
 			die("libpng error: %s", pmb.message);
+		}
 		if (stat(ret[i].fname, &sb) < 0)
 			die("stat: %s", ret[i].fname);
 		ret[i].ie.size = sb.st_size;
