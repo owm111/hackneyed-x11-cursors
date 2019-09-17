@@ -183,6 +183,8 @@ void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y)
 	fclose(fsrc);
 	fclose(fdest);
 	printf("%s -> %s\n", src, dest);
+	iffree(&fb);
+	exit(EXIT_SUCCESS);
 }
 
 uint16_t get_axis(const char *s, char axis)
