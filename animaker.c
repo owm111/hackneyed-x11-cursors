@@ -142,14 +142,6 @@ size_t write_rate(FILE *f, struct frameinfo *fb, int len)
 	return sizeof(rate) + rate.size;
 }
 
-/* TO DO: write multiple-sized images per frame, since Windows 10
- * supports it (for DPI scaling)
- *
- * if I stick to Windows Vista and later, I can even
- * embed PNG files with CUR headers directly (which is easier
- * than converting PNG to ICO, then to CUR, then to CUR with
- * multiple sizes while stripping the header of the subsequent
- * images. PNG is less wasteful as well) */
 size_t write_fram(FILE *f, struct frameinfo *fb, int len)
 {
 	chunk_t icon, list;
