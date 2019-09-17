@@ -39,6 +39,7 @@
 #include <getopt.h>
 #include <stdarg.h>
 #include <errno.h>
+#include <math.h>
 
 #define HEADERLEN	13
 #define ICONMAX		1024
@@ -164,8 +165,8 @@ void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y)
 			zero_h = fb->ie[i].height;
 	}
 	for (i = 0; i < fb->ib.count; i++) {
-		fb->ie[i].x_hotspot = (fb->ie[i].width * x) / zero_w;
-		fb->ie[i].y_hotspot = (fb->ie[i].width * y) / zero_h;
+		fb->ie[i].x_hotspot = round((double)(fb->ie[i].width * x) / zero_w);
+		fb->ie[i].y_hotspot = round((double)(fb->ie[i].width * y) / zero_h);
 		printf("[%lu]: %ux%u (%d,%d)\n", i, fb->ie[i].width, fb->ie[i].height,
 			fb->ie[i].x_hotspot, fb->ie[i].y_hotspot);
 	}
