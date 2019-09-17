@@ -77,6 +77,7 @@ typedef struct {
 
 struct fileinfo {
 	char *fname;
+	int has_hotspot;
 	icondirentry ie;
 };
 
@@ -181,7 +182,7 @@ char *png_add_extent(const char *src, uint8_t *zero_w, uint8_t *zero_h)
 		extfname = NULL;
 		goto noop;
 	}
-	if (!*zero_w && !*zero_h) {
+	if (!*zero_w || !*zero_h || (width < *zero_w && height < *zero_h)) {
 		*zero_w = width;
 		*zero_h = height;
 	}
@@ -233,14 +234,15 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 	char *extfname;
 	png_image pmb;
 	uint8_t zero_w, zero_h;
-	int has_hotspot = 0;
-	int i;
+	struct fileinfo tmp;
+	int i, j;
 
 	if (!ret)
 		die("malloc error");
 	zero_w = zero_h = 0;
+	memset(&tmp, 0, sizeof(tmp));
 	for (i = 0; i < argc; i++) {
-		has_hotspot = get_hotspots(argv[i], &ret[i]);
+		ret[i].has_hotspot = get_hotspots(argv[i], &ret[i]);
 		check_if_png(ret[i].fname);
 		pmb.version = PNG_IMAGE_VERSION;
 		pmb.format = PNG_FORMAT_RGBA;
@@ -255,16 +257,30 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 		ret[i].ie.size = sb.st_size;
 		ret[i].ie.width = pmb.width;
 		ret[i].ie.height = pmb.height;
-		if (!has_hotspot) {
-			if (zero_w && zero_h && !extfname) {
-				ret[i].ie.x_hotspot = round((double)(ret[i].ie.width * ret[0].ie.x_hotspot) / zero_w);
-				ret[i].ie.y_hotspot = round((double)(ret[i].ie.height * ret[0].ie.y_hotspot) / zero_h);
-			} else {
-				ret[i].ie.x_hotspot = base_x;
-				ret[i].ie.y_hotspot = base_y;
+		memset(&pmb, 0, sizeof(pmb));
+	}
+	for (i = 0; i < argc; i++) {
+		for (j = 0; j < (argc - i - 1); j++) {
+			if (ret[j].ie.width > ret[j + 1].ie.width && ret[j].ie.height > ret[j + 1].ie.height) {
+				tmp = ret[j];
+				ret[j] = ret[j + 1];
+				ret[j + 1] = tmp;
 			}
 		}
-		memset(&pmb, 0, sizeof(pmb));
+	}
+	if (!zero_w && !zero_h) {
+		zero_w = ret[0].ie.width;
+		zero_h = ret[0].ie.height;
+	}
+	if (!ret[0].has_hotspot) {
+		ret[0].ie.x_hotspot = base_x;
+		ret[0].ie.y_hotspot = base_y;
+	}
+	for (i = 0; i < argc; i++) {
+		if (!ret[i].has_hotspot) {
+			ret[i].ie.x_hotspot = round((double)(ret[i].ie.width * ret[0].ie.x_hotspot) / zero_w);
+			ret[i].ie.y_hotspot = round((double)(ret[i].ie.height * ret[0].ie.y_hotspot) / zero_h);
+		}
 	}
 	return ret;
 }
