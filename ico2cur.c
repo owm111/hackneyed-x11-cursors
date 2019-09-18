@@ -366,7 +366,7 @@ int main(int argc, char **argv)
 			y = get_axis(optarg, c);
 			break;
 		case 'h':
-			die("usage: ico2cur -i <infile.ico> -x x_axis -y y_axis [-p hotspotsrc|@W1xH1=x,y @W2xH2=x,y ... @WnxHn=x,y");
+			die("usage: ico2cur -i <infile.ico> [-x x_axis -y y_axis|-p hotspotsrc|@W1xH1=x1,y1 @W2xH2=x2,y2 ... @WnxHn=xn,yn]");
 			break;
 		case 'p':
 			hotspotsrc = strdup(optarg);
