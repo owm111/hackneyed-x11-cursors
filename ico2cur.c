@@ -66,6 +66,13 @@ struct iconfile {
 	icondirentry *ie;
 };
 
+struct hotspot {
+	uint8_t width;
+	uint8_t height;
+	uint16_t x_hotspot;
+	uint16_t y_hotspot;
+};
+
 void die(const char *msg, ...)
 {
 	va_list argp;
@@ -143,7 +150,18 @@ void get_ico_info(const char *name)
 	exit(EXIT_SUCCESS);
 }
 
-void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y)
+struct hotspot *const find_hotspot(uint8_t w, uint8_t h, struct hotspot *const hb, int len)
+{
+	int i;
+
+	for (i = 0; i < len; i++) {
+		if (hb[i].width == w && hb[i].height == h)
+			return &hb[i];
+	}
+	return NULL;
+}
+
+void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y, struct hotspot *const hb, int hblen)
 {
 	FILE *fdest;
 	FILE *fsrc;
@@ -153,6 +171,7 @@ void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y)
 	off_t start;
 	char buf[BUFSIZ];
 	struct iconfile *fb;
+	const struct hotspot *hb_siz;
 
 	fb = get_ico_headers(src);
 	fb->ib.type = 2;
@@ -165,8 +184,13 @@ void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y)
 			zero_h = fb->ie[i].height;
 	}
 	for (i = 0; i < fb->ib.count; i++) {
-		fb->ie[i].x_hotspot = round((double)(fb->ie[i].width * x) / zero_w);
-		fb->ie[i].y_hotspot = round((double)(fb->ie[i].width * y) / zero_h);
+		if ((hb_siz = find_hotspot(fb->ie[i].width, fb->ie[i].height, hb, hblen))) {
+			fb->ie[i].x_hotspot = hb_siz->x_hotspot;
+			fb->ie[i].y_hotspot = hb_siz->y_hotspot;
+		} else {
+			fb->ie[i].x_hotspot = round((double)(fb->ie[i].width * x) / zero_w);
+			fb->ie[i].y_hotspot = round((double)(fb->ie[i].width * y) / zero_h);
+		}
 		printf("[%lu]: %ux%u (%d,%d)\n", i, fb->ie[i].width, fb->ie[i].height,
 			fb->ie[i].x_hotspot, fb->ie[i].y_hotspot);
 	}
@@ -184,7 +208,6 @@ void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y)
 	fclose(fdest);
 	printf("%s -> %s\n", src, dest);
 	iffree(&fb);
-	exit(EXIT_SUCCESS);
 }
 
 uint16_t get_axis(const char *s, char axis)
@@ -241,7 +264,7 @@ char *strbtrim(char *s, const char *forbidden)
 	return begin;
 }
 
-void get_hotspot(const char *src, const char *name, unsigned short *x, unsigned short *y)
+void get_hotspot_from_file(const char *src, const char *name, unsigned short *x, unsigned short *y)
 {
 	FILE *f = fopen(src, "r");
 	char buf[BUFSIZ] = "";
@@ -276,6 +299,52 @@ void get_hotspot(const char *src, const char *name, unsigned short *x, unsigned 
 	die("%s not found in %s", name, src);
 }
 
+struct hotspot *get_hotspots_from_cmdline(int argc, char *const *argv)
+{
+	struct hotspot *ret = malloc(sizeof(*ret) * argc);
+	int i;
+	char *width, *height, *hotspot_x, *hotspot_y;
+	char *tail;
+
+	for (i = 0; i < argc; i++) {
+		if (argv[i][0] != '@')
+			continue;
+		width = strdup(argv[i] + 1);
+		if (!(height = strchr(width, 'x'))) {
+			free(width);
+			continue;
+		}
+		*height = 0;
+		height++;
+		if (!(hotspot_x = strchr(height, '='))) {
+			free(width);
+			continue;
+		}
+		*hotspot_x = 0;
+		hotspot_x++;
+		if (!(hotspot_y = strchr(hotspot_x, ','))) {
+			free(width);
+			continue;
+		}
+		*hotspot_y = 0;
+		hotspot_y++;
+		ret[i].width = strtol(width, &tail, 10);
+		if (width == tail)
+			die("invalid width: %s", width);
+		ret[i].height = strtol(height, &tail, 10);
+		if (height == tail)
+			die("invalid height: %s", height);
+		ret[i].x_hotspot = strtol(hotspot_x, &tail, 10);
+		if (hotspot_x == tail)
+			die("invalid x axis: %s", hotspot_x);
+		ret[i].y_hotspot = strtol(hotspot_y, &tail, 10);
+		if (hotspot_y == tail)
+			die("invalid y axis: %s", hotspot_x);
+		free(width);
+	}
+	return ret;
+}
+
 int main(int argc, char **argv)
 {
 	int c;
@@ -285,9 +354,10 @@ int main(int argc, char **argv)
 	char *dest = NULL;
 	char *p;
 	char *hotspotsrc = NULL, *name = NULL;
+	struct hotspot *hb = NULL;
 	
 	x = y = 0;
-	while ((c = getopt(argc, argv, "x:y:hp:i:")) != -1) {
+	while ((c = getopt(argc, argv, "x:y:hp:I:i:")) != -1) {
 		switch (c) {
 		case 'x':
 			x = get_axis(optarg, c);
@@ -296,31 +366,37 @@ int main(int argc, char **argv)
 			y = get_axis(optarg, c);
 			break;
 		case 'h':
-			die("usage: ico2cur <infile.ico> -x x_axis -y y_axis -n name -p hotspotsrc");
+			die("usage: ico2cur -i <infile.ico> -x x_axis -y y_axis [-p hotspotsrc|@W1xH1=x,y @W2xH2=x,y ... @WnxHn=x,y");
 			break;
 		case 'p':
 			hotspotsrc = strdup(optarg);
 			break;
-		case 'i':
+		case 'I':
 			get_ico_info(optarg);
+			break;
+		case 'i':
+			src = strdup(optarg);
 			break;
 		default:
 			exit(EXIT_FAILURE);
 		}
 	}
 	if (argc > optind)
-		src = argv[optind];
-	else
-		die("no filename specified");
+		hb = get_hotspots_from_cmdline(argc - optind, &argv[optind]);
+	if (!src)
+		die("no input file specified");
 	if (hotspotsrc) {
 		strncpy(buf, src, sizeof(buf));
 		p = basename(buf);
 		name = extsub(p, NULL);
-		get_hotspot(hotspotsrc, name, &x, &y);
+		get_hotspot_from_file(hotspotsrc, name, &x, &y);
 		free(name);
 		free(hotspotsrc);
 	}
 	dest = extsub(src, ".cur");
-	ico2cur(src, dest, x, y);
+	ico2cur(src, dest, x, y, hb, argc - optind);
+	free(hb);
+	free(dest);
+	free(src);
 	return 0;
 }
