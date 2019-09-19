@@ -161,7 +161,7 @@ struct hotspot *const find_hotspot(uint8_t w, uint8_t h, struct hotspot *const h
 	return NULL;
 }
 
-void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y, struct hotspot *const hb, int hblen)
+void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y, struct hotspot *const hb, size_t hblen)
 {
 	FILE *fdest;
 	FILE *fsrc;
@@ -264,11 +264,51 @@ char *strbtrim(char *s, const char *forbidden)
 	return begin;
 }
 
-void get_hotspot_from_file(const char *src, const char *name, unsigned short *x, unsigned short *y)
+struct hotspot *hotspot_from_string(const char *src, struct hotspot *dest)
+{
+	char *width, *height, *hotspot_x, *hotspot_y;
+	char *tail;
+
+	if (*src != '@')
+		return NULL;
+	width = strdup(src + 1);
+	if (!(height = strchr(width, 'x')))
+		goto out;
+	*height = 0;
+	height++;
+	if (!(hotspot_x = strchr(height, '=')))
+		goto out;
+	*hotspot_x = 0;
+	hotspot_x++;
+	if (!(hotspot_y = strchr(hotspot_x, ',')))
+		goto out;
+	*hotspot_y = 0;
+	hotspot_y++;
+	dest->width = strtol(width, &tail, 10);
+	if (width == tail)
+		die("invalid width: %s", width);
+	dest->height = strtol(height, &tail, 10);
+	if (height == tail)
+		die("invalid height: %s", height);
+	dest->x_hotspot = strtol(hotspot_x, &tail, 10);
+	if (hotspot_x == tail)
+		die("invalid x axis: %s", hotspot_x);
+	dest->y_hotspot = strtol(hotspot_y, &tail, 10);
+	if (hotspot_y == tail)
+		die("invalid y axis: %s", hotspot_x);
+out:
+	free(width);
+	return NULL;
+}
+
+void hotspots_from_file(const char *src, const char *name, struct hotspot **hb, size_t *len)
 {
 	FILE *f = fopen(src, "r");
 	char buf[BUFSIZ] = "";
-	char *sx, *sy, *tail;
+	char *hotspots;
+	struct hotspot new_hb;
+	void *new;
+	size_t start_len = *len;
 
 	if (!f)
 		die("fopen: %s", src);
@@ -276,71 +316,36 @@ void get_hotspot_from_file(const char *src, const char *name, unsigned short *x,
 		if (*buf == '#' || *buf == ';')
 			continue;
 		strbtrim(buf, "\n\t ");
-		if (!(sx = strchr(buf, '\t')))
+		if (!(hotspots = strchr(buf, '\t')))
 			continue;
-		*sx = 0;
-		sx++;
-		if (strcmp(buf, name))
+		*hotspots = 0;
+		hotspots++;
+		strbtrim(hotspots, "\n\t ");
+		if (!hotspot_from_string(hotspots, &new_hb))
 			continue;
-		strbtrim(sx, "\n\t ");
-		if (!(sy = strchr(sx, ' ')))
-			continue;
-		*sy = 0;
-		sy++;
-		*x = strtol(sx, &tail, 0);
-		if (*x > 31 || sx == tail)
-			die("%s: invalid x axis: %s", buf, sx);
-		*y = strtol(sy, &tail, 0);
-		if (*y > 31 || sy == tail)
-			die("%s: invalid y axis: %s", buf, sy);
-		fclose(f);
-		return;
+		++(*len);
+		if (!(new = realloc(*hb, sizeof(**hb) * *len)))
+			die("%s: realloc error", __func__);
+		*hb = new;
+		(*hb)[*len - 1] = new_hb;
 	}
-	die("%s not found in %s", name, src);
+	fclose(f);
+	if (*len == start_len)
+		die("no hotspots for %s in %s", name, src);
 }
 
-struct hotspot *get_hotspots_from_cmdline(int argc, char *const *argv)
+struct hotspot *hotspots_from_cmdline(int argc, char *const *argv)
 {
 	struct hotspot *ret = malloc(sizeof(*ret) * argc);
 	int i;
-	char *width, *height, *hotspot_x, *hotspot_y;
-	char *tail;
+	int processed = 0;
 
-	for (i = 0; i < argc; i++) {
-		if (argv[i][0] != '@')
-			continue;
-		width = strdup(argv[i] + 1);
-		if (!(height = strchr(width, 'x'))) {
-			free(width);
-			continue;
-		}
-		*height = 0;
-		height++;
-		if (!(hotspot_x = strchr(height, '='))) {
-			free(width);
-			continue;
-		}
-		*hotspot_x = 0;
-		hotspot_x++;
-		if (!(hotspot_y = strchr(hotspot_x, ','))) {
-			free(width);
-			continue;
-		}
-		*hotspot_y = 0;
-		hotspot_y++;
-		ret[i].width = strtol(width, &tail, 10);
-		if (width == tail)
-			die("invalid width: %s", width);
-		ret[i].height = strtol(height, &tail, 10);
-		if (height == tail)
-			die("invalid height: %s", height);
-		ret[i].x_hotspot = strtol(hotspot_x, &tail, 10);
-		if (hotspot_x == tail)
-			die("invalid x axis: %s", hotspot_x);
-		ret[i].y_hotspot = strtol(hotspot_y, &tail, 10);
-		if (hotspot_y == tail)
-			die("invalid y axis: %s", hotspot_x);
-		free(width);
+	for (i = 0; i < argc; i++)
+		if (hotspot_from_string(argv[i], &ret[i]))
+			processed++;
+	if (processed == 0) {
+		free(ret);
+		ret = NULL;
 	}
 	return ret;
 }
@@ -355,6 +360,7 @@ int main(int argc, char **argv)
 	char *p;
 	char *hotspotsrc = NULL, *name = NULL;
 	struct hotspot *hb = NULL;
+	size_t hblen;
 	
 	x = y = 0;
 	while ((c = getopt(argc, argv, "x:y:hp:I:i:")) != -1) {
@@ -381,20 +387,25 @@ int main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 	}
-	if (argc > optind)
-		hb = get_hotspots_from_cmdline(argc - optind, &argv[optind]);
-	if (!src)
-		die("no input file specified");
+	hblen = 0;
+	if (argc > optind) {
+		hblen = argc - optind;
+		if (!(hb = hotspots_from_cmdline(hblen, &argv[optind])))
+			hblen = 0;
+	} else {
+		if (!src && !hotspotsrc && (x == 0 || y == 0))
+			die("no input file specified and no hotspots given in command line");
+	}
 	if (hotspotsrc) {
 		strncpy(buf, src, sizeof(buf));
 		p = basename(buf);
 		name = extsub(p, NULL);
-		get_hotspot_from_file(hotspotsrc, name, &x, &y);
+		hotspots_from_file(hotspotsrc, name, &hb, &hblen);
 		free(name);
 		free(hotspotsrc);
 	}
 	dest = extsub(src, ".cur");
-	ico2cur(src, dest, x, y, hb, argc - optind);
+	ico2cur(src, dest, x, y, hb, hblen);
 	free(hb);
 	free(dest);
 	free(src);
