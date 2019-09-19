@@ -212,11 +212,11 @@ void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y, struct h
 
 uint16_t get_axis(const char *s, char axis)
 {
-	int16_t ret;
+	uint16_t ret;
 	char *tail;
 	
 	ret = strtol(s, &tail, 0);
-	if (ret < 0 || ret > 31 || s == tail)
+	if (s == tail)
 		die("invalid value for %c: %s", axis, s);
 	return ret;
 }
@@ -393,7 +393,7 @@ int main(int argc, char **argv)
 		if (!(hb = hotspots_from_cmdline(hblen, &argv[optind])))
 			hblen = 0;
 	} else {
-		if (!src && !hotspotsrc && (x == 0 || y == 0))
+		if (!src && !hotspotsrc)
 			die("no input file specified and no hotspots given in command line");
 	}
 	if (hotspotsrc) {
