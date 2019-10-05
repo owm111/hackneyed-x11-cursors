@@ -388,13 +388,12 @@ int main(int argc, char **argv)
 		}
 	}
 	hblen = 0;
+	if (!src)
+		die ("no source file specified");
 	if (argc > optind) {
 		hblen = argc - optind;
 		if (!(hb = hotspots_from_cmdline(hblen, &argv[optind])))
 			hblen = 0;
-	} else {
-		if (!src && !hotspotsrc)
-			die("no input file specified and no hotspots given in command line");
 	}
 	if (hotspotsrc) {
 		strncpy(buf, src, sizeof(buf));
