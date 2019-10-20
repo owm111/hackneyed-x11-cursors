@@ -13,8 +13,9 @@ Minimum dependencies:
 
 * ImageMagick (>=6.8.6)
 * Inkscape (>=0.92.3, older versions will make a mess with the DPI settings)
-* GNU `make` and `bash` (I might replace the bashisms someday)
-* `xcursorgen` (part of the xorg-utils package)
+	* *NOTE*: Inkscape 1.0 (still a beta as I write this) has changed many command-line parameters. If the build fails, ensure you're using an older version
+* GNU `make` and `bash`
+* `xcursorgen` (part of `xorg-utils`)
 
 Extra functionality has additional dependencies:
 
@@ -146,3 +147,6 @@ The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with 
 
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
+To do
+-----
+Hackneyed's "build system" sucks and I should replace it eventually.
