@@ -24,7 +24,7 @@
 # use or other dealings in this Software without prior written authorization.
 
 SHELL = /bin/bash
-VERSION = 0.7.3
+VERSION = 0.7.4
 COMMON_SOURCE = theme/common-white.svg
 RSVG_SOURCE = theme/right-handed-white.svg
 LSVG_SOURCE = theme/left-handed-white.svg
@@ -506,10 +506,10 @@ progress.%.in: theme/%/progress.in make-ani-hotspots.sh
 			$(PROGRESS_CUSTOM_FRAMETIMES); \
 	}
 
-progress_left.%.in: theme/%/progress_left.in make-animated-cursor.sh
+progress_left.%.in: theme/%/progress_left.in make-ani-hotspots.sh
 	{\
 		target=$$(cut -d. -f1 <<< $@); \
-		target=$${target/_/.}
+		target=$${target/_/.}; \
 		size=$$(cut -d. -f2 <<< $@); \
 		./make-ani-hotspots.sh target=$$target size=$$size frames=$(PROGRESS_FRAMES) \
 			default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) \
@@ -523,7 +523,7 @@ progress.%.left: progress_left.%.in
 	$(XCURSORGEN) $< $@
 
 wait-preview.$(PREVIEW_SIZE).png: $(COMMON_SOURCE)
-	./make-png.sh target=wait-1 src=$< size=$(PREVIEW_SIZE) base_size=$(SIZE_SMALL) output=$@
+	./make-png.sh target=wait-1 src=$< size=$(PREVIEW_SIZE) smallest_size=$(SIZE_SMALL) output=$@
 
 preview: $(COMMON_SMALL) $(PNG_SMALL) $(LPNG_SMALL) wait-preview.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
 	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
