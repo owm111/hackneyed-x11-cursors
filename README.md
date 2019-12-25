@@ -143,11 +143,7 @@ The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with 
 
 - **Unchangeable root window cursor in Xfce:** If you get an X default/distro default left arrow mixed with this theme, reload the WM by running `xfwm4 --replace` (already fixed in `lightdm-gtk-greeter`?);
 
-- **`left_arrow` as `left_ptr` and other adventures of Plasma on Wayland:** Although some of the awkwardness was fixed in KWin, Qt on Wayland is still broken, cursor-wise (try `QT_QPA_PLATFORM=waylang-egl <qt application>` and marvel. But before that, export `XCURSOR_SIZE` to match your current cursor size);
-
-If you want to use this theme with KDE on Wayland, remove `left_arrow` and (optionally) symlink it to `default`. I'm also clueless as to why Qt is displaying `based_arrow_down` when you hover over the border of the screen with a maximized Qt window.
-
-(Not entirely sure if `left_arrow` should exist at all? Which means that Qt shouldn't be using it either.)
+- **Plasma on Wayland:** `XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=waylang-egl <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `based_arrow_down` when you hover over the top border of the screen with a maximized Qt window, and don't expect it to be bug-free either;
 
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
