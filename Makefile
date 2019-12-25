@@ -145,7 +145,7 @@ LPNG_LARGE = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE).left.png)
 LPNG_LARGE1 = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE1).left.png)
 LPNG_LARGE2 = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE2).left.png)
 WINCURSORS = default.cur help.cur text.cur crosshair.cur pencil.cur \
-ns-resize.cur ew-resize.cur nesw-resize.cur nwse-resize.cur up_arrow.cur pointer.cur move.cur \
+ns-resize.cur ew-resize.cur nesw-resize.cur nwse-resize.cur sb_up_arrow.cur pointer.cur move.cur \
 n-resize.cur s-resize.cur e-resize.cur w-resize.cur ne-resize.cur nw-resize.cur se-resize.cur sw-resize.cur \
 not-allowed.cur
 WINCURSORS_ANI = wait.ani progress.ani
@@ -534,7 +534,7 @@ preview: $(COMMON_SMALL) $(PNG_SMALL) $(LPNG_SMALL) wait-preview.$(PREVIEW_SIZE)
 		{nwse-resize,ew-resize,ns-resize,split_h}.$(PREVIEW_SIZE).png \
 		{text,vertical-text,move,crosshair,plus,not-allowed}.$(PREVIEW_SIZE).png \
 		{pirate,X_cursor,wayland-cursor,draft,pencil,color-picker}.$(PREVIEW_SIZE).png \
-		{up_arrow,right_arrow,left_arrow}.$(PREVIEW_SIZE).png \
+		{sb_up_arrow,sb_right_arrow,sb_left_arrow}.$(PREVIEW_SIZE).png \
 		preview-$(THEME_NAME).png
 	montage -background none -mode concatenate -tile 4x4 -geometry +5+5 \
 	{default,help,progress-1,no-drop,wait-preview,pencil,zoom-in,context-menu}.$(PREVIEW_SIZE).png \
