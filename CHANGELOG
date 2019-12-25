@@ -1,3 +1,9 @@
+0.8:
+- *_arrow -> sb_*_arrow
+- rewrite do-symlinks.sh
+- move symlink definitions to a separate file
+- review all symlinks as a result
+
 0.7.4:
 - redraw pirate, exchange and color-picker
 

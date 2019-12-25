@@ -24,7 +24,7 @@
 # use or other dealings in this Software without prior written authorization.
 
 SHELL = /bin/bash
-VERSION = 0.7.4
+VERSION = 0.8
 COMMON_SOURCE = theme/common-white.svg
 RSVG_SOURCE = theme/right-handed-white.svg
 LSVG_SOURCE = theme/left-handed-white.svg
@@ -35,10 +35,10 @@ SIZE_LARGE1=60
 SIZE_LARGE2=72
 COMMON_SMALL = text.$(SIZE_SMALL) \
 	vertical-text.$(SIZE_SMALL) \
-	up_arrow.$(SIZE_SMALL) \
-	down_arrow.$(SIZE_SMALL) \
-	left_arrow.$(SIZE_SMALL) \
-	right_arrow.$(SIZE_SMALL) \
+	sb_up_arrow.$(SIZE_SMALL) \
+	sb_down_arrow.$(SIZE_SMALL) \
+	sb_left_arrow.$(SIZE_SMALL) \
+	sb_right_arrow.$(SIZE_SMALL) \
 	pirate.$(SIZE_SMALL) \
 	based_arrow_up.$(SIZE_SMALL) \
 	based_arrow_down.$(SIZE_SMALL) \
