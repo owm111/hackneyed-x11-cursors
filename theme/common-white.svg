@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="16.000001"
-     inkscape:cx="279.12658"
-     inkscape:cy="226.81854"
+     inkscape:zoom="8.0000005"
+     inkscape:cx="189.65965"
+     inkscape:cy="241.87869"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="webslicer-layer"
      showgrid="true"
      showborder="true"
      inkscape:snap-bbox="true"
@@ -1343,8 +1343,8 @@ layout-position-anchor: tl</desc>
        width="22.5"
        y="191.5703"
        x="210.3203"
-       id="right_arrow"
-       inkscape:label="#right-arrow">
+       id="sb_right_arrow"
+       inkscape:label="#sb_right_arrow">
       <desc
          id="desc40062">format: png
 dpi: 90
@@ -1353,12 +1353,12 @@ layout-position-anchor: tl</desc>
     </rect>
     <rect
        style="opacity:0.5;fill:#ccff00;stroke-width:0.70312494"
-       id="left_arrow"
+       id="sb_left_arrow"
        x="172.8203"
        y="191.5703"
        width="22.5"
        height="22.5"
-       inkscape:label="#left-arrow">
+       inkscape:label="#sb_left_arrow">
       <desc
          id="desc41187">format: png
 dpi: 90
@@ -1371,8 +1371,8 @@ layout-position-anchor: tl</desc>
        width="22.5"
        y="191.5703"
        x="135.3203"
-       id="down_arrow"
-       inkscape:label="#down-arrow">
+       id="sb_down_arrow"
+       inkscape:label="#sb_down-arrow">
       <desc
          id="desc42316">format: png
 dpi: 90
@@ -1381,12 +1381,12 @@ layout-position-anchor: tl</desc>
     </rect>
     <rect
        style="opacity:0.5;fill:#ccff00;stroke-width:0.70312494"
-       id="up_arrow"
+       id="sb_up_arrow"
        x="97.820297"
        y="191.5703"
        width="22.5"
        height="22.5"
-       inkscape:label="#up-arrow">
+       inkscape:label="#sb_up_arrow">
       <desc
          id="desc43449">format: png
 dpi: 90
