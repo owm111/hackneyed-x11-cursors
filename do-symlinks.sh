@@ -25,7 +25,9 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
-SOURCE_FILE="$(dirname $0)/theme/symlinks"
+SOURCE_DIR=$(dirname $0)
+[ "$SOURCE_DIR"  = "." ] && SOURCE_DIR=$PWD
+SOURCE_FILE="${SOURCE_DIR}/theme/symlinks"
 
 die()
 {
@@ -67,7 +69,7 @@ do_linkage()
 			echo "::: [missing: $c_source]"
 		fi
 		unset c_source
-	done < $SOURCE_FILE
+	done < $SOURCE_FILE || exit 1
 }
 
 oldwd=$PWD
