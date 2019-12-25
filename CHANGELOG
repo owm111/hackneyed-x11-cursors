@@ -3,6 +3,9 @@
 - rewrite do-symlinks.sh
 - move symlink definitions to a separate file
 - review all symlinks as a result
+- fix brokenness on animaker.c (uninitialized variable) and png2cur.c (flawed logic
+  while testing for sizes with no hotspot) which means I was shipping broken cursors
+  for Windows. thankfully nobody uses them besides me
 
 0.7.4:
 - redraw pirate, exchange and color-picker
