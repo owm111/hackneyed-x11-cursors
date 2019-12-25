@@ -25,7 +25,7 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
-SOURCE_FILE="$PWD/theme/symlinks"
+SOURCE_FILE="$(dirname $0)/theme/symlinks"
 
 die()
 {
@@ -45,7 +45,7 @@ link()
 
 find_hard_file()
 {
-	for a in $symlinks $cursor; do
+	for a in $cursor $symlinks; do
 		if [ -e $a ]; then
 			echo $(readlink $a || echo $a)
 			return 0
