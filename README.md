@@ -147,6 +147,8 @@ The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with 
 
 If you want to use this theme with KDE on Wayland, remove `left_arrow` and (optionally) symlink it to `default`. I'm also clueless as to why Qt is displaying `based_arrow_down` when you hover over the border of the screen with a maximized Qt window.
 
+(Not entirely sure if `left_arrow` should exist at all? Which means that Qt shouldn't be using it either.)
+
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
 To do
