@@ -148,7 +148,7 @@ size_t write_fram(FILE *f, struct frameinfo *fb, int len)
 	FILE *src;
 	char buf[BUFSIZ];
 	int i;
-	size_t nread, padding;
+	size_t nread, padding = 0;
 
 	memcpy(list.id, "LIST", 4);
 	/* "fram" == 4 */
