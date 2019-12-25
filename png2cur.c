@@ -285,6 +285,7 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 	if (!ret[0].has_hotspot) {
 		ret[0].ie.x_hotspot = base_x;
 		ret[0].ie.y_hotspot = base_y;
+		ret[0].has_hotspot = 1;
 	}
 	for (i = 0; i < argc; i++) {
 		if (!ret[i].has_hotspot) {
