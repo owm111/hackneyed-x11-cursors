@@ -143,7 +143,7 @@ The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with 
 
 - **Unchangeable root window cursor in Xfce:** If you get an X default/distro default left arrow mixed with this theme, reload the WM by running `xfwm4 --replace` (already fixed in `lightdm-gtk-greeter`?);
 
-- **Plasma on Wayland:** `XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=waylang-egl <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `based_arrow_down` when you hover over the top border of the screen with a maximized Qt window, and don't expect it to be bug-free either;
+- **Plasma on Wayland:** `XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=waylang-egl <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `split_h` and `split_v` when you hover over the borders of a Qt window, and don't expect it to be bug-free either;
 
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
