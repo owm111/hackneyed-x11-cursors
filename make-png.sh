@@ -38,14 +38,14 @@ ikwrapper()
 	local export_id
 
 	ikver=$(inkscape --version|cut -d' ' -f2)
-	[ -z "$ikver" ] && exit 1
+	[ -z "$ikver" ] && die "could not determine Inkscape version"
 	while [ "$1" ]; do
 		case "$1" in
 		export_id=*)
 			export_id=${1#*=}
 			shift ;;
 		*)
-		shift ;;
+			shift ;;
 		esac
 	done
 	if [ "${ikver:0:3}" = "1.0" ]; then
