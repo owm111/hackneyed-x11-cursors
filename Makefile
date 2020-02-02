@@ -23,7 +23,6 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
-SHELL = /bin/bash
 VERSION = 0.8
 COMMON_SOURCE = theme/common-white.svg
 RSVG_SOURCE = theme/right-handed-white.svg
@@ -158,7 +157,7 @@ THEME_NAME_LARGE = $(THEME_NAME)-$(SIZE_LARGE)px
 THEME_COMMENT = Windows 3.x-inspired cursors
 THEME_EXAMPLE = default
 THEME_WINDOWS = $(THEME_NAME)-Windows-$(VERSION)
-SIZES ?= $(SIZE_SMALL),$(SIZE_MEDIUM),$(SIZE_LARGE),$(SIZE_LARGE1),$(SIZE_LARGE2)
+SIZES ?= $(SIZE_SMALL) $(SIZE_MEDIUM) $(SIZE_LARGE) $(SIZE_LARGE1) $(SIZE_LARGE2)
 PREVIEW_SIZE = $(SIZE_SMALL)
 XCURSORGEN = xcursorgen
 .DEFAULT_GOAL = all-dist
@@ -286,7 +285,8 @@ all.left: $(LCURSORS) $(COMMON_CURSORS)
 	mkdir -p L$(THEME_NAME)/cursors
 	cp $(COMMON_CURSORS) L$(THEME_NAME)/cursors
 	for l in $(LCURSORS); do \
-		cp $$l L$(THEME_NAME)/cursors/$${l/.left/}; \
+		new_name=`echo $$l|sed 's/.left$$//'`; \
+		cp $$l L$(THEME_NAME)/cursors/$$new_name; \
 	done
 #	echo \(trim-cursor-files "\"L$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
@@ -294,62 +294,83 @@ all.small: $(CURSORS_SMALL) $(COMMON_SMALL)
 	rm -rf $(THEME_NAME_SMALL)
 	mkdir -p $(THEME_NAME_SMALL)/cursors
 	for l in $(CURSORS_SMALL) $(COMMON_SMALL); do \
-		cp $$l $(THEME_NAME_SMALL)/cursors/$${l/.$(SIZE_SMALL)/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_SMALL)$$//'`; \
+		cp $$l $(THEME_NAME_SMALL)/cursors/$$new_name; \
 	done
 
 all.medium: $(CURSORS_MEDIUM) $(COMMON_MEDIUM)
 	rm -rf $(THEME_NAME_MEDIUM)
 	mkdir -p $(THEME_NAME_MEDIUM)/cursors
 	for l in $(CURSORS_MEDIUM) $(COMMON_MEDIUM); do \
-		cp $$l $(THEME_NAME_MEDIUM)/cursors/$${l/.$(SIZE_MEDIUM)/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_MEDIUM)$$//'`; \
+		cp $$l $(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 
 all.large: $(CURSORS_LARGE) $(COMMON_LARGE)
 	rm -rf $(THEME_NAME_LARGE)
 	mkdir -p $(THEME_NAME_LARGE)/cursors
 	for l in $(CURSORS_LARGE) $(COMMON_LARGE); do \
-		cp $$l $(THEME_NAME_LARGE)/cursors/$${l/.$(SIZE_LARGE)/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_LARGE)$$//'`; \
+		cp $$l $(THEME_NAME_LARGE)/cursors/$$new_name; \
 	done
 
 all.small.left: $(LCURSORS_SMALL) $(COMMON_SMALL)
 	rm -rf L$(THEME_NAME_SMALL)
 	mkdir -p L$(THEME_NAME_SMALL)/cursors
 	for l in $(COMMON_SMALL); do \
-		cp $$l L$(THEME_NAME_SMALL)/cursors/$${l/.$(SIZE_SMALL)/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_SMALL)$$//'`; \
+		cp $$l L$(THEME_NAME_SMALL)/cursors/$$new_name; \
 	done
 	for l in $(LCURSORS_SMALL); do \
-		cp $$l L$(THEME_NAME_SMALL)/cursors/$${l/.$(SIZE_SMALL).left/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_SMALL).left$$//'`; \
+		cp $$l L$(THEME_NAME_SMALL)/cursors/$$new_name; \
 	done
 
 all.medium.left: $(LCURSORS_MEDIUM) $(COMMON_MEDIUM)
 	rm -rf L$(THEME_NAME_MEDIUM)
 	mkdir -p L$(THEME_NAME_MEDIUM)/cursors
 	for l in $(COMMON_MEDIUM); do \
-		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$${l/.$(SIZE_MEDIUM)/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_MEDIUM)$$//'`; \
+		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 	for l in $(LCURSORS_MEDIUM); do \
-		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$${l/.$(SIZE_MEDIUM).left/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_SMALL).left\$///'`; \
+		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 
 all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 	rm -rf L$(THEME_NAME_LARGE)
 	mkdir -p L$(THEME_NAME_LARGE)/cursors
 	for l in $(COMMON_LARGE); do \
-		cp $$l L$(THEME_NAME_LARGE)/cursors/$${l/.$(SIZE_LARGE)/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_LARGE)$$//'`; \
+		cp $$l L$(THEME_NAME_LARGE)/cursors/$$new_name; \
 	done
 	for l in $(LCURSORS_LARGE); do \
-		cp $$l L$(THEME_NAME_LARGE)/cursors/$${l/.$(SIZE_LARGE).left/}; \
+		new_name=`echo $$l|sed 's/.$(SIZE_LARGE).left$$//'`; \
+		cp $$l L$(THEME_NAME_LARGE)/cursors/$$new_name; \
 	done
 
 %.in: theme/*/%.in
-	cat theme/{$(SIZES)}/$@ > $@
+	{\
+		unset size_set; \
+		for s in $(SIZES); do \
+			size_set="$$size_set theme/$$s/$@"; \
+		done; \
+		cat $$size_set > $@; \
+	}
 
 %_left.in: theme/*/%_left.in
-	cat theme/{$(SIZES)}/$@ > $@
+	{\
+		unset size_set; \
+		for s in $(SIZES); do \
+			size_set="$$size_set theme/$$s/$@"; \
+		done; \
+		cat $$size_set > $@; \
+	}
 
 %.png: $(RSVG_SOURCE) $(COMMON_SOURCE)
 	{\
-		target=$$(cut -d. -f1 <<< $@); \
+		target=`echo $@|cut -d. -f1`; \
 		src=$<; \
 		for c in $(COMMON_CURSORS); do \
 			if [ "$$target" = "$$c" ]; then \
@@ -358,12 +379,12 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 			fi; \
 		done; \
 		echo ">>> target: $$target"; \
-		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) smallest_size=$(SIZE_SMALL) output=$@; \
+		./make-png.sh src=$$src target=$$target size=`echo $@|cut -d. -f2` smallest_size=$(SIZE_SMALL) output=$@; \
 	}
 
 %.left.png: $(LSVG_SOURCE) $(COMMON_SOURCE)
 	{\
-		target=$$(cut -d. -f1 <<< $@); \
+		target=`echo $@|cut -d. -f1`; \
 		src=$<; \
 		for c in $(COMMON_CURSORS); do \
 			if [ "$$target" = "$$c" ]; then \
@@ -371,7 +392,8 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 				break; \
 			fi; \
 		done; \
-		./make-png.sh src=$$src target=$$target size=$$(cut -d. -f2 <<< $@) smallest_size=$(SIZE_SMALL) output=$@; \
+		echo ">>> target: $$target"; \
+		./make-png.sh src=$$src target=$$target size=`echo $@|cut -d. -f2` smallest_size=$(SIZE_SMALL) output=$@; \
 	}
 
 %: %.in %.$(SIZE_SMALL).png %.$(SIZE_MEDIUM).png %.$(SIZE_LARGE).png %.$(SIZE_LARGE1).png %.$(SIZE_LARGE2).png
@@ -406,7 +428,7 @@ animaker: animaker.c
 
 %_left.cur: theme/$(SIZE_SMALL)/%_left.in png2cur %.24.left.png %.48.left.png %.64.left.png
 	{\
-		set -- $$(cat $<); \
+		set -- `cat $<`; \
 		x=$$2; \
 		y=$$3; \
 		set -- $^; \
@@ -416,7 +438,7 @@ animaker: animaker.c
 
 %.cur: theme/$(SIZE_SMALL)/%.in png2cur %.24.png %.48.png %.64.png
 	{\
-		set -- $$(cat $<); \
+		set -- `cat $<`; \
 		x=$$2; \
 		y=$$3; \
 		set -- $^; \
@@ -444,29 +466,29 @@ progress_left_all_hotspots: progress.left.$(SIZE_SMALL).in progress.left.$(SIZE_
 
 wait.%.frames: $(COMMON_SOURCE) make-png.sh
 	{\
-		target=$$(cut -d. -f1 <<< $@); \
-		size=$$(cut -d. -f2 <<< $@); \
+		target=`echo $@|cut -d. -f1`; \
+		size=`echo $@|cut -d. -f2`; \
 		./make-png.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(WAIT_FRAMES); \
 	}
 
 progress.%.frames: $(RSVG_SOURCE) make-png.sh
 	{\
-		target=$$(cut -d. -f1 <<< $@); \
-		size=$$(cut -d. -f2 <<< $@); \
+		target=`echo $@|cut -d. -f1`; \
+		size=`echo $@|cut -d. -f2`; \
 		./make-png.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(PROGRESS_FRAMES); \
 	}
 
 progress.left.%.frames: $(LSVG_SOURCE) make-png.sh
 	{\
-		target=$$(cut -d. -f1,2 <<< $@); \
-		size=$$(cut -d. -f3 <<< $@); \
+		target=`echo $@|cut -d. -f1,2`; \
+		size=`echo $@|cut -d. -f3`; \
 		./make-png.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(PROGRESS_FRAMES); \
 	}
 
 wait.%.in: theme/%/wait.in make-ani-hotspots.sh
 	{\
-		target=$$(cut -d. -f1 <<< $@); \
-		size=$$(cut -d. -f2 <<< $@); \
+		target=`echo $@|cut -d. -f1`; \
+		size=`echo $@|cut -d. -f2`; \
 		./make-ani-hotspots.sh target=$$target size=$$size frames=$(WAIT_FRAMES) \
 			default_frametime=$(WAIT_DEFAULT_FRAMETIME) \
 			$(WAIT_CUSTOM_FRAMETIMES); \
@@ -499,8 +521,8 @@ progress.%: progress.%.in
 
 progress.%.in: theme/%/progress.in make-ani-hotspots.sh
 	{\
-		target=$$(cut -d. -f1 <<< $@); \
-		size=$$(cut -d. -f2 <<< $@); \
+		target=`echo $@|cut -d. -f1`; \
+		size=`echo $@|cut -d. -f2`; \
 		./make-ani-hotspots.sh target=$$target size=$$size frames=$(PROGRESS_FRAMES) \
 			default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) \
 			$(PROGRESS_CUSTOM_FRAMETIMES); \
@@ -508,9 +530,9 @@ progress.%.in: theme/%/progress.in make-ani-hotspots.sh
 
 progress_left.%.in: theme/%/progress_left.in make-ani-hotspots.sh
 	{\
-		target=$$(cut -d. -f1 <<< $@); \
-		target=$${target/_/.}; \
-		size=$$(cut -d. -f2 <<< $@); \
+		target=`echo $@|cut -d. -f1`; \
+		target=`echo $$target|sed 's/_/./'`; \
+		size=`echo $@|cut -d. -f2`; \
 		./make-ani-hotspots.sh target=$$target size=$$size frames=$(PROGRESS_FRAMES) \
 			default_frametime=$(PROGRESS_DEFAULT_FRAMETIME) \
 			$(PROGRESS_CUSTOM_FRAMETIMES); \
@@ -522,25 +544,31 @@ progress.left: progress_left_all_frames progress_left.$(SIZE_SMALL).in progress_
 progress.%.left: progress_left.%.in
 	$(XCURSORGEN) $< $@
 
-wait-preview.$(PREVIEW_SIZE).png: $(COMMON_SOURCE)
-	./make-png.sh target=wait-1 src=$< size=$(PREVIEW_SIZE) smallest_size=$(SIZE_SMALL) output=$@
-
-preview: $(COMMON_SMALL) $(PNG_SMALL) $(LPNG_SMALL) wait-preview.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
+preview: $(COMMON_SMALL) $(PNG_SMALL) $(LPNG_SMALL) wait-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
 	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
-		{default,help,progress-1,alias,copy,context-menu,no-drop,dnd-move,center_ptr}.$(PREVIEW_SIZE).png \
-		{help,progress-1,alias,copy,context-menu,no-drop,dnd-move,default,right_ptr}.$(PREVIEW_SIZE).left.png \
-		{wait-preview,pointer,openhand,closedhand,sw-resize,se-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
-		{n-resize,s-resize,nw-resize,ne-resize,split_v,zoom,zoom-in,zoom-out,nesw-resize}.$(PREVIEW_SIZE).png \
-		{nwse-resize,ew-resize,ns-resize,split_h}.$(PREVIEW_SIZE).png \
-		{text,vertical-text,move,crosshair,plus,not-allowed}.$(PREVIEW_SIZE).png \
-		{pirate,X_cursor,wayland-cursor,draft,pencil,color-picker}.$(PREVIEW_SIZE).png \
-		{sb_up_arrow,sb_right_arrow,sb_left_arrow}.$(PREVIEW_SIZE).png \
+		default.$(PREVIEW_SIZE).png help.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png \
+		alias.$(PREVIEW_SIZE).png copy.$(PREVIEW_SIZE).png context-menu.$(PREVIEW_SIZE).png \
+		no-drop.$(PREVIEW_SIZE).png dnd-move.$(PREVIEW_SIZE).png center_ptr.$(PREVIEW_SIZE).png \
+		help.$(PREVIEW_SIZE).left.png progress-1.$(PREVIEW_SIZE).left.png alias.$(PREVIEW_SIZE).left.png \
+		copy.$(PREVIEW_SIZE).left.png context-menu.$(PREVIEW_SIZE).left.png no-drop.$(PREVIEW_SIZE).left.png \
+		dnd-move.$(PREVIEW_SIZE).left.png default.$(PREVIEW_SIZE).left.png right_ptr.$(PREVIEW_SIZE).left.png \
+		wait-1.$(PREVIEW_SIZE).png pointer.$(PREVIEW_SIZE).png openhand.$(PREVIEW_SIZE).png \
+		closedhand.$(PREVIEW_SIZE).png sw-resize.$(PREVIEW_SIZE).png se-resize.$(PREVIEW_SIZE).png w-resize.$(PREVIEW_SIZE).png \
+		e-resize.$(PREVIEW_SIZE).png n-resize.$(PREVIEW_SIZE).png s-resize.$(PREVIEW_SIZE).png \
+		nw-resize.$(PREVIEW_SIZE).png ne-resize.$(PREVIEW_SIZE).png split_v.$(PREVIEW_SIZE).png zoom.$(PREVIEW_SIZE).png \
+		zoom-in.$(PREVIEW_SIZE).png zoom-out.$(PREVIEW_SIZE).png nesw-resize.$(PREVIEW_SIZE).png \
+		nwse-resize.$(PREVIEW_SIZE).png ew-resize.$(PREVIEW_SIZE).png ns-resize.$(PREVIEW_SIZE).png split_h.$(PREVIEW_SIZE).png \
+		text.$(PREVIEW_SIZE).png vertical-text.$(PREVIEW_SIZE).png move.$(PREVIEW_SIZE).png crosshair.$(PREVIEW_SIZE).png plus.$(PREVIEW_SIZE).png \
+		not-allowed.$(PREVIEW_SIZE).png pirate.$(PREVIEW_SIZE).png X_cursor.$(PREVIEW_SIZE).png \
+		wayland-cursor.$(PREVIEW_SIZE).png draft.$(PREVIEW_SIZE).png pencil.$(PREVIEW_SIZE).png \
+		color-picker.$(PREVIEW_SIZE).png sb_up_arrow.$(PREVIEW_SIZE).png sb_right_arrow.$(PREVIEW_SIZE).png sb_left_arrow.$(PREVIEW_SIZE).png \
 		preview-$(THEME_NAME).png
 	montage -background none -mode concatenate -tile 4x4 -geometry +5+5 \
-	{default,help,progress-1,no-drop,wait-preview,pencil,zoom-in,context-menu}.$(PREVIEW_SIZE).png \
-	{pointer,openhand,closedhand,pirate}.$(PREVIEW_SIZE).png \
-	{n-resize,s-resize,w-resize,e-resize}.$(PREVIEW_SIZE).png \
-	preview-small-$(THEME_NAME).png
+		default.$(PREVIEW_SIZE).png help.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png no-drop.$(PREVIEW_SIZE).png wait-1.$(PREVIEW_SIZE).png \
+		pencil.$(PREVIEW_SIZE).png zoom-in.$(PREVIEW_SIZE).png context-menu.$(PREVIEW_SIZE).png \
+		pointer.$(PREVIEW_SIZE).png openhand.$(PREVIEW_SIZE).png closedhand.$(PREVIEW_SIZE).png pirate.$(PREVIEW_SIZE).png \
+		n-resize.$(PREVIEW_SIZE).png s-resize.$(PREVIEW_SIZE).png w-resize.$(PREVIEW_SIZE).png e-resize.$(PREVIEW_SIZE).png \
+		preview-small-$(THEME_NAME).png
 
 clean:
 	rm -rf $(THEME_WINDOWS)
