@@ -442,25 +442,25 @@ progress_left_all_frames: progress.left.$(SIZE_SMALL).frames progress.left.$(SIZ
 progress_left_all_hotspots: progress.left.$(SIZE_SMALL).in progress.left.$(SIZE_MEDIUM).in progress.left.$(SIZE_LARGE).in \
 	progress.left.$(SIZE_LARGE1).in progress.left.$(SIZE_LARGE2).in
 
-wait.%.frames: $(COMMON_SOURCE) make-ani-frames.sh
+wait.%.frames: $(COMMON_SOURCE) make-png.sh
 	{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		./make-ani-frames.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(WAIT_FRAMES); \
+		./make-png.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(WAIT_FRAMES); \
 	}
 
-progress.%.frames: $(RSVG_SOURCE) make-ani-frames.sh
+progress.%.frames: $(RSVG_SOURCE) make-png.sh
 	{\
 		target=$$(cut -d. -f1 <<< $@); \
 		size=$$(cut -d. -f2 <<< $@); \
-		./make-ani-frames.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(PROGRESS_FRAMES); \
+		./make-png.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(PROGRESS_FRAMES); \
 	}
 
-progress.left.%.frames: $(LSVG_SOURCE) make-ani-frames.sh
+progress.left.%.frames: $(LSVG_SOURCE) make-png.sh
 	{\
 		target=$$(cut -d. -f1,2 <<< $@); \
 		size=$$(cut -d. -f3 <<< $@); \
-		./make-ani-frames.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(PROGRESS_FRAMES); \
+		./make-png.sh src=$< target=$$target size=$$size smallest_size=$(SIZE_SMALL) frames=$(PROGRESS_FRAMES); \
 	}
 
 wait.%.in: theme/%/wait.in make-ani-hotspots.sh
