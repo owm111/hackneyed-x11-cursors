@@ -24,9 +24,9 @@
 # use or other dealings in this Software without prior written authorization.
 
 VERSION = 0.8
-COMMON_SOURCE = theme/common-white.svg
-RSVG_SOURCE = theme/right-handed-white.svg
-LSVG_SOURCE = theme/left-handed-white.svg
+COMMON_SOURCE := theme/common-white.svg
+RSVG_SOURCE := theme/right-handed-white.svg
+LSVG_SOURCE := theme/left-handed-white.svg
 SIZE_SMALL := 24
 SIZE_MEDIUM := 36
 SIZE_LARGE := 48
@@ -71,15 +71,19 @@ COMMON_SMALL := text.$(SIZE_SMALL) \
 	top_tee.$(SIZE_SMALL) \
 	bottom_tee.$(SIZE_SMALL) \
 	left_tee.$(SIZE_SMALL) \
-	right_tee.$(SIZE_SMALL) \
-	wait.$(SIZE_SMALL)
+	right_tee.$(SIZE_SMALL)
 COMMON_MEDIUM := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
 COMMON_LARGE := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
 COMMON_LARGE1 := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
 COMMON_LARGE2 := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
-COMMON_CURSORS:= $(COMMON_SMALL:.$(SIZE_SMALL)=)
-PNG_COMMON_SMALL := $(filter-out wait.$(SIZE_SMALL),$(COMMON_SMALL))
-PNG_COMMON_SMALL := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_SMALL).png)
+COMMON_CURSORS := $(COMMON_SMALL:.$(SIZE_SMALL)=)
+COMMON_ANIMATED_SMALL := wait.$(SIZE_SMALL)
+COMMON_ANIMATED_MEDIUM := $(COMMON_ANIMATED_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
+COMMON_ANIMATED_LARGE := $(COMMON_ANIMATED_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
+COMMON_ANIMATED_LARGE1 := $(COMMON_ANIMATED_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
+COMMON_ANIMATED_LARGE2 := $(COMMON_ANIMATED_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
+COMMON_ANIMATED := $(COMMON_ANIMATED_SMALL:.$(SIZE_SMALL)=)
+PNG_COMMON_SMALL := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_SMALL).png)
 PNG_COMMON_MEDIUM := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_MEDIUM).png)
 PNG_COMMON_LARGE := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_LARGE).png)
 PNG_COMMON_LARGE1 := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_LARGE1).png)
@@ -95,7 +99,6 @@ CURSORS_SMALL := alias.$(SIZE_SMALL) \
 	zoom.$(SIZE_SMALL) \
 	zoom-in.$(SIZE_SMALL) \
 	zoom-out.$(SIZE_SMALL) \
-	progress.$(SIZE_SMALL) \
 	no-drop.$(SIZE_SMALL) \
 	draft.$(SIZE_SMALL) \
 	right_ptr.$(SIZE_SMALL) \
@@ -109,12 +112,17 @@ CURSORS_LARGE := $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
 CURSORS_LARGE1 := $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
 CURSORS_LARGE2 := $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
 CURSORS := $(CURSORS_SMALL:.$(SIZE_SMALL)=)
-PNG_SMALL := $(filter-out progress.$(SIZE_SMALL),$(CURSORS_SMALL))
-PNG_SMALL := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_SMALL).png)
-PNG_MEDIUM := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM).png)
-PNG_LARGE := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE).png)
-PNG_LARGE1 := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1).png)
-PNG_LARGE2 := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2).png)
+CURSORS_ANIMATED_SMALL := progress.$(SIZE_SMALL)
+CURSORS_ANIMATED_MEDIUM := $(CURSORS_ANIMATED_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
+CURSORS_ANIMATED_LARGE := $(CURSORS_ANIMATED_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
+CURSORS_ANIMATED_LARGE1 := $(CURSORS_ANIMATED_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
+CURSORS_ANIMATED_LARGE2 := $(CURSORS_ANIMATED_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
+CURSORS_ANIMATED := $(CURSORS_ANIMATED_SMALL:.$(SIZE_SMALL)=)
+PNG_SMALL := $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_SMALL).png)
+PNG_MEDIUM := $(PNG_SMALL:.$(SIZE_SMALL).png=.$(SIZE_MEDIUM).png)
+PNG_LARGE := $(PNG_SMALL:.$(SIZE_SMALL).png=.$(SIZE_LARGE).png)
+PNG_LARGE1 := $(PNG_SMALL:.$(SIZE_SMALL).png=.$(SIZE_LARGE1).png)
+PNG_LARGE2 := $(PNG_SMALL:.$(SIZE_SMALL).png=.$(SIZE_LARGE2).png)
 LCURSORS_SMALL := alias.$(SIZE_SMALL).left \
 	color-picker.$(SIZE_SMALL).left \
 	context-menu.$(SIZE_SMALL).left \
@@ -126,7 +134,6 @@ LCURSORS_SMALL := alias.$(SIZE_SMALL).left \
 	zoom.$(SIZE_SMALL).left \
 	zoom-in.$(SIZE_SMALL).left \
 	zoom-out.$(SIZE_SMALL).left \
-	progress.$(SIZE_SMALL).left \
 	no-drop.$(SIZE_SMALL).left \
 	draft.$(SIZE_SMALL).left \
 	right_ptr.$(SIZE_SMALL).left \
@@ -140,8 +147,13 @@ LCURSORS_LARGE := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE).left)
 LCURSORS_LARGE1 := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE1).left)
 LCURSORS_LARGE2 := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE2).left)
 LCURSORS := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.left)
-LPNG_SMALL := $(filter-out progress.$(SIZE_SMALL).left,$(LCURSORS_SMALL))
-LPNG_SMALL := $(LPNG_SMALL:.$(SIZE_SMALL).left=.$(SIZE_SMALL).left.png)
+LCURSORS_ANIMATED_SMALL := progress.$(SIZE_SMALL).left
+LCURSORS_ANIMATED_MEDIUM := $(LCURSORS_ANIMATED_SMALL:.$(SIZE_SMALL).left=.$(SIZE_MEDIUM).left)
+LCURSORS_ANIMATED_LARGE := $(LCURSORS_ANIMATED_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE).left)
+LCURSORS_ANIMATED_LARGE1 := $(LCURSORS_ANIMATED_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE1).left)
+LCURSORS_ANIMATED_LARGE2 := $(LCURSORS_ANIMATED_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE2).left)
+LCURSORS_ANIMATED := $(LCURSORS_ANIMATED_SMALL:.$(SIZE_SMALL).left=.left)
+LPNG_SMALL := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_SMALL).left.png)
 LPNG_MEDIUM := $(LPNG_SMALL:.$(SIZE_SMALL).left.png=.$(SIZE_MEDIUM).left.png)
 LPNG_LARGE := $(LPNG_SMALL:.$(SIZE_SMALL).left.png=.$(SIZE_LARGE).left.png)
 LPNG_LARGE1 := $(LPNG_SMALL:.$(SIZE_SMALL).left.png=.$(SIZE_LARGE1).left.png)
@@ -276,78 +288,78 @@ theme.large.left: all.large.left
 		s/THEME_EXAMPLE/$(THEME_EXAMPLE)/1" index.theme.template > L$(THEME_NAME_LARGE)/index.theme
 	./do-symlinks.sh L$(THEME_NAME_LARGE)/cursors
 
-all: $(CURSORS) $(COMMON_CURSORS)
+all: $(CURSORS) $(CURSORS_ANIMATED) $(COMMON_CURSORS) $(COMMON_ANIMATED)
 	rm -rf $(THEME_NAME)
 	mkdir -p $(THEME_NAME)/cursors
-	cp $(CURSORS) $(COMMON_CURSORS) $(THEME_NAME)/cursors
+	cp $(CURSORS) $(CURSORS_ANIMATED) $(COMMON_CURSORS) $(COMMON_CURSORS_ANIMATED) $(THEME_NAME)/cursors
 #	echo \(trim-cursor-files "\"$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
-all.left: $(LCURSORS) $(COMMON_CURSORS)
+all.left: $(LCURSORS) $(LCURSORS_ANIMATED) $(COMMON_CURSORS) $(COMMON_CURSORS_ANIMATED)
 	rm -rf L$(THEME_NAME)
 	mkdir -p L$(THEME_NAME)/cursors
-	cp $(COMMON_CURSORS) L$(THEME_NAME)/cursors
-	for l in $(LCURSORS); do \
+	cp $(COMMON_CURSORS) $(COMMON_CURSORS_ANIMATED) L$(THEME_NAME)/cursors
+	for l in $(LCURSORS) $(LCURSORS_ANIMATED); do \
 		new_name=`echo $$l|sed 's/.left$$//'`; \
 		cp $$l L$(THEME_NAME)/cursors/$$new_name; \
 	done
 #	echo \(trim-cursor-files "\"L$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
-all.small: $(CURSORS_SMALL) $(COMMON_SMALL)
+all.small: $(CURSORS_SMALL) $(CURSORS_ANIMATED_SMALL) $(COMMON_SMALL) $(COMMON_ANIMATED_SMALL)
 	rm -rf $(THEME_NAME_SMALL)
 	mkdir -p $(THEME_NAME_SMALL)/cursors
-	for l in $(CURSORS_SMALL) $(COMMON_SMALL); do \
+	for l in $(CURSORS_SMALL) $(COMMON_SMALL) $(CURSORS_ANIMATED_SMALL) $(COMMON_ANIMATED_SMALL); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_SMALL)$$//'`; \
 		cp $$l $(THEME_NAME_SMALL)/cursors/$$new_name; \
 	done
 
-all.medium: $(CURSORS_MEDIUM) $(COMMON_MEDIUM)
+all.medium: $(CURSORS_MEDIUM) $(COMMON_MEDIUM) $(CURSORS_ANIMATED_MEDIUM) $(COMMON_ANIMATED_MEDIUM)
 	rm -rf $(THEME_NAME_MEDIUM)
 	mkdir -p $(THEME_NAME_MEDIUM)/cursors
-	for l in $(CURSORS_MEDIUM) $(COMMON_MEDIUM); do \
+	for l in $(CURSORS_MEDIUM) $(COMMON_MEDIUM) $(CURSORS_ANIMATED_MEDIUM) $(COMMON_ANIMATED_MEDIUM); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_MEDIUM)$$//'`; \
 		cp $$l $(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 
-all.large: $(CURSORS_LARGE) $(COMMON_LARGE)
+all.large: $(CURSORS_LARGE) $(COMMON_LARGE) $(CURSORS_ANIMATED_LARGE) $(COMMON_ANIMATED_LARGE)
 	rm -rf $(THEME_NAME_LARGE)
 	mkdir -p $(THEME_NAME_LARGE)/cursors
-	for l in $(CURSORS_LARGE) $(COMMON_LARGE); do \
+	for l in $(CURSORS_LARGE) $(COMMON_LARGE) $(COMMON_ANIMATED_LARGE) $(CURSORS_ANIMATED_LARGE); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_LARGE)$$//'`; \
 		cp $$l $(THEME_NAME_LARGE)/cursors/$$new_name; \
 	done
 
-all.small.left: $(LCURSORS_SMALL) $(COMMON_SMALL)
+all.small.left: $(LCURSORS_SMALL) $(COMMON_SMALL) $(LCURSORS_ANIMATED_SMALL) $(COMMON_ANIMATED_SMALL)
 	rm -rf L$(THEME_NAME_SMALL)
 	mkdir -p L$(THEME_NAME_SMALL)/cursors
-	for l in $(COMMON_SMALL); do \
+	for l in $(COMMON_SMALL) $(COMMON_ANIMATED_SMALL); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_SMALL)$$//'`; \
 		cp $$l L$(THEME_NAME_SMALL)/cursors/$$new_name; \
 	done
-	for l in $(LCURSORS_SMALL); do \
+	for l in $(LCURSORS_SMALL) $(LCURSORS_ANIMATED_SMALL); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_SMALL).left$$//'`; \
 		cp $$l L$(THEME_NAME_SMALL)/cursors/$$new_name; \
 	done
 
-all.medium.left: $(LCURSORS_MEDIUM) $(COMMON_MEDIUM)
+all.medium.left: $(LCURSORS_MEDIUM) $(COMMON_MEDIUM) $(LCURSORS_ANIMATED_MEDIUM) $(COMMON_ANIMATED_MEDIUM)
 	rm -rf L$(THEME_NAME_MEDIUM)
 	mkdir -p L$(THEME_NAME_MEDIUM)/cursors
-	for l in $(COMMON_MEDIUM); do \
+	for l in $(COMMON_MEDIUM) $(COMMON_ANIMATED_MEDIUM); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_MEDIUM)$$//'`; \
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
-	for l in $(LCURSORS_MEDIUM); do \
+	for l in $(LCURSORS_MEDIUM) $(LCURSORS_ANIMATED_MEDIUM); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_SMALL).left\$///'`; \
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 
-all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
+all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE) $(LCURSORS_ANIMATED_LARGE) $(COMMON_ANIMATED_LARGE)
 	rm -rf L$(THEME_NAME_LARGE)
 	mkdir -p L$(THEME_NAME_LARGE)/cursors
-	for l in $(COMMON_LARGE); do \
+	for l in $(COMMON_LARGE) $(COMMON_ANIMATED_LARGE); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_LARGE)$$//'`; \
 		cp $$l L$(THEME_NAME_LARGE)/cursors/$$new_name; \
 	done
-	for l in $(LCURSORS_LARGE); do \
+	for l in $(LCURSORS_LARGE) $(LCURSORS_ANIMATED_LARGE); do \
 		new_name=`echo $$l|sed 's/.$(SIZE_LARGE).left$$//'`; \
 		cp $$l L$(THEME_NAME_LARGE)/cursors/$$new_name; \
 	done
@@ -370,12 +382,12 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 		cat $$size_set > $@; \
 	}
 
-%.png: $(RSVG_SOURCE) $(COMMON_SOURCE)
+%.png: $(RSVG_SOURCE) $(COMMON_SOURCE) make-png.sh
 	{\
 		target=`echo $@|cut -d. -f1`; \
 		src=$<; \
-		for c in $(COMMON_CURSORS) wait-1; do \
-			if [ "$$target" = "$$c" ]; then \
+		for c in $(COMMON_CURSORS) $(COMMON_ANIMATED); do \
+			if [ $$target = $$c ] || echo $$target|grep -E "$$c-[[:digit:]]+"; then \
 				export src=$(COMMON_SOURCE); \
 				break; \
 			fi; \
@@ -384,12 +396,12 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 		./make-png.sh src=$$src target=$$target size=`echo $@|cut -d. -f2` smallest_size=$(SIZE_SMALL) output=$@; \
 	}
 
-%.left.png: $(LSVG_SOURCE) $(COMMON_SOURCE)
+%.left.png: $(LSVG_SOURCE) $(COMMON_SOURCE) make-png.sh
 	{\
 		target=`echo $@|cut -d. -f1`; \
 		src=$<; \
-		for c in $(COMMON_CURSORS) wait-1; do \
-			if [ "$$target" = "$$c" ]; then \
+		for c in $(COMMON_CURSORS) $(COMMON_ANIMATED); do \
+			if [ $$target = $$c ] || echo $$target|grep -E "$$c-[[:digit:]]+"; then \
 				export src=$(COMMON_SOURCE); \
 				break; \
 			fi; \
@@ -609,7 +621,17 @@ clean:
 	rm -f $(PNG_COMMON_LARGE)
 	rm -f $(PNG_COMMON_LARGE1)
 	rm -f $(PNG_COMMON_LARGE2)
-	rm -f wait*.png progress*.png
+	rm -f $(COMMON_ANIMATED) $(CURSORS_ANIMATED) $(LCURSORS_ANIMATED)
+	rm -f $(COMMON_ANIMATED_SMALL) $(CURSORS_ANIMATED_SMALL) $(LCURSORS_ANIMATED_SMALL)
+	rm -f $(COMMON_ANIMATED_MEDIUM) $(CURSORS_ANIMATED_MEDIUM) $(LCURSORS_ANIMATED_MEDIUM)
+	rm -f $(COMMON_ANIMATED_LARGE) $(CURSORS_ANIMATED_LARGE) $(LCURSORS_ANIMATED_LARGE)
+	rm -f $(COMMON_ANIMATED_LARGE1) $(CURSORS_ANIMATED_LARGE1) $(LCURSORS_ANIMATED_LARGE1)
+	rm -f $(COMMON_ANIMATED_LARGE2) $(CURSORS_ANIMATED_LARGE2) $(LCURSORS_ANIMATED_LARGE2)
+	{\
+		for c in $(COMMON_ANIMATED) $(CURSORS_ANIMATED); do \
+			rm -f $${c}-*.*.png rm -f $${c}-*.*.left.png; \
+		done; \
+	}
 	rm -f $(WINCURSORS) $(LWINCURSORS) $(WINCURSORS_ANI) $(LWINCURSORS_ANI)
 	rm -f *.in png2cur animaker
 	rm -f *.64*.png
