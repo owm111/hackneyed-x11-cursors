@@ -14,7 +14,7 @@ Minimum dependencies:
 * ImageMagick (>=6.8.6)
 * Inkscape (>=0.92.3; now compatible with 1.0)
 * GNU `make` and `bash`
-* `xcursorgen` (part of `xorg-utils`)
+* `xcursorgen` (part of `xorg-x11-apps`)
 
 Extra functionality has additional dependencies:
 
