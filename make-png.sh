@@ -26,6 +26,7 @@
 # use or other dealings in this Software without prior written authorization.
 
 MYNAME="$(basename $0)"
+: ${INKSCAPE:=/usr/bin/inkscape}
 
 die()
 {
@@ -37,7 +38,7 @@ ikwrapper()
 {
 	local export_id
 
-	ikver=$(inkscape --version|cut -d' ' -f2)
+	ikver=$($INKSCAPE --version|cut -d' ' -f2)
 	[ -z "$ikver" ] && die "could not determine Inkscape version"
 	while [ "$1" ]; do
 		case "$1" in
@@ -45,14 +46,15 @@ ikwrapper()
 			export_id=${1#*=}
 			shift ;;
 		*)
+			die "wrapper: internal error"
 			shift ;;
 		esac
 	done
 	if [ "${ikver:0:3}" = "1.0" ]; then
-		inkscape -z -d $dpi --export-id="$export_id" --export-file="$output" "$src" &>/dev/null || die
+		$INKSCAPE -z -d $dpi --export-id="$export_id" --export-file="$output" "$src" &>/dev/null || die
 		return 0
 	fi
-	inkscape -z -d $dpi -i "$export_id" -f "$src" -e "$output" >/dev/null || die
+	$INKSCAPE -z -d $dpi -i "$export_id" -f "$src" -e "$output" >/dev/null || die
 }
 
 while [ "$1" ]; do
