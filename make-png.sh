@@ -25,10 +25,34 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
+MYNAME="$(basename $0)"
+
 die()
 {
 	echo $@ >&2
 	exit 1
+}
+
+ikwrapper()
+{
+	local export_id
+
+	ikver=$(inkscape --version|cut -d' ' -f2)
+	[ -z "$ikver" ] && exit 1
+	while [ "$1" ]; do
+		case "$1" in
+		export_id=*)
+			export_id=${1#*=}
+			shift ;;
+		*)
+		shift ;;
+		esac
+	done
+	if [ "${ikver:0:3}" = "1.0" ]; then
+		inkscape -z -d $dpi --export-id="$export_id" --export-file="$output" "$src" &>/dev/null || die
+		return 0
+	fi
+	inkscape -z -d $dpi -i "$export_id" -f "$src" -e "$output" >/dev/null || die
 }
 
 while [ "$1" ]; do
@@ -48,6 +72,9 @@ while [ "$1" ]; do
 	output=*)
 		output=${1#*=}
 		shift ;;
+	frames=*)
+		frames=${1#*=}
+		shift ;;
 	*)
 		die "invalid parameter: $1"
 	esac
@@ -57,8 +84,22 @@ done
 : ${target:?missing target}
 : ${size:?no size specified}
 : ${smallest_size:?missing smallest size}
-: ${output:?no outfile specified}
 
 dpi=$(( (96 * size) / smallest_size ))
-echo "${target}: ${output}, ${size}px, ${dpi} DPI"; \
-inkscape --without-gui -i ${target} -d $dpi -f $src -e $output >/dev/null;
+: ${dpi:?invalid size $size}
+variant=${target#*.}
+[ "$variant" = "$target" ] && unset variant
+[ "$variant" ] && target=${target%.*}
+
+if (( frames > 1 )); then
+	for ((i = 1; i <= frames; i++)); do
+		[ "$variant" ] && output="${target}-${i}.${size}.${variant}.png" || output="${target}-${i}.${size}.png"
+		echo "$MYNAME: $target ($size): $output"
+		ikwrapper export_id="${target}-${i}"
+	done
+	exit 0
+fi
+
+: ${output:?no outfile specified}
+echo "$MYNAME: ${target}: ${output}, ${size}px, ${dpi} DPI"; \
+ikwrapper export_id=$target
