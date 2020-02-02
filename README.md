@@ -12,8 +12,7 @@ Building
 Minimum dependencies:
 
 * ImageMagick (>=6.8.6)
-* Inkscape (>=0.92.3, older versions will make a mess with the DPI settings)
-	* *NOTE*: Inkscape 1.0 (still a beta as I write this) has changed many command-line parameters. If the build fails, ensure you're using an older version
+* Inkscape (>=0.92.3; now compatible with 1.0)
 * GNU `make` and `bash`
 * `xcursorgen` (part of `xorg-utils`)
 
@@ -140,8 +139,6 @@ Chromium and Chromium-based browsers won't pick up a new theme unless you restar
 Known bugs
 ----------
 The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with by upstream:
-
-- **Unchangeable root window cursor in Xfce:** If you get an X default/distro default left arrow mixed with this theme, reload the WM by running `xfwm4 --replace` (already fixed in `lightdm-gtk-greeter`?);
 
 - **Plasma on Wayland:** `XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=waylang-egl <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `split_h` and `split_v` when you hover over the borders of a Qt window, and don't expect it to be bug-free either;
 
