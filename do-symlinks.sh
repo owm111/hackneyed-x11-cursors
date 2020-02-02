@@ -45,7 +45,7 @@ link()
 	fi
 }
 
-find_hard_file()
+deref_symlink()
 {
 	for a in $cursor $symlinks; do
 		if [ -e $a ]; then
@@ -59,7 +59,7 @@ find_hard_file()
 do_linkage()
 {
 	while IFS="$(echo -e '\t')" read cursor symlinks; do
-		c_source=$(find_hard_file)
+		c_source=$(deref_symlink)
 		if [ -e "$c_source" ]; then
 			for a in $symlinks; do
 				link $c_source $a
