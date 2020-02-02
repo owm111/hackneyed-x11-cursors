@@ -291,13 +291,13 @@ theme.large.left: all.large.left
 all: $(CURSORS) $(CURSORS_ANIMATED) $(COMMON_CURSORS) $(COMMON_ANIMATED)
 	rm -rf $(THEME_NAME)
 	mkdir -p $(THEME_NAME)/cursors
-	cp $(CURSORS) $(CURSORS_ANIMATED) $(COMMON_CURSORS) $(COMMON_CURSORS_ANIMATED) $(THEME_NAME)/cursors
+	cp $(CURSORS) $(CURSORS_ANIMATED) $(COMMON_CURSORS) $(COMMON_ANIMATED) $(THEME_NAME)/cursors
 #	echo \(trim-cursor-files "\"$(THEME_NAME)/cursors/*\""\)|cat trim-cursor-files.scm - |gimp -i -b -
 
-all.left: $(LCURSORS) $(LCURSORS_ANIMATED) $(COMMON_CURSORS) $(COMMON_CURSORS_ANIMATED)
+all.left: $(LCURSORS) $(LCURSORS_ANIMATED) $(COMMON_CURSORS) $(COMMON_ANIMATED)
 	rm -rf L$(THEME_NAME)
 	mkdir -p L$(THEME_NAME)/cursors
-	cp $(COMMON_CURSORS) $(COMMON_CURSORS_ANIMATED) L$(THEME_NAME)/cursors
+	cp $(COMMON_CURSORS) $(COMMON_ANIMATED) L$(THEME_NAME)/cursors
 	for l in $(LCURSORS) $(LCURSORS_ANIMATED); do \
 		new_name=`echo $$l|sed 's/.left$$//'`; \
 		cp $$l L$(THEME_NAME)/cursors/$$new_name; \
@@ -348,7 +348,7 @@ all.medium.left: $(LCURSORS_MEDIUM) $(COMMON_MEDIUM) $(LCURSORS_ANIMATED_MEDIUM)
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 	for l in $(LCURSORS_MEDIUM) $(LCURSORS_ANIMATED_MEDIUM); do \
-		new_name=`echo $$l|sed 's/.$(SIZE_SMALL).left\$///'`; \
+		new_name=`echo $$l|sed 's/.$(SIZE_SMALL).left$$//'`; \
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 
@@ -508,7 +508,7 @@ wait.%.in: theme/%/wait.in make-ani-hotspots.sh
 			$(WAIT_CUSTOM_FRAMETIMES); \
 	}
 
-wait.%: wait.%.in
+wait.%: wait.%.in wait.%.frames
 	$(XCURSORGEN) $< $@
 
 wait: wait_all_frames wait_all_hotspots
@@ -530,7 +530,7 @@ progress_left.ani: png2cur animaker make-windows-ani.sh progress.left.24.frames 
 progress: progress_all_frames progress_all_hotspots
 	cat progress.*.in|$(XCURSORGEN) - $@
 
-progress.%: progress.%.in
+progress.%: progress.%.in progress.%.frames
 	$(XCURSORGEN) $< $@
 
 progress.%.in: theme/%/progress.in make-ani-hotspots.sh
@@ -555,7 +555,7 @@ progress_left.%.in: theme/%/progress_left.in make-ani-hotspots.sh
 progress.left: progress_left_all_frames progress_left.$(SIZE_SMALL).in progress_left.$(SIZE_MEDIUM).in progress_left.$(SIZE_LARGE).in progress_left.$(SIZE_LARGE1).in progress_left.$(SIZE_LARGE2).in
 	cat progress_left.*.in|$(XCURSORGEN) - $@
 
-progress.%.left: progress_left.%.in
+progress.%.left: progress_left.%.in progress.left.%.frames
 	$(XCURSORGEN) $< $@
 
 preview: $(PNG_SMALL) $(LPNG_SMALL) $(PNG_COMMON_SMALL) wait-1.$(SIZE_SMALL).png progress-1.$(SIZE_SMALL).png progress-1.$(SIZE_SMALL).left.png
