@@ -348,7 +348,7 @@ all.medium.left: $(LCURSORS_MEDIUM) $(COMMON_MEDIUM) $(LCURSORS_ANIMATED_MEDIUM)
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 	for l in $(LCURSORS_MEDIUM) $(LCURSORS_ANIMATED_MEDIUM); do \
-		new_name=`echo $$l|sed 's/.$(SIZE_SMALL).left$$//'`; \
+		new_name=`echo $$l|sed 's/.$(SIZE_MEDIUM).left$$//'`; \
 		cp $$l L$(THEME_NAME_MEDIUM)/cursors/$$new_name; \
 	done
 
