@@ -27,12 +27,12 @@ VERSION = 0.8
 COMMON_SOURCE = theme/common-white.svg
 RSVG_SOURCE = theme/right-handed-white.svg
 LSVG_SOURCE = theme/left-handed-white.svg
-SIZE_SMALL=24
-SIZE_MEDIUM=36
-SIZE_LARGE=48
-SIZE_LARGE1=60
-SIZE_LARGE2=72
-COMMON_SMALL = text.$(SIZE_SMALL) \
+SIZE_SMALL := 24
+SIZE_MEDIUM := 36
+SIZE_LARGE := 48
+SIZE_LARGE1 := 60
+SIZE_LARGE2 := 72
+COMMON_SMALL := text.$(SIZE_SMALL) \
 	vertical-text.$(SIZE_SMALL) \
 	sb_up_arrow.$(SIZE_SMALL) \
 	sb_down_arrow.$(SIZE_SMALL) \
@@ -73,17 +73,18 @@ COMMON_SMALL = text.$(SIZE_SMALL) \
 	left_tee.$(SIZE_SMALL) \
 	right_tee.$(SIZE_SMALL) \
 	wait.$(SIZE_SMALL)
-COMMON_MEDIUM=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
-COMMON_LARGE=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
-COMMON_LARGE1=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
-COMMON_LARGE2=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
-COMMON_CURSORS=$(COMMON_SMALL:.$(SIZE_SMALL)=)
-PNG_COMMON_SMALL=$(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_SMALL).png)
-PNG_COMMON_MEDIUM=$(COMMON_MEDIUM:.$(SIZE_MEDIUM)=.$(SIZE_MEDIUM).png)
-PNG_COMMON_LARGE=$(COMMON_LARGE:.$(SIZE_LARGE)=.$(SIZE_LARGE).png)
-PNG_COMMON_LARGE1=$(COMMON_LARGE1:.$(SIZE_LARGE1)=.$(SIZE_LARGE1).png)
-PNG_COMMON_LARGE2=$(COMMON_LARGE2:.$(SIZE_LARGE2)=.$(SIZE_LARGE2).png)
-CURSORS_SMALL = alias.$(SIZE_SMALL) \
+COMMON_MEDIUM := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
+COMMON_LARGE := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
+COMMON_LARGE1 := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
+COMMON_LARGE2 := $(COMMON_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
+COMMON_CURSORS:= $(COMMON_SMALL:.$(SIZE_SMALL)=)
+PNG_COMMON_SMALL := $(filter-out wait.$(SIZE_SMALL),$(COMMON_SMALL))
+PNG_COMMON_SMALL := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_SMALL).png)
+PNG_COMMON_MEDIUM := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_MEDIUM).png)
+PNG_COMMON_LARGE := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_LARGE).png)
+PNG_COMMON_LARGE1 := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_LARGE1).png)
+PNG_COMMON_LARGE2 := $(PNG_COMMON_SMALL:.$(SIZE_SMALL).png=.$(SIZE_LARGE2).png)
+CURSORS_SMALL := alias.$(SIZE_SMALL) \
 	color-picker.$(SIZE_SMALL) \
 	context-menu.$(SIZE_SMALL) \
 	copy.$(SIZE_SMALL) \
@@ -103,17 +104,18 @@ CURSORS_SMALL = alias.$(SIZE_SMALL) \
 	pointer.$(SIZE_SMALL) \
 	coffee_mug.$(SIZE_SMALL) \
 	exchange.$(SIZE_SMALL)
-CURSORS_MEDIUM = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
-CURSORS_LARGE = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
-CURSORS_LARGE1 = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
-CURSORS_LARGE2 = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
-CURSORS = $(CURSORS_SMALL:.$(SIZE_SMALL)=)
-PNG_SMALL = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_SMALL).png)
-PNG_MEDIUM = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM).png)
-PNG_LARGE = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE).png)
-PNG_LARGE1 = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1).png)
-PNG_LARGE2 = $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2).png)
-LCURSORS_SMALL = alias.$(SIZE_SMALL).left \
+CURSORS_MEDIUM := $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM))
+CURSORS_LARGE := $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE))
+CURSORS_LARGE1 := $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1))
+CURSORS_LARGE2 := $(CURSORS_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2))
+CURSORS := $(CURSORS_SMALL:.$(SIZE_SMALL)=)
+PNG_SMALL := $(filter-out progress.$(SIZE_SMALL),$(CURSORS_SMALL))
+PNG_SMALL := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_SMALL).png)
+PNG_MEDIUM := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_MEDIUM).png)
+PNG_LARGE := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE).png)
+PNG_LARGE1 := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE1).png)
+PNG_LARGE2 := $(PNG_SMALL:.$(SIZE_SMALL)=.$(SIZE_LARGE2).png)
+LCURSORS_SMALL := alias.$(SIZE_SMALL).left \
 	color-picker.$(SIZE_SMALL).left \
 	context-menu.$(SIZE_SMALL).left \
 	copy.$(SIZE_SMALL).left \
@@ -133,45 +135,45 @@ LCURSORS_SMALL = alias.$(SIZE_SMALL).left \
 	pointer.$(SIZE_SMALL).left \
 	coffee_mug.$(SIZE_SMALL).left \
 	exchange.$(SIZE_SMALL).left
-LCURSORS_MEDIUM = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_MEDIUM).left)
-LCURSORS_LARGE = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE).left)
-LCURSORS_LARGE1 = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE1).left)
-LCURSORS_LARGE2 = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE2).left)
-LCURSORS = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.left)
-LPNG_SMALL = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_SMALL).left.png)
-LPNG_MEDIUM = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_MEDIUM).left.png)
-LPNG_LARGE = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE).left.png)
-LPNG_LARGE1 = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE1).left.png)
-LPNG_LARGE2 = $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE2).left.png)
-WINCURSORS = default.cur help.cur text.cur crosshair.cur pencil.cur \
+LCURSORS_MEDIUM := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_MEDIUM).left)
+LCURSORS_LARGE := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE).left)
+LCURSORS_LARGE1 := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE1).left)
+LCURSORS_LARGE2 := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.$(SIZE_LARGE2).left)
+LCURSORS := $(LCURSORS_SMALL:.$(SIZE_SMALL).left=.left)
+LPNG_SMALL := $(filter-out progress.$(SIZE_SMALL).left,$(LCURSORS_SMALL))
+LPNG_SMALL := $(LPNG_SMALL:.$(SIZE_SMALL).left=.$(SIZE_SMALL).left.png)
+LPNG_MEDIUM := $(LPNG_SMALL:.$(SIZE_SMALL).left.png=.$(SIZE_MEDIUM).left.png)
+LPNG_LARGE := $(LPNG_SMALL:.$(SIZE_SMALL).left.png=.$(SIZE_LARGE).left.png)
+LPNG_LARGE1 := $(LPNG_SMALL:.$(SIZE_SMALL).left.png=.$(SIZE_LARGE1).left.png)
+LPNG_LARGE2 := $(LPNG_SMALL:.$(SIZE_SMALL).left.png=.$(SIZE_LARGE2).left.png)
+WINCURSORS := default.cur help.cur text.cur crosshair.cur pencil.cur \
 ns-resize.cur ew-resize.cur nesw-resize.cur nwse-resize.cur sb_up_arrow.cur pointer.cur move.cur \
 n-resize.cur s-resize.cur e-resize.cur w-resize.cur ne-resize.cur nw-resize.cur se-resize.cur sw-resize.cur \
 not-allowed.cur
-WINCURSORS_ANI = wait.ani progress.ani
-LWINCURSORS = default_left.cur help_left.cur pencil_left.cur pointer_left.cur
-LWINCURSORS_ANI = progress_left.ani
-THEME_NAME = Hackneyed
-THEME_NAME_SMALL = $(THEME_NAME)-$(SIZE_SMALL)px
-THEME_NAME_MEDIUM = $(THEME_NAME)-$(SIZE_MEDIUM)px
-THEME_NAME_LARGE = $(THEME_NAME)-$(SIZE_LARGE)px
-THEME_COMMENT = Windows 3.x-inspired cursors
-THEME_EXAMPLE = default
-THEME_WINDOWS = $(THEME_NAME)-Windows-$(VERSION)
+WINCURSORS_ANI := wait.ani progress.ani
+LWINCURSORS := default_left.cur help_left.cur pencil_left.cur pointer_left.cur
+LWINCURSORS_ANI := progress_left.ani
+THEME_NAME := Hackneyed
+THEME_NAME_SMALL := $(THEME_NAME)-$(SIZE_SMALL)px
+THEME_NAME_MEDIUM := $(THEME_NAME)-$(SIZE_MEDIUM)px
+THEME_NAME_LARGE := $(THEME_NAME)-$(SIZE_LARGE)px
+THEME_COMMENT := Windows 3.x-inspired cursors
+THEME_EXAMPLE := default
+THEME_WINDOWS := $(THEME_NAME)-Windows-$(VERSION)
 SIZES ?= $(SIZE_SMALL) $(SIZE_MEDIUM) $(SIZE_LARGE) $(SIZE_LARGE1) $(SIZE_LARGE2)
-PREVIEW_SIZE = $(SIZE_SMALL)
-XCURSORGEN = xcursorgen
-.DEFAULT_GOAL = all-dist
+XCURSORGEN := xcursorgen
+.DEFAULT_GOAL := all-dist
 PREFIX ?= /usr/local
-WAIT_FRAMES=16
-WAIT_DEFAULT_FRAMETIME=30
-WAIT_CUSTOM_FRAMETIMES=frame_5_time=300
-PROGRESS_FRAMES=16
-PROGRESS_DEFAULT_FRAMETIME=30
-PROGRESS_CUSTOM_FRAMETIMES=frame_5_time=300
-WINDOWS_WAIT_DEFAULT_FRAMETIME=2
-WINDOWS_WAIT_CUSTOM_FRAMETIMES=frame_5_time=15
-WINDOWS_PROGRESS_DEFAULT_FRAMETIME=2
-WINDOWS_PROGRESS_CUSTOM_FRAMETIMES=frame_5_time=15
+WAIT_FRAMES := 16
+WAIT_DEFAULT_FRAMETIME := 30
+WAIT_CUSTOM_FRAMETIMES := frame_5_time=300
+PROGRESS_FRAMES := 16
+PROGRESS_DEFAULT_FRAMETIME := 30
+PROGRESS_CUSTOM_FRAMETIMES := frame_5_time=300
+WINDOWS_WAIT_DEFAULT_FRAMETIME := 2
+WINDOWS_WAIT_CUSTOM_FRAMETIMES := frame_5_time=15
+WINDOWS_PROGRESS_DEFAULT_FRAMETIME := 2
+WINDOWS_PROGRESS_CUSTOM_FRAMETIMES := frame_5_time=15
 
 all-sizes: all.small all.medium all.large all.small.left all.medium.left all.large.left all.left all
 all-themes: theme theme.left theme.small theme.medium theme.large theme.small.left theme.medium.left theme.large.left
@@ -372,7 +374,7 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 	{\
 		target=`echo $@|cut -d. -f1`; \
 		src=$<; \
-		for c in $(COMMON_CURSORS); do \
+		for c in $(COMMON_CURSORS) wait-1; do \
 			if [ "$$target" = "$$c" ]; then \
 				export src=$(COMMON_SOURCE); \
 				break; \
@@ -386,7 +388,7 @@ all.large.left: $(LCURSORS_LARGE) $(COMMON_LARGE)
 	{\
 		target=`echo $@|cut -d. -f1`; \
 		src=$<; \
-		for c in $(COMMON_CURSORS); do \
+		for c in $(COMMON_CURSORS) wait-1; do \
 			if [ "$$target" = "$$c" ]; then \
 				export src=$(COMMON_SOURCE); \
 				break; \
@@ -544,30 +546,30 @@ progress.left: progress_left_all_frames progress_left.$(SIZE_SMALL).in progress_
 progress.%.left: progress_left.%.in
 	$(XCURSORGEN) $< $@
 
-preview: $(COMMON_SMALL) $(PNG_SMALL) $(LPNG_SMALL) wait-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).left.png
+preview: $(PNG_SMALL) $(LPNG_SMALL) $(PNG_COMMON_SMALL) wait-1.$(SIZE_SMALL).png progress-1.$(SIZE_SMALL).png progress-1.$(SIZE_SMALL).left.png
 	montage -background none -mode concatenate -tile 9x6 -geometry +10+5 \
-		default.$(PREVIEW_SIZE).png help.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png \
-		alias.$(PREVIEW_SIZE).png copy.$(PREVIEW_SIZE).png context-menu.$(PREVIEW_SIZE).png \
-		no-drop.$(PREVIEW_SIZE).png dnd-move.$(PREVIEW_SIZE).png center_ptr.$(PREVIEW_SIZE).png \
-		help.$(PREVIEW_SIZE).left.png progress-1.$(PREVIEW_SIZE).left.png alias.$(PREVIEW_SIZE).left.png \
-		copy.$(PREVIEW_SIZE).left.png context-menu.$(PREVIEW_SIZE).left.png no-drop.$(PREVIEW_SIZE).left.png \
-		dnd-move.$(PREVIEW_SIZE).left.png default.$(PREVIEW_SIZE).left.png right_ptr.$(PREVIEW_SIZE).left.png \
-		wait-1.$(PREVIEW_SIZE).png pointer.$(PREVIEW_SIZE).png openhand.$(PREVIEW_SIZE).png \
-		closedhand.$(PREVIEW_SIZE).png sw-resize.$(PREVIEW_SIZE).png se-resize.$(PREVIEW_SIZE).png w-resize.$(PREVIEW_SIZE).png \
-		e-resize.$(PREVIEW_SIZE).png n-resize.$(PREVIEW_SIZE).png s-resize.$(PREVIEW_SIZE).png \
-		nw-resize.$(PREVIEW_SIZE).png ne-resize.$(PREVIEW_SIZE).png split_v.$(PREVIEW_SIZE).png zoom.$(PREVIEW_SIZE).png \
-		zoom-in.$(PREVIEW_SIZE).png zoom-out.$(PREVIEW_SIZE).png nesw-resize.$(PREVIEW_SIZE).png \
-		nwse-resize.$(PREVIEW_SIZE).png ew-resize.$(PREVIEW_SIZE).png ns-resize.$(PREVIEW_SIZE).png split_h.$(PREVIEW_SIZE).png \
-		text.$(PREVIEW_SIZE).png vertical-text.$(PREVIEW_SIZE).png move.$(PREVIEW_SIZE).png crosshair.$(PREVIEW_SIZE).png plus.$(PREVIEW_SIZE).png \
-		not-allowed.$(PREVIEW_SIZE).png pirate.$(PREVIEW_SIZE).png X_cursor.$(PREVIEW_SIZE).png \
-		wayland-cursor.$(PREVIEW_SIZE).png draft.$(PREVIEW_SIZE).png pencil.$(PREVIEW_SIZE).png \
-		color-picker.$(PREVIEW_SIZE).png sb_up_arrow.$(PREVIEW_SIZE).png sb_right_arrow.$(PREVIEW_SIZE).png sb_left_arrow.$(PREVIEW_SIZE).png \
+		default.$(SIZE_SMALL).png help.$(SIZE_SMALL).png progress-1.$(SIZE_SMALL).png \
+		alias.$(SIZE_SMALL).png copy.$(SIZE_SMALL).png context-menu.$(SIZE_SMALL).png \
+		no-drop.$(SIZE_SMALL).png dnd-move.$(SIZE_SMALL).png center_ptr.$(SIZE_SMALL).png \
+		help.$(SIZE_SMALL).left.png progress-1.$(SIZE_SMALL).left.png alias.$(SIZE_SMALL).left.png \
+		copy.$(SIZE_SMALL).left.png context-menu.$(SIZE_SMALL).left.png no-drop.$(SIZE_SMALL).left.png \
+		dnd-move.$(SIZE_SMALL).left.png default.$(SIZE_SMALL).left.png right_ptr.$(SIZE_SMALL).left.png \
+		wait-1.$(SIZE_SMALL).png pointer.$(SIZE_SMALL).png openhand.$(SIZE_SMALL).png \
+		closedhand.$(SIZE_SMALL).png sw-resize.$(SIZE_SMALL).png se-resize.$(SIZE_SMALL).png w-resize.$(SIZE_SMALL).png \
+		e-resize.$(SIZE_SMALL).png n-resize.$(SIZE_SMALL).png s-resize.$(SIZE_SMALL).png \
+		nw-resize.$(SIZE_SMALL).png ne-resize.$(SIZE_SMALL).png split_v.$(SIZE_SMALL).png zoom.$(SIZE_SMALL).png \
+		zoom-in.$(SIZE_SMALL).png zoom-out.$(SIZE_SMALL).png nesw-resize.$(SIZE_SMALL).png \
+		nwse-resize.$(SIZE_SMALL).png ew-resize.$(SIZE_SMALL).png ns-resize.$(SIZE_SMALL).png split_h.$(SIZE_SMALL).png \
+		text.$(SIZE_SMALL).png vertical-text.$(SIZE_SMALL).png move.$(SIZE_SMALL).png crosshair.$(SIZE_SMALL).png plus.$(SIZE_SMALL).png \
+		not-allowed.$(SIZE_SMALL).png pirate.$(SIZE_SMALL).png X_cursor.$(SIZE_SMALL).png \
+		wayland-cursor.$(SIZE_SMALL).png draft.$(SIZE_SMALL).png pencil.$(SIZE_SMALL).png \
+		color-picker.$(SIZE_SMALL).png sb_up_arrow.$(SIZE_SMALL).png sb_right_arrow.$(SIZE_SMALL).png sb_left_arrow.$(SIZE_SMALL).png \
 		preview-$(THEME_NAME).png
 	montage -background none -mode concatenate -tile 4x4 -geometry +5+5 \
-		default.$(PREVIEW_SIZE).png help.$(PREVIEW_SIZE).png progress-1.$(PREVIEW_SIZE).png no-drop.$(PREVIEW_SIZE).png wait-1.$(PREVIEW_SIZE).png \
-		pencil.$(PREVIEW_SIZE).png zoom-in.$(PREVIEW_SIZE).png context-menu.$(PREVIEW_SIZE).png \
-		pointer.$(PREVIEW_SIZE).png openhand.$(PREVIEW_SIZE).png closedhand.$(PREVIEW_SIZE).png pirate.$(PREVIEW_SIZE).png \
-		n-resize.$(PREVIEW_SIZE).png s-resize.$(PREVIEW_SIZE).png w-resize.$(PREVIEW_SIZE).png e-resize.$(PREVIEW_SIZE).png \
+		default.$(SIZE_SMALL).png help.$(SIZE_SMALL).png progress-1.$(SIZE_SMALL).png no-drop.$(SIZE_SMALL).png wait-1.$(SIZE_SMALL).png \
+		pencil.$(SIZE_SMALL).png zoom-in.$(SIZE_SMALL).png context-menu.$(SIZE_SMALL).png \
+		pointer.$(SIZE_SMALL).png openhand.$(SIZE_SMALL).png closedhand.$(SIZE_SMALL).png pirate.$(SIZE_SMALL).png \
+		n-resize.$(SIZE_SMALL).png s-resize.$(SIZE_SMALL).png w-resize.$(SIZE_SMALL).png e-resize.$(SIZE_SMALL).png \
 		preview-small-$(THEME_NAME).png
 
 clean:
