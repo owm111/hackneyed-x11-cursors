@@ -86,10 +86,10 @@ void die(const char *msg, ...)
 	exit(EXIT_FAILURE);
 }
 
-void iffree(struct iconfile **fb)
+void icbfree(struct iconfile **icb)
 {
-	free((*fb)->ie);
-	free(*fb);
+	free((*icb)->ie);
+	free(*icb);
 }
 
 struct iconfile *get_ico_headers(const char *src)
@@ -124,29 +124,29 @@ void get_ico_info(const char *name)
 	const char *filetype = "icon";
 	const char *field_5 = "planes";
 	const char *field_6 = "bpp";
-	struct iconfile *fb;
+	struct iconfile *icb;
 
-	fb = get_ico_headers(name);
-	if (fb->ib.type == 2) {
+	icb = get_ico_headers(name);
+	if (icb->ib.type == 2) {
 		filetype = "cursor";
 		field_5 = "x_hotspot";
 		field_6 = "y_hotspot";
 	}
 	printf("%s\n", name);
-	printf("filetype: %s (%u)\n", filetype, fb->ib.type);
-	printf("icondirentry count: %u\n", fb->ib.count);
+	printf("filetype: %s (%u)\n", filetype, icb->ib.type);
+	printf("icondirentry count: %u\n", icb->ib.count);
 	printf("-------------------------\n");
-	for (i = 0; i < fb->ib.count; i++) {
-		printf("[%lu] dimensions: %ux%u\n", i, fb->ie[i].width, fb->ie[i].height);
-		printf("[%lu] colors: %u\n", i, fb->ie[i].colors);
-		printf("[%lu] %s: %u\n", i, field_5, fb->ie[i].x_hotspot);
-		printf("[%lu] %s: %u\n", i, field_6, fb->ie[i].y_hotspot);
-		printf("[%lu] image size: %u\n", i, fb->ie[i].size);
-		printf("[%lu] image offset: %u\n", i, fb->ie[i].offset);
-		if (fb->ib.count - i > 1)
+	for (i = 0; i < icb->ib.count; i++) {
+		printf("[%lu] dimensions: %ux%u\n", i, icb->ie[i].width, icb->ie[i].height);
+		printf("[%lu] colors: %u\n", i, icb->ie[i].colors);
+		printf("[%lu] %s: %u\n", i, field_5, icb->ie[i].x_hotspot);
+		printf("[%lu] %s: %u\n", i, field_6, icb->ie[i].y_hotspot);
+		printf("[%lu] image size: %u\n", i, icb->ie[i].size);
+		printf("[%lu] image offset: %u\n", i, icb->ie[i].offset);
+		if (icb->ib.count - i > 1)
 			printf("-------------------------\n");
 	}
-	iffree(&fb);
+	icbfree(&icb);
 	exit(EXIT_SUCCESS);
 }
 
@@ -170,36 +170,36 @@ void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y, struct h
 	size_t w;
 	off_t start;
 	char buf[BUFSIZ];
-	struct iconfile *fb;
+	struct iconfile *icb;
 	const struct hotspot *hb_siz;
 
-	fb = get_ico_headers(src);
-	fb->ib.type = 2;
-	zero_w = fb->ie[0].width;
-	zero_h = fb->ie[0].height;
-	for (i = 1; i < fb->ib.count; i++) {
-		if (fb->ie[i].width < zero_w)
-			zero_w = fb->ie[i].width;
-		if (fb->ie[i].height < zero_h)
-			zero_h = fb->ie[i].height;
+	icb = get_ico_headers(src);
+	icb->ib.type = 2;
+	zero_w = icb->ie[0].width;
+	zero_h = icb->ie[0].height;
+	for (i = 1; i < icb->ib.count; i++) {
+		if (icb->ie[i].width < zero_w)
+			zero_w = icb->ie[i].width;
+		if (icb->ie[i].height < zero_h)
+			zero_h = icb->ie[i].height;
 	}
-	for (i = 0; i < fb->ib.count; i++) {
-		if ((hb_siz = find_hotspot(fb->ie[i].width, fb->ie[i].height, hb, hblen))) {
-			fb->ie[i].x_hotspot = hb_siz->x_hotspot;
-			fb->ie[i].y_hotspot = hb_siz->y_hotspot;
+	for (i = 0; i < icb->ib.count; i++) {
+		if ((hb_siz = find_hotspot(icb->ie[i].width, icb->ie[i].height, hb, hblen))) {
+			icb->ie[i].x_hotspot = hb_siz->x_hotspot;
+			icb->ie[i].y_hotspot = hb_siz->y_hotspot;
 		} else {
-			fb->ie[i].x_hotspot = round((double)(fb->ie[i].width * x) / zero_w);
-			fb->ie[i].y_hotspot = round((double)(fb->ie[i].width * y) / zero_h);
+			icb->ie[i].x_hotspot = round((double)(icb->ie[i].width * x) / zero_w);
+			icb->ie[i].y_hotspot = round((double)(icb->ie[i].width * y) / zero_h);
 		}
-		printf("[%lu]: %ux%u (%d,%d)\n", i, fb->ie[i].width, fb->ie[i].height,
-			fb->ie[i].x_hotspot, fb->ie[i].y_hotspot);
+		printf("[%lu]: %ux%u (%d,%d)\n", i, icb->ie[i].width, icb->ie[i].height,
+			icb->ie[i].x_hotspot, icb->ie[i].y_hotspot);
 	}
 	if (!(fdest = fopen(dest, "w")))
 		die("fopen: %s", dest);
 	if (!(fsrc = fopen(src, "r")))
 		die("fopen: %s", src);
-	fwrite(&fb->ib, sizeof(fb->ib), 1, fdest);
-	fwrite(fb->ie, sizeof(*fb->ie), fb->ib.count, fdest);
+	fwrite(&icb->ib, sizeof(icb->ib), 1, fdest);
+	fwrite(icb->ie, sizeof(*icb->ie), icb->ib.count, fdest);
 	start = ftello(fdest);
 	fseeko(fsrc, start, SEEK_SET);
 	while ((w = fread(buf, sizeof(*buf), sizeof(buf), fsrc)))
@@ -207,7 +207,7 @@ void ico2cur(const char *src, const char *dest, uint16_t x, uint16_t y, struct h
 	fclose(fsrc);
 	fclose(fdest);
 	printf("%s -> %s\n", src, dest);
-	iffree(&fb);
+	icbfree(&icb);
 }
 
 uint16_t get_axis(const char *s, char axis)
