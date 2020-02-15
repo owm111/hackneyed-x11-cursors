@@ -159,6 +159,17 @@ long get_pathmax(const char *dirpath)
 	return pathmax;
 }
 
+void throw_wand_exception(MagickWand *wb)
+{
+	char *desc;
+	ExceptionType severity;
+
+	desc = MagickGetException(wb, &severity);
+	fprintf(stderr,"%s %s %lu %s\n", GetMagickModule(), desc);
+	MagickRelinquishMemory(desc);
+	exit(EXIT_FAILURE);
+}
+
 char *png_add_extent(const char *src, uint8_t *zero_w, uint8_t *zero_h)
 {
 	MagickWand *mb = NULL;
@@ -180,7 +191,8 @@ char *png_add_extent(const char *src, uint8_t *zero_w, uint8_t *zero_h)
 	mb = NewMagickWand();
 	pb = NewPixelWand();
 	PixelSetColor(pb, "none");
-	MagickReadImage(mb, src);
+	if (MagickReadImage(mb, src) == MagickFalse)
+		throw_wand_exception(mb);
 	width = MagickGetImageWidth(mb);
 	height = MagickGetImageHeight(mb);
 	if (width >= 32 && height >= 32) {
@@ -195,7 +207,7 @@ char *png_add_extent(const char *src, uint8_t *zero_w, uint8_t *zero_h)
 	MagickSetImageBackgroundColor(mb, pb);
 	MagickExtentImage(mb, 32, 32, 0, 0);
 	if (MagickWriteImage(mb, outfname) == MagickFalse)
-		die("%s: MagickWriteImage failed", src);
+		throw_wand_exception(mb);
 noop:
 	mb = DestroyMagickWand(mb);
 	pb = DestroyPixelWand(pb);
@@ -245,7 +257,7 @@ char *png2ico(const struct fileinfo *fb, int len, const char *dest)
 	PixelSetColor(pb, "none");
 	for (i = 0; i < len; i++) {
 		if (MagickReadImage(mb, fb[i].fname) == MagickFalse)
-			die("%s: MagickReadImage failed: %s", __func__, fb[i].fname);
+			throw_wand_exception(mb);
 		MagickSetLastIterator(mb);
 	}
 	MagickSetImageBackgroundColor(mb, pb);
@@ -256,7 +268,7 @@ char *png2ico(const struct fileinfo *fb, int len, const char *dest)
 		memcpy(p, "ico", 3);
 	}
 	if (MagickWriteImages(mb, dest_ico, MagickTrue) == MagickFalse)
-		die("%s: MagickWriteImage failed: %s", __func__, dest_ico);
+		throw_wand_exception(mb);
 	mb = DestroyMagickWand(mb);
 	pb = DestroyPixelWand(pb);
 	MagickWandTerminus();
@@ -389,10 +401,10 @@ struct iconfile *get_ico_headers(const char *src)
 	return ret;
 }
 
-void iffree(struct iconfile **fb)
+void icbfree(struct iconfile **icb)
 {
-	free((*fb)->ie);
-	free(*fb);
+	free((*icb)->ie);
+	free(*icb);
 }
 
 void ico2cur(const char *src_ico, FILE *fdest)
@@ -400,17 +412,17 @@ void ico2cur(const char *src_ico, FILE *fdest)
 	FILE *fsrc;
 	size_t w;
 	char buf[BUFSIZ];
-	struct iconfile *fb;
+	struct iconfile *icb;
 
-	fb = get_ico_headers(src_ico);
+	icb = get_ico_headers(src_ico);
 	if (!(fsrc = fopen(src_ico, "r")))
 		die("fopen: %s", src_ico);
-	fseek(fsrc, fb->ie[0].offset, SEEK_SET);
+	fseek(fsrc, icb->ie[0].offset, SEEK_SET);
 	while ((w = fread(buf, sizeof(*buf), sizeof(buf), fsrc)))
 		if (fwrite(buf, sizeof(*buf), w, fdest) < 0)
 			die("%s: fwrite", __func__);
 	fclose(fsrc);
-	iffree(&fb);
+	icbfree(&icb);
 }
 
 int main(int argc, char **argv)
@@ -459,7 +471,7 @@ int main(int argc, char **argv)
 		/* don't phunk with my offsets */
 		for (i = 0; i < ib.count; i++)
 			fb[i].ie.size = icb->ie[i].size;
-		iffree(&icb);
+		icbfree(&icb);
 	}
 	if (!(fdest = fopen(dest, "w")))
 		die("fopen: %s", dest);
