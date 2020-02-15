@@ -82,6 +82,7 @@ struct iconfile {
 
 struct fileinfo {
 	char *fname;
+	char *tempfname;
 	int has_hotspot;
 	icondirentry ie;
 };
@@ -285,6 +286,7 @@ struct fileinfo *get_fileinfo(int argc, char **argv, uint16_t base_x, uint16_t b
 		if ((extfname = png_add_extent(ret[i].fname, &zero_w, &zero_h))) {
 			free(ret[i].fname);
 			ret[i].fname = extfname;
+			ret[i].tempfname = extfname;
 		}
 		if (png_image_begin_read_from_file(&pmb, ret[i].fname) == 0) {
 			errno = 0;
@@ -355,7 +357,7 @@ void write_pngs(struct fileinfo *fb, size_t count, FILE *dest)
 		while ((read = fread(buf, sizeof(*buf), sizeof(buf), src)))
 			fwrite(buf, sizeof(*buf), read, dest);
 		fclose(src);
-		if (!strncmp(fb[i].fname, TEMPFNAME_PREFIX, strlen(TEMPFNAME_PREFIX))) /* temporary file */
+		if (fb[i].tempfname) /* temporary file */
 			if (remove(fb[i].fname) < 0)
 				fprintf(stderr, "%s: removing %s: %s", __func__, fb[i].fname, strerror(errno));
 	}
@@ -476,8 +478,8 @@ int main(int argc, char **argv)
 	} else {
 		ico2cur(src_ico, fdest);
 		printf("Bitmap cursors written to \"%s\".\n", dest);
-		/*if (remove(src_ico) < 0)
-			die("remove: %s", src_ico);*/
+		if (remove(src_ico) < 0)
+			die("remove: %s", src_ico);
 		free(src_ico);
 	}
 	fclose(fdest);
