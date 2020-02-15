@@ -75,6 +75,11 @@ typedef struct {
 	uint16_t count; /* icondirentry[count] entries */
 } icondir;
 
+struct iconfile {
+	icondir ib;
+	icondirentry *ie;
+};
+
 struct fileinfo {
 	char *fname;
 	int has_hotspot;
@@ -169,7 +174,7 @@ char *png_add_extent(const char *src, uint8_t *zero_w, uint8_t *zero_h)
 	basefname = get_file_component(GET_BASENAME, src);
 	dirfname = get_file_component(GET_DIRNAME, src);
 	snprintf(extfname, pathmax - 1, "%s/%s-%s", dirfname, TEMPFNAME_PREFIX, basefname);
-	snprintf(outfname, pathmax - 1, "png32:%s/%s-%s", dirfname, TEMPFNAME_PREFIX, basefname);
+	snprintf(outfname, pathmax - 1, "%s/%s-%s", dirfname, TEMPFNAME_PREFIX, basefname);
 	MagickWandGenesis();
 	mb = NewMagickWand();
 	pb = NewPixelWand();
@@ -224,6 +229,37 @@ int get_hotspots(const char *fname, struct fileinfo *fb)
 	if (hotspot_y == tail)
 		die("invalid y hotspot: %s", hotspot_y);
 	return 1;
+}
+
+char *png2ico(const struct fileinfo *fb, int len, const char *dest)
+{
+	MagickWand *mb = NULL;
+	PixelWand *pb;
+	int i;
+	char *dest_ico, *p;
+
+	MagickWandGenesis();
+	mb = NewMagickWand();
+	pb = NewPixelWand();
+	PixelSetColor(pb, "none");
+	for (i = 0; i < len; i++) {
+		if (MagickReadImage(mb, fb[i].fname) == MagickFalse)
+			die("%s: MagickReadImage failed: %s", __func__, fb[i].fname);
+		MagickSetLastIterator(mb);
+	}
+	MagickSetImageBackgroundColor(mb, pb);
+	dest_ico = malloc(strlen(dest) + 4);
+	strcpy(dest_ico, dest);
+	if ((p = strrchr(dest_ico, '.'))) {
+		p++;
+		memcpy(p, "ico", 3);
+	}
+	if (MagickWriteImages(mb, dest_ico, MagickTrue) == MagickFalse)
+		die("%s: MagickWriteImage failed: %s", __func__, dest_ico);
+	mb = DestroyMagickWand(mb);
+	pb = DestroyPixelWand(pb);
+	MagickWandTerminus();
+	return dest_ico;
 }
 
 /* file.png=4,4 */
@@ -325,6 +361,56 @@ void write_pngs(struct fileinfo *fb, size_t count, FILE *dest)
 	}
 }
 
+struct iconfile *get_ico_headers(const char *src)
+{
+	FILE *f = fopen(src, "r");
+	size_t i;
+	struct iconfile *ret;
+
+	if (!f)
+		die("fopen: %s", src);
+	ret = malloc(sizeof(*ret));
+	memset(ret, 0, sizeof(*ret));
+	fread(&ret->ib, sizeof(ret->ib), 1, f);
+	if (ret->ib.reserved != 0 || (ret->ib.type != 1 && ret->ib.type != 2) || ret->ib.count == 0 || ret->ib.count > ICONMAX)
+		die("%s: not an ICO/CUR file or corrupted", src);
+	ret->ie = malloc(sizeof(*ret->ie) * ret->ib.count);
+	for (i = 0; i < ret->ib.count; i++) {
+		if (fread(&ret->ie[i], sizeof(*ret->ie), 1, f) < sizeof(*ret->ie) && feof(f))
+			die("%s: unexpected end of file", src);
+		if (ferror(f))
+			die("%s: read error", src);
+		if (ret->ie[i].reserved != 0)
+			die("%s: invalid icondirentry", src);
+	}
+	fclose(f);
+	return ret;
+}
+
+void iffree(struct iconfile **fb)
+{
+	free((*fb)->ie);
+	free(*fb);
+}
+
+void ico2cur(const char *src_ico, FILE *fdest)
+{
+	FILE *fsrc;
+	size_t w;
+	char buf[BUFSIZ];
+	struct iconfile *fb;
+
+	fb = get_ico_headers(src_ico);
+	if (!(fsrc = fopen(src_ico, "r")))
+		die("fopen: %s", src_ico);
+	fseek(fsrc, fb->ie[0].offset, SEEK_SET);
+	while ((w = fread(buf, sizeof(*buf), sizeof(buf), fsrc)))
+		if (fwrite(buf, sizeof(*buf), w, fdest) < 0)
+			die("%s: fwrite", __func__);
+	fclose(fsrc);
+	iffree(&fb);
+}
+
 int main(int argc, char **argv)
 {
 	int c;
@@ -334,9 +420,12 @@ int main(int argc, char **argv)
 	char *dest = NULL;
 	size_t i;
 	icondir ib;
+	int png_cursors = 0;
+	char *src_ico;
+	struct iconfile *icb;
 
 	x = y = 0;
-	while ((c = getopt(argc, argv, "x:y:o:")) != -1) {
+	while ((c = getopt(argc, argv, "x:y:o:P")) != -1) {
 		switch (c) {
 		case 'x':
 			x = get_axis(optarg, c);
@@ -346,6 +435,9 @@ int main(int argc, char **argv)
 			break;
 		case 'o':
 			dest = strdup(optarg);
+			break;
+		case 'P': /* force PNG cursors */
+			png_cursors = 1;
 			break;
 		default:
 			exit(EXIT_FAILURE);
@@ -359,6 +451,14 @@ int main(int argc, char **argv)
 		die("specify at least one source PNG");
 	ib.count = argc - optind;
 	fb = get_fileinfo(ib.count, &argv[optind], x, y);
+	if (!png_cursors) {
+		src_ico = png2ico(fb, ib.count, dest);
+		icb = get_ico_headers(src_ico);
+		/* don't phunk with my offsets */
+		for (i = 0; i < ib.count; i++)
+			fb[i].ie.size = icb->ie[i].size;
+		iffree(&icb);
+	}
 	if (!(fdest = fopen(dest, "w")))
 		die("fopen: %s", dest);
 	fwrite(&ib, sizeof(ib), 1, fdest);
@@ -370,8 +470,18 @@ int main(int argc, char **argv)
 			fb[i].ie.height, fb[i].ie.x_hotspot, fb[i].ie.y_hotspot);
 		fwrite(&fb[i].ie, sizeof(fb[i].ie), 1, fdest);
 	}
-	write_pngs(fb, ib.count, fdest);
+	if (png_cursors) {
+		write_pngs(fb, ib.count, fdest);
+		printf("PNG cursors written to \"%s\".\n", dest);
+	} else {
+		ico2cur(src_ico, fdest);
+		printf("Bitmap cursors written to \"%s\".\n", dest);
+		/*if (remove(src_ico) < 0)
+			die("remove: %s", src_ico);*/
+		free(src_ico);
+	}
 	fclose(fdest);
 	fbfree(&fb, ib.count);
+	free(dest);
 	return EXIT_SUCCESS;
 }
