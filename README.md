@@ -33,7 +33,7 @@ Production targets (all of them generate tarballs for distribution):
 * `dist.left`: build the scalable, left-handed theme;
 * `dist.<size>`, where `size` can be small, medium or large: build a fixed-size, right-handed theme of the specified size;
 * `dist.<size>.left`: build a fixed-size, left-handed theme of the specified size;
-* `windows-cursors` for Windows. These cursors are PNG-compressed and work only in Windows Vista and later (they are high-DPI ready as well).
+* `windows-cursors` for Windows. These cursors employ an alpha channel and are compatible with Windows XP and later (Windows 10 users: they are high-DPI ready as well).
 
 `make all-dist` targets all of the above (except `windows-cursors`), including all fixed-size themes in all available sizes.
 
