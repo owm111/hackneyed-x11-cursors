@@ -261,12 +261,11 @@ char *png2ico(const struct fileinfo *fb, int len, const char *dest)
 		MagickSetLastIterator(mb);
 	}
 	MagickSetImageBackgroundColor(mb, pb);
-	dest_ico = malloc(strlen(dest) + 4);
+	dest_ico = malloc(strlen(dest) + 6);
 	strcpy(dest_ico, dest);
-	if ((p = strrchr(dest_ico, '.'))) {
-		p++;
-		memcpy(p, "ico", 3);
-	}
+	if ((p = strrchr(dest_ico, '.')))
+		*p = 0;
+	strcat(p, ".ico");
 	if (MagickWriteImages(mb, dest_ico, MagickTrue) == MagickFalse)
 		throw_wand_exception(mb);
 	mb = DestroyMagickWand(mb);
@@ -369,9 +368,6 @@ void write_pngs(struct fileinfo *fb, size_t count, FILE *dest)
 		while ((read = fread(buf, sizeof(*buf), sizeof(buf), src)))
 			fwrite(buf, sizeof(*buf), read, dest);
 		fclose(src);
-		if (fb[i].tempfname) /* temporary file */
-			if (remove(fb[i].fname) < 0)
-				fprintf(stderr, "%s: removing %s: %s", __func__, fb[i].fname, strerror(errno));
 	}
 }
 
@@ -495,6 +491,11 @@ int main(int argc, char **argv)
 		free(src_ico);
 	}
 	fclose(fdest);
+	for (i = 0; i < ib.count; i++) {
+		if (fb[i].tempfname) /* temporary file */
+			if (remove(fb[i].fname) < 0)
+				fprintf(stderr, "removing %s: %s", fb[i].fname, strerror(errno));
+	}
 	fbfree(&fb, ib.count);
 	free(dest);
 	return EXIT_SUCCESS;
