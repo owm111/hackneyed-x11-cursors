@@ -72,7 +72,7 @@ To build the dark theme, tell `make` to use the dark versions of `COMMON_SOURCE`
 
 Installation
 ------------
-Simply choose a tarball and extract it to `$HOME/.icons`. If you've built it from source, pick a size or variant (e.g., `Hackneyed`, `LHackneyed-36x36`) and move it to `$HOME/.icons`.
+Simply choose a tarball and extract it to `$HOME/.icons`. If you've built it from source, pick a size or variant (e.g., `Hackneyed`, `LHackneyed-36px`) and move it to `$HOME/.icons`.
 
 
 License
@@ -133,7 +133,7 @@ inherits=Hackneyed      # or Hackneyed-48px, LHackneyed etc.
 
 (There's advice [here](https://forum.manjaro.org/t/multiple-mouse-themes-problem/37451/5) discouraging this practice. Choose wisely.)
 
-Chromium and Chromium-based browsers won't pick up a new theme unless you restart the browser.
+Chromium and Chromium-based browsers won't pick up a new theme unless you restart the browser (seems to be fixed in Chromium 80).
 
 
 Known bugs
