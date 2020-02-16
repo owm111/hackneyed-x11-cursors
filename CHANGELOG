@@ -1,3 +1,11 @@
+0.8.1
+- support Inkscape 1.0 (huge reduction in build times)
+- merge make-ani-frames.sh and make-png.sh
+- rewrite large sections of the Makefile to make it POSIX compatible
+- rewrite png2cur to output bitmap cursors by default. in some situations,
+  Windows misidentifies the 32px PNG as a monochrome bitmap (can't be arsed
+  to track which build of Windows 10 started doing this)
+
 0.8:
 - *_arrow -> sb_*_arrow
 - rewrite do-symlinks.sh
