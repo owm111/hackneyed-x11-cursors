@@ -249,7 +249,7 @@ char *png2ico(const struct fileinfo *fb, int len, const char *dest)
 	MagickWand *mb = NULL;
 	PixelWand *pb;
 	int i;
-	char *dest_ico, *p;
+	char *dest_ico;
 
 	MagickWandGenesis();
 	mb = NewMagickWand();
@@ -263,9 +263,7 @@ char *png2ico(const struct fileinfo *fb, int len, const char *dest)
 	MagickSetImageBackgroundColor(mb, pb);
 	dest_ico = malloc(strlen(dest) + 6);
 	strcpy(dest_ico, dest);
-	if ((p = strrchr(dest_ico, '.')))
-		*p = 0;
-	strcat(p, ".ico");
+	strcat(dest_ico, ".ico");
 	if (MagickWriteImages(mb, dest_ico, MagickTrue) == MagickFalse)
 		throw_wand_exception(mb);
 	mb = DestroyMagickWand(mb);
