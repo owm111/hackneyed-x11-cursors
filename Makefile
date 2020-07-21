@@ -23,7 +23,7 @@
 # holders shall not be used in advertising or otherwise to promote the sale,
 # use or other dealings in this Software without prior written authorization.
 
-VERSION = 0.8
+VERSION = 0.8.1
 COMMON_SOURCE := theme/common-white.svg
 RSVG_SOURCE := theme/right-handed-white.svg
 LSVG_SOURCE := theme/left-handed-white.svg
