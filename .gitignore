@@ -1,11 +1,12 @@
-/*
-!theme
-!*.sh
-!*.c
-!CHANGELOG
-!LICENSE
-!Makefile
-!README.md
-!preview.png
-!sh-functions
-!*.scm
+# This ignore file is bullshit. The Makefile is bullshit.
+#/*
+#!theme
+#!*.sh
+#!*.c
+#!CHANGELOG
+#!LICENSE
+#!Makefile
+#!README.md
+#!preview.png
+#!sh-functions
+#!*.scm
