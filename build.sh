@@ -20,9 +20,9 @@ done
 # Make .pngs
 for theme in white dark; do
   if [ $theme = white ]; then
-    name=Hackneyed_White
+    name=Hackneyed
   else
-    name=Hackneyed_Dark
+    name=Hackneyed-Dark
   fi
   mkdir -p $out/share/icons/$name/cursors
   echo export-type:png
@@ -49,9 +49,9 @@ done | inkscape --shell
 # Make cursors
 for theme in white dark; do
   if [ $theme = white ]; then
-    name=Hackneyed_White
+    name=Hackneyed
   else
-    name=Hackneyed_Dark
+    name=Hackneyed-Dark
   fi
   for x in $cursors $common wait progress; do
     xcursorgen -p build/$theme build/in/$x.in $out/share/icons/$name/cursors/$x
