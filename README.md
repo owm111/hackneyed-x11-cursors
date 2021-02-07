@@ -11,24 +11,20 @@ Building
 --------
 Minimum dependencies:
 
-* ImageMagick (>=6.8.6)
-* Inkscape (>=0.92.3; now compatible with 1.0)
+* ImageMagick (>=6.8.6 but not 7.0, as it has huge API changes)
+* Inkscape (>=0.92.3)
 * GNU `make` and `bash`
 * `xcursorgen` (part of `xorg-x11-apps`)
 
-Extra functionality has additional dependencies:
-
-* The GIMP script requires GIMP >= 2.2 with the XMC plugin installed (the script isn't very useful anyway; refer to the in-file comments);
 * To generate and pack Windows cursors:
 	* A working C compiler;
-	* `ImageMagick` >= 6.9.10;
+	* `ImageMagick` >= 6.8.6;
 	* `libpng` >= 1.6.36;
 	* `pkg-config`;
 	* `zip`.
 
 Production targets (all of them generate tarballs for distribution):
 
-* `pack`: build both scalable themes (left- and right-handed) into a single package;
 * `dist`: build the scalable, right-handed theme;
 * `dist.left`: build the scalable, left-handed theme;
 * `dist.<size>`, where `size` can be small, medium or large: build a fixed-size, right-handed theme of the specified size;
@@ -140,7 +136,7 @@ Known bugs
 ----------
 The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with by upstream:
 
-- **Plasma on Wayland:** `XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=waylang-egl <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `split_h` and `split_v` when you hover over the borders of a Qt window, and don't expect it to be bug-free either;
+- **Plasma on Wayland:** If you're not on KDE, `XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=waylang-egl <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `split_h` and `split_v` when you hover over the borders of a Qt window. At least within KDE itself, cursors use the proper size now;
 
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
