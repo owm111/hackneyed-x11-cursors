@@ -189,14 +189,11 @@ WINDOWS_PROGRESS_CUSTOM_FRAMETIMES := frame_5_time=15
 
 all-sizes: all.small all.medium all.large all.small.left all.medium.left all.large.left all.left all
 all-themes: theme theme.left theme.small theme.medium theme.large theme.small.left theme.medium.left theme.large.left
-all-dist: dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left pack dist
+all-dist: dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left dist
 
 install: theme theme.left
 	test -e $(DESTDIR)$(PREFIX)/share/icons || install -d -m755 $(DESTDIR)$(PREFIX)/share/icons
 	cp -a $(THEME_NAME) L$(THEME_NAME) -t $(DESTDIR)$(PREFIX)/share/icons
-
-pack: theme theme.left
-	tar -jcof $(THEME_NAME)-$(VERSION)-pack.tar.bz2 $(THEME_NAME) L$(THEME_NAME)
 
 source-dist:
 	git archive --format=tar.gz --prefix=hackneyed-x11-cursors-$(VERSION)/ HEAD > \
@@ -639,7 +636,7 @@ clean:
 
 .PHONY: all all-dist all.left all.small all.medium all.large all.small.left all.medium.left all.large.left \
 	clean dist dist.left dist.small dist.medium dist.large dist.small.left dist.medium.left dist.large.left \
-	install pack preview source-dist theme theme.left theme.small theme.medium theme.large theme.small.left \
+	install preview source-dist theme theme.left theme.small theme.medium theme.large theme.small.left \
 	theme.medium.left theme.large.left windows-cursors all-sizes all-themes wait.%.frames \
 	progress.%.frames progress.left.%.frames wait_all_frames progress_all_frames \
 	progress_left_all_frames wait_all_hotspots progress_all_hotspots progress_left_all_hotspots
