@@ -127,8 +127,6 @@ inherits=Hackneyed      # or Hackneyed-48px, LHackneyed etc.
 
 ...and saving it in `~/.icons/default` (create the folder if it doesn't exist already).
 
-(There's advice [here](https://forum.manjaro.org/t/multiple-mouse-themes-problem/37451/5) discouraging this practice. Choose wisely.)
-
 Chromium and Chromium-based browsers won't pick up a new theme unless you restart the browser (seems to be fixed in Chromium 80).
 
 
@@ -136,7 +134,7 @@ Known bugs
 ----------
 The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with by upstream:
 
-- **Plasma on Wayland:** If you're not on KDE, `XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=waylang-egl <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `split_h` and `split_v` when you hover over the borders of a Qt window. At least within KDE itself, cursors use the proper size now;
+- **Qt on Wayland outside Plasma:** If you're not on KDE, create a `~/.icons/default/index.theme` as described above or use `XCURSOR_THEME=Hackneyed XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=wayland <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `split_h` and `split_v` when you hover over the borders of a Qt window. At least within KDE itself, cursors use the proper size now;
 
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
