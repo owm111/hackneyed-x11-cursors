@@ -134,7 +134,9 @@ Known bugs
 ----------
 The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with by upstream:
 
-- **Qt on Wayland outside Plasma:** If you're not on KDE, create a `~/.icons/default/index.theme` as described above or use `XCURSOR_THEME=Hackneyed XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=wayland <qt application>` and check if something is amiss. Don't ask me why Qt is displaying `split_h` and `split_v` when you hover over the borders of a Qt window. At least within KDE itself, cursors use the proper size now;
+- **Qt on Wayland outside Plasma:** If you're not on KDE, create a `~/.icons/default/index.theme` as described above or use `XCURSOR_THEME=Hackneyed XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=wayland <qt application>` and check if something is amiss--as of now, Qt's (hopefully) makeshift CSD implementation switches to `split_h` and `split_v` in the borders of the window, which is *wrong*. At least within KDE itself, cursors use the proper size and shape.
+
+Qt on Wayland outside KDE is also not *that* great if you want to resize a window without holding `<Super> + middle click` *every goddamn time*, as having no "virtual" border to grab onto will be a test of patience and pointing device skills.
 
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
 
