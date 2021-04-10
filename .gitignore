@@ -6,6 +6,6 @@
 !LICENSE
 !Makefile
 !README.md
-!preview.png
+!preview*.png
 !sh-functions
 !*.scm

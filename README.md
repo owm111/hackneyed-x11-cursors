@@ -1,5 +1,5 @@
-![hackneyed-light-preview](preview-Hackneyed.png "The sands of time are running out for you, bro")
-![hackneyed-dark-preview](preview-Hackneyed-Dark.png "SO PUUUUURE! SO COOOOOLD!")
+![hackneyed-light-preview](preview.png "The sands of time are running out for you, bro")
+![hackneyed-dark-preview](preview-dark.png "SO PUUUUURE! SO COOOOOLD!")
 
 Overview
 --------
@@ -136,9 +136,11 @@ The bugs described below are NotMyProblem<sup>TM</sup> and should be dealt with 
 
 - **Qt on Wayland outside Plasma:** If you're not on KDE, create a `~/.icons/default/index.theme` as described above or use `XCURSOR_THEME=Hackneyed XCURSOR_SIZE=<current cursor size> QT_QPA_PLATFORM=wayland <qt application>` and check if something is amiss--as of now, Qt's (hopefully) makeshift CSD implementation switches to `split_h` and `split_v` in the borders of the window, which is *wrong*. At least within KDE itself, cursors use the proper size and shape.
 
-Qt on Wayland outside KDE is also not *that* great if you want to resize a window without holding `<Super> + middle click` *every goddamn time*, as having no "virtual" border to grab onto will be a test of patience and pointing device skills.
+- Qt on Wayland outside KDE is also not *that* great if you want to resize a window without holding `<Super> + middle click` *every goddamn time*, as having no "virtual" border to grab onto will be a test of patience and pointing device skills.
 
 - **`all-scroll` as `move` on Firefox, Chromium 62+ and derivatives:** Firefox has a [14-year-old bug](https://bugzilla.mozilla.org/show_bug.cgi?id=275174) concerning exactly this. Still nothing about Chromium.
+
+- **GTK 4.** GTK 4 only looks for cursor themes in `/usr/local/share/themes` or `/usr/share/themes`. If Flatpak is installed, then it searches whatever `<datadir>/flatpak/exports/share` is available (either system-wide ones or in `~/.local/share/flatpak`). I really hope this was a mistake on their part.
 
 To do
 -----
