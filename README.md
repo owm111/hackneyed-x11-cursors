@@ -1,5 +1,5 @@
-![hackneyed-light-preview](preview.png "The sands of time are running out for you, bro")
-![hackneyed-dark-preview](preview-dark.png "SO PUUUUURE! SO COOOOOLD!")
+![hackneyed-light-preview](preview-Hackneyed.png "The sands of time are running out for you, bro")
+![hackneyed-dark-preview](preview-Hackneyed-Dark.png "SO PUUUUURE! SO COOOOOLD!")
 
 Overview
 --------
