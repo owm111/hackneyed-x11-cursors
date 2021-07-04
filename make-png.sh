@@ -50,7 +50,7 @@ ikwrapper()
 			shift ;;
 		esac
 	done
-	if [ "${ikver:0:3}" = "1.0" ]; then
+	if [ "${ikver:0:1}" = "1" ]; then
 		# Oh cool, Inkscape returns zero even if ID isn't found!
 		$INKSCAPE -d $dpi --export-type=png --export-id="$export_id" --export-filename="$output" "$src" &>/dev/null
 		[ -e "$output" ] || die "$MYNAME: object ID \"$export_id\" not found in $src"
