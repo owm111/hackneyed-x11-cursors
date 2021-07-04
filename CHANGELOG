@@ -1,3 +1,6 @@
+0.8.2
+- fix 'arrow' symlink (must point to 'default')
+
 0.8.1
 - support Inkscape 1.0 (huge reduction in build times)
 - merge make-ani-frames.sh and make-png.sh
