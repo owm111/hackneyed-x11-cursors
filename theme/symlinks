@@ -3,8 +3,8 @@ sb_up_arrow		up-arrow
 sb_down_arrow		e03881300220000010406080c0018102
 sb_right_arrow		4081077e9ffc7ff97e70604000000000
 plus			cell
-default			left_ptr top_left_arrow left-arrow left_arrow
-right_ptr		arrow top_right_arrow right-arrow draft_large draft_small
+default			arrow left_ptr top_left_arrow left-arrow left_arrow
+right_ptr		top_right_arrow right-arrow draft_large draft_small
 alias			link dnd-link 0876e1c15ff2fc01f906f1c363074c0f 3085a0e285430894940527032f8b26df 640fb0e74195791501fd1ed57b41487f a2a266d0498c3104214a47bd64ab0fc8 5c7388ec4f4bc7d0ebcb4687e87d5ddd
 not-allowed		forbidden circle crossed-circle crossed_circle 03b6e0fcb3499374a867c041f52298f0 310ebafe88f67c80876888b78f09609f 00c4610000d2e20000a3a50000439100
 no-drop			dnd-no-drop dnd-none 03b6e0fcb3499374a867c041f52298f0 03b6e0fcb3499374a867d041f52298f0 1001208387f90000800003000700f6ff
