@@ -9,3 +9,4 @@
 !preview*.png
 !sh-functions
 !*.scm
+!*.nix
